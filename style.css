@@ -1,0 +1,32 @@
+body.light {
+    background-color: #ffffff; /* Light theme background */
+    color: #000000;            /* Light theme text color */
+}
+
+body.dark {
+    background-color: #333333; /* Dark theme background */
+    color: #ffffff;            /* Dark theme text color */
+}
+
+.listing {
+    border: 1px solid #ccc;    /* Border for listings */
+    margin: 10px 0;            /* Margin between listings */
+    padding: 10px;             /* Padding inside listings */
+}
+
+.logo {
+    max-width: 150px;          /* Adjust the max width as needed */
+    height: auto;              /* Maintain aspect ratio */
+    display: block;            /* Centering and block display */
+    margin: 0 auto 20px;       /* Center it and add margin below */
+}
+
+@media (max-width: 600px) {
+    .listing {
+        font-size: 14px;       /* Font size for smaller screens */
+    }
+
+    h1, h2, h3 {
+        font-size: 1.5em;      /* Heading sizes for smaller screens */
+    }
+}
