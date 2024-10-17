@@ -22,3 +22,14 @@ For inquiries, please reach out at [kooky@fareenkashmira.co.in](mailto:kooky@far
 ## Project Structure
 
 This is the file structure of the project:
+
+
+/ (root)
+  ├── css/
+  │   └── styles.css
+  ├── js/
+  │   └── script.js
+  ├── images/
+  │   └── logo.png
+  ├── index.html
+  ├── README.md
