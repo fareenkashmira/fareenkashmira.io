@@ -1,86 +1,93 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-  font-family: 'Cambria', serif;
-  background-color: #ffffff;
-  background-image: url('path-to-butterfly-outline.jpg'); /* Background butterflies */
-  background-repeat: no-repeat;
-  background-position: center;
-  color: #333;
+    font-family: 'Cambria', serif;
+    background-color: #ffffff;
+    background-image: url('path-to-butterfly-outline.svg'); /* Ensure this is the SVG path */
+    background-repeat: no-repeat;
+    background-size: cover; /* Cover the whole background */
+    background-position: center;
+    color: #333;
 }
 
 /* Container */
 .container {
-  width: 100%;
-  padding: 20px;
+    width: 100%;
+    padding: 20px;
 }
 
 /* Header Styles */
 header {
-  text-align: center;
-  margin-top: 50px;
+    text-align: center;
+    margin-top: 50px;
 }
 
 .logo {
-  font-size: 48px;
-  font-weight: bold;
-  color: #ff6c6c;
+    font-size: 48px;
+    font-weight: bold;
+    color: #ff6c6c; /* Kooky logo color */
 }
 
 .tagline {
-  font-family: 'Cinzel Decorative', serif;
-  font-size: 24px;
-  color: #ff6c6c;
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 24px;
+    color: #ff6c6c; /* Creating Magic tagline color */
 }
 
 /* Navigation Bar */
 nav ul {
-  list-style-type: none;
-  text-align: center;
-  margin-top: 20px;
+    list-style-type: none;
+    text-align: center;
+    margin-top: 20px;
 }
 
 nav ul li {
-  display: inline-block;
-  margin: 0 15px;
+    display: inline-block;
+    margin: 0 15px;
 }
 
 nav ul li a {
-  text-decoration: none;
-  font-size: 18px;
-  color: #333;
+    text-decoration: none;
+    font-size: 18px;
+    color: #333; /* Navigation link color */
 }
 
 /* Content Section */
 .content {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
 }
 
 .left {
-  width: 45%;
+    width: 45%;
 }
 
 .photo-placeholder {
-  background-color: #f0f0f0;
-  border: 2px dashed #ff6c6c;
-  padding: 50px;
-  text-align: center;
-  font-style: italic;
+    background-color: #f0f0f0; /* Placeholder background */
+    border: 2px dashed #ff6c6c; /* Dashed border color */
+    padding: 50px;
+    text-align: center;
+    font-style: italic;
 }
 
 .right {
-  width: 45%;
-  text-align: right;
+    width: 45%;
+    text-align: right;
 }
 
 /* Image Placeholder */
 .photo-placeholder p {
-  font-size: 16px;
-  color: #999;
+    font-size: 16px;
+    color: #999; /* Placeholder text color */
+}
+
+/* Adjusting the butterfly outline */
+.butterflies {
+    stroke: #ff6c6c; /* If using an SVG, set the stroke color */
+    fill: none; /* Ensure butterflies are outlined */
 }
