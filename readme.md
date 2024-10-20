@@ -1,4 +1,4 @@
-# Kooky - Wizard of Arts
+# Kooky - Creating Magic
 **Graphic Design and Art Services**
 
 Welcome to Kooky! We are a creative platform offering high-quality graphic design and artistic services. Our focus is on personalized, unique designs tailored to your specific needs, from logos to full brand identities.
