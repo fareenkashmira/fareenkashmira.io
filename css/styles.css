@@ -86,6 +86,44 @@ nav ul li a {
     color: #999; /* Placeholder text color */
 }
 
+/* Button Styles */
+.view-work-btn {
+    background-color: #ff6c6c; /* Button background color */
+    color: #fff; /* Text color */
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px; /* Space between paragraph and button */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s; /* Smooth hover effect */
+}
+
+.view-work-btn:hover {
+    background-color: #e55b5b; /* Darker shade on hover */
+}
+
+/* Footer Section */
+footer {
+    text-align: center;
+    margin-top: 50px; /* Space above footer */
+    padding: 20px 0; /* Padding inside footer */
+    background-color: #f0f0f0; /* Footer background color */
+}
+
+footer p {
+    color: #333; /* Footer text color */
+}
+
+footer a {
+    color: #ff6c6c; /* TnC link color */
+    text-decoration: none; /* Remove underline */
+}
+
+footer a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
 /* Adjusting the butterfly outline */
 .butterflies {
     stroke: #ff6c6c; /* If using an SVG, set the stroke color */
