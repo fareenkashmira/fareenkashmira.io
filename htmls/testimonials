@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Testimonials - Kooky</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header Section -->
+    <header>
+      <h1 class="logo">Kooky</h1>
+      <p class="tagline">Creating Magic</p>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="testimonials.html">Testimonials</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- Content Section -->
+    <section class="content">
+      <h2>Testimonials</h2>
+      <div class="testimonial">
+        <p>"Kooky transformed my vision into reality! The designs are stunning, and I couldn't be happier!"</p>
+        <p><strong>- Client Name</strong></p>
+      </div>
+      <div class="testimonial">
+        <p>"Working with Kooky was a delight. The professionalism and creativity exceeded my expectations."</p>
+        <p><strong>- Another Client Name</strong></p>
+      </div>
+      <div class="testimonial">
+        <p>"I loved the designs! Kooky really understands what clients want and delivers exceptional work."</p>
+        <p><strong>- Yet Another Client Name</strong></p>
+      </div>
+      <!-- Add more testimonials as needed -->
+    </section>
+  </div>
+
+  <!-- Footer Section -->
+  <footer>
+    <p>2022-2024 Kooky All rights reserved</p>
+  </footer>
+
+  <!-- Link to JavaScript File -->
+  <script src="js/script.js"></script>
+</body>
+</html>
