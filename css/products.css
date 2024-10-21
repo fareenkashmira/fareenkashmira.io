@@ -1,0 +1,59 @@
+/* Basic Styles */
+.container {
+  width: 80%;
+  margin: auto;
+}
+
+.product-item {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+/* Grid View */
+#product-container.grid-view {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.product-item img {
+  width: 100%;
+  height: auto;
+}
+
+/* List View */
+#product-container.list-view {
+  display: block;
+}
+
+#product-container.list-view .product-item {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+
+#product-container.list-view img {
+  width: 100px;
+  height: auto;
+  margin-right: 20px;
+}
+
+.view-options {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.view-options button {
+  margin: 0 10px;
+  padding: 10px 20px;
+  border: none;
+  background-color: #ff6c6c;
+  color: white;
+  cursor: pointer;
+}
+
+.view-options .active {
+  background-color: #333;
+}
