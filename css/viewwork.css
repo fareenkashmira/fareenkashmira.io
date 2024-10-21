@@ -1,0 +1,51 @@
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.header, .footer {
+    text-align: center;
+}
+
+.view-options {
+    margin: 20px 0;
+}
+
+.view-options button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.view-options button.active {
+    background-color: #ff6c6c; /* Active button color */
+    color: white;
+}
+
+.content {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.work-item {
+    flex: 1 0 30%; /* For grid view */
+    margin: 10px;
+    text-align: center;
+}
+
+.work-item img {
+    width: 100%;
+    height: auto;
+}
+
+.list-view .work-item {
+    flex: 1 0 100%; /* For list view */
+    display: flex;
+    align-items: center;
+}
+
+.list-view .work-item img {
+    width: 150px; /* Set image size for list view */
+    margin-right: 20px;
+}
