@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Work - Kooky</title>
+    <link rel="stylesheet" href="css/styles.css"> <!-- Link to CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome link -->
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header>
+            <h1 class="logo">Kooky</h1>
+            <p class="tagline">Creating Magic</p>
+        </header>
+
+        <!-- View Options -->
+        <div class="view-options">
+            <button id="grid-view" class="active">Grid View</button>
+            <button id="list-view">List View</button>
+        </div>
+
+        <!-- Content Section -->
+        <section class="content" id="work-gallery">
+            <div class="work-item grid-view">
+                <img src="images/image1.jpg" alt="Work Title 1"> <!-- Update path -->
+                <h3>Work Title 1</h3>
+                <p>Details about work 1. Description, techniques used, etc.</p>
+            </div>
+            <div class="work-item grid-view">
+                <img src="images/image2.jpg" alt="Work Title 2"> <!-- Update path -->
+                <h3>Work Title 2</h3>
+                <p>Details about work 2. Description, techniques used, etc.</p>
+            </div>
+            <div class="work-item grid-view">
+                <img src="images/image3.jpg" alt="Work Title 3"> <!-- Update path -->
+                <h3>Work Title 3</h3>
+                <p>Details about work 3. Description, techniques used, etc.</p>
+            </div>
+            <!-- Add more work items as needed -->
+        </section>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>2022-2024 Kooky All rights reserved</p>
+    </footer>
+
+    <!-- Link to JavaScript File -->
+    <script src="js/script.js"></script>
+</body>
+</html>
