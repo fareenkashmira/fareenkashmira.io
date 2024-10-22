@@ -6,6 +6,36 @@
     <title>View Work - Kooky</title>
     <link rel="stylesheet" href="css/viewwork.css"> <!-- Link to CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome link -->
+    <style>
+        /* Add basic styles for grid and list views */
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .work-item {
+            margin: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            overflow: hidden;
+            width: calc(33.33% - 20px); /* Adjust width for grid view */
+        }
+        .work-item img {
+            width: 100%;
+            height: auto;
+        }
+        .list-view .work-item {
+            width: 100%; /* Full width for list view */
+            display: flex;
+        }
+        .list-view img {
+            width: 150px; /* Fixed width for image in list view */
+            height: auto;
+            margin-right: 10px;
+        }
+        .list-view .work-item div {
+            flex: 1;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -23,22 +53,57 @@
 
         <!-- Content Section -->
         <section class="content" id="work-gallery">
+            <!-- Photo Work Items -->
+            <h2>Photos</h2>
             <div class="work-item grid-view">
-                <img src="images/image1.jpg" alt="Work Title 1"> <!-- Update path -->
-                <h3>Work Title 1</h3>
-                <p>Details about work 1. Description, techniques used, etc.</p>
+                <img src="images/photo1.jpg" alt="Photo Title 1"> <!-- Update path -->
+                <h3>Photo Title 1</h3>
+                <p>Description of Photo 1.</p>
             </div>
             <div class="work-item grid-view">
-                <img src="images/image2.jpg" alt="Work Title 2"> <!-- Update path -->
-                <h3>Work Title 2</h3>
-                <p>Details about work 2. Description, techniques used, etc.</p>
+                <img src="images/photo2.jpg" alt="Photo Title 2"> <!-- Update path -->
+                <h3>Photo Title 2</h3>
+                <p>Description of Photo 2.</p>
             </div>
             <div class="work-item grid-view">
-                <img src="images/image3.jpg" alt="Work Title 3"> <!-- Update path -->
-                <h3>Work Title 3</h3>
-                <p>Details about work 3. Description, techniques used, etc.</p>
+                <img src="images/photo3.jpg" alt="Photo Title 3"> <!-- Update path -->
+                <h3>Photo Title 3</h3>
+                <p>Description of Photo 3.</p>
             </div>
-            <!-- Add more work items as needed -->
+
+            <!-- PDF Work Items -->
+            <h2>PDFs</h2>
+            <div class="work-item grid-view">
+                <a href="https://your-username.github.io/your-repository-name/path-to-your-first-pdf.pdf" target="_blank">
+                    <img src="images/image1.jpg" alt="PDF Work Title 1"> <!-- Update path -->
+                    <h3>PDF Work Title 1</h3>
+                    <p>Details about PDF work 1. Description, techniques used, etc.</p>
+                </a>
+            </div>
+            <div class="work-item grid-view">
+                <a href="https://your-username.github.io/your-repository-name/path-to-your-second-pdf.pdf" target="_blank">
+                    <img src="images/image2.jpg" alt="PDF Work Title 2"> <!-- Update path -->
+                    <h3>PDF Work Title 2</h3>
+                    <p>Details about PDF work 2. Description, techniques used, etc.</p>
+                </a>
+            </div>
+
+            <!-- Video Work Items -->
+            <h2>Videos</h2>
+            <div class="work-item grid-view">
+                <a href="https://www.youtube.com/watch?v=your-video-id-1" target="_blank">
+                    <img src="images/video-thumbnail1.jpg" alt="Video Title 1"> <!-- Update path for thumbnail -->
+                    <h3>Video Work Title 1</h3>
+                    <p>Details about video work 1. Description, techniques used, etc.</p>
+                </a>
+            </div>
+            <div class="work-item grid-view">
+                <a href="https://www.youtube.com/watch?v=your-video-id-2" target="_blank">
+                    <img src="images/video-thumbnail2.jpg" alt="Video Title 2"> <!-- Update path for thumbnail -->
+                    <h3>Video Work Title 2</h3>
+                    <p>Details about video work 2. Description, techniques used, etc.</p>
+                </a>
+            </div>
         </section>
     </div>
 
@@ -49,5 +114,26 @@
 
     <!-- Link to JavaScript File -->
     <script src="js/viewwork.js"></script>
+
+    <!-- JavaScript to toggle between views -->
+    <script>
+        const gridViewButton = document.getElementById('grid-view');
+        const listViewButton = document.getElementById('list-view');
+        const workGallery = document.getElementById('work-gallery');
+
+        gridViewButton.addEventListener('click', () => {
+            workGallery.classList.remove('list-view');
+            workGallery.classList.add('grid-view');
+            gridViewButton.classList.add('active');
+            listViewButton.classList.remove('active');
+        });
+
+        listViewButton.addEventListener('click', () => {
+            workGallery.classList.remove('grid-view');
+            workGallery.classList.add('list-view');
+            listViewButton.classList.add('active');
+            gridViewButton.classList.remove('active');
+        });
+    </script>
 </body>
 </html>
