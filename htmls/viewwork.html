@@ -7,24 +7,42 @@
     <link rel="stylesheet" href="css/viewwork.css"> <!-- Link to CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome link -->
     <style>
-        /* Add basic styles for grid and list views */
+        /* Basic styles for the body and container */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Styles for grid and list views */
         .content {
             display: flex;
-            flex-wrap: wrap;
+            flex-direction: column; /* Stack items vertically */
+            margin-top: 20px;
         }
         .work-item {
-            margin: 10px;
+            margin: 15px 0; /* Margin for spacing between items */
             border: 1px solid #ccc;
             border-radius: 5px;
             overflow: hidden;
-            width: calc(33.33% - 20px); /* Adjust width for grid view */
+            padding: 10px;
         }
         .work-item img {
             width: 100%;
             height: auto;
         }
+        .work-item h3 {
+            margin: 10px 0 5px; /* Spacing for titles */
+        }
+        .work-item p {
+            margin: 0;
+        }
         .list-view .work-item {
-            width: 100%; /* Full width for list view */
             display: flex;
         }
         .list-view img {
@@ -34,6 +52,12 @@
         }
         .list-view .work-item div {
             flex: 1;
+        }
+
+        /* Header and footer styles */
+        header, footer {
+            text-align: center;
+            margin: 20px 0;
         }
     </style>
 </head>
@@ -75,14 +99,14 @@
             <h2>PDFs</h2>
             <div class="work-item grid-view">
                 <a href="https://your-username.github.io/your-repository-name/path-to-your-first-pdf.pdf" target="_blank">
-                    <img src="images/image1.jpg" alt="PDF Work Title 1"> <!-- Update path -->
+                    <img src="images/pdf-thumbnail1.jpg" alt="PDF Work Title 1"> <!-- Update path for thumbnail -->
                     <h3>PDF Work Title 1</h3>
                     <p>Details about PDF work 1. Description, techniques used, etc.</p>
                 </a>
             </div>
             <div class="work-item grid-view">
                 <a href="https://your-username.github.io/your-repository-name/path-to-your-second-pdf.pdf" target="_blank">
-                    <img src="images/image2.jpg" alt="PDF Work Title 2"> <!-- Update path -->
+                    <img src="images/pdf-thumbnail2.jpg" alt="PDF Work Title 2"> <!-- Update path for thumbnail -->
                     <h3>PDF Work Title 2</h3>
                     <p>Details about PDF work 2. Description, techniques used, etc.</p>
                 </a>
