@@ -4,7 +4,144 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kooky - Creating Magic</title>
+  
+  <!-- Link to Google Font: Cinzel Decorative -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap" rel="stylesheet">
+  
+  <!-- Link to External Stylesheet -->
   <link rel="stylesheet" href="css/styles.css">
+
+  <style>
+    /* Body background with butterfly image */
+    body {
+      background-image: url('images/butterfly.png');
+      background-size: cover;
+      background-position: center;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Container for all content */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* Header Section Styling */
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .logo {
+      font-size: 48px;
+      font-weight: bold;
+      color: #ff6c6c; /* Logo in bold with custom color */
+    }
+
+    .tagline {
+      font-size: 24px;
+      font-family: 'Cinzel Decorative', serif; /* Apply Cinzel Decorative font */
+      margin-top: -10px; /* Adjust to fit perfectly below Kooky */
+      color: #333;
+    }
+
+    /* Navigation Bar */
+    nav ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 40px;
+    }
+
+    nav ul li {
+      display: inline;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      font-size: 18px;
+      color: #ff6c6c;
+      padding: 5px 10px;
+    }
+
+    nav ul li a:hover {
+      color: #333;
+    }
+
+    /* Content Section */
+    .content {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .left, .right {
+      width: 48%;
+    }
+
+    /* Left Photo Placeholder */
+    .photo-placeholder {
+      background-color: #fff;
+      border: 2px solid #ff6c6c;
+      text-align: center;
+      padding: 20px;
+      height: 200px;
+    }
+
+    /* Right Text Section */
+    .right h2 {
+      font-family: 'Cinzel Decorative', serif; /* Apply Cinzel Decorative font */
+      font-size: 28px;
+      color: #333;
+    }
+
+    .right p {
+      font-size: 16px;
+      line-height: 1.5;
+      color: #555;
+      text-align: justify;
+    }
+
+    .view-work-btn {
+      background-color: #ff6c6c;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .view-work-btn:hover {
+      background-color: #333;
+    }
+
+    /* Footer Section */
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      padding: 10px 0;
+      background-color: #f4f4f4;
+    }
+
+    footer p {
+      margin: 0;
+      font-size: 14px;
+      color: #555;
+    }
+
+    footer a {
+      color: #ff6c6c;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
@@ -17,7 +154,7 @@
     <!-- Navigation Bar -->
     <nav>
       <ul>
-        <li><a href="index.html">Home</a></li> <!-- Home links to index.html -->
+        <li><a href="index.html">Home</a></li>
         <li><a href="htmls/products.html">Products</a></li>
         <li><a href="htmls/testimonials.html">Testimonials</a></li>
         <li><a href="htmls/contact.html">Contact</a></li>
@@ -32,20 +169,21 @@
           <p>Photo Slideshow Placeholder</p>
         </div>
       </div>
+
       <!-- Right: Paragraph -->
       <div class="right">
-        <h2>Hello, I'm Fareen Kashmira</h2> <!-- Added heading here -->
+        <h2>Hello, I'm Fareen Kashmira</h2>
         <p>The creative director of Kooky, I not only bring my skills in graphic design and psychology to the table but also a deep sense of authenticity and honesty. Through my designs, I aim to create more than just visuals—I strive to tell stories and evoke emotions that connect with people on a deeper level. My work reflects a blend of creativity, insight, and precision, honed over the years through various mediums, from sketching and painting to mastering digital tools like Adobe Illustrator and Canva.
 
         I approach each project with an open and honest perspective, always prioritizing genuine communication and understanding. Whether it's designing logos or creating digital art, I focus on capturing the essence of what truly matters to my clients and their audiences. My ability to understand emotional depth comes not only from my formal background in psychology but also from a commitment to staying true to my values. I believe in crafting designs that are not only visually compelling but also authentic and meaningful.</p>
-        <a href="htmls/viewwork.html"><button class="view-work-btn">View Work</button></a> <!-- Linked to viewwork.html -->
+        <a href="htmls/viewwork.html"><button class="view-work-btn">View Work</button></a>
       </div>
     </section>
   </div>
 
   <!-- Footer Section -->
   <footer>
-    <p>2022-2024 Kooky All rights reserved | <a href="htmls/TnC.html">TnC</a></p> <!-- Linked to tnc.html -->
+    <p>2022-2024 Kooky All rights reserved | <a href="htmls/TnC.html">TnC</a></p>
   </footer>
 
   <!-- Link to JavaScript File -->
