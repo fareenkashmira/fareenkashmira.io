@@ -143,6 +143,34 @@
     footer a:hover {
       text-decoration: underline;
     }
+
+    /* Consent Banner Styles */
+    .consent-banner {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: #f4f4f4;
+      padding: 15px;
+      text-align: center;
+      display: none; /* Initially hidden */
+      z-index: 1000;
+    }
+
+    .consent-banner p {
+      margin: 0;
+      font-size: 14px;
+      color: #333;
+    }
+
+    .consent-banner button {
+      background-color: #ff6c6c;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+      margin-left: 10px;
+    }
   </style>
   
   <!-- Google tag (gtag.js) -->
@@ -152,6 +180,18 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-XMK04PPSV2');
+
+    // Consent Banner Logic
+    window.onload = function() {
+      if (!localStorage.getItem("cookieConsent")) {
+        document.getElementById("consent-banner").style.display = "block";
+      }
+    };
+
+    function acceptCookies() {
+      localStorage.setItem("cookieConsent", "true");
+      document.getElementById("consent-banner").style.display = "none";
+    }
   </script>
   
 </head>
@@ -192,6 +232,11 @@
         <a href="htmls/viewwork.html"><button class="view-work-btn">View Work</button></a>
       </div>
     </section>
+  </div>
+
+  <!-- Consent Banner -->
+  <div id="consent-banner" class="consent-banner">
+    <p>This website uses cookies to ensure you get the best experience on our website. <button onclick="acceptCookies()">Accept</button></p>
   </div>
 
   <!-- Footer Section -->
