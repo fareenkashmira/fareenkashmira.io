@@ -4,30 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us</title>
+
     <!-- Link to Google Font: Cinzel Decorative -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap" rel="stylesheet">
-    <style>
-        
-        <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XMK04PPSV2"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-XMK04PPSV2');
-  </script>
 
-        <!-- Navigation Bar -->
-    <nav>
-      <ul>
-        <li><a href="../index.html">Home</a></li>
-        <li><a href="products.html">Products</a></li>
-        <li><a href="blog.html">Blogs</a></li>
-        <li><a href="testimonials.html">Testimonials</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-        
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XMK04PPSV2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XMK04PPSV2');
+    </script>
+
+    <style>
+        /* Navigation Bar */
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 14px 20px;
+            display: block;
+        }
+        nav ul li a:hover {
+            background-color: #575757;
+        }
+
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
@@ -44,7 +55,7 @@
         .contact-container h2 {
             text-align: center;
             color: #333;
-            font-family: 'Cinzel Decorative', serif; /* Apply Cinzel Decorative font */
+            font-family: 'Cinzel Decorative', serif;
         }
         .contact-info {
             text-align: center;
@@ -60,23 +71,33 @@
             gap: 15px;
         }
         .social-icons a {
-            width: 50px; /* Size of the icon */
-            height: 50px; /* Size of the icon */
+            width: 50px;
+            height: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: transform 0.2s; /* Transition for hover effect */
+            transition: transform 0.2s;
         }
         .social-icons a:hover {
-            transform: scale(1.1); /* Slightly enlarge on hover */
+            transform: scale(1.1);
         }
         .social-icons a img {
-            width: 100%; /* Ensures the icon image fills the space */
-            height: auto; /* Maintains the aspect ratio */
+            width: 100%;
+            height: auto;
         }
     </style>
 </head>
 <body>
+
+<nav>
+    <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="blog.html">Blogs</a></li>
+        <li><a href="testimonials.html">Testimonials</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+</nav>
 
 <div class="contact-container">
     <h2>Contact Us</h2>
