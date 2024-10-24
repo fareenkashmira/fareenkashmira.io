@@ -1,59 +1,130 @@
-/* Basic Styles */
+/* General Container */
 .container {
-  width: 80%;
-  margin: auto;
+  width: 90%;
+  margin: 0 auto;
 }
 
-.product-item {
-  border: 1px solid #ccc;
-  padding: 10px;
-  margin: 10px 0;
+/* Header Section */
+header {
+  text-align: center;
+  padding: 20px;
 }
 
-/* Grid View */
-#product-container.grid-view {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
+.logo {
+  font-size: 36px;
+  font-weight: bold;
+  color: #333;
 }
 
-.product-item img {
-  width: 100%;
-  height: auto;
+.tagline {
+  font-size: 18px;
+  color: #555;
 }
 
-/* List View */
-#product-container.list-view {
-  display: block;
-}
-
-#product-container.list-view .product-item {
+/* Navigation Bar */
+nav ul {
+  list-style: none;
+  padding: 0;
   display: flex;
-  align-items: center;
-  margin: 10px 0;
+  justify-content: center;
 }
 
-#product-container.list-view img {
-  width: 100px;
-  height: auto;
-  margin-right: 20px;
+nav ul li {
+  margin: 0 15px;
 }
 
+nav ul li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+nav ul li a:hover {
+  color: #ff6c6c;
+}
+
+/* Content Section */
+.content {
+  margin-top: 20px;
+}
+
+h2 {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 28px;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* View Option Toggle Buttons */
 .view-options {
-  display: flex;
-  justify-content: flex-end;
+  text-align: center;
   margin-bottom: 20px;
 }
 
 .view-options button {
-  margin: 0 10px;
   padding: 10px 20px;
-  border: none;
-  background-color: #ff6c6c;
-  color: white;
+  margin: 0 5px;
+  background-color: #fff;
+  border: 2px solid #333;
   cursor: pointer;
 }
 
-.view-options .active {
+.view-options button.active {
+  background-color: #ff6c6c;
+  color: white;
+}
+
+.view-options button:hover {
   background-color: #333;
+  color: white;
+}
+
+/* Grid View (Default) */
+.grid-view .product-item {
+  width: 30%;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.grid-view .product-item img {
+  width: 100%;
+  height: auto;
+}
+
+/* List View Styling */
+.list-view .product-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.list-view .product-item img {
+  width: 150px;
+  height: auto;
+  margin-right: 20px;
+}
+
+.list-view .product-item h3 {
+  font-size: 24px;
+  margin: 0;
+}
+
+.list-view .product-item p {
+  margin: 0;
+  color: #666;
+}
+
+/* Footer Section */
+footer {
+  text-align: center;
+  margin-top: 40px;
+  padding: 10px 0;
+  background-color: #f1f1f1;
+}
+
+footer p {
+  color: #777;
+  font-size: 14px;
 }
