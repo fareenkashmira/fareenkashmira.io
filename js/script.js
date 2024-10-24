@@ -24,7 +24,7 @@ function hideConsentBanner() {
 // Check for previous cookie consent on page load
 window.onload = function() {
     const consent = localStorage.getItem('cookiesAccepted');
-    if (consent === 'all' || consent === 'important') {
+    if (consent === 'all' || consent === 'important' || consent === 'none') {
         hideConsentBanner();
     }
 };
