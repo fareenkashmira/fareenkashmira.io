@@ -1,131 +1,158 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
+/* Body background with butterfly image */
 body {
-    font-family: 'Cambria', serif;
-    background-color: #ffffff;
-    background-image: url('path-to-butterfly-outline.svg'); /* Ensure this is the SVG path */
-    background-repeat: no-repeat;
-    background-size: cover; /* Cover the whole background */
-    background-position: center;
-    color: #333;
+  background-image: url('../images/Butterflies abstract print.png');
+  background-size: cover;
+  background-position: center;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
-/* Container */
+/* Container for all content */
 .container {
-    width: 100%;
-    padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
-/* Header Styles */
+/* Header Section Styling */
 header {
-    text-align: center;
-    margin-top: 50px;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .logo {
-    font-size: 48px;
-    font-weight: bold;
-    color: #000000; /* Kooky logo color */
+  font-size: 48px;
+  font-weight: bold;
+  color: #333; /* Logo in bold with custom color */
 }
 
 .tagline {
-    font-family: 'Cinzel Decorative', serif;
-    font-size: 24px;
-    color: #ff6c6c; /* Creating Magic tagline color */
+  font-size: 20px; /* Make tagline smaller than the logo */
+  font-family: 'Cinzel Decorative', serif; /* Apply Cinzel Decorative font */
+  margin-top: 0; /* Remove margin to adjust spacing */
+  color: #ff6c6c;
 }
 
 /* Navigation Bar */
 nav ul {
-    list-style-type: none;
-    text-align: center;
-    margin-top: 20px;
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 40px;
 }
 
 nav ul li {
-    display: inline-block;
-    margin: 0 15px;
+  display: inline;
 }
 
 nav ul li a {
-    text-decoration: none;
-    font-size: 18px;
-    color: #333; /* Navigation link color */
+  font-family: 'Cinzel Decorative', serif; /* Apply Cinzel Decorative font */
+  font-size: 18px;
+  color: #333;
+  padding: 5px 10px;
+  text-decoration: none;
+}
+
+nav ul li a:hover {
+  color: #333;
 }
 
 /* Content Section */
 .content {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 50px;
+  display: flex;
+  justify-content: space-between;
 }
 
-.left {
-    width: 45%;
+.left, .right {
+  width: 48%;
 }
 
+/* Left Photo Placeholder */
 .photo-placeholder {
-    background-color: #f0f0f0; /* Placeholder background */
-    border: 2px dashed #ff6c6c; /* Dashed border color */
-    padding: 50px;
-    text-align: center;
-    font-style: italic;
+  background-color: #fff;
+  border: 2px solid #ff6c6c;
+  text-align: center;
+  padding: 20px;
+  height: 200px;
 }
 
-.right {
-    width: 45%;
-    text-align: right;
+/* Right Text Section */
+.right h2 {
+  font-family: 'Cinzel Decorative', serif; /* Apply Cinzel Decorative font */
+  font-size: 28px;
+  color: #333;
 }
 
-/* Image Placeholder */
-.photo-placeholder p {
-    font-size: 16px;
-    color: #999; /* Placeholder text color */
+.right p {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #555;
+  text-align: justify;
 }
 
-/* Button Styles */
 .view-work-btn {
-    background-color: #ff6c6c; /* Button background color */
-    color: #fff; /* Text color */
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 20px; /* Space between paragraph and button */
-    border-radius: 5px; /* Rounded corners */
-    transition: background-color 0.3s; /* Smooth hover effect */
+  background-color: #ff6c6c;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
 }
 
 .view-work-btn:hover {
-    background-color: #e55b5b; /* Darker shade on hover */
+  background-color: #333;
 }
 
 /* Footer Section */
 footer {
-    text-align: center;
-    margin-top: 50px; /* Space above footer */
-    padding: 20px 0; /* Padding inside footer */
-    background-color: #f0f0f0; /* Footer background color */
+  text-align: center;
+  margin-top: 40px;
+  padding: 10px 0;
+  background-color: #f4f4f4;
 }
 
 footer p {
-    color: #333; /* Footer text color */
+  margin: 0;
+  font-size: 14px;
+  color: #555;
 }
 
 footer a {
-    color: #ff6c6c; /* TnC link color */
-    text-decoration: none; /* Remove underline */
+  color: #ff6c6c;
+  text-decoration: none;
 }
 
 footer a:hover {
-    text-decoration: underline; /* Underline on hover */
+  text-decoration: underline;
 }
 
-/* Adjusting the butterfly outline */
-.butterflies {
-    stroke: #ff6c6c; /* If using an SVG, set the stroke color */
-    fill: none; /* Ensure butterflies are outlined */
+/* Consent Banner Styles */
+.consent-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #f4f4f4;
+  padding: 15px;
+  text-align: center;
+  display: none; /* Initially hidden */
+  z-index: 1000;
+}
+
+.consent-banner p {
+  margin: 0;
+  font-size: 14px;
+  color: #333;
+}
+
+.consent-banner button {
+  background-color: #ff6c6c;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-left: 10px;
 }
