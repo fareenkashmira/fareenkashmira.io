@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Work - Kooky</title>
-    <link rel="stylesheet" href="css/viewwork.css"> <!-- Link to CSS -->
+    <link rel="stylesheet" href="../css/viewwork.css"> <!-- Link to CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome link -->
     <style>
         /* Basic styles for the body and container */
@@ -148,27 +148,7 @@
     </footer>
 
     <!-- Link to JavaScript File -->
-    <script src="js/viewwork.js"></script>
+    <script src="../js/viewwork.js"></script>
 
-    <!-- JavaScript to toggle between views -->
-    <script>
-        const gridViewButton = document.getElementById('grid-view');
-        const listViewButton = document.getElementById('list-view');
-        const workGallery = document.getElementById('work-gallery');
-
-        gridViewButton.addEventListener('click', () => {
-            workGallery.classList.remove('list-view');
-            workGallery.classList.add('grid-view');
-            gridViewButton.classList.add('active');
-            listViewButton.classList.remove('active');
-        });
-
-        listViewButton.addEventListener('click', () => {
-            workGallery.classList.remove('grid-view');
-            workGallery.classList.add('list-view');
-            listViewButton.classList.add('active');
-            gridViewButton.classList.remove('active');
-        });
-    </script>
 </body>
 </html>
