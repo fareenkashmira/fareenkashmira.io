@@ -12,6 +12,7 @@
   <!-- Link to External Stylesheet -->
   <link rel="stylesheet" href="css/styles.css">
 
+  <!-- Style for the form and layout -->
   <style>
     /* Center alignment for paragraph */
     .right p {
@@ -34,6 +35,15 @@
     .view-work-btn {
         display: block;
         margin: 20px auto; /* Center the button */
+    }
+    
+    /* Form styling */
+    #mc_embed_signup {
+        background:#fff; 
+        clear:left; 
+        font:14px Helvetica,Arial,sans-serif; 
+        width: 100%;
+        margin-top: 20px;
     }
   </style>
 </head>
@@ -68,9 +78,7 @@
       <!-- Right: Paragraph -->
       <div class="right">
         <h2>Hello, I'm Fareen Kashmira</h2>
-        <p>The creative director of Kooky, I not only bring my skills in graphic design and psychology to the table but also a deep sense of authenticity and honesty. Through my designs, I aim to create more than just visuals—I strive to tell stories and evoke emotions that connect with people on a deeper level. My work reflects a blend of creativity, insight, and precision, honed over the years through various mediums, from sketching and painting to mastering digital tools like Adobe Illustrator and Canva.
-
-        I approach each project with an open and honest perspective, always prioritizing genuine communication and understanding. Whether it's designing logos or creating digital art, I focus on capturing the essence of what truly matters to my clients and their audiences. My ability to understand emotional depth comes not only from my formal background in psychology but also from a commitment to staying true to my values. I believe in crafting designs that are not only visually compelling but also authentic and meaningful.</p>
+        <p>The creative director of Kooky, I bring my skills in graphic design and psychology to the table...</p>
         
         <a href="htmls/viewwork.html">
           <button class="view-work-btn">View Work</button>
@@ -78,24 +86,33 @@
       </div>
     </section>
     
-    <!-- Sign-Up Form Above the Footer -->
-    <div class="signup-form" style="text-align: center; margin: 20px 0;">
-      <h3>Stay in Touch!</h3>
-      <form action="http://eepurl.com/iY034w" method="get">
-        <label for="email">Sign up for Hello There to keep in touch:</label>
-        <input type="email" id="email" name="email" required placeholder="Enter your email">
-        <button type="submit">Sign Up</button>
+    <!-- Mailchimp Sign-Up Form -->
+    <div id="mc_embed_signup">
+      <form action="https://site.us10.list-manage.com/subscribe/post?u=68495ad73394985325e320010&amp;id=420ecd8c5c&amp;f_id=009444e4f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
+        <div id="mc_embed_signup_scroll">
+          <h2>Subscribe to Our Newsletter</h2>
+          <div class="mc-field-group">
+            <label for="mce-EMAIL">Email Address <span class="asterisk">*</span></label>
+            <input type="email" name="EMAIL" class="required email" id="mce-EMAIL" required>
+          </div>
+          <div hidden="">
+            <input type="hidden" name="tags" value="14567241,14567242,14567243">
+          </div>
+          <div class="clear">
+            <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">
+          </div>
+        </div>
       </form>
     </div>
-  </div>
 
-  <!-- Consent Banner -->
-  <div id="consent-banner" class="consent-banner">
-    <p>This website uses cookies to ensure you get the best experience on our website. 
-      <button onclick="acceptAllCookies()">Accept All</button>
-      <button onclick="rejectCookies()">Reject</button>
-      <button onclick="acceptImportantCookies()">Accept Important Cookies</button>
-    </p>
+    <!-- Consent Banner -->
+    <div id="consent-banner" class="consent-banner">
+      <p>This website uses cookies to ensure you get the best experience on our website. 
+        <button onclick="acceptAllCookies()">Accept All</button>
+        <button onclick="rejectCookies()">Reject</button>
+        <button onclick="acceptImportantCookies()">Accept Important Cookies</button>
+      </p>
+    </div>
   </div>
 
   <!-- Footer Section -->
