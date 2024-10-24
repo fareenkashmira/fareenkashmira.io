@@ -12,6 +12,30 @@
   <!-- Link to External Stylesheet -->
   <link rel="stylesheet" href="css/styles.css">
 
+  <style>
+    /* Center alignment for paragraph */
+    .right p {
+        text-align: center;
+    }
+
+    /* Center alignment for the container */
+    .content {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    /* Ensure the left and right sections are aligned */
+    .left, .right {
+        flex: 1;
+    }
+
+    /* Style for buttons */
+    .view-work-btn {
+        display: block;
+        margin: 20px auto; /* Center the button */
+    }
+  </style>
 </head>
 <body>
   <div class="container">
@@ -48,17 +72,21 @@
 
         I approach each project with an open and honest perspective, always prioritizing genuine communication and understanding. Whether it's designing logos or creating digital art, I focus on capturing the essence of what truly matters to my clients and their audiences. My ability to understand emotional depth comes not only from my formal background in psychology but also from a commitment to staying true to my values. I believe in crafting designs that are not only visually compelling but also authentic and meaningful.</p>
         
-        <!-- Sign-Up Form -->
-        <h3>Stay in Touch!</h3>
-        <form action="http://eepurl.com/iY034w" method="get">
-          <label for="email">Sign up for Hello There to keep in touch:</label>
-          <input type="email" id="email" name="email" required placeholder="Enter your email">
-          <button type="submit">Sign Up</button>
-        </form>
-        
-        <a href="htmls/viewwork.html"><button class="view-work-btn">View Work</button></a>
+        <a href="htmls/viewwork.html">
+          <button class="view-work-btn">View Work</button>
+        </a>
       </div>
     </section>
+    
+    <!-- Sign-Up Form Above the Footer -->
+    <div class="signup-form" style="text-align: center; margin: 20px 0;">
+      <h3>Stay in Touch!</h3>
+      <form action="http://eepurl.com/iY034w" method="get">
+        <label for="email">Sign up for Hello There to keep in touch:</label>
+        <input type="email" id="email" name="email" required placeholder="Enter your email">
+        <button type="submit">Sign Up</button>
+      </form>
+    </div>
   </div>
 
   <!-- Consent Banner -->
