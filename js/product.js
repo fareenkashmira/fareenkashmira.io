@@ -1,19 +1,16 @@
-document.addEventListener('DOMContentLoaded', function () {
-  const gridViewButton = document.getElementById('grid-view');
-  const listViewButton = document.getElementById('list-view');
-  const productContainer = document.getElementById('product-container');
+// Toggle between Grid and List view
+document.getElementById('grid-view').addEventListener('click', function() {
+  document.getElementById('product-container').classList.remove('list-view');
+  document.getElementById('product-container').classList.add('grid-view');
+  
+  this.classList.add('active');
+  document.getElementById('list-view').classList.remove('active');
+});
 
-  gridViewButton.addEventListener('click', function () {
-    productContainer.classList.add('grid-view');
-    productContainer.classList.remove('list-view');
-    gridViewButton.classList.add('active');
-    listViewButton.classList.remove('active');
-  });
-
-  listViewButton.addEventListener('click', function () {
-    productContainer.classList.add('list-view');
-    productContainer.classList.remove('grid-view');
-    listViewButton.classList.add('active');
-    gridViewButton.classList.remove('active');
-  });
+document.getElementById('list-view').addEventListener('click', function() {
+  document.getElementById('product-container').classList.remove('grid-view');
+  document.getElementById('product-container').classList.add('list-view');
+  
+  this.classList.add('active');
+  document.getElementById('grid-view').classList.remove('active');
 });
