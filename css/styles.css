@@ -25,6 +25,12 @@ header {
   font-size: 48px;
   font-weight: bold;
   color: #333; /* Logo in bold with custom color */
+  border-radius: 8px; /* Slightly rounded corners for the logo */
+  overflow: hidden; /* Ensures rounded corners are applied */
+}
+
+.logo img {
+  border-radius: 8px; /* Slightly rounded corners for logo image */
 }
 
 .tagline {
@@ -67,6 +73,18 @@ nav ul li a:hover {
   margin: 20px 0; /* Add margin for spacing */
 }
 
+.image-section {
+  display: flex;
+  flex-direction: column; /* Align images vertically */
+  gap: 15px; /* Space between images */
+}
+
+.content-image {
+  border-radius: 8px; /* Slightly rounded corners for content images */
+  width: 100%; /* Full width */
+  height: auto; /* Maintain aspect ratio */
+}
+
 .photo-placeholder {
   background-color: #fff;
   border: 2px solid #ff6c6c;
@@ -76,28 +94,6 @@ nav ul li a:hover {
   border-radius: 15px; /* Rounded corners for the photo section */
   overflow: hidden; /* Prevent overflow if content exceeds bounds */
   position: relative; /* Allow absolute positioning of images */
-}
-
-/* Slideshow Container */
-.photo-slideshow {
-  position: absolute; /* Position images absolutely */
-  top: 0; /* Align to top */
-  left: 0; /* Align to left */
-  right: 0; /* Align to right */
-  bottom: 0; /* Align to bottom */
-}
-
-/* Individual Slides */
-.slide {
-  width: 100%; /* Each slide takes the full width of the container */
-  height: 100%; /* Ensure height matches placeholder */
-  object-fit: cover; /* Cover the container without stretching */
-  display: none; /* Hide all slides initially */
-}
-
-/* Show the first slide by default */
-.slide:first-child {
-  display: block; /* Show the first image */
 }
 
 /* Content Details */
@@ -215,4 +211,4 @@ footer a:hover {
   padding: 5px 10px;
   cursor: pointer;
   margin-left: 10px;
-  }
+}
