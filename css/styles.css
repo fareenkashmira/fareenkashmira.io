@@ -77,6 +77,8 @@ nav ul li a:hover {
   text-align: center;
   padding: 20px;
   height: 200px;
+  border-radius: 15px; /* Rounded corners for the photo section */
+  overflow: hidden; /* Prevent overflow if content exceeds bounds */
 }
 
 /* Right Text Section */
@@ -100,10 +102,37 @@ nav ul li a:hover {
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
+  border-radius: 25px; /* Rounded edges for the button */
 }
 
 .view-work-btn:hover {
   background-color: #333;
+}
+
+/* Newsletter Section */
+.newsletter {
+  margin-top: 40px;
+  text-align: center;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 15px; /* Rounded corners for the newsletter section */
+}
+
+.newsletter input[type="email"] {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ff6c6c;
+  width: 300px; /* Fixed width for email input */
+}
+
+.newsletter button {
+  background-color: #ff6c6c;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-left: 10px;
+  border-radius: 5px; /* Rounded edges for the button */
 }
 
 /* Footer Section */
@@ -112,6 +141,7 @@ footer {
   margin-top: 40px;
   padding: 10px 0;
   background-color: #f4f4f4;
+  position: relative; /* To position the copyright section */
 }
 
 footer p {
@@ -127,6 +157,13 @@ footer a {
 
 footer a:hover {
   text-decoration: underline;
+}
+
+/* Copyright Section */
+.copyright {
+  margin-top: 10px;
+  font-size: 12px; /* Smaller font for copyright */
+  color: #777;
 }
 
 /* Consent Banner Styles */
