@@ -30,7 +30,7 @@ header {
 }
 
 .logo img {
-  border-radius: 8px; /* Slightly rounded corners for logo image */
+  border-radius: 20px; /* Slightly rounded corners for logo image */
 }
 
 .tagline {
@@ -80,7 +80,7 @@ nav ul li a:hover {
 }
 
 .content-image {
-  border-radius: 8px; /* Slightly rounded corners for content images */
+  border-radius: 20px; /* Slightly rounded corners for content images */
   width: 100%; /* Full width */
   height: auto; /* Maintain aspect ratio */
 }
