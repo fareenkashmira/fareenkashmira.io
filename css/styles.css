@@ -75,32 +75,33 @@ nav ul li a:hover {
   background-color: #fff;
   border: 2px solid #ff6c6c;
   text-align: center;
-  padding: 20px;
+  padding: 0; /* Remove padding */
   height: 200px;
   border-radius: 15px; /* Rounded corners for the photo section */
   overflow: hidden; /* Prevent overflow if content exceeds bounds */
+  position: relative; /* Allow absolute positioning of images */
 }
 
 /* Slideshow Container */
 .photo-slideshow {
-  position: relative;
-  overflow: hidden; /* Ensure images don't overflow their container */
-  height: 300px; /* Set a height for the slideshow */
-  border-radius: 15px; /* Rounded corners for the slideshow */
-}
-
-/* Slide Container */
-.slides {
-  display: flex;
-  transition: transform 0.5s ease-in-out; /* Smooth transition for sliding effect */
-  width: 100%; /* Full width for the slide container */
+  position: absolute; /* Position images absolutely */
+  top: 0; /* Align to top */
+  left: 0; /* Align to left */
+  right: 0; /* Align to right */
+  bottom: 0; /* Align to bottom */
 }
 
 /* Individual Slides */
 .slide {
-  min-width: 100%; /* Each slide takes full width of the container */
-  height: auto; /* Maintain aspect ratio of images */
-  border-radius: 15px; /* Rounded corners for each image */
+  width: 100%; /* Each slide takes the full width of the container */
+  height: 100%; /* Ensure height matches placeholder */
+  object-fit: cover; /* Cover the container without stretching */
+  display: none; /* Hide all slides initially */
+}
+
+/* Show the first slide by default */
+.slide:first-child {
+  display: block; /* Show the first image */
 }
 
 /* Right Text Section */
