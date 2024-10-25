@@ -64,13 +64,9 @@ nav ul li a:hover {
 .content {
   display: flex;
   justify-content: space-between;
+  margin: 20px 0; /* Add margin for spacing */
 }
 
-.left, .right {
-  width: 48%;
-}
-
-/* Left Photo Placeholder */
 .photo-placeholder {
   background-color: #fff;
   border: 2px solid #ff6c6c;
@@ -104,14 +100,18 @@ nav ul li a:hover {
   display: block; /* Show the first image */
 }
 
-/* Right Text Section */
-.right h2 {
+/* Content Details */
+.content-details {
+  padding: 20px; /* Add padding for better spacing */
+}
+
+.content-details h2 {
   font-family: 'Cinzel Decorative', serif; /* Apply Cinzel Decorative font */
   font-size: 28px;
   color: #333;
 }
 
-.right p {
+.content-details p {
   font-size: 16px;
   line-height: 1.5;
   color: #555;
@@ -215,4 +215,4 @@ footer a:hover {
   padding: 5px 10px;
   cursor: pointer;
   margin-left: 10px;
-}
+  }
