@@ -81,6 +81,28 @@ nav ul li a:hover {
   overflow: hidden; /* Prevent overflow if content exceeds bounds */
 }
 
+/* Slideshow Container */
+.photo-slideshow {
+  position: relative;
+  overflow: hidden; /* Ensure images don't overflow their container */
+  height: 300px; /* Set a height for the slideshow */
+  border-radius: 15px; /* Rounded corners for the slideshow */
+}
+
+/* Slide Container */
+.slides {
+  display: flex;
+  transition: transform 0.5s ease-in-out; /* Smooth transition for sliding effect */
+  width: 100%; /* Full width for the slide container */
+}
+
+/* Individual Slides */
+.slide {
+  min-width: 100%; /* Each slide takes full width of the container */
+  height: auto; /* Maintain aspect ratio of images */
+  border-radius: 15px; /* Rounded corners for each image */
+}
+
 /* Right Text Section */
 .right h2 {
   font-family: 'Cinzel Decorative', serif; /* Apply Cinzel Decorative font */
