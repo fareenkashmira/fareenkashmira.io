@@ -1,21 +1,25 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const viewButtons = document.querySelectorAll('.view-options button'); // Select both buttons
+    const toggleButton = document.getElementById("toggle-view");
     const workGallery = document.getElementById("work-gallery");
 
-    viewButtons.forEach(button => {
-        button.addEventListener("click", function() {
-            // Toggle the active class for buttons
-            viewButtons.forEach(btn => btn.classList.remove("active")); // Remove active from all buttons
-            this.classList.add("active"); // Add active to the clicked button
+    // Set initial view state (grid view by default)
+    let isListView = false;
 
-            // Switch between grid and list views
-            if (this.id === "grid-view") {
-                workGallery.classList.remove("list-view");
-                workGallery.classList.add("grid-view");
-            } else {
-                workGallery.classList.remove("grid-view");
-                workGallery.classList.add("list-view");
-            }
-        });
+    toggleButton.addEventListener("click", function() {
+        // Toggle the view state
+        isListView = !isListView; 
+
+        if (isListView) {
+            workGallery.classList.remove("grid-view");
+            workGallery.classList.add("list-view");
+            toggleButton.textContent = "Switch to Grid View"; // Change button text
+        } else {
+            workGallery.classList.remove("list-view");
+            workGallery.classList.add("grid-view");
+            toggleButton.textContent = "Switch to List View"; // Change button text
+        }
+        
+        // Toggle the active class on the button
+        toggleButton.classList.toggle("active");
     });
 });
