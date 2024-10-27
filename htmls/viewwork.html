@@ -4,62 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Work - Kooky</title>
-    <link rel="stylesheet" href="../css/viewwork.css"> <!-- Link to CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome link -->
-    <style>
-        /* Basic styles for the body and container */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
 
-        /* Styles for grid and list views */
-        .content {
-            display: flex;
-            flex-direction: column; /* Stack items vertically */
-            margin-top: 20px;
-        }
-        .work-item {
-            margin: 15px 0; /* Margin for spacing between items */
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            overflow: hidden;
-            padding: 10px;
-        }
-        .work-item img {
-            width: 100%;
-            height: auto;
-        }
-        .work-item h3 {
-            margin: 10px 0 5px; /* Spacing for titles */
-        }
-        .work-item p {
-            margin: 0;
-        }
-        .list-view .work-item {
-            display: flex;
-        }
-        .list-view img {
-            width: 150px; /* Fixed width for image in list view */
-            height: auto;
-            margin-right: 10px;
-        }
-        .list-view .work-item div {
-            flex: 1;
-        }
+    <!-- Link to Google Fonts for Cinzel Decorative -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap" rel="stylesheet">
 
-        /* Header and footer styles */
-        header, footer {
-            text-align: center;
-            margin: 20px 0;
-        }
-    </style>
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="../css/viewwork.css">
 </head>
 <body>
     <div class="container">
@@ -82,84 +32,24 @@
 
         <!-- View Options -->
         <div class="view-options">
-            <button id="grid-view" class="active">Grid View</button>
-            <button id="list-view">List View</button>
+            <button id="toggle-view" class="toggle-button">Switch to List View</button>
         </div>
 
         <!-- Content Section -->
-        <section class="content" id="work-gallery">
+        <section class="content grid-view" id="work-gallery">
             <!-- Photo Work Items -->
             <h2>Photos</h2>
-            <div class="work-item grid-view">
-                <img src="../images/book cover.jpg" alt="Book Cover"> <!-- Update path -->
+            <div class="work-item">
+                <img src="../images/book cover.jpg" alt="Book Cover">
                 <h3>Book Cover</h3>
                 <p>Book Cover design for my unreleased book.</p>
             </div>
-            <div class="work-item grid-view">
-                <img src="../images/Earth.jpeg" alt="Earth"> <!-- Update path -->
+            <div class="work-item">
+                <img src="../images/Earth.jpeg" alt="Earth">
                 <h3>Earth</h3>
                 <p>I illustrated earth in a heart shape to convey the emotion of our being our home, and we should love it.</p>
             </div>
-            <div class="work-item grid-view">
-                <img src="../images/coffee & cakes.png" alt="Kooky Poster"> <!-- Update path -->
-                <h3>Kooky Poster</h3>
-                <p>This is a poster for a cake shop.</p>
-            </div>
-            <div class="work-item grid-view">
-                <img src="../images/BS Logo.png" alt="Logo Design"> <!-- Update path -->
-                <h3>Logo</h3>
-                <p>This is from a client who wanted to have 3D Logo Design .</p>
-            </div>
-
-            <!-- PDF Work Items -->
-            <h2>PDFs</h2>
-            <div class="work-item grid-view">
-                <iframe src="https://drive.google.com/file/d/1JYQ4Wi2fjYqq34TjnYjekftTuo_r4uqG/preview" 
-                        width="640"
-                        height="480" 
-                        frameborder="0" 
-                        allowfullscreen></iframe>
-                <h3>PDF Work</h3>
-                <p>This explains the impact of Influencer Marketing on Brand Perception.</p>
-            </div>
-            <div class="work-item grid-view">
-                <iframe src="https://drive.google.com/file/d/1E1SlHwR1OIpslgSbD633MhIvkwjRMlOU/preview" 
-                        width="640"
-                        height="480" 
-                        frameborder="0" 
-                        allowfullscreen></iframe>
-                <h3>ADM Society Induction Brochure</h3>
-                <p>This brochure was part of the Graphic Design Internship.</p>
-            </div>
-            <div class="work-item grid-view">
-                <iframe src="https://drive.google.com/file/d/1M15k5q9kzRVozkdMbxdrbYWyGOXgi0Q3/preview" 
-                        width="640"
-                        height="480" 
-                        frameborder="0" 
-                        allowfullscreen></iframe>
-                <h3>Magazine Design</h3>
-                <p>A sample Magazine Design.</p>
-            </div>
-
-            <!-- Video Work Items -->
-            <h2>Videos</h2>
-            <div class="work-item grid-view">
-                <iframe src="https://drive.google.com/file/d/1lOUrfSAH0CtEi9SyU1vj2FIv_ui7uZHK/preview" 
-                        width="640" 
-                        height="360" 
-                        frameborder="0" 
-                        allow="autoplay; encrypted-media" 
-                        allowfullscreen></iframe>
-                <h3>ABHA Group Advertisement</h3>
-                <p>This video advertisement emphasizes the dedication and commitment of the company and gives an insight into their work environment.</p>
-            </div>
-            <div class="work-item grid-view">
-                <a href="https://www.youtube.com/watch?v=your-video-id-2" target="_blank">
-                    <img src="images/video-thumbnail2.jpg" alt="Video Work Title 2"> <!-- Update path for thumbnail -->
-                    <h3>ABHA Group's Projects & Training Sessions</h3>
-                    <p>Coming Soon....</p>
-                </a>
-            </div>
+            <!-- Add other work items here -->
         </section>
     </div>
 
@@ -168,7 +58,7 @@
         <p>2022-2024 Kooky All rights reserved</p>
     </footer>
 
-    <!-- Link to JavaScript File -->
+    <!-- Link to external JavaScript file -->
     <script src="../js/viewwork.js"></script>
 </body>
 </html>
