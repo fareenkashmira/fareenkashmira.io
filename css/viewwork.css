@@ -39,7 +39,7 @@
     padding: 10px 20px;
     margin-right: 10px;
     cursor: pointer;
-    font-family: 'Cinzel Decorative', serif; /* Font change to Cinzel Decorative */
+    font-family: 'Arial', sans-serif; /* Font change to Cinzel Decorative */
 }
 
 .view-options button.active {
@@ -57,7 +57,7 @@
     flex: 1 0 30%; /* For grid view */
     margin: 10px;
     text-align: center;
-    font-family: 'Cinzel Decorative', serif; /* Font change to Cinzel Decorative */
+    font-family: 'Arial', sans-serif; /* Font change to Cinzel Decorative */
 }
 
 .work-item img {
@@ -77,9 +77,17 @@
     margin-right: 20px;
 }
 
-/* h3 and headings in Cinzel Decorative font */
-h3, h1, h2 {
-    font-family: 'Cinzel Decorative', serif; /* Apply to h3 and other headings */
+/* h1 and h2 headings in Cinzel Decorative font */
+h1, h2 {
+    font-family: 'Cinzel Decorative', serif; /* Apply this font to h1 and h2 only */
+}
+
+/* Description paragraph styling */
+.description p {
+    font-family: 'Arial', sans-serif; /* Change to your desired font */
+    font-size: 16px; /* Adjust size as needed */
+    color: #333; /* Change text color if necessary */
+    line-height: 1.5; /* Adjust line height for better readability */
 }
 
 /* Additional Styles for Footer */
