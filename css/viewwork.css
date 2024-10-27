@@ -78,8 +78,8 @@
     margin-right: 20px;
 }
 
-/* h1, h2 and h3 headings in Cinzel Decorative font */
-h1, h2, h3 {
+/* h2 and h3 headings in Cinzel Decorative font */
+h2, h3 {
     font-family: 'Cinzel Decorative', serif; /* Apply this font to h1 and h2 only */
 }
 
