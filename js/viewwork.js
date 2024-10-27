@@ -1,19 +1,21 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const gridViewButton = document.getElementById("grid-view");
-    const listViewButton = document.getElementById("list-view");
+    const viewButtons = document.querySelectorAll('.view-options button'); // Select both buttons
     const workGallery = document.getElementById("work-gallery");
 
-    gridViewButton.addEventListener("click", function() {
-        workGallery.classList.remove("list-view");
-        workGallery.classList.add("grid-view");
-        gridViewButton.classList.add("active");
-        listViewButton.classList.remove("active");
-    });
+    viewButtons.forEach(button => {
+        button.addEventListener("click", function() {
+            // Toggle the active class for buttons
+            viewButtons.forEach(btn => btn.classList.remove("active")); // Remove active from all buttons
+            this.classList.add("active"); // Add active to the clicked button
 
-    listViewButton.addEventListener("click", function() {
-        workGallery.classList.remove("grid-view");
-        workGallery.classList.add("list-view");
-        listViewButton.classList.add("active");
-        gridViewButton.classList.remove("active");
+            // Switch between grid and list views
+            if (this.id === "grid-view") {
+                workGallery.classList.remove("list-view");
+                workGallery.classList.add("grid-view");
+            } else {
+                workGallery.classList.remove("grid-view");
+                workGallery.classList.add("list-view");
+            }
+        });
     });
 });
