@@ -26,13 +26,14 @@
 .navbar a {
     text-decoration: none; /* Remove underline from links */
     color: #000000; /* Link color */
-    font-family: 'Cinzel Decorative', serif; /* Change font to Arial */
+    font-family: 'Cinzel Decorative', serif; /* Change font to Cinzel Decorative */
     font-weight: bold; /* Bold links */
 }
 
 /* View Options Styles */
 .view-options {
     margin: 20px 0;
+    text-align: center; /* Center align buttons */
 }
 
 .view-options button {
@@ -52,13 +53,15 @@
 .content {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center; /* Center the content */
 }
 
 .work-item {
-    flex: 1 0 30%; /* For grid view */
+    flex: 1 1 30%; /* Use flex-grow, flex-shrink, flex-basis for better responsiveness */
     margin: 10px;
     text-align: center;
     font-family: 'Arial', sans-serif; /* Font for work item */
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
 }
 
 .work-item img {
@@ -68,7 +71,7 @@
 
 /* List View Styles */
 .list-view .work-item {
-    flex: 1 0 100%; /* For list view */
+    flex: 1 1 100%; /* For list view */
     display: flex;
     align-items: center;
 }
@@ -78,9 +81,17 @@
     margin-right: 20px;
 }
 
-/* h2 and h3 headings in Cinzel Decorative font */
+/* Headings in Cinzel Decorative font */
 h2, h3 {
-    font-family: 'Cinzel Decorative', serif; /* Apply this font to h1 and h2 only */
+    font-family: 'Cinzel Decorative', serif; /* Apply this font to h2 and h3 */
+}
+
+/* Tagline Styles */
+.tagline {
+    font-family: 'Cinzel Decorative', serif; /* Apply Cinzel Decorative font */
+    font-size: 24px; /* Adjust size as needed */
+    font-weight: bold; /* Adjust weight if needed */
+    text-align: center; /* Center align if needed */
 }
 
 /* Description paragraph styling */
