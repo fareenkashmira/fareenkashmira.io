@@ -26,7 +26,7 @@
 .navbar a {
     text-decoration: none; /* Remove underline from links */
     color: #000000; /* Link color */
-    font-family: 'Arial', sans-serif; /* Change font to Arial */
+    font-family: 'Cinzel Decorative', serif; /* Change font to Arial */
     font-weight: bold; /* Bold links */
 }
 
@@ -78,8 +78,8 @@
     margin-right: 20px;
 }
 
-/* h1 and h2 headings in Cinzel Decorative font */
-h1, h2 {
+/* h1, h2 and h3 headings in Cinzel Decorative font */
+h1, h2, h3 {
     font-family: 'Cinzel Decorative', serif; /* Apply this font to h1 and h2 only */
 }
 
