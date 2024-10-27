@@ -17,6 +17,7 @@
     display: flex; /* Use flexbox for horizontal layout */
     justify-content: center; /* Center align the items */
     margin: 20px 0; /* Margin above and below the navbar */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
 }
 
 .navbar li {
@@ -107,4 +108,43 @@ h2, h3 {
 /* Additional Styles for Footer */
 .footer {
     margin-top: 20px; /* Space above the footer */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column; /* Stack nav items vertically on smaller screens */
+    }
+
+    .work-item {
+        flex: 1 1 calc(50% - 20px); /* 2 items per row on tablets */
+    }
+
+    .view-options button {
+        padding: 10px 15px; /* Adjust button size for smaller screens */
+    }
+
+    .tagline {
+        font-size: 20px; /* Smaller tagline size on mobile */
+    }
+}
+
+@media (max-width: 480px) {
+    .work-item {
+        flex: 1 1 calc(100% - 20px); /* Stack items in a single column on mobile */
+        margin: 5px; /* Reduce margin for tight spacing */
+    }
+
+    .view-options button {
+        width: 100%; /* Make buttons full width for better touch targets */
+        margin: 5px 0; /* Space out buttons vertically */
+    }
+
+    .tagline {
+        font-size: 18px; /* Further reduce tagline size for mobile */
+    }
+
+    .description p {
+        font-size: 14px; /* Adjust paragraph size for mobile */
+    }
 }
