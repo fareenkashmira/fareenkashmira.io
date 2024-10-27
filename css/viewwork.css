@@ -25,7 +25,8 @@
 
 .navbar a {
     text-decoration: none; /* Remove underline from links */
-    color: #ffffff; /* Link color */
+    color: #000000; /* Link color */
+    font-family: 'Cinzel Decorative', serif; /* Font change to Cinzel Decorative */
     font-weight: bold; /* Bold links */
 }
 
@@ -38,6 +39,7 @@
     padding: 10px 20px;
     margin-right: 10px;
     cursor: pointer;
+    font-family: 'Cinzel Decorative', serif; /* Font change to Cinzel Decorative */
 }
 
 .view-options button.active {
@@ -55,6 +57,7 @@
     flex: 1 0 30%; /* For grid view */
     margin: 10px;
     text-align: center;
+    font-family: 'Cinzel Decorative', serif; /* Font change to Cinzel Decorative */
 }
 
 .work-item img {
@@ -72,6 +75,11 @@
 .list-view .work-item img {
     width: 150px; /* Set image size for list view */
     margin-right: 20px;
+}
+
+/* h3 and headings in Cinzel Decorative font */
+h3, h1, h2 {
+    font-family: 'Cinzel Decorative', serif; /* Apply to h3 and other headings */
 }
 
 /* Additional Styles for Footer */
