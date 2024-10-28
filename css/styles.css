@@ -1,7 +1,7 @@
 /* Define the custom font */
 @font-face {
     font-family: 'Jonathan'; /* Custom font name */
-    src: url('customfonts/Jonathan.ttf') format('truetype'); /* Path to the TTF file */
+    src: url('../customfonts/Jonathan.ttf') format('truetype'); /* Path to the TTF file */
     font-weight: normal; /* Specify the font weight */
     font-style: normal; /* Specify the font style */
 }
