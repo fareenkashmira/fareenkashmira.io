@@ -6,219 +6,237 @@
     font-style: normal; /* Specify the font style */
 }
 
+/* Define the Cinzel Decorative font */
+@font-face {
+    font-family: 'Cinzel Decorative'; /* Cinzel Decorative font */
+    src: url('../customfonts/CinzelDecorative.ttf') format('truetype'); /* Path to the TTF file */
+    font-weight: normal; /* Specify the font weight */
+    font-style: normal; /* Specify the font style */
+}
+
+/* Define the Alice font */
+@font-face {
+    font-family: 'Alice'; /* Alice font */
+    src: url('../customfonts/Alice.ttf') format('truetype'); /* Path to the TTF file */
+    font-weight: normal; /* Specify the font weight */
+    font-style: normal; /* Specify the font style */
+}
+
 /* Body background with butterfly image */
 body {
-  background-image: url('../images/Butterflies abstract print.png');
-  background-size: cover;
-  background-position: center;
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
+    background-image: url('../images/Butterflies abstract print.png');
+    background-size: cover;
+    background-position: center;
+    font-family: Alice, sans-serif; /* Set default font for the body */
+    margin: 0;
+    padding: 0;
 }
 
 /* Container for all content */
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
 /* Header Section Styling */
 header {
-  text-align: center;
-  margin-bottom: 20px;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 .logo {
-  font-size: 58px;
-  font-weight: bold;
-  color: #333; /* Logo in bold with custom color */
-  border-radius: 8px; /* Slightly rounded corners for the logo */
-  overflow: hidden; /* Ensures rounded corners are applied */
-  font-family: 'Jonathan', sans-serif; /* Apply the custom font to logo */
+    font-size: 58px;
+    font-weight: bold;
+    color: #333; /* Logo in bold with custom color */
+    border-radius: 8px; /* Slightly rounded corners for the logo */
+    overflow: hidden; /* Ensures rounded corners are applied */
+    font-family: 'Cinzel Decorative', serif; /* Apply Cinzel Decorative font to logo */
 }
 
 .logo img {
-  border-radius: 20px; /* Slightly rounded corners for logo image */
+    border-radius: 20px; /* Slightly rounded corners for logo image */
 }
 
 .tagline {
-  font-size: 20px; /* Make tagline smaller than the logo */
-  font-family: 'Cinzel Decorative', serif; /* Apply Cinzel Decorative font */
-  margin-top: 0; /* Remove margin to adjust spacing */
-  color: #ff6c6c;
+    font-size: 20px; /* Make tagline smaller than the logo */
+    font-family: 'Jonathan', sans-serif; /* Apply Jonathan font */
+    margin-top: 0; /* Remove margin to adjust spacing */
+    color: #ff6c6c;
 }
 
 /* Navigation Bar */
 nav ul {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin-bottom: 40px;
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 40px;
 }
 
 nav ul li {
-  display: inline;
+    display: inline;
 }
 
 nav ul li a {
-  font-family: 'Jonathan', serif; /* Apply Cinzel Decorative font */
-  font-size: 18px;
-  color: #333;
-  padding: 5px 10px;
-  text-decoration: none;
+    font-family: 'Cinzel Decorative', serif; /* Apply Cinzel Decorative font */
+    font-size: 18px;
+    color: #333;
+    padding: 5px 10px;
+    text-decoration: none;
 }
 
 nav ul li a:hover {
-  color: #333;
+    color: #333;
 }
 
 /* Content Section */
 .content {
-  display: flex;
-  justify-content: space-between;
-  margin: 20px 0; /* Add margin for spacing */
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0; /* Add margin for spacing */
 }
 
 .image-section {
-  display: flex;
-  flex-direction: column; /* Align images vertically */
-  gap: 15px; /* Space between images */
+    display: flex;
+    flex-direction: column; /* Align images vertically */
+    gap: 15px; /* Space between images */
 }
 
 .content-image {
-  border-radius: 20px; /* Slightly rounded corners for content images */
-  width: 100%; /* Full width */
-  height: auto; /* Maintain aspect ratio */
+    border-radius: 20px; /* Slightly rounded corners for content images */
+    width: 100%; /* Full width */
+    height: auto; /* Maintain aspect ratio */
 }
 
 .photo-placeholder {
-  background-color: #fff;
-  border: 2px solid #ff6c6c;
-  text-align: center;
-  padding: 0; /* Remove padding */
-  height: 200px;
-  border-radius: 15px; /* Rounded corners for the photo section */
-  overflow: hidden; /* Prevent overflow if content exceeds bounds */
-  position: relative; /* Allow absolute positioning of images */
+    background-color: #fff;
+    border: 2px solid #ff6c6c;
+    text-align: center;
+    padding: 0; /* Remove padding */
+    height: 200px;
+    border-radius: 15px; /* Rounded corners for the photo section */
+    overflow: hidden; /* Prevent overflow if content exceeds bounds */
+    position: relative; /* Allow absolute positioning of images */
 }
 
 /* Content Details */
 .content-details {
-  padding: 20px; /* Add padding for better spacing */
+    padding: 20px; /* Add padding for better spacing */
 }
 
 .content-details h2 {
-  font-family: 'Cinzel Decorative', serif; /* Apply Cinzel Decorative font */
-  font-size: 28px;
-  color: #333;
+    font-family: 'Cinzel Decorative', serif; /* Apply Cinzel Decorative font */
+    font-size: 28px;
+    color: #333;
 }
 
 .content-details p {
-  font-family: 'Jonathan', sans-serif; /* Apply the custom font to <p> tags */
-  font-size: 16px;
-  line-height: 1.5;
-  color: #555;
-  text-align: justify;
+    font-family: 'Jonathan', sans-serif; /* Apply Jonathan font to <p> tags */
+    font-size: 16px;
+    line-height: 1.5;
+    color: #555;
+    text-align: justify;
 }
 
 .view-work-btn {
-  background-color: #ff6c6c;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 25px; /* Rounded edges for the button */
+    background-color: #ff6c6c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 25px; /* Rounded edges for the button */
+    font-family: 'Jonathan', sans-serif; /* Apply Jonathan font */
 }
 
 .view-work-btn:hover {
-  background-color: #333;
+    background-color: #333;
 }
 
 /* Newsletter Section */
 .newsletter {
-  margin-top: 40px;
-  text-align: center;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 15px; /* Rounded corners for the newsletter section */
+    margin-top: 40px;
+    text-align: center;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 15px; /* Rounded corners for the newsletter section */
 }
 
 .newsletter input[type="email"] {
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ff6c6c;
-  width: 300px; /* Fixed width for email input */
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ff6c6c;
+    width: 300px; /* Fixed width for email input */
 }
 
 .newsletter button {
-  background-color: #ff6c6c;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  margin-left: 10px;
-  border-radius: 5px; /* Rounded edges for the button */
+    background-color: #ff6c6c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-left: 10px;
+    border-radius: 5px; /* Rounded edges for the button */
+    font-family: 'Jonathan', sans-serif; /* Apply Jonathan font */
 }
 
 /* Footer Section */
 footer {
-  text-align: center;
-  margin-top: 40px;
-  padding: 10px 0;
-  background-color: #f4f4f4;
-  position: relative; /* To position the copyright section */
+    text-align: center;
+    margin-top: 40px;
+    padding: 10px 0;
+    background-color: #f4f4f4;
+    position: relative; /* To position the copyright section */
 }
 
 footer p {
-  margin: 0;
-  font-size: 14px;
-  color: #555;
+    margin: 0;
+    font-size: 14px;
+    color: #555;
 }
 
 footer a {
-  color: #ff6c6c;
-  text-decoration: none;
+    color: #ff6c6c;
+    text-decoration: none;
 }
 
 footer a:hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }
 
 /* Copyright Section */
 .copyright {
-  margin-top: 10px;
-  font-size: 12px; /* Smaller font for copyright */
-  color: #777;
+    margin-top: 10px;
+    font-size: 12px; /* Smaller font for copyright */
+    color: #777;
 }
 
 /* Consent Banner Styles */
 .consent-banner {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: #f4f4f4;
-  padding: 15px;
-  text-align: center;
-  display: none; /* Initially hidden */
-  z-index: 1000;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #f4f4f4;
+    padding: 15px;
+    text-align: center;
+    display: none; /* Initially hidden */
+    z-index: 1000;
 }
 
 .consent-banner p {
-  margin: 0;
-  font-size: 14px;
-  color: #333;
+    margin: 0;
+    font-size: 14px;
+    color: #333;
 }
 
 .consent-banner button {
-  background-color: #ff6c6c;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  cursor: pointer;
-  margin-left: 10px;
-  }
+    background-color: #ff6c6c;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-left: 10px;
+    }
