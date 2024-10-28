@@ -30,7 +30,7 @@ header {
 }
 
 .logo {
-  font-size: 48px;
+  font-size: 58px;
   font-weight: bold;
   color: #333; /* Logo in bold with custom color */
   border-radius: 8px; /* Slightly rounded corners for the logo */
@@ -64,7 +64,7 @@ nav ul li {
 }
 
 nav ul li a {
-  font-family: 'Cinzel Decorative', serif; /* Apply Cinzel Decorative font */
+  font-family: 'Jonathan', serif; /* Apply Cinzel Decorative font */
   font-size: 18px;
   color: #333;
   padding: 5px 10px;
