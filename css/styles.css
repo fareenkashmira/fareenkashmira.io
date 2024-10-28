@@ -63,7 +63,7 @@ nav ul li {
 }
 
 nav ul li a {
-    font-family: 'Cinzel Decorative', serif; /* Use Cinzel Decorative for Navigation */
+    font-family: 'Alice', serif; /* Use Alice for Navigation */
     font-size: 18px;
     color: #333;
     padding: 5px 10px;
@@ -223,4 +223,5 @@ footer a:hover {
     padding: 5px 10px;
     cursor: pointer;
     margin-left: 10px;
+    font-family: 'Alice', serif; /* Use Alice for newsletter button */
 }
