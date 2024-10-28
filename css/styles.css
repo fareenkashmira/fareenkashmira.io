@@ -1,23 +1,10 @@
-/* Define the custom font */
+/* Include Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative&family=Alice&display=swap');
+
+/* Define the custom font for Jonathan */
 @font-face {
     font-family: 'Jonathan'; /* Custom font name */
     src: url('../customfonts/Jonathan.ttf') format('truetype'); /* Path to the TTF file */
-    font-weight: normal; /* Specify the font weight */
-    font-style: normal; /* Specify the font style */
-}
-
-/* Define the Cinzel Decorative font */
-@font-face {
-    font-family: 'Cinzel Decorative'; /* Cinzel Decorative font */
-    src: url('../customfonts/CinzelDecorative.ttf') format('truetype'); /* Path to the TTF file */
-    font-weight: normal; /* Specify the font weight */
-    font-style: normal; /* Specify the font style */
-}
-
-/* Define the Alice font */
-@font-face {
-    font-family: 'Alice'; /* Alice font */
-    src: url('../customfonts/Alice.ttf') format('truetype'); /* Path to the TTF file */
     font-weight: normal; /* Specify the font weight */
     font-style: normal; /* Specify the font style */
 }
@@ -27,7 +14,7 @@ body {
     background-image: url('../images/Butterflies abstract print.png');
     background-size: cover;
     background-position: center;
-    font-family: Alice, sans-serif; /* Set default font for the body */
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
 }
@@ -48,20 +35,20 @@ header {
 .logo {
     font-size: 58px;
     font-weight: bold;
-    color: #333; /* Logo in bold with custom color */
-    border-radius: 8px; /* Slightly rounded corners for the logo */
-    overflow: hidden; /* Ensures rounded corners are applied */
-    font-family: 'Cinzel Decorative', serif; /* Apply Cinzel Decorative font to logo */
+    color: #333;
+    border-radius: 8px;
+    overflow: hidden;
+    font-family: 'Cinzel Decorative', serif; /* Use Cinzel Decorative for Logo */
 }
 
 .logo img {
-    border-radius: 20px; /* Slightly rounded corners for logo image */
+    border-radius: 20px;
 }
 
 .tagline {
-    font-size: 20px; /* Make tagline smaller than the logo */
-    font-family: 'Jonathan', sans-serif; /* Apply Jonathan font */
-    margin-top: 0; /* Remove margin to adjust spacing */
+    font-size: 20px;
+    font-family: 'Jonathan', sans-serif; /* Use Jonathan for Tagline */
+    margin-top: 0;
     color: #ff6c6c;
 }
 
@@ -80,7 +67,7 @@ nav ul li {
 }
 
 nav ul li a {
-    font-family: 'Cinzel Decorative', serif; /* Apply Cinzel Decorative font */
+    font-family: 'Cinzel Decorative', serif; /* Use Cinzel Decorative for Navigation */
     font-size: 18px;
     color: #333;
     padding: 5px 10px;
@@ -95,45 +82,45 @@ nav ul li a:hover {
 .content {
     display: flex;
     justify-content: space-between;
-    margin: 20px 0; /* Add margin for spacing */
+    margin: 20px 0;
 }
 
 .image-section {
     display: flex;
-    flex-direction: column; /* Align images vertically */
-    gap: 15px; /* Space between images */
+    flex-direction: column;
+    gap: 15px;
 }
 
 .content-image {
-    border-radius: 20px; /* Slightly rounded corners for content images */
-    width: 100%; /* Full width */
-    height: auto; /* Maintain aspect ratio */
+    border-radius: 20px;
+    width: 100%;
+    height: auto;
 }
 
 .photo-placeholder {
     background-color: #fff;
     border: 2px solid #ff6c6c;
     text-align: center;
-    padding: 0; /* Remove padding */
+    padding: 0;
     height: 200px;
-    border-radius: 15px; /* Rounded corners for the photo section */
-    overflow: hidden; /* Prevent overflow if content exceeds bounds */
-    position: relative; /* Allow absolute positioning of images */
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
 }
 
 /* Content Details */
 .content-details {
-    padding: 20px; /* Add padding for better spacing */
+    padding: 20px;
 }
 
 .content-details h2 {
-    font-family: 'Cinzel Decorative', serif; /* Apply Cinzel Decorative font */
+    font-family: 'Cinzel Decorative', serif; /* Use Cinzel Decorative for H2 */
     font-size: 28px;
     color: #333;
 }
 
 .content-details p {
-    font-family: 'Jonathan', sans-serif; /* Apply Jonathan font to <p> tags */
+    font-family: 'Alice', serif; /* Use Alice for paragraph */
     font-size: 16px;
     line-height: 1.5;
     color: #555;
@@ -147,8 +134,8 @@ nav ul li a:hover {
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
-    border-radius: 25px; /* Rounded edges for the button */
-    font-family: 'Jonathan', sans-serif; /* Apply Jonathan font */
+    border-radius: 25px;
+    font-family: 'Jonathan', sans-serif; /* Use Jonathan for button */
 }
 
 .view-work-btn:hover {
@@ -161,14 +148,14 @@ nav ul li a:hover {
     text-align: center;
     padding: 20px;
     background-color: #f9f9f9;
-    border-radius: 15px; /* Rounded corners for the newsletter section */
+    border-radius: 15px;
 }
 
 .newsletter input[type="email"] {
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ff6c6c;
-    width: 300px; /* Fixed width for email input */
+    width: 300px;
 }
 
 .newsletter button {
@@ -178,8 +165,8 @@ nav ul li a:hover {
     padding: 10px 20px;
     cursor: pointer;
     margin-left: 10px;
-    border-radius: 5px; /* Rounded edges for the button */
-    font-family: 'Jonathan', sans-serif; /* Apply Jonathan font */
+    border-radius: 5px;
+    font-family: 'Jonathan', sans-serif; /* Use Jonathan for newsletter button */
 }
 
 /* Footer Section */
@@ -188,7 +175,7 @@ footer {
     margin-top: 40px;
     padding: 10px 0;
     background-color: #f4f4f4;
-    position: relative; /* To position the copyright section */
+    position: relative;
 }
 
 footer p {
@@ -209,7 +196,7 @@ footer a:hover {
 /* Copyright Section */
 .copyright {
     margin-top: 10px;
-    font-size: 12px; /* Smaller font for copyright */
+    font-size: 12px;
     color: #777;
 }
 
@@ -222,7 +209,7 @@ footer a:hover {
     background-color: #f4f4f4;
     padding: 15px;
     text-align: center;
-    display: none; /* Initially hidden */
+    display: none;
     z-index: 1000;
 }
 
@@ -239,4 +226,4 @@ footer a:hover {
     padding: 5px 10px;
     cursor: pointer;
     margin-left: 10px;
-    }
+}
