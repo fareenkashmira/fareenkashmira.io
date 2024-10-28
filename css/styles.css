@@ -46,7 +46,7 @@ header {
 }
 
 .tagline {
-    font-size: 20px;
+    font-size: 50px;
     font-family: 'Jonathan', sans-serif; /* Use Jonathan for Tagline */
     margin-top: 0;
     color: #ff6c6c;
@@ -132,7 +132,7 @@ nav ul li a:hover {
     color: white;
     border: none;
     padding: 10px 20px;
-    font-size: 16px;
+    font-size: 20px;
     cursor: pointer;
     border-radius: 25px;
     font-family: 'Jonathan', sans-serif; /* Use Jonathan for button */
