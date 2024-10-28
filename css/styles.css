@@ -41,10 +41,6 @@ header {
     font-family: 'Cinzel Decorative', serif; /* Use Cinzel Decorative for Logo */
 }
 
-.logo img {
-    border-radius: 20px;
-}
-
 .tagline {
     font-size: 50px;
     font-family: 'Jonathan', sans-serif; /* Use Jonathan for Tagline */
@@ -156,6 +152,7 @@ nav ul li a:hover {
     border-radius: 5px;
     border: 1px solid #ff6c6c;
     width: 300px;
+    font-family: 'Jonathan', sans-serif; /* Use Jonathan for newsletter button */
 }
 
 .newsletter button {
