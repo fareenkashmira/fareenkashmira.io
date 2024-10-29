@@ -1,3 +1,11 @@
+/* Define custom fonts */
+@font-face {
+    font-family: 'Jonathan';
+    src: url('../customfonts/jonathan.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 /* General Container */
 .container {
     max-width: 1200px;
