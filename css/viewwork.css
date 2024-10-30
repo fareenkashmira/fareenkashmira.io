@@ -98,7 +98,7 @@ body, h1, h2, h3, h4, h5, h6, p, .description, .tagline, .work-item, .view-optio
 }
 
 /* Headings in Cinzel Decorative font */
-h2, h3 {
+h1, h2, and h3 {
     font-family: 'Cinzel Decorative', serif; /* Apply this font to h2 and h3 */
 }
 
@@ -154,7 +154,7 @@ h2, h3 {
     }
 
     .tagline {
-        font-size: 18px; /* Further reduce tagline size for mobile */
+        font-size: 22px; /* Further reduce tagline size for mobile */
     }
 
     .description p {
