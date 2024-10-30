@@ -6,6 +6,11 @@
     font-style: normal;
 }
 
+/* Apply letter spacing to body, headings, paragraphs, and specific elements */
+body, h1, h2, h3, h4, h5, h6, p, .description, .tagline, .work-item, .view-options button {
+    letter-spacing: 1px; /* Adjust this value for desired letter spacing */
+}
+
 /* General Container */
 .container {
     max-width: 1200px;
