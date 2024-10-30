@@ -11,12 +11,44 @@
   
   <!-- Link to External Stylesheet -->
   <link rel="stylesheet" href="css/styles.css">
+  
+  <style>
+    /* Butterfly Animation Styles */
+    body {
+      overflow: hidden; /* Prevent scrollbars */
+      position: relative; /* For absolute positioning of butterflies */
+      background-color: #ffffff; /* White background */
+    }
+
+    .butterfly {
+      position: absolute;
+      width: 50px; /* Width of butterfly */
+      height: 50px; /* Height of butterfly */
+      background-image: url('images/butterfly.png'); /* Path to butterfly image */
+      background-size: contain; /* Adjust size of butterfly */
+      background-repeat: no-repeat; /* Do not repeat the image */
+      animation: fly 10s infinite ease-in-out; /* Animation settings */
+      opacity: 0.7; /* Slight transparency */
+    }
+
+    @keyframes fly {
+      0% {
+        transform: translateY(0) rotate(0deg); /* Start position */
+      }
+      50% {
+        transform: translateY(-100px) rotate(180deg); /* Upwards movement */
+      }
+      100% {
+        transform: translateY(0) rotate(360deg); /* Back to start position */
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="container">
     <!-- Header Section -->
     <header>
-      <h1 class="logo"><strong>Kooky</strong></h1> <!-- Kept only the text part -->
+      <h1 class="logo"><strong>Kooky</strong></h1>
       <p class="tagline">Creating Magic</p>
     </header>
 
@@ -78,12 +110,12 @@
     </div>
   </div>
 
+  <!-- Link to JavaScript File -->
+  <script src="js/script.js"></script>
+
   <!-- Footer Section -->
   <footer>
     <p>2022-2024 Kooky All rights reserved | <a href="htmls/TnC.html">TnC</a></p>
   </footer>
-
-  <!-- Link to JavaScript File -->
-  <script src="js/script.js"></script>
 </body>
 </html>
