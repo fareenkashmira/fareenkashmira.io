@@ -17,6 +17,13 @@ body {
     font-family: 'Alice', serif;
     margin: 0;
     padding: 0;
+    animation: fadeIn 1s ease-in; /* Add fade-in animation */
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
 }
 
 /* Container for all content */
@@ -68,10 +75,11 @@ nav ul li a {
     color: #333;
     padding: 5px 10px;
     text-decoration: none;
+    transition: color 0.3s ease; /* Smooth color transition */
 }
 
 nav ul li a:hover {
-    color: #333;
+    color: #ff6c6c; /* Change hover color */
 }
 
 /* Content Section */
@@ -132,6 +140,7 @@ nav ul li a:hover {
     cursor: pointer;
     border-radius: 20px;
     font-family: 'Jonathan', sans-serif; /* Use Jonathan for button */
+    transition: background-color 0.3s ease; /* Smooth background transition */
 }
 
 .view-work-btn:hover {
