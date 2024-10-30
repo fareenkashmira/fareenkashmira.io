@@ -100,7 +100,7 @@ h2, h3 {
 /* Tagline Styles */
 .tagline {
     font-family: 'Jonathan', serif; /* Custom font for tagline */
-    font-size: 24px; /* Adjust size as needed */
+    font-size: 30px; /* Adjust size as needed */
     font-weight: bold; /* Adjust weight if needed */
     text-align: center; /* Center align if needed */
 }
