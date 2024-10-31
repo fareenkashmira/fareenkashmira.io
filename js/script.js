@@ -21,7 +21,12 @@ function acceptImportantCookies() {
 
 // Function to hide the consent banner
 function hideConsentBanner() {
-    document.getElementById('consent-banner').style.display = 'none';
+    const consentBanner = document.getElementById('consent-banner');
+    consentBanner.style.transition = 'opacity 0.5s ease'; // Smooth transition
+    consentBanner.style.opacity = '0';
+    setTimeout(() => {
+        consentBanner.style.display = 'none';
+    }, 500); // Wait for transition to complete before hiding
 }
 
 // Check for previous cookie consent on page load
@@ -38,6 +43,9 @@ window.onload = function() {
         // Show the consent banner if no previous consent found
         document.getElementById('consent-banner').style.display = 'block';
     }
+    
+    // Smoothly show the contact form pop-up on landing
+    setTimeout(showContactForm, 1000); // Delay before showing the form
 };
 
 // Function to initialize photo slides when cookies are accepted
@@ -54,20 +62,42 @@ function disablePhotoSlides() {
 
 // Function to show the contact form pop-up
 function showContactForm() {
-    document.getElementById('contact-form').style.display = 'block';
+    const contactForm = document.getElementById('contact-form');
+    contactForm.style.display = 'block';
+    contactForm.style.opacity = '0';
+    contactForm.style.transition = 'opacity 0.5s ease'; // Smooth transition
+    setTimeout(() => {
+        contactForm.style.opacity = '1'; // Fade in effect
+    }, 10); // Small delay for transition effect
 }
 
 // Function to close the contact form pop-up
 function closeContactForm() {
-    document.getElementById('contact-form').style.display = 'none';
+    const contactForm = document.getElementById('contact-form');
+    contactForm.style.transition = 'opacity 0.5s ease'; // Smooth transition
+    contactForm.style.opacity = '0';
+    setTimeout(() => {
+        contactForm.style.display = 'none'; // Hide after transition
+    }, 500); // Wait for transition to complete before hiding
 }
 
 // Function to show the privacy policy
 function showPrivacyPolicy() {
-    document.getElementById('privacy-policy').style.display = 'block';
+    const privacyPolicy = document.getElementById('privacy-policy');
+    privacyPolicy.style.display = 'block';
+    privacyPolicy.style.opacity = '0';
+    privacyPolicy.style.transition = 'opacity 0.5s ease'; // Smooth transition
+    setTimeout(() => {
+        privacyPolicy.style.opacity = '1'; // Fade in effect
+    }, 10); // Small delay for transition effect
 }
 
 // Function to close the privacy policy
 function closePrivacyPolicy() {
-    document.getElementById('privacy-policy').style.display = 'none';
+    const privacyPolicy = document.getElementById('privacy-policy');
+    privacyPolicy.style.transition = 'opacity 0.5s ease'; // Smooth transition
+    privacyPolicy.style.opacity = '0';
+    setTimeout(() => {
+        privacyPolicy.style.display = 'none'; // Hide after transition
+    }, 500); // Wait for transition to complete before hiding
 }
