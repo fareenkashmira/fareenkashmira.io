@@ -27,7 +27,7 @@ function hideConsentBanner() {
 // Check for previous cookie consent on page load
 window.onload = function() {
     const consent = localStorage.getItem('cookiesAccepted');
-    if (consent === 'all' || consent === 'important' || consent === 'none') {
+    if (consent) {
         hideConsentBanner();
         if (consent === 'all' || consent === 'important') {
             initializePhotoSlides(); // Initialize if consent is given
@@ -38,9 +38,6 @@ window.onload = function() {
         // Show the consent banner if no previous consent found
         document.getElementById('consent-banner').style.display = 'block';
     }
-
-    // Show the contact form when the page loads
-    showContactForm(); // Call the function to display the contact form
 };
 
 // Function to initialize photo slides when cookies are accepted
