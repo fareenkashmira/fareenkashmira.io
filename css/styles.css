@@ -17,13 +17,6 @@ body {
     font-family: 'Alice', serif;
     margin: 0;
     padding: 0;
-    animation: fadeIn 1s ease-in; /* Add fade-in animation */
-}
-
-/* Fade-in animation */
-@keyframes fadeIn {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
 }
 
 /* Container for all content */
@@ -95,6 +88,13 @@ nav ul li a:hover {
     gap: 15px;
 }
 
+.photo-frame {
+    border: 2px solid #ff6c6c;
+    border-radius: 15px;
+    padding: 10px;
+    background-color: white; /* Background for photo frame */
+}
+
 .content-image {
     border-radius: 20px;
     width: 100%;
@@ -115,6 +115,7 @@ nav ul li a:hover {
 /* Content Details */
 .content-details {
     padding: 20px;
+    transform: translateY(-5px); /* Slight floating effect */
 }
 
 .content-details h2 {
@@ -199,6 +200,13 @@ footer a:hover {
     text-decoration: underline;
 }
 
+/* TnC and Privacy Policy Section */
+.tnc-privacy {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
 /* Copyright Section */
 .copyright {
     margin-top: 10px;
@@ -229,8 +237,4 @@ footer a:hover {
     background-color: #ff6c6c;
     color: white;
     border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    margin-left: 10px;
-    font-family: 'Alice', serif; /* Use Alice for newsletter button */
-}
+    padding: 5px 10px
