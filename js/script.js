@@ -38,18 +38,39 @@ window.onload = function() {
         // Show the consent banner if no previous consent found
         document.getElementById('consent-banner').style.display = 'block';
     }
+
+    // Show the contact form when the page loads
+    showContactForm(); // Call the function to display the contact form
 };
 
 // Function to initialize photo slides when cookies are accepted
 function initializePhotoSlides() {
     // Logic to initialize photo slides
-    // Example: Load images, set up slide show, etc.
     console.log('Photo slides initialized.');
 }
 
 // Function to disable photo slides when cookies are rejected
 function disablePhotoSlides() {
     // Logic to disable photo slides
-    // Example: Hide slides, remove images, etc.
     console.log('Photo slides disabled.');
+}
+
+// Function to show the contact form pop-up
+function showContactForm() {
+    document.getElementById('contact-form').style.display = 'block';
+}
+
+// Function to close the contact form pop-up
+function closeContactForm() {
+    document.getElementById('contact-form').style.display = 'none';
+}
+
+// Function to show the privacy policy
+function showPrivacyPolicy() {
+    document.getElementById('privacy-policy').style.display = 'block';
+}
+
+// Function to close the privacy policy
+function closePrivacyPolicy() {
+    document.getElementById('privacy-policy').style.display = 'none';
 }
