@@ -29,7 +29,6 @@
         <li><a href="htmls/products.html">Products</a></li>
         <li><a href="htmls/blog.html">Blogs</a></li>
         <li><a href="htmls/testimonials.html">Testimonials</a></li>
-        <li><a href="javascript:void(0);" onclick="openPrivacyPolicy()">Privacy Policy</a></li>
       </ul>
     </nav>
 
@@ -50,25 +49,6 @@
         </a>
       </div>
     </section>
-    
-    <!-- Mailchimp Sign-Up Form -->
-    <div id="mc_embed_signup">
-      <form action="https://site.us10.list-manage.com/subscribe/post?u=68495ad73394985325e320010&amp;id=420ecd8c5c&amp;f_id=009444e4f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
-        <div id="mc_embed_signup_scroll">
-          <h2>Subscribe to get latest Promos and Information</h2>
-          <div class="mc-field-group">
-            <label for="mce-EMAIL">Email Address <span class="asterisk">*</span></label>
-            <input type="email" name="EMAIL" class="required email" id="mce-EMAIL" required>
-          </div>
-          <div hidden="">
-            <input type="hidden" name="tags" value="14567241,14567242,14567243">
-          </div>
-          <div class="clear">
-            <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">
-          </div>
-        </div>
-      </form>
-    </div>
 
     <!-- Consent Banner -->
     <div id="consent-banner" class="consent-banner prompt-box" aria-live="polite">
@@ -80,17 +60,17 @@
     </div>
   </div>
 
-  <!-- Contact Form Modal -->
+  <!-- Contact Form Modal with Mailchimp Integration -->
   <div id="contactModal" class="modal">
     <div class="modal-content">
       <span class="close" onclick="closeContactModal()">&times;</span>
       <h2>Contact Us</h2>
-      <form id="contactForm">
+      <form id="mc-embedded-subscribe-form" action="https://site.us10.list-manage.com/subscribe/post?u=68495ad73394985325e320010&amp;id=420ecd8c5c&amp;f_id=009444e4f0" method="post" target="_blank">
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required>
 
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
+        <input type="email" id="mce-EMAIL" name="EMAIL" required>
 
         <label for="message">Message:</label>
         <textarea id="message" name="message" required></textarea>
@@ -112,9 +92,14 @@
   <!-- Link to External JavaScript -->
   <script src="js/script.js"></script> <!-- Ensure script.js is created -->
 
-  <!-- Footer Section -->
+  <!-- Footer Section in Specified Order -->
   <footer>
-    <p>2022-2024 Kooky All rights reserved | <a href="htmls/TnC.html">TnC</a></p>
+    <div class="footer-links">
+      <p><a href="javascript:void(0);" onclick="openContactModal()">Contact Us</a></p>
+      <p><a href="javascript:void(0);" onclick="openPrivacyPolicy()">Privacy Policy</a></p>
+      <p><a href="htmls/TnC.html">T&C</a></p>
+      <p>2022-2024 Kooky All rights reserved</p>
+    </div>
   </footer>
 </body>
 </html>
