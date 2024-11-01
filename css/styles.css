@@ -11,7 +11,7 @@ body {
     background-image: url('../images/red background.jpg');
     background-size: cover;
     background-position: center;
-    font-family: 'Alice', serif;
+    font-family: 'Charm', serif; /* Changed to Charm */
     margin: 0;
     padding: 0;
 }
@@ -60,7 +60,7 @@ nav ul li {
 }
 
 nav ul li a {
-    font-family: 'Alice', serif; /* Use Alice for Navigation */
+    font-family: 'Charm', serif; /* Changed to Charm for Navigation */
     font-size: 18px;
     color: #333;
     padding: 5px 10px;
@@ -122,7 +122,7 @@ nav ul li a:hover {
 }
 
 .content-details p {
-    font-family: 'Alice', serif; /* Use Alice for paragraph */
+    font-family: 'Charm', serif; /* Changed to Charm for paragraph */
     font-size: 16px;
     line-height: 1.5;
     color: #555;
@@ -175,6 +175,24 @@ footer a:hover {
     display: flex;
     justify-content: space-around;
     margin-top: 10px;
+}
+
+/* Connect Section */
+.connect-section {
+    margin-top: 20px; /* Space between Connect section and TnC/Privacy Policy */
+}
+
+/* Icon Size Section */
+.icon-size {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Space between icons */
+}
+
+.icon-size img {
+    width: 30px; /* Set icon size */
+    height: 30px; /* Set icon size */
 }
 
 /* Copyright Section */
@@ -237,7 +255,7 @@ footer a:hover {
     display: block;
     font-size: 14px;
     color: #333;
-    font-family: 'Alice', serif;
+    font-family: 'Charm', serif; /* Changed to Charm for modal labels */
     margin-bottom: 8px;
     text-align: left;
 }
@@ -251,5 +269,5 @@ footer a:hover {
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    font-family: 'Alice', serif;
+    font-family: 'Charm', serif; /* Changed to Charm for input fields */
     }
