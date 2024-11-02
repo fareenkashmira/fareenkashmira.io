@@ -43,7 +43,7 @@ window.onload = function() {
         // Show the consent banner if no previous consent found
         document.getElementById('consent-banner').style.display = 'block';
     }
-    
+
     // Smoothly show the contact form pop-up on landing
     setTimeout(showContactForm, 1000); // Delay before showing the form
 };
@@ -62,7 +62,7 @@ function disablePhotoSlides() {
 
 // Function to show the contact form pop-up
 function showContactForm() {
-    const contactForm = document.getElementById('contact-form');
+    const contactForm = document.getElementById('contactModal'); // Updated to match your HTML
     contactForm.style.display = 'block';
     contactForm.style.opacity = '0';
     contactForm.style.transition = 'opacity 0.5s ease'; // Smooth transition
@@ -73,7 +73,7 @@ function showContactForm() {
 
 // Function to close the contact form pop-up
 function closeContactForm() {
-    const contactForm = document.getElementById('contact-form');
+    const contactForm = document.getElementById('contactModal'); // Updated to match your HTML
     contactForm.style.transition = 'opacity 0.5s ease'; // Smooth transition
     contactForm.style.opacity = '0';
     setTimeout(() => {
