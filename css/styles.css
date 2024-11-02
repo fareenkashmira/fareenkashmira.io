@@ -46,15 +46,6 @@ header {
     color: #ff6c6c;
 }
 
-/* Introductory Section */
-.intro-text {
-    font-family: 'Jonathan', sans-serif; /* Use Jonathan for "Hello, I'm Fareen" */
-    font-size: 36px;
-    color: #333;
-    text-align: center;
-    margin-bottom: 15px;
-}
-
 /* Navigation Bar */
 nav ul {
     list-style: none;
@@ -111,12 +102,6 @@ nav ul li a:hover {
 
 .view-work-btn:hover {
     background-color: #333;
-}
-
-/* Connect Section */
-.connect-section {
-    font-family: 'Charm', serif; /* Use Charm for Connect section */
-    margin-top: 20px;
 }
 
 /* Footer Section */
