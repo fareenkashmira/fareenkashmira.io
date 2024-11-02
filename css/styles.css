@@ -1,9 +1,17 @@
 /* Define the custom font for Jonathan */
 @font-face {
-    font-family: 'Jonathan'; /* Custom font name */
-    src: url('../customfonts/Jonathan.ttf') format('truetype'); /* Path to the TTF file */
-    font-weight: normal; /* Specify the font weight */
-    font-style: normal; /* Specify the font style */
+    font-family: 'Jonathan';
+    src: url('../customfonts/Jonathan.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Define the custom font for Charm */
+@font-face {
+    font-family: 'Charm';
+    src: url('../customfonts/Charm.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
 }
 
 /* Body background with butterfly image */
@@ -11,16 +19,9 @@ body {
     background-image: url('../images/Red-Black.jpg');
     background-size: cover;
     background-position: center;
-    font-family: 'Charm', serif; /* Changed to Charm */
+    font-family: 'Charm', serif;
     margin: 0;
     padding: 0;
-}
-
-/* Container for all content */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
 }
 
 /* Header Section Styling */
@@ -35,7 +36,7 @@ header {
     color: #333;
     border-radius: 8px;
     overflow: hidden;
-    font-family: 'Cinzel Decorative', serif; /* Use Cinzel Decorative for Logo */
+    font-family: 'Charm', serif; /* Use Charm for Logo */
 }
 
 .tagline {
@@ -60,69 +61,27 @@ nav ul li {
 }
 
 nav ul li a {
-    font-family: 'Charm', serif; /* Changed to Charm for Navigation */
+    font-family: 'Charm', serif; /* Use Charm for Navigation */
     font-size: 18px;
     color: #333;
     padding: 5px 10px;
     text-decoration: none;
-    transition: color 0.3s ease; /* Smooth color transition */
+    transition: color 0.3s ease;
 }
 
 nav ul li a:hover {
-    color: #ff6c6c; /* Change hover color */
-}
-
-/* Content Section */
-.content {
-    display: flex;
-    justify-content: space-between;
-    margin: 20px 0;
-}
-
-.image-section {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.photo-frame {
-    border: 2px solid #ff6c6c;
-    border-radius: 15px;
-    padding: 10px;
-    background-color: white; /* Background for photo frame */
-}
-
-.content-image {
-    border-radius: 20px;
-    width: 100%;
-    height: auto;
-}
-
-.photo-placeholder {
-    background-color: #fff;
-    border: 2px solid #ff6c6c;
-    text-align: center;
-    padding: 0;
-    height: 200px;
-    border-radius: 15px;
-    overflow: hidden;
-    position: relative;
+    color: #ff6c6c;
 }
 
 /* Content Details */
-.content-details {
-    padding: 20px;
-    transform: translateY(-5px); /* Slight floating effect */
-}
-
 .content-details h2 {
-    font-family: 'Jonathan', sans-serif; /* Use Jonathan for H2 */
+    font-family: 'Jonathan', sans-serif;
     font-size: 28px;
     color: #333;
 }
 
 .content-details p {
-    font-family: 'Charm', serif; /* Changed to Charm for paragraph */
+    font-family: 'Charm', serif;
     font-size: 16px;
     line-height: 1.5;
     color: #555;
@@ -137,8 +96,8 @@ nav ul li a:hover {
     font-size: 23px;
     cursor: pointer;
     border-radius: 20px;
-    font-family: 'Jonathan', sans-serif; /* Use Jonathan for button */
-    transition: background-color 0.3s ease; /* Smooth background transition */
+    font-family: 'Jonathan', sans-serif;
+    transition: background-color 0.3s ease;
 }
 
 .view-work-btn:hover {
@@ -152,17 +111,19 @@ footer {
     padding: 10px 0;
     background-color: #f4f4f4;
     position: relative;
-    border-top: 2px solid black; /* Black line separating footer */
+    border-top: 2px solid black;
 }
 
 footer p {
     margin: 0;
+    font-family: 'Charm', serif; /* Use Charm for Footer */
     font-size: 14px;
     color: #555;
 }
 
 footer a {
     color: #ff6c6c;
+    font-family: 'Charm', serif; /* Use Charm for Footer Links */
     text-decoration: none;
 }
 
@@ -170,79 +131,9 @@ footer a:hover {
     text-decoration: underline;
 }
 
-/* TnC and Privacy Policy Section */
-.tnc-privacy {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 10px;
-}
-
-/* Connect Section */
-.connect-section {
-    margin-top: 20px; /* Space between Connect section and TnC/Privacy Policy */
-}
-
-/* Icon Size Section */
-.icon-size {
-    margin-top: 15px;
-    display: flex;
-    justify-content: center;
-    gap: 15px; /* Space between icons */
-}
-
-.icon-size img {
-    width: 20px; /* Set icon size */
-    height: 20px; /* Set icon size */
-}
-
-/* Copyright Section */
-.copyright {
-    margin-top: 10px;
-    font-size: 12px;
-    color: #777;
-}
-
-/* Consent Banner Styles */
-.consent-banner {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: #f4f4f4;
-    padding: 15px;
-    text-align: center;
-    display: none;
-    z-index: 1000;
-}
-
-.consent-banner p {
-    margin: 0;
-    font-size: 14px;
-    color: #333;
-}
-
-.consent-banner button {
-    background-color: #ff6c6c;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-}
-
 /* Contact Form Modal */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed;
-    z-index: 1001;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-}
-
 .modal-content {
-    background-color: #ffbdbc; /* Opaque background for the modal */
+    background-color: #ffbdbc;
     margin: 5% auto;
     padding: 20px;
     border: 1px solid #888;
@@ -255,7 +146,7 @@ footer a:hover {
     display: block;
     font-size: 14px;
     color: #333;
-    font-family: 'Charm', serif; /* Changed to Charm for modal labels */
+    font-family: 'Charm', serif; /* Use Charm for modal labels */
     margin-bottom: 8px;
     text-align: left;
 }
@@ -269,5 +160,13 @@ footer a:hover {
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    font-family: 'Charm', serif; /* Changed to Charm for input fields */
-    }
+    font-family: 'Charm', serif; /* Use Charm for input fields */
+}
+
+.modal-content .modal-title {
+    font-family: 'Jonathan', sans-serif; /* Use Jonathan for modal title */
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 15px;
+}
