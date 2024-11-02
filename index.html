@@ -44,23 +44,29 @@
       text-decoration: none;
       cursor: pointer;
     }
+
+    /* Styles for the consent banner */
+    .consent-banner {
+      background-color: #f8f8f8; /* Light background */
+      border: 1px solid #ccc; /* Border for distinction */
+      padding: 10px;
+      position: fixed; /* Fixed position at the bottom */
+      bottom: 0;
+      width: 100%; /* Full width */
+      display: flex; /* Flex for alignment */
+      justify-content: space-between; /* Space between elements */
+      align-items: center; /* Center vertically */
+      z-index: 1000; /* On top of other content */
+    }
+
+    .consent-banner p {
+      margin: 0; /* Remove default margin */
+    }
+    
+    .consent-banner button {
+      margin-left: 10px; /* Space between buttons */
+    }
   </style>
-
-  <script>
-    function openContactModal() {
-      document.getElementById('contactModal').style.display = "block";
-    }
-
-    function closeContactModal() {
-      document.getElementById('contactModal').style.display = "none";
-    }
-
-    window.onclick = function(event) {
-      if (event.target === document.getElementById('contactModal')) {
-        closeContactModal();
-      }
-    }
-  </script>
 </head>
 <body onload="openContactModal()">
 
@@ -100,11 +106,11 @@
     </section>
 
     <!-- Consent Banner -->
-    <div id="consent-banner" class="consent-banner prompt-box" aria-live="polite">
+    <div id="consent-banner" class="consent-banner" aria-live="polite">
       <p>This website uses cookies to ensure you get the best experience. 
-        <button onclick="acceptAllCookies()">Accept All</button>
-        <button onclick="rejectCookies()">Reject</button>
-        <button onclick="acceptImportantCookies()">Accept Important Cookies</button>
+        <button onclick="/* Logic to accept all cookies */">Accept All</button>
+        <button onclick="/* Logic to reject cookies */">Reject</button>
+        <button onclick="/* Logic to accept important cookies */">Accept Important Cookies</button>
       </p>
     </div>
   </div>
@@ -172,10 +178,4 @@
         </div>
         <div class="mc-field-group">
           <label for="mce-LNAME">Last Name</label>
-          <input type="text" name="LNAME" class="text" id="mce-LNAME">
-        </div>
-        <div class="mc-field-group">
-          <label for="mce-PHONE">Phone Number</label>
-          <input type="text" name="PHONE" class="text" id="mce-PHONE">
-        </div>
-        <div id="mergeRow
+          <input type="text" name="LNAME" class="text" id="
