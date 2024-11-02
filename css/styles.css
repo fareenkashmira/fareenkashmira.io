@@ -116,7 +116,7 @@ nav ul li a:hover {
 }
 
 .content-details h2 {
-    font-family: 'Cinzel Decorative', serif; /* Use Cinzel Decorative for H2 */
+    font-family: 'Jonathan', sans-serif; /* Use Jonathan for H2 */
     font-size: 28px;
     color: #333;
 }
@@ -191,8 +191,8 @@ footer a:hover {
 }
 
 .icon-size img {
-    width: 30px; /* Set icon size */
-    height: 30px; /* Set icon size */
+    width: 20px; /* Set icon size */
+    height: 20px; /* Set icon size */
 }
 
 /* Copyright Section */
