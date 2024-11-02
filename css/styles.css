@@ -189,6 +189,19 @@ footer a:hover {
     border: none;
     padding: 10px 20px; /* Increased button size */
     font-family: 'Charm', serif;
+    transition: background-color 0.3s ease; /* Smooth transition for hover */
+}
+
+.consent-banner button:hover {
+    background-color: #333; /* Darker shade for hover effect */
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .consent-banner {
+        padding: 15px;
+        font-size: 14px; /* Smaller font size on mobile */
+    }
 }
 
 /* Contact Form Modal */
