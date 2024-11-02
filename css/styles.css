@@ -24,6 +24,13 @@ body {
     padding: 0;
 }
 
+/* General container for content */
+.container {
+    max-width: 1200px; /* Set max width for container */
+    margin: 0 auto;
+    padding: 20px; /* Space around content */
+}
+
 /* Header Section Styling */
 header {
     text-align: center;
@@ -90,7 +97,7 @@ nav ul li a:hover {
 
 /* Photo Section */
 .photo-frame {
-    width: 80%; /* Adjusted photo size */
+    width: 70%; /* Adjusted photo size for better fit */
     margin: 0 auto;
     border: 2px solid #ff6c6c;
     border-radius: 15px;
@@ -99,7 +106,7 @@ nav ul li a:hover {
 }
 
 .content-image {
-    width: 90%; /* Reduced width for slightly smaller photo */
+    width: 80%; /* Reduced width for slightly smaller photo */
     height: auto;
     border-radius: 15px;
 }
@@ -199,12 +206,12 @@ footer a:hover {
 
 .modal-content {
     background-color: #ffbdbc;
-    margin: 5% auto;
+    margin: 10% auto; /* Space from top */
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
-    max-width: 600px;
-    border-radius: 10px;
+    width: 90%; /* Responsive width */
+    max-width: 600px; /* Maximum width */
+    border-radius: 10px; /* Rounded corners */
     font-family: 'Charm', serif;
 }
 
@@ -234,4 +241,4 @@ footer a:hover {
     color: #333;
     text-align: center;
     margin-bottom: 15px;
-}
+    }
