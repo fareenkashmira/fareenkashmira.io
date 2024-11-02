@@ -72,7 +72,7 @@ function showContactForm() {
 }
 
 // Function to close the contact form pop-up
-function closeContactForm() {
+function closeContactModal() {
     const contactForm = document.getElementById('contactModal'); // Updated to match your HTML
     contactForm.style.transition = 'opacity 0.5s ease'; // Smooth transition
     contactForm.style.opacity = '0';
@@ -100,4 +100,4 @@ function closePrivacyPolicy() {
     setTimeout(() => {
         privacyPolicy.style.display = 'none'; // Hide after transition
     }, 500); // Wait for transition to complete before hiding
-}
+        }
