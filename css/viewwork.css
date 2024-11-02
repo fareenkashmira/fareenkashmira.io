@@ -6,9 +6,19 @@
     font-style: normal;
 }
 
+/* Background Image for Body */
+body {
+    background-image: url('../images/background.jpg'); /* Set your background image path */
+    background-size: cover; /* Ensure the image covers the entire background */
+    background-attachment: fixed; /* Keep background fixed while scrolling */
+    background-position: center;
+    font-family: 'Charm', serif; /* Default font for body */
+    letter-spacing: 1px; /* Apply letter spacing */
+}
+
 /* Apply letter spacing to body, headings, paragraphs, and specific elements */
 body, h1, h2, h3, h4, h5, h6, p, .description, .tagline, .work-item, .view-options button {
-    letter-spacing: 1px; /* Adjust this value for desired letter spacing */
+    letter-spacing: 1px;
 }
 
 /* General Container */
@@ -16,6 +26,8 @@ body, h1, h2, h3, h4, h5, h6, p, .description, .tagline, .work-item, .view-optio
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* Light background for readability */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
 }
 
 /* Header and Footer Styles */
@@ -25,58 +37,58 @@ body, h1, h2, h3, h4, h5, h6, p, .description, .tagline, .work-item, .view-optio
 
 /* Navigation Bar Styles */
 .navbar {
-    list-style-type: none; /* Remove bullet points */
-    padding: 0; /* Remove padding */
-    display: flex; /* Use flexbox for horizontal layout */
-    justify-content: center; /* Center align the items */
-    margin: 20px 0; /* Margin above and below the navbar */
-    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+    flex-wrap: wrap;
 }
 
 .navbar li {
-    margin: 0 15px; /* Space between each navigation item */
+    margin: 0 15px;
 }
 
 .navbar a {
-    text-decoration: none; /* Remove underline from links */
-    color: #000000; /* Link color */
-    font-family: 'Cinzel Decorative', serif; /* Font change to Cinzel Decorative */
-    font-weight: bold; /* Bold links */
+    text-decoration: none;
+    color: #000000;
+    font-family: 'Cinzel Decorative', serif;
+    font-weight: bold;
 }
 
 /* View Options Styles */
 .view-options {
     margin: 20px 0;
-    text-align: center; /* Center align buttons */
+    text-align: center;
 }
 
 .view-options button {
     padding: 10px 20px;
     margin-right: 10px;
     cursor: pointer;
-    font-family: 'Cinzel Decorative', serif; /* Font for button */
+    font-family: 'Cinzel Decorative', serif;
 }
 
 /* Active button color */
 .view-options button.active {
-    background-color: #ff6c6c; /* Active button color */
+    background-color: #ff6c6c;
     color: white;
 }
 
 /* Content Section Styles */
 .content {
     display: flex;
-    flex-wrap: wrap; /* Allow items to wrap */
-    justify-content: space-between; /* Space out items evenly */
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 /* Work Item Styles */
 .work-item {
-    flex: 1 1 calc(33.333% - 20px); /* 3 items per row with spacing */
-    margin: 10px; /* Adjust margin as needed */
+    flex: 1 1 calc(33.333% - 20px);
+    margin: 10px;
     text-align: center;
-    font-family: 'Alice', serif; /* Font for work item */
-    box-sizing: border-box; /* Include padding and border in element's total width and height */
+    font-family: 'Charm', serif;
+    box-sizing: border-box;
 }
 
 /* Ensure images are responsive */
@@ -87,77 +99,77 @@ body, h1, h2, h3, h4, h5, h6, p, .description, .tagline, .work-item, .view-optio
 
 /* List View Styles */
 .list-view .work-item {
-    flex: 1 1 100%; /* For list view */
+    flex: 1 1 100%;
     display: flex;
     align-items: center;
 }
 
 .list-view .work-item img {
-    width: 150px; /* Set image size for list view */
+    width: 150px;
     margin-right: 20px;
 }
 
 /* Headings in Cinzel Decorative font */
-h1, h2, and h3 {
-    font-family: 'Cinzel Decorative', serif; /* Apply this font to h2 and h3 */
+h1, h2, h3 {
+    font-family: 'Cinzel Decorative', serif;
 }
 
 /* Tagline Styles */
 .tagline {
-    font-family: 'Jonathan', serif; /* Custom font for tagline */
-    font-size: 30px; /* Adjust size as needed */
-    font-weight: bold; /* Adjust weight if needed */
-    text-align: center; /* Center align if needed */
+    font-family: 'Jonathan', serif;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
 }
 
 /* Description paragraph styling */
 .description p {
-    font-family: 'Jonathan', serif; /* Font for description paragraph */
-    font-size: 16px; /* Adjust size as needed */
-    color: #333; /* Change text color if necessary */
-    line-height: 1.5; /* Adjust line height for better readability */
+    font-family: 'Jonathan', serif;
+    font-size: 16px;
+    color: #333;
+    line-height: 1.5;
 }
 
 /* Additional Styles for Footer */
 .footer {
-    margin-top: 20px; /* Space above the footer */
+    margin-top: 20px;
 }
 
 /* Responsive Styles */
 @media (max-width: 768px) {
     .navbar {
-        flex-direction: column; /* Stack nav items vertically on smaller screens */
+        flex-direction: column;
     }
 
     .work-item {
-        flex: 1 1 calc(50% - 20px); /* 2 items per row on tablets */
+        flex: 1 1 calc(50% - 20px);
     }
 
     .view-options button {
-        padding: 10px 15px; /* Adjust button size for smaller screens */
+        padding: 10px 15px;
     }
 
     .tagline {
-        font-size: 20px; /* Smaller tagline size on mobile */
+        font-size: 20px;
     }
 }
 
 @media (max-width: 480px) {
     .work-item {
-        flex: 1 1 calc(100% - 20px); /* Stack items in a single column on mobile */
-        margin: 5px; /* Reduce margin for tight spacing */
+        flex: 1 1 calc(100% - 20px);
+        margin: 5px;
     }
 
     .view-options button {
-        width: 100%; /* Make buttons full width for better touch targets */
-        margin: 5px 0; /* Space out buttons vertically */
+        width: 100%;
+        margin: 5px 0;
     }
 
     .tagline {
-        font-size: 22px; /* Further reduce tagline size for mobile */
+        font-size: 22px;
     }
 
     .description p {
-        font-size: 14px; /* Adjust paragraph size for mobile */
+        font-size: 14px;
     }
-}
+    }
