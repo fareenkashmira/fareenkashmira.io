@@ -32,8 +32,10 @@ function hideConsentBanner() {
 // Check for previous cookie consent on page load
 window.onload = function() {
     const consent = localStorage.getItem('cookiesAccepted');
+    const consentBanner = document.getElementById('consent-banner');
+
     if (consent) {
-        hideConsentBanner();
+        hideConsentBanner(); // Hide the banner if consent exists
         if (consent === 'all' || consent === 'important') {
             initializePhotoSlides(); // Initialize if consent is given
         } else {
@@ -41,7 +43,7 @@ window.onload = function() {
         }
     } else {
         // Show the consent banner if no previous consent found
-        document.getElementById('consent-banner').style.display = 'block';
+        consentBanner.style.display = 'block';
     }
 
     // Smoothly show the contact form pop-up on landing
@@ -52,12 +54,14 @@ window.onload = function() {
 function initializePhotoSlides() {
     // Logic to initialize photo slides
     console.log('Photo slides initialized.');
+    // Add your photo slide initialization logic here
 }
 
 // Function to disable photo slides when cookies are rejected
 function disablePhotoSlides() {
     // Logic to disable photo slides
     console.log('Photo slides disabled.');
+    // Add your logic to disable photo slides here
 }
 
 // Function to show the contact form pop-up
@@ -100,4 +104,4 @@ function closePrivacyPolicy() {
     setTimeout(() => {
         privacyPolicy.style.display = 'none'; // Hide after transition
     }, 500); // Wait for transition to complete before hiding
-        }
+}
