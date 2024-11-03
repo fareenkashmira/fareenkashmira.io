@@ -15,7 +15,7 @@
   <!-- Link to External JavaScript -->
   <script src="js/scripts.js" defer></script> <!-- Ensure scripts.js is created -->
 </head>
-<body onload="openContactModal()">
+<body onload="showConsentBanner()">
 
   <div class="container">
     <!-- Header Section -->
@@ -60,78 +60,75 @@
         <button onclick="acceptImportantCookies()">Accept Important Cookies</button>
       </p>
     </div>
-  </div>
 
-  <!-- Footer Section -->
-  <footer>
-    <div class="connect">
-      <p style="font-family: 'Jonathan', serif; font-weight: bold;">Connect</p>
-      <div class="social-icons">
-        <a href="https://facebook.com/share/AerFG6VEHaUfFTZc" target="_blank" title="Facebook">
-            <img src="https://kooky.fareenkashmira.co.in/icons/Facebook.png" alt="Facebook Icon" />
-        </a>
-        <a href="https://instagram.com/im_fareen?igsh=MXRsZmE5eXFueW54OA" target="_blank" title="Instagram">
-            <img src="https://kooky.fareenkashmira.co.in/icons/Instagram.png" alt="Instagram Icon" />
-        </a>
-        <a href="https://linkedin.com/in/fareen-kashmira-53087020a" target="_blank" title="LinkedIn">
-            <img src="https://kooky.fareenkashmira.co.in/icons/LinkedIn.png" alt="LinkedIn Icon" />
-        </a>
-        <a href="https://wa.me/917011403207" target="_blank" title="WhatsApp">
-            <img src="https://kooky.fareenkashmira.co.in/icons/WhatsApp.png" alt="WhatsApp Icon" />
-        </a>
-        <a href="https://youtube.com/@fareenkashmira" target="_blank" title="YouTube">
-            <img src="https://kooky.fareenkashmira.co.in/icons/YouTube.png" alt="YouTube Icon" />
-        </a>
-        <a href="mailto:kooky@fareenkashmira.co.in" target="_blank" title="Gmail">
-            <img src="https://kooky.fareenkashmira.co.in/icons/Gmail.png" alt="Gmail Icon" />
-        </a>
+    <!-- Contact Form Modal -->
+    <div id="contactModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeContactModal()">&times;</span>
+        <h2>Subscribe</h2>
+        <form action="https://site.us10.list-manage.com/subscribe/post?u=68495ad73394985325e320010&amp;id=420ecd8c5c&amp;f_id=009f44e4f0" method="post" id="mc-embedded-subscribe-form" class="validate" target="_blank">
+          <div class="indicates-required"><span class="asterisk">*</span> indicates required</div>
+          <div class="mc-field-group">
+            <label for="mce-EMAIL">Email Address <span class="asterisk">*</span></label>
+            <input type="email" name="EMAIL" class="required email" id="mce-EMAIL" required>
+          </div>
+          <div class="mc-field-group">
+            <label for="mce-FNAME">First Name <span class="asterisk">*</span></label>
+            <input type="text" name="FNAME" class="required text" id="mce-FNAME" required>
+          </div>
+          <div class="mc-field-group">
+            <label for="mce-LNAME">Last Name</label>
+            <input type="text" name="LNAME" class="text" id="mce-LNAME">
+          </div>
+          <div class="mc-field-group">
+            <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">
+          </div>
+        </form>
       </div>
     </div>
 
-    <!-- Space between Connect Section and Links Section -->
-    <div style="margin: 20px 0;"></div>
-
-    <!-- Links Section -->
-    <div class="footer-links">
-      <p><a href="htmls/privacypolicy.html">Privacy Policy</a></p>
-      <p><a href="htmls/TnC.html">T&C</a></p>
-      <p>MSMEs Registration:</p>
-      <p>UDYAM-DL-05-0032600</p>
-    </div>
-
-    <!-- Space between Links Section and Copyright Section -->
-    <div style="margin: 40px 0;"></div>
-
-    <!-- Copyright Section -->
-    <div class="copyright">
-      <p>&copy; 2024 Kooky. All rights reserved.</p>
-    </div>
-  </footer>
-
-  <!-- Contact Form Modal -->
-  <div id="contactModal">
-    <div class="modal-content">
-      <span class="close" onclick="closeContactModal()">&times;</span>
-      <h2>Subscribe</h2>
-      <form action="https://site.us10.list-manage.com/subscribe/post?u=68495ad73394985325e320010&amp;id=420ecd8c5c&amp;f_id=009f44e4f0" method="post" id="mc-embedded-subscribe-form" class="validate" target="_blank">
-        <div class="indicates-required"><span class="asterisk">*</span> indicates required</div>
-        <div class="mc-field-group">
-          <label for="mce-EMAIL">Email Address <span class="asterisk">*</span></label>
-          <input type="email" name="EMAIL" class="required email" id="mce-EMAIL" required>
+    <!-- Footer Section -->
+    <footer>
+      <div class="connect">
+        <p style="font-family: 'Jonathan', serif; font-weight: bold;">Connect</p>
+        <div class="social-icons">
+          <a href="https://facebook.com/share/AerFG6VEHaUfFTZc" target="_blank" title="Facebook">
+              <img src="https://kooky.fareenkashmira.co.in/icons/Facebook.png" alt="Facebook Icon" />
+          </a>
+          <a href="https://instagram.com/im_fareen?igsh=MXRsZmE5eXFueW54OA" target="_blank" title="Instagram">
+              <img src="https://kooky.fareenkashmira.co.in/icons/Instagram.png" alt="Instagram Icon" />
+          </a>
+          <a href="https://linkedin.com/in/fareen-kashmira-53087020a" target="_blank" title="LinkedIn">
+              <img src="https://kooky.fareenkashmira.co.in/icons/LinkedIn.png" alt="LinkedIn Icon" />
+          </a>
+          <a href="https://wa.me/917011403207" target="_blank" title="WhatsApp">
+              <img src="https://kooky.fareenkashmira.co.in/icons/WhatsApp.png" alt="WhatsApp Icon" />
+          </a>
+          <a href="https://youtube.com/@fareenkashmira" target="_blank" title="YouTube">
+              <img src="https://kooky.fareenkashmira.co.in/icons/YouTube.png" alt="YouTube Icon" />
+          </a>
         </div>
-        <div class="mc-field-group">
-          <label for="mce-FNAME">First Name <span class="asterisk">*</span></label>
-          <input type="text" name="FNAME" class="required text" id="mce-FNAME" required>
-        </div>
-        <div class="mc-field-group">
-          <label for="mce-LNAME">Last Name</label>
-          <input type="text" name="LNAME" class="text" id="mce-LNAME">
-        </div>
-        <div class="mc-field-group">
-          <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">
-        </div>
-      </form>
-    </div>
+      </div>
+
+      <!-- Space between Connect Section and Links Section -->
+      <div style="margin: 20px 0;"></div>
+
+      <!-- Links Section -->
+      <div class="footer-links">
+        <p><a href="htmls/privacypolicy.html">Privacy Policy</a></p>
+        <p><a href="htmls/TnC.html">T&C</a></p>
+        <p>MSMEs Registration:</p>
+        <p>UDYAM-DL-05-0032600</p>
+      </div>
+
+      <!-- Space between Links Section and Copyright Section -->
+      <div style="margin: 40px 0;"></div>
+
+      <!-- Copyright Section -->
+      <div class="copyright">
+        <p>&copy; 2024 Kooky. All rights reserved.</p>
+      </div>
+    </footer>
   </div>
 
 </body>
