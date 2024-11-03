@@ -39,7 +39,7 @@ header {
 
 .tagline {
     font-size: 50px;
-    font-family: 'Jonathan', sans-serif; /* Only tagline uses Jonathan */
+    font-family: 'Jonathan', sans-serif;
     margin-top: 0;
     color: #ff6c6c;
 }
@@ -74,7 +74,7 @@ nav ul li a:hover {
 }
 
 .content-details p {
-    font-family: 'Jonathan', sans-serif; /* Content details paragraphs use Jonathan */
+    font-family: 'Jonathan', sans-serif;
     font-size: 16px;
     color: #555;
     text-align: justify;
@@ -122,18 +122,27 @@ footer a:hover {
     text-decoration: underline;
 }
 
+/* Footer Links Section Styling */
+.footer-links {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column; /* Set to column for vertical layout */
+    align-items: center; /* Center align items */
+    gap: 10px; /* Add space between links */
+}
+
 /* Social Media Icons */
 .social-icons {
     display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 20px;
+    justify-content: center; /* Center social icons */
+    gap: 15px; /* Space between icons */
+    margin-top: 20px; /* Space above icons */
 }
 
 .social-icons a {
     display: inline-block;
-    width: 15px;
-    height: 15px;
+    width: 30px; /* Adjust size for better visibility */
+    height: 30px;
     border-radius: 25%;
     background-color: #ff6c6c;
     color: white;
@@ -149,54 +158,56 @@ footer a:hover {
     background-color: #333;
 }
 
-/* Contact Form Modal - Blended with Footer */
-#contact-modal {
-    position: absolute;
-    bottom: 80px; /* Adjust to overlap footer but remain visible */
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 20px;
-    background-color: rgba(255, 189, 188, 0.9); /* Semi-transparent to blend with footer */
-    border: 1px solid #888;
-    border-radius: 10px;
-    font-family: 'Charm', serif;
-    max-width: 80%;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
-    text-align: center;
-}
-
-#contact-modal h2 {
-    font-family: 'Jonathan', sans-serif; /* Main text in contact form in Jonathan */
-    color: #333;
-}
-
-#contact-modal p {
-    font-family: 'Jonathan', sans-serif; /* Contact form paragraph in Jonathan */
-    color: #555;
-}
-
-#contact-modal label, /* Labels and other texts in Charm */
-#contact-modal input, 
-#contact-modal textarea, 
-#contact-modal button {
-    font-family: 'Charm', serif;
-}
-
-/* Footer Links Section Styling */
-.footer-links {
-    margin-top: 20px;
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-}
-
-.footer-links div {
-    margin: 5px;
-}
-
-/* Footer Layout */
+/* Footer Copyright Section */
 .footer-copyright {
     font-family: 'Charm', serif;
     margin-top: 10px;
     color: #555;
+}
+
+/* Consent Banner */
+.consent-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #f4f4f4;
+    padding: 20px;
+    font-size: 16px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.consent-banner p {
+    font-family: 'Jonathan', sans-serif;
+    color: #333;
+}
+
+.consent-banner button {
+    background-color: #ff6c6c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-family: 'Charm', serif;
+    transition: background-color 0.3s ease;
+}
+
+.consent-banner button:hover {
+    background-color: #333;
+}
+
+/* Contact Form Modal */
+#contact-modal {
+    display: block;
+    padding: 20px;
+    background-color: #ffbdbc;
+    border: 1px solid #888;
+    border-radius: 10px;
+    font-family: 'Charm', serif;
+    max-width: 90%;
+    margin: 0 auto;
     }
