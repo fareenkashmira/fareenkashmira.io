@@ -141,12 +141,12 @@ footer a:hover {
 
 .social-icons a {
     display: inline-block;
-    width: 30px; /* Adjust size for better visibility */
-    height: 30px;
+    width: 15px; /* Adjust size for better visibility */
+    height: 15px;
     border-radius: 25%;
     background-color: #ff6c6c;
     color: white;
-    font-size: 20px;
+    font-size: 15px;
     display: flex;
     align-items: center;
     justify-content: center;
