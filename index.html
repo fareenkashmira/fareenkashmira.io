@@ -6,22 +6,11 @@
   <meta name="description" content="Kooky - Creating Magic: Explore the creative designs of Fareen Kashmira, specializing in graphic design and storytelling.">
   <title>Kooky - Creating Magic</title>
 
-  <!-- Link to Google Fonts: Charm and Custom Font Jonathan -->
-  <link href="https://fonts.googleapis.com/css2?family=Charm&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="customfonts/Jonathan.ttf" type="font/ttf">
-
   <!-- Link to External CSS -->
   <link rel="stylesheet" href="css/styles.css">
 
-  <!-- Background Image -->
-  <style>
-    body {
-      background-image: url('https://example.com/path-to-your-background-image.jpg'); /* Replace with your actual background image URL */
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center;
-    }
-  </style>
+  <!-- Link to Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Charm&display=swap" rel="stylesheet">
 
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XMK04PPSV2"></script>
@@ -29,8 +18,12 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-XMK04PPSV2');
+
+    // Show consent banner after page load
+    window.onload = function() {
+      document.getElementById('consent-banner').style.display = 'block';
+    };
   </script>
 </head>
 <body>
@@ -64,23 +57,14 @@
         <p>The creative director of Kooky, I bring my skills in graphic design and psychology to the table, along with a deep sense of authenticity. My designs aim to tell stories and evoke emotions that connect with people. My work reflects creativity, insight, and precision, honed through various mediums.</p>
         <p>I approach each project with an open and honest perspective, focusing on capturing the essence of what matters to my clients. My understanding of emotional depth comes from my background in psychology and a commitment to staying true to my values.</p>
         
-        <button class="view-work-btn">View Work</button>
+        <button class="view-work-btn" onclick="window.location.href='htmls/experience.html'">View Work</button>
       </div>
     </section>
-
-    <!-- Consent Banner -->
-    <div id="consent-banner" class="consent-banner" aria-live="polite">
-      <p>This website uses cookies to ensure you get the best experience. 
-        <button>Accept All</button>
-        <button>Reject</button>
-        <button>Accept Important Cookies</button>
-      </p>
-    </div>
 
     <!-- Contact Form Modal -->
     <div id="contactModal" class="modal">
       <div class="modal-content">
-        <span class="close">&times;</span>
+        <span class="close" onclick="document.getElementById('contactModal').style.display='none'">&times;</span>
         <h2>Subscribe</h2>
         <form>
           <div class="indicates-required"><span class="asterisk">*</span> indicates required</div>
@@ -103,15 +87,34 @@
       </div>
     </div>
 
+    <!-- Consent Banner -->
+    <div id="consent-banner" class="consent-banner" aria-live="polite" style="display: none;">
+      <p>This website uses cookies to ensure you get the best experience. 
+        <button onclick="document.getElementById('consent-banner').style.display='none'">Accept All</button>
+        <button onclick="document.getElementById('consent-banner').style.display='none'">Reject</button>
+        <button onclick="document.getElementById('consent-banner').style.display='none'">Accept Important Cookies</button>
+      </p>
+    </div>
+
     <!-- Footer Section -->
     <footer>
       <div class="socials-section">
-        <p style="font-weight: bold;">Socials</p>
-        <a href="https://facebook.com/share/AerFG6VEHaUfFTZc" target="_blank">Facebook</a>
-        <a href="https://instagram.com/im_fareen?igsh=MXRsZmE5eXFueW54OA" target="_blank">Instagram</a>
-        <a href="https://linkedin.com/in/fareen-kashmira-53087020a" target="_blank">LinkedIn</a>
-        <a href="https://wa.me/917011403207" target="_blank">WhatsApp</a>
-        <a href="https://youtube.com/@fareenkashmira" target="_blank">YouTube</a>
+        <p style="font-weight: bold;">Connect</p>
+        <a href="https://facebook.com/share/AerFG6VEHaUfFTZc" target="_blank">
+          <img src="images/icon-facebook.png" alt="Facebook" class="social-icon">
+        </a>
+        <a href="https://instagram.com/im_fareen?igsh=MXRsZmE5eXFueW54OA" target="_blank">
+          <img src="images/icon-instagram.png" alt="Instagram" class="social-icon">
+        </a>
+        <a href="https://linkedin.com/in/fareen-kashmira-53087020a" target="_blank">
+          <img src="images/icon-linkedin.png" alt="LinkedIn" class="social-icon">
+        </a>
+        <a href="https://wa.me/917011403207" target="_blank">
+          <img src="images/icon-whatsapp.png" alt="WhatsApp" class="social-icon">
+        </a>
+        <a href="https://youtube.com/@fareenkashmira" target="_blank">
+          <img src="images/icon-youtube.png" alt="YouTube" class="social-icon">
+        </a>
       </div>
 
       <div style="margin: 20px 0;"></div>
@@ -132,6 +135,6 @@
   </div>
 
   <!-- Link to External JavaScript -->
-  <script src="js/script.js"></script>
+  <script src="js/scripts.js"></script>
 </body>
 </html>
