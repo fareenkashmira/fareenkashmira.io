@@ -35,6 +35,8 @@ header {
     border-radius: 8px;
     overflow: hidden;
     font-family: 'Charm', serif;
+    font-weight: 300; /* Thinner font style */
+    border: none; /* Invisible border */
 }
 
 .tagline {
@@ -52,6 +54,7 @@ nav ul {
     justify-content: center;
     gap: 15px;
     margin-bottom: 40px;
+    flex-wrap: wrap;
 }
 
 nav ul li a {
@@ -71,6 +74,7 @@ nav ul li a:hover {
     font-family: 'Charm', serif;
     font-size: 28px;
     color: #333;
+    font-weight: 300; /* Thinner font style */
 }
 
 .content-details p {
@@ -90,6 +94,7 @@ nav ul li a:hover {
     cursor: pointer;
     border-radius: 20px;
     font-family: 'Charm', serif;
+    font-weight: 300; /* Thinner font style */
     transition: background-color 0.3s ease;
 }
 
@@ -101,12 +106,12 @@ nav ul li a:hover {
 footer {
     position: relative;
     text-align: center;
-    padding: 40px 0 60px; /* Extra bottom padding for modal overlap */
+    padding: 40px 0 60px;
     background-color: #f4f4f4;
-    border-top: 2px solid black;
+    border-top: none; /* Invisible border */
 }
 
-footer p, /* Footer text and links in Charm */
+footer p,
 footer a {
     font-family: 'Charm', serif;
     color: #555;
@@ -126,22 +131,22 @@ footer a:hover {
 .footer-links {
     margin-top: 20px;
     display: flex;
-    flex-direction: column; /* Set to column for vertical layout */
-    align-items: center; /* Center align items */
-    gap: 10px; /* Add space between links */
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
 }
 
 /* Social Media Icons */
 .social-icons {
     display: flex;
-    justify-content: center; /* Center social icons */
-    gap: 15px; /* Space between icons */
-    margin-top: 20px; /* Space above icons */
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
 }
 
 .social-icons a {
     display: inline-block;
-    width: 15px; /* Adjust size for better visibility */
+    width: 15px;
     height: 15px;
     border-radius: 25%;
     background-color: #ff6c6c;
@@ -158,11 +163,25 @@ footer a:hover {
     background-color: #333;
 }
 
-/* Footer Copyright Section */
-.footer-copyright {
-    font-family: 'Charm', serif;
-    margin-top: 10px;
-    color: #555;
+/* Responsive Content Layout */
+.content-boxes {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px; /* Space between boxes */
+    margin-top: 40px;
+    padding: 10px; /* Small padding inside boxes */
+}
+
+@media (min-width: 768px) {
+    .content-boxes {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (min-width: 1200px) {
+    .content-boxes {
+        grid-template-columns: 1fr 1fr;
+    }
 }
 
 /* Consent Banner */
@@ -205,9 +224,6 @@ footer a:hover {
     display: block;
     padding: 20px;
     background-color: #ffbdbc;
-    border: 1px solid #888;
+    border: none;
     border-radius: 10px;
-    font-family: 'Charm', serif;
-    max-width: 90%;
-    margin: 0 auto;
-    }
+}
