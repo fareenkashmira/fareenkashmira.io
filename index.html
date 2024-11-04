@@ -46,6 +46,7 @@
           <li><a href="htmls/quotes.html">Quotes</a></li>
           <li><a href="htmls/blog.html">Blogs</a></li>
           <li><a href="htmls/testimonials.html">Testimonials</a></li>
+          <li><a href="#mc_embed_signup">Contact</a></li> <!-- Anchor to contact modal -->
         </ul>
       </nav>
     </div>
@@ -96,8 +97,8 @@
                         <input type="text" name="LNAME" id="mce-LNAME">
                     </div>
                     <div class="mc-field-group">
-                        <label for="mce-PHONE">Phone Number </label>
-                        <input type="text" name="PHONE" id="mce-PHONE">
+                        <label for="mce-MESSAGE">Message </label> <!-- Added Message Section -->
+                        <textarea name="MESSAGE" id="mce-MESSAGE" rows="4"></textarea>
                     </div>
                     <div id="mergeRow-gdpr" class="mergeRow gdpr-mergeRow mc-field-group">
                         <label>Marketing Permissions</label>
@@ -160,11 +161,20 @@
         </div>
 
         <div style="margin: 40px 0;"></div>
-
-        <div class="copyright">
-          <p>&copy; 2022-2024 Kooky. All rights reserved.</p>
-        </div>
       </footer>
     </div>
 
   </div>
+
+  <!-- Consent Banner -->
+  <div id="consent-banner" style="display:none; position:fixed; bottom:0; width:100%; background-color:#f1f1f1; padding:10px; text-align:center;">
+    <p>This website uses cookies to ensure you get the best experience. <a href="htmls/privacypolicy.html">Learn more</a></p>
+    <button onclick="document.getElementById('consent-banner').style.display='none'">Got it!</button>
+  </div>
+
+</body>
+   <!-- Your HTML content -->
+
+  <script src="js/script.js"></script> <!-- Linking JavaScript file -->
+  </body>
+</html>
