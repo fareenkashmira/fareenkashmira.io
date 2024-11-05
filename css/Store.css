@@ -14,11 +14,13 @@ header {
   font-size: 36px;
   font-weight: bold;
   color: #333;
+  font-family: 'Charm', cursive; /* Use Charm font for logo */
 }
 
 .tagline {
   font-size: 18px;
   color: #555;
+  font-family: 'Jonathan', cursive; /* Use Jonathan font for tagline */
 }
 
 /* Navigation Bar */
@@ -49,7 +51,7 @@ nav ul li a:hover {
 }
 
 h2 {
-  font-family: 'Cinzel Decorative', serif;
+  font-family: 'Charm', cursive; /* Use Charm font for h2 */
   font-size: 28px;
   color: #333;
   text-align: center;
