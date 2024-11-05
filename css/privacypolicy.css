@@ -2,7 +2,7 @@
 
 /* General Styles */
 body {
-    font-family: 'charm', sans-erif; /* Use Alice font for the body */
+    font-family: 'Charm', sans-serif; /* Use Charm font for the body */
     background-color: #f4f4f4;
     color: #333;
     margin: 0;
@@ -44,6 +44,30 @@ ul {
     margin-left: 20px;
 }
 
+/* Navigation Bar Styles */
+nav {
+    text-align: center; /* Center the navigation */
+    margin-bottom: 20px;
+}
+
+.navbar {
+    display: flex; /* Use flexbox to arrange items horizontally */
+    justify-content: center; /* Center the items */
+    padding: 0; /* Remove default padding */
+    margin: 0; /* Remove default margin */
+}
+
+.navbar li {
+    margin: 0 15px; /* Add space between items */
+}
+
+.navbar a {
+    text-decoration: none; /* Remove underline from links */
+    color: #ff6c6c; /* Link color */
+    font-weight: bold; /* Make the links bold */
+}
+
+/* Footer Styles */
 footer {
     text-align: center;
     margin-top: 40px;
