@@ -2,7 +2,7 @@
 
 /* General Styles */
 body {
-    font-family: 'Alice', serif; /* Use Alice font for the body */
+    font-family: 'charm', sans-erif; /* Use Alice font for the body */
     background-color: #f4f4f4;
     color: #333;
     margin: 0;
@@ -25,11 +25,12 @@ header {
 }
 
 h1 {
-    font-family: 'Cinzel Decorative', cursive; /* Use Cinzel Decorative for the title */
+    font-family: 'Charm', cursive; /* Use Charm for the title */
     color: #ff6c6c;
 }
 
 h2 {
+    font-family: 'Charm', cursive; /* Use Charm for h2 headings */
     color: #ff6c6c;
     margin-top: 20px;
 }
