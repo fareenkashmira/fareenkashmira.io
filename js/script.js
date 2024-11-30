@@ -1,49 +1,28 @@
-// Function to accept all cookies
-function acceptAllCookies() {
-    localStorage.setItem('cookiesAccepted', 'all');
-    hideConsentBanner();
-    initializePhotoSlides(); // Initialize photo slides after accepting cookies
+// Get elements from the DOM
+const cookieConsent = document.getElementById('cookie-consent');
+const closeBtn = document.querySelector('.close-btn');
+const acceptAllBtn = document.querySelector('.accept-all');
+const importantOnlyBtn = document.querySelector('.important-only');
+
+// Function to hide the banner
+function hideBanner() {
+  cookieConsent.style.display = 'none';
 }
 
-// Function to reject all cookies
-function rejectCookies() {
-    localStorage.setItem('cookiesAccepted', 'none');
-    hideConsentBanner();
-    disablePhotoSlides(); // Disable photo slides if cookies are rejected
-}
+// Event listeners for buttons
+closeBtn.addEventListener('click', () => {
+  console.log('Rejected all cookies.');
+  hideBanner();
+});
 
-// Function to accept only important cookies
-function acceptImportantCookies() {
-    localStorage.setItem('cookiesAccepted', 'important');
-    hideConsentBanner();
-    initializePhotoSlides(); // Initialize photo slides for important cookies
-}
+acceptAllBtn.addEventListener('click', () => {
+  console.log('Accepted all cookies.');
+  hideBanner();
+});
 
-// Function to hide the consent banner
-function hideConsentBanner() {
-    const consentBanner = document.getElementById('consent-banner');
-    consentBanner.style.transition = 'opacity 0.5s ease'; // Smooth transition
-    consentBanner.style.opacity = '0';
-    setTimeout(() => {
-        consentBanner.style.display = 'none';
-    }, 500); // Wait for transition to complete before hiding
-}
-
-// Check for previous cookie consent on page load
-window.onload = function() {
-    const consent = localStorage.getItem('cookiesAccepted');
-    const consentBanner = document.getElementById('consent-banner');
-
-    if (consent) {
-        hideConsentBanner(); // Hide the banner if consent exists
-        if (consent === 'all' || consent === 'important') {
-            initializePhotoSlides(); // Initialize if consent is given
-        } else {
-            disablePhotoSlides(); // Disable if cookies are rejected
-        }
-    } else {
-        // Show the consent banner if no previous consent found
-        consentBanner.style.display = 'block';
+importantOnlyBtn.addEventListener('click', () => {
+  console.log('Accepted only important cookies.');
+  hideBanner();
     }
 
     // Smoothly show the contact form on landing
