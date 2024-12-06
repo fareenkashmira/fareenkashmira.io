@@ -3,52 +3,51 @@ const cookieConsent = document.getElementById('cookie-consent');
 const closeBtn = document.querySelector('.close-btn');
 const acceptAllBtn = document.querySelector('.accept-all');
 const importantOnlyBtn = document.querySelector('.important-only');
-const contactForm = document.getElementById('mc_embed_signup'); // Matches contact form modal in HTML
-const privacyPolicy = document.getElementById('privacy-policy'); // Placeholder for privacy policy modal
 
-// Function to hide the banner
-function hideBanner() {
+// Function to hide the cookie banner
+function hideCookieBanner() {
   cookieConsent.style.display = 'none';
 }
 
-// Event listeners for consent banner buttons
+// Event listeners for cookie banner buttons
 if (closeBtn) {
   closeBtn.addEventListener('click', () => {
     console.log('Rejected all cookies.');
-    disablePhotoSlides(); // Disable slides on rejection
-    hideBanner();
+    disablePhotoSlides(); // Disable slides when cookies are rejected
+    hideCookieBanner(); // Hide only the cookie banner
   });
 }
 
 if (acceptAllBtn) {
   acceptAllBtn.addEventListener('click', () => {
     console.log('Accepted all cookies.');
-    initializePhotoSlides(); // Enable slides on acceptance
-    hideBanner();
+    initializePhotoSlides(); // Initialize slides when all cookies are accepted
+    hideCookieBanner(); // Hide only the cookie banner
   });
 }
 
 if (importantOnlyBtn) {
   importantOnlyBtn.addEventListener('click', () => {
     console.log('Accepted only important cookies.');
-    hideBanner();
+    hideCookieBanner(); // Hide only the cookie banner
   });
 }
 
 // Function to initialize photo slides when cookies are accepted
 function initializePhotoSlides() {
   console.log('Photo slides initialized.');
-  // Add photo slide initialization logic here
+  // Add your photo slide initialization logic here
 }
 
 // Function to disable photo slides when cookies are rejected
 function disablePhotoSlides() {
   console.log('Photo slides disabled.');
-  // Add logic to disable photo slides here
+  // Add your logic to disable photo slides here
 }
 
-// Function to show the contact form pop-up
+// Smoothly show the contact form on landing
 function showContactForm() {
+  const contactForm = document.getElementById('mc_embed_signup'); // Matches contact form modal in HTML
   if (contactForm) {
     contactForm.style.display = 'block';
     contactForm.style.opacity = '0';
@@ -59,16 +58,10 @@ function showContactForm() {
   }
 }
 
-// Function to close the contact form pop-up
-function closeContactModal() {
-  if (contactForm) {
-    contactForm.style.transition = 'opacity 0.5s ease'; // Smooth transition
-    contactForm.style.opacity = '0';
-    setTimeout(() => {
-      contactForm.style.display = 'none'; // Hide after transition
-    }, 500); // Wait for transition to complete before hiding
-  }
-}
+// Event listener to show the contact form after a delay
+setTimeout(() => {
+  showContactForm();
+}, 1000); // Delay before showing the form
 
 // Function to handle form submission
 document.querySelector('.submit-btn')?.addEventListener('click', function (event) {
@@ -89,6 +82,7 @@ document.querySelector('.submit-btn')?.addEventListener('click', function (event
 
 // Function to show the privacy policy
 function showPrivacyPolicy() {
+  const privacyPolicy = document.getElementById('privacy-policy'); // Placeholder for privacy policy modal
   if (privacyPolicy) {
     privacyPolicy.style.display = 'block';
     privacyPolicy.style.opacity = '0';
@@ -101,6 +95,7 @@ function showPrivacyPolicy() {
 
 // Function to close the privacy policy
 function closePrivacyPolicy() {
+  const privacyPolicy = document.getElementById('privacy-policy'); // Placeholder for privacy policy modal
   if (privacyPolicy) {
     privacyPolicy.style.transition = 'opacity 0.5s ease'; // Smooth transition
     privacyPolicy.style.opacity = '0';
@@ -109,12 +104,3 @@ function closePrivacyPolicy() {
     }, 500); // Wait for transition to complete before hiding
   }
 }
-
-// Attach event listeners for contact form
-document.getElementById('contactModal')?.addEventListener('click', showContactForm);
-document.querySelector('.close-btn')?.addEventListener('click', closeContactModal);
-
-// Smoothly show the contact form on landing
-setTimeout(() => {
-  showContactForm();
-}, 1000); // Delay before showing the form
