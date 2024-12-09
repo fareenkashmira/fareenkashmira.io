@@ -59,7 +59,7 @@ nav ul {
 
 nav ul li a {
     font-family: 'Charm', serif;
-    font-size: 18px;
+    font-size: 19px; /* Increased by 1 */
     color: #333;
     text-decoration: none;
     transition: color 0.3s ease;
@@ -210,7 +210,7 @@ footer a:hover {
     background-color: #ff6c6c;
     color: pink;
     border: none;
-    padding: 10px 20px;
+    padding: 12px 22px; /* Increased padding slightly */
     font-family: 'Charm', serif;
     transition: background-color 0.3s ease;
 }
@@ -222,8 +222,8 @@ footer a:hover {
 /* Contact Form Modal */
 #contact-modal {
     display: block;
-    padding: 20px;
+    padding: 22px; /* Increased padding slightly */
     background-color: #ffbdbc;
     border: none;
     border-radius: 10px;
-  }
+    }
