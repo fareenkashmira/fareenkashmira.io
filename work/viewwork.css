@@ -31,7 +31,7 @@ body, h1, h2, h3, h4, h5, h6, p, .description, .tagline, .work-item, .view-optio
 }
 
 /* Header and Footer Styles */
-.header, .footer {
+header, footer {
     text-align: center;
 }
 
@@ -69,7 +69,6 @@ body, h1, h2, h3, h4, h5, h6, p, .description, .tagline, .work-item, .view-optio
     font-family: 'Cinzel Decorative', serif;
 }
 
-/* Active button color */
 .view-options button.active {
     background-color: #ff6c6c;
     color: white;
@@ -82,6 +81,46 @@ body, h1, h2, h3, h4, h5, h6, p, .description, .tagline, .work-item, .view-optio
     justify-content: space-between;
 }
 
+/* Photo Slider Container */
+.photo-slider {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    margin: 10px 0;
+    overflow: hidden;
+}
+
+.photo-slider img {
+    width: 100%;
+    height: auto;
+    display: none; /* Hide all images initially */
+}
+
+.photo-slider img.active {
+    display: block; /* Show the active image */
+}
+
+.photo-slider .arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    font-size: 18px;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.photo-slider .arrow.left {
+    left: 10px;
+}
+
+.photo-slider .arrow.right {
+    right: 10px;
+}
+
 /* Work Item Styles */
 .work-item {
     flex: 1 1 calc(33.333% - 20px);
@@ -91,48 +130,13 @@ body, h1, h2, h3, h4, h5, h6, p, .description, .tagline, .work-item, .view-optio
     box-sizing: border-box;
 }
 
-/* Ensure images are responsive */
-.work-item img {
-    width: 100%;
-    height: auto;
-}
-
-/* List View Styles */
-.list-view .work-item {
-    flex: 1 1 100%;
-    display: flex;
-    align-items: center;
-}
-
-.list-view .work-item img {
-    width: 150px;
-    margin-right: 20px;
-}
-
-/* Headings in Cinzel Decorative font */
-h1, h2, h3 {
+.work-item h3 {
+    margin: 10px 0 5px;
     font-family: 'Cinzel Decorative', serif;
 }
 
-/* Tagline Styles */
-.tagline {
-    font-family: 'Jonathan', serif;
-    font-size: 30px;
-    font-weight: bold;
-    text-align: center;
-}
-
-/* Description paragraph styling */
-.description p {
-    font-family: 'Jonathan', serif;
-    font-size: 16px;
-    color: #333;
-    line-height: 1.5;
-}
-
-/* Additional Styles for Footer */
-.footer {
-    margin-top: 20px;
+.work-item p {
+    font-family: 'Charm', serif;
 }
 
 /* Responsive Styles */
@@ -149,15 +153,15 @@ h1, h2, h3 {
         padding: 10px 15px;
     }
 
-    .tagline {
-        font-size: 20px;
+    .photo-slider .arrow {
+        font-size: 14px;
+        padding: 8px;
     }
 }
 
 @media (max-width: 480px) {
     .work-item {
         flex: 1 1 calc(100% - 20px);
-        margin: 5px;
     }
 
     .view-options button {
@@ -165,11 +169,8 @@ h1, h2, h3 {
         margin: 5px 0;
     }
 
-    .tagline {
-        font-size: 22px;
+    .photo-slider .arrow {
+        font-size: 12px;
+        padding: 6px;
     }
-
-    .description p {
-        font-size: 14px;
-    }
-    }
+}
