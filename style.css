@@ -1,7 +1,7 @@
 /* Custom Font Definitions */
 @font-face {
-    font-family: 'Jonathan';
-    src: url('../customfonts/Jonathan.ttf') format('truetype');
+    font-family: 'lastica';
+    src: url('../customfonts/lastica.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
@@ -34,14 +34,14 @@ header {
     color: #333;
     border-radius: 8px;
     overflow: hidden;
-    font-family: 'Charm', serif;
+    font-family: 'Cinzel', serif;
     font-weight: 300; /* Thinner font style */
     border: none; /* Invisible border */
 }
 
 .tagline {
     font-size: 50px;
-    font-family: 'Jonathan', sans-serif;
+    font-family: 'lastica', sans-serif;
     margin-top: 0;
     color: #ff6c6c;
 }
@@ -58,7 +58,7 @@ nav ul {
 }
 
 nav ul li a {
-    font-family: 'Charm', serif;
+    font-family: 'Garamond', serif;
     font-size: 26px; /* Increased */
     color: #333;
     text-decoration: none;
@@ -71,14 +71,14 @@ nav ul li a:hover {
 
 /* Content Section */
 .content-details h2 {
-    font-family: 'Charm', serif;
+    font-family: 'Garamond', serif;
     font-size: 28px;
     color: #333;
     font-weight: 300; /* Thinner font style */
 }
 
 .content-details p {
-    font-family: 'Jonathan', sans-serif;
+    font-family: 'trainin', sans-serif;
     font-size: 16px;
     color: #555;
     text-align: justify;
@@ -167,9 +167,9 @@ footer a:hover {
 .content-boxes {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 20px; /* Space between boxes */
+    gap: 20px;
     margin-top: 40px;
-    padding: 10px; /* Small padding inside boxes */
+    padding: 10px;
 }
 
 @media (min-width: 768px) {
@@ -210,7 +210,7 @@ footer a:hover {
     background-color: #ff6c6c;
     color: pink;
     border: none;
-    padding: 16px 25px; /* Increased padding slightly */
+    padding: 16px 25px;
     font-family: 'Charm', serif;
     transition: background-color 0.3s ease;
 }
@@ -218,12 +218,3 @@ footer a:hover {
 .consent-banner button:hover {
     background-color: #333;
 }
-
-/* Contact Form Modal */
-#contact-modal {
-    display: block;
-    padding: 25px; /* Increased padding slightly */
-    background-color: #ffbdbc;
-    border: none;
-    border-radius: 10px;
-    }
