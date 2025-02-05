@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kickstart My Graphic Design Career!</title>
+    <link rel="stylesheet" href="donation.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Kickstart My Graphic Design Career!</h1>
+        <h2>Support My Dreams and Help Me Create Amazing Designs!</h2>
+        
+        <img src="your-image-link.jpg" alt="Portfolio Piece">
+
+        <p>I'm Fareen, a passionate and aspiring graphic designer. I'm eager to kickstart my career.</p>
+        <p>To take my skills to the next level, I need your support. Your donation will help me:</p>
+        
+        <ul>
+            <li>Invest in equipment and software</li>
+            <li>Attend workshops and conferences</li>
+            <li>Build a professional portfolio</li>
+        </ul>
+
+        <div class="donation">
+            <p><strong>Donation Amount:</strong> 70,000 Rupees</p>
+            <a href="https://wise.com/pay/business/fareenkashmiraqureshi" target="_blank">Donate Now</a>
+        </div>
+
+        <div class="rewards">
+            <h3>Rewards for Your Support</h3>
+            <p><strong>Every donor will receive:</strong></p>
+            <ul>
+                <li>A personalized digital thank-you note</li>
+                <li>A random digital artwork</li>
+            </ul>
+            <p><strong>Selected donors will also receive:</strong></p>
+            <ul>
+                <li>A custom-designed logo</li>
+                <li>Branding package for their small business or entrepreneurial venture</li>
+            </ul>
+        </div>
+
+        <p>Every contribution counts, and I'm grateful for your support. Thank you for helping me turn my passion into a career!</p>
+
+        <div class="contact">
+            <p><strong>Contact Information</strong></p>
+            <p>Name: Fareen</p>
+            <p>Email: <a href="mailto:info@fareenkashmira.co.in">info@fareenkashmira.co.in</a></p>
+            <p>Phone: <a href="tel:+917011403207">+91 7011403207</a></p>
+        </div>
+    </div>
+
+</body>
+</html>
