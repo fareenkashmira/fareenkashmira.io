@@ -23,21 +23,21 @@ h1, h2, h3 {
 
 h1 {
     color: #ff6c6c;
-    font-size: 28px;
+    font-size: 24px;
 }
 
 h2 {
-    font-size: 24px;
+    font-size: 22px;
     color: #444;
 }
 
 h3 {
-    font-size: 22px;
+    font-size: 19px;
     margin-bottom: 10px;
 }
 
-p, ul {
-    font-size: 18px;
+p, ul, li {
+    font-size: 16px;
     line-height: 1.5;
 }
 
@@ -55,7 +55,7 @@ ul {
 }
 
 .donation {
-    font-size: 18px;
+    font-size: 16px;
     margin-top: 20px;
 }
 
@@ -67,7 +67,7 @@ ul {
     text-decoration: none;
     border-radius: 5px;
     margin-top: 10px;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .donation a:hover {
@@ -76,7 +76,7 @@ ul {
 
 .contact {
     margin-top: 30px;
-    font-size: 18px;
+    font-size: 16px;
     color: #666;
 }
 
