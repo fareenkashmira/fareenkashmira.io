@@ -38,7 +38,19 @@ h3 {
 
 p, ul, li {
     font-size: 16px;
-    line-height: 1.5;
+    line-height: 1.6;
+}
+
+ul {
+    text-align: left;
+    display: inline-block;
+    padding-left: 25px;
+    list-style-position: inside;
+}
+
+li {
+    font-size: 17px !important;
+    margin-bottom: 5px;
 }
 
 img {
@@ -46,12 +58,6 @@ img {
     max-width: 500px;
     border-radius: 8px;
     margin-top: 10px;
-}
-
-ul {
-    text-align: left;
-    display: inline-block;
-    padding-left: 20px;
 }
 
 .donation {
