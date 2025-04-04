@@ -3,14 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>UX Research Portfolio</title>
+  <title>Research & Findings</title>
   <style>
     body {
       margin: 0;
-      font-family: Garamond, serif;
+      font-family: Gladiola, cursive;
       background-color: #ffffff;
       color: #333;
     }
+
+    h1, h2, h3 {
+      font-family: Garamond, serif;
+      margin-bottom: 0.5rem;
+    }
+
     nav {
       background-color: #f6f6f6;
       padding: 1rem 2rem;
@@ -19,22 +25,29 @@
       align-items: center;
       border-bottom: 1px solid #ccc;
     }
-    nav a {
-      margin-left: 1rem;
+
+    .navbar {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar li a {
       text-decoration: none;
       color: #333;
       font-weight: bold;
     }
-    h1, h2, h3 {
-      font-family: Gladiola, cursive;
-      margin-bottom: 0.5rem;
-    }
+
     .container {
       padding: 2rem;
     }
+
     .section {
       margin-bottom: 3rem;
     }
+
     footer {
       background-color: #f6f6f6;
       padding: 1rem 2rem;
@@ -42,12 +55,14 @@
       border-top: 1px solid #ccc;
       text-align: center;
     }
+
     .footer-links {
       display: flex;
       justify-content: center;
       gap: 2rem;
       margin-bottom: 0.5rem;
     }
+
     .footer-links a {
       text-decoration: none;
       color: #333;
@@ -55,17 +70,21 @@
   </style>
 </head>
 <body>
+  <h1 style="text-align:center; padding: 1.5rem 0;">Research & Findings</h1>
+
   <nav>
     <div><strong>UX Designer Portfolio</strong></div>
-    <div>
-      <a href="#intro">About</a>
-      <a href="#research">Researches</a>
-    </div>
+    <ul class="navbar">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../store/Store.html">Store</a></li>
+      <li><a href="../bb/blog.html">Blogs</a></li>
+      <li><a href="../tt/testimonials.html">Testimonials</a></li>
+    </ul>
   </nav>
 
   <div class="container">
     <section id="intro" class="section">
-      <h1>About Me</h1>
+      <h2>About Me</h2>
       <p>I am a UX Designer with a strong focus on user research. My work is grounded in empathy, observation, and data, helping create intuitive, user-centric digital experiences. I specialize in qualitative and quantitative methods to uncover insights that lead to meaningful design solutions.</p>
     </section>
 
