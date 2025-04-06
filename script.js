@@ -1,106 +1,110 @@
-// Get elements from the DOM
+// === Cookie Consent Elements ===
 const cookieConsent = document.getElementById('cookie-consent');
 const closeBtn = document.querySelector('.close-btn');
 const acceptAllBtn = document.querySelector('.accept-all');
 const importantOnlyBtn = document.querySelector('.important-only');
 
-// Function to hide the cookie banner
+// === Hide Cookie Banner ===
 function hideCookieBanner() {
-  cookieConsent.style.display = 'none';
+  cookieConsent.style.transition = 'opacity 0.5s ease';
+  cookieConsent.style.opacity = '0';
+  setTimeout(() => {
+    cookieConsent.style.display = 'none';
+  }, 500);
 }
 
-// Event listeners for cookie banner buttons
+// === Cookie Button Listeners ===
 if (closeBtn) {
   closeBtn.addEventListener('click', () => {
     console.log('Rejected all cookies.');
-    disablePhotoSlides(); // Disable slides when cookies are rejected
-    hideCookieBanner(); // Hide only the cookie banner
+    disablePhotoSlides();
+    hideCookieBanner();
   });
 }
 
 if (acceptAllBtn) {
   acceptAllBtn.addEventListener('click', () => {
     console.log('Accepted all cookies.');
-    initializePhotoSlides(); // Initialize slides when all cookies are accepted
-    hideCookieBanner(); // Hide only the cookie banner
+    initializePhotoSlides();
+    hideCookieBanner();
   });
 }
 
 if (importantOnlyBtn) {
   importantOnlyBtn.addEventListener('click', () => {
     console.log('Accepted only important cookies.');
-    hideCookieBanner(); // Hide only the cookie banner
+    hideCookieBanner();
   });
 }
 
-// Function to initialize photo slides when cookies are accepted
+// === Photo Slide Handlers ===
 function initializePhotoSlides() {
   console.log('Photo slides initialized.');
-  // Add your photo slide initialization logic here
+  // Insert logic to activate gallery/slider animations here
 }
 
-// Function to disable photo slides when cookies are rejected
 function disablePhotoSlides() {
   console.log('Photo slides disabled.');
-  // Add your logic to disable photo slides here
+  // Insert logic to pause or prevent loading of visual components
 }
 
-// Smoothly show the contact form on landing
+// === Contact Form Reveal on Load ===
 function showContactForm() {
-  const contactForm = document.getElementById('mc_embed_signup'); // Matches contact form modal in HTML
+  const contactForm = document.getElementById('mc_embed_signup');
   if (contactForm) {
     contactForm.style.display = 'block';
     contactForm.style.opacity = '0';
-    contactForm.style.transition = 'opacity 0.5s ease'; // Smooth transition
+    contactForm.style.transition = 'opacity 0.6s ease';
     setTimeout(() => {
-      contactForm.style.opacity = '1'; // Fade-in effect
-    }, 10); // Small delay for transition effect
+      contactForm.style.opacity = '1';
+    }, 10);
   }
 }
 
-// Event listener to show the contact form after a delay
-setTimeout(() => {
-  showContactForm();
-}, 1000); // Delay before showing the form
+setTimeout(showContactForm, 1000);
 
-// Function to handle form submission
-document.querySelector('.submit-btn')?.addEventListener('click', function (event) {
-  event.preventDefault(); // Prevent page reload on submit
-  const name = document.getElementById('mce-NAME').value;
-  const email = document.getElementById('mce-EMAIL').value;
-  const feedback = document.getElementById('mce-FEEDBACK').value;
+// === Handle Contact Form Submission ===
+const submitBtn = document.querySelector('.submit-btn');
 
-  // Save the contact form data in local storage
-  localStorage.setItem('contactFormData', JSON.stringify({ name, email, feedback }));
-  alert('Thank you for reaching out!'); // Confirmation message
+if (submitBtn) {
+  submitBtn.addEventListener('click', function (event) {
+    event.preventDefault();
 
-  // Clear the form
-  document.getElementById('mce-NAME').value = '';
-  document.getElementById('mce-EMAIL').value = '';
-  document.getElementById('mce-FEEDBACK').value = '';
-});
+    const name = document.getElementById('mce-NAME')?.value || '';
+    const email = document.getElementById('mce-EMAIL')?.value || '';
+    const feedback = document.getElementById('mce-FEEDBACK')?.value || '';
 
-// Function to show the privacy policy
+    localStorage.setItem('contactFormData', JSON.stringify({ name, email, feedback }));
+    alert('Thank you for reaching out!');
+
+    // Clear form fields
+    ['mce-NAME', 'mce-EMAIL', 'mce-FEEDBACK'].forEach(id => {
+      const input = document.getElementById(id);
+      if (input) input.value = '';
+    });
+  });
+}
+
+// === Privacy Policy Modal Handling ===
 function showPrivacyPolicy() {
-  const privacyPolicy = document.getElementById('privacy-policy'); // Placeholder for privacy policy modal
-  if (privacyPolicy) {
-    privacyPolicy.style.display = 'block';
-    privacyPolicy.style.opacity = '0';
-    privacyPolicy.style.transition = 'opacity 0.5s ease'; // Smooth transition
+  const policy = document.getElementById('privacy-policy');
+  if (policy) {
+    policy.style.display = 'block';
+    policy.style.opacity = '0';
+    policy.style.transition = 'opacity 0.5s ease';
     setTimeout(() => {
-      privacyPolicy.style.opacity = '1'; // Fade-in effect
-    }, 10); // Small delay for transition effect
+      policy.style.opacity = '1';
+    }, 10);
   }
 }
 
-// Function to close the privacy policy
 function closePrivacyPolicy() {
-  const privacyPolicy = document.getElementById('privacy-policy'); // Placeholder for privacy policy modal
-  if (privacyPolicy) {
-    privacyPolicy.style.transition = 'opacity 0.5s ease'; // Smooth transition
-    privacyPolicy.style.opacity = '0';
+  const policy = document.getElementById('privacy-policy');
+  if (policy) {
+    policy.style.transition = 'opacity 0.5s ease';
+    policy.style.opacity = '0';
     setTimeout(() => {
-      privacyPolicy.style.display = 'none'; // Hide after transition
-    }, 500); // Wait for transition to complete before hiding
+      policy.style.display = 'none';
+    }, 500);
   }
-}
+      }
