@@ -1,20 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Explore the creative designs of Fareen Kashmira, specializing in UX design, graphic design, Video Editing and storytelling.">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Explore the creative designs of Fareen Kashmira, specializing in UX design, graphic design, video editing and storytelling." />
   <title>Fareen Kashmira</title>
 
-  <!-- Link to External CSS -->
-  <link rel="stylesheet" href="style.css">
+  <!-- External CSS -->
+  <link rel="stylesheet" href="style.css" />
 
-  <!-- Link to Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Garamond&display=swap" rel="stylesheet">
-
-  <!-- External Font Library: Lastica -->
-  <link href="https://example-font-library.com/lastica.css" rel="stylesheet">
+  <!-- Font Links -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap" rel="stylesheet" />
+  <link href="https://fonts.cdnfonts.com/css/eastman-alt" rel="stylesheet" />
 
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XMK04PPSV2"></script>
@@ -22,58 +19,51 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
-    // Show consent banner after page load
-    window.onload = function() {
-      document.getElementById('consent-banner').style.display = 'block';
+    window.onload = function () {
+      document.getElementById('cookie-consent').style.display = 'block';
     };
   </script>
 </head>
 <body>
 
-  <div class="container">
-    
-    
-      <!-- Navigation Bar -->
-      <nav>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="store/Store.html">Store</a></li>
-          <li><a href="bb/blog.html">Blogs</a></li>
-          <li><a href="tt/testimonials.html">Testimonials</a></li>
-        </ul>
-      </nav>
-    </header>
-    
-    <!-- Content Section -->
+  <!-- Navigation Container -->
+  <div class="container-nav">
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="store/Store.html">Store</a></li>
+        <li><a href="bb/blog.html">Blogs</a></li>
+        <li><a href="tt/testimonials.html">Testimonials</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <!-- Body Container -->
+  <div class="container-body">
     <section class="content">
       <div class="image-section">
-        <img src="images/no.jpg" alt="" style="width:100%; max-width:300px;">
+        <img src="images/no.jpg" alt="Fareen Image" style="width:100%; max-width:300px;">
       </div>
-
-      <div class="content-details" style="font-family: 'Garamond', serif;">
-        <h2>Hello, I'm Fareen</h2>
-        <p>I am an intuitive and detail-oriented creative who thrives on designing experiences that feel effortless, meaningful, and deeply human. With a background in psychology, I approach UX with a strong understanding of human behavior, ensuring that every interaction is both functional and emotionally engaging. I believe great design is more than just visuals—it should simplify complexity, anticipate user needs, and create seamless, enjoyable experiences.</p>
-        <p>Beyond UX, my skills in graphic design and video editing allow me to enhance storytelling and bring depth to digital interactions. Whether designing user flows, crafting brand visuals, or creating compelling motion content, my goal is to merge creativity with usability, ensuring impactful and user-centered designs.</p>
-        
+      <div class="content-details" style="font-family: 'Eastman Alt', serif;">
+        <h2 style="font-family: 'Cinzel Decorative', cursive;">Hello! This is Fareen</h2>
+        <p>Welcome to a space crafted for purposeful creativity. Here, you can explore a range of offerings including print-on-demand solutions, graphic design services, UX design and user research, video editing, and personal branding development.</p>
         <button class="view-work-btn" onclick="window.location.href='work/vwork.html'">View Work</button>
       </div>
     </section>
+  </div>
 
-    <!-- Contact Form Modal -->
+  <!-- Contact Form Container -->
+  <div class="container-contact">
     <div id="mc_embed_shell">
-      <link href="//cdn-images.mailchimp.com/embedcode/classic-061523.css" rel="stylesheet" type="text/css">
+      <link href="//cdn-images.mailchimp.com/embedcode/classic-061523.css" rel="stylesheet" type="text/css" />
       <style type="text/css">
-        body {
-          font-family: 'Garamond', serif; /* Use Garamond font for the body */
-        }
         #mc_embed_signup {
-          background: #fff; 
-          clear: left; 
-          font: 14px Helvetica, Arial, sans-serif; 
-          width: 600px; 
-          padding: 20px; 
-          border-radius: 8px; 
+          background: #fff;
+          clear: left;
+          font: 14px Helvetica, Arial, sans-serif;
+          width: 600px;
+          padding: 20px;
+          border-radius: 8px;
           box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
       </style>
@@ -81,24 +71,19 @@
       <div id="mc_embed_signup">
         <form action="https://fareenkashmira.us10.list-manage.com/subscribe/post?u=68495ad73394985325e320010&amp;id=420ecd8c5c&amp;v_id=5750&amp;f_id=009f44e4f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
           <div id="mc_embed_signup_scroll">
-            <h2>Got a suggestion? I'd love to know! 📝✉️
-            </h2>
-            <!-- Name Field -->
+            <h2>Got a suggestion? I'd love to know! 📝✉️</h2>
             <div class="mc-field-group">
               <label for="mce-NAME">Name <span class="asterisk">*</span></label>
               <input type="text" name="NAME" class="required" id="mce-NAME" required>
             </div>
-            <!-- Email Field -->
             <div class="mc-field-group">
               <label for="mce-EMAIL">Email Address <span class="asterisk">*</span></label>
               <input type="email" name="EMAIL" class="required email" id="mce-EMAIL" required>
             </div>
-            <!-- Feedback Field -->
             <div class="mc-field-group">
-              <label for="mce-FEEDBACK">Massage <span class="asterisk">*</span></label>
+              <label for="mce-FEEDBACK">Message <span class="asterisk">*</span></label>
               <textarea name="FEEDBACK" class="required" id="mce-FEEDBACK" rows="4" required></textarea>
             </div>
-            <!-- Submit Button -->
             <div class="clear foot">
               <input type="submit" name="subscribe" id="mc-embedded-subscribe" class="button" value="Submit">
             </div>
@@ -106,26 +91,28 @@
         </form>
       </div>
     </div>
+  </div>
 
-    <!-- Footer Section -->
+  <!-- Footer Container -->
+  <div class="container-footer">
     <footer>
       <div class="socials-section">
         <p style="font-weight: bold;">🤝🏼</p>
         <a href="https://www.linkedin.com/in/fareen-qureshi-53087020a" target="_blank">
-          <img src="icons/LinkedIn.svg" alt="LinkedIn" class="social-icon">
+          <img src="icons/LinkedIn.svg" alt="LinkedIn" class="social-icon" />
         </a>
         <a href="https://facebook.com/share/AerFG6VEHaUfFTZc" target="_blank">
-          <img src="icons/fb.svg" alt="Facebook" class="social-icon">
+          <img src="icons/fb.svg" alt="Facebook" class="social-icon" />
         </a>
         <a href="https://instagram.com/im_fareen?igsh=MXRsZmE5eXFueW54OA" target="_blank">
-          <img src="icons/Instagram.svg" alt="Instagram" class="social-icon">
+          <img src="icons/Instagram.svg" alt="Instagram" class="social-icon" />
         </a>
         <a href="https://youtube.com/@im_fareen" target="_blank">
-          <img src="icons/YouTube.svg" alt="YouTube" class="social-icon">
+          <img src="icons/YouTube.svg" alt="YouTube" class="social-icon" />
         </a>
       </div>
       <div class="footer-links">
-        <p><a href="Research/Research.html">Research & Findings</a></p>
+        <p><a href="Research/Research.html">Research Studies</a></p>
         <p><a href="prev/privacypolicy.html">Privacy Policy</a></p>
         <p><a href="prev/TnC.html">T&C</a></p>
       </div>
@@ -133,22 +120,22 @@
         <p>&copy; 2022-2024 All rights reserved.</p>
       </div>
     </footer>
+  </div>
 
-    <!-- Consent Banner -->
-    <div id="cookie-consent" class="overlay">
-      <div class="banner">
-        <button class="close-btn" aria-label="Reject All Cookies">&times;</button>
-        <h2>🍪</h2>
-        <p>We use cookies to improve your experience.</p>
-        <div class="button-group">
-          <button class="accept-all">Accept All</button>
-          <button class="important-only">Important Only</button>
-        </div>
+  <!-- Consent Banner -->
+  <div id="cookie-consent" class="overlay">
+    <div class="banner">
+      <button class="close-btn" aria-label="Reject All Cookies">&times;</button>
+      <h2>🍪</h2>
+      <p>We use cookies to improve your experience.</p>
+      <div class="button-group">
+        <button class="accept-all">Accept All</button>
+        <button class="important-only">Important Only</button>
       </div>
     </div>
   </div>
 
-  <!-- Link to External JS -->
+  <!-- External JS -->
   <script src="script.js"></script>
 </body>
-        </html>
+</html>
