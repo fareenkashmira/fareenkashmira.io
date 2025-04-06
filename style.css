@@ -1,88 +1,177 @@
-/* Updated Body Text Size */
+/* Font Face */
+@font-face {
+  font-family: 'eastman';
+  src: url('fonts/EastmanAlternate.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Gladiola';
+  src: url('fonts/Gladiola.ttf') format('truetype');
+}
+
+/* Body Styling */
 body {
-    background-image: url('../images/6_20241119_003250_0005.png');
-    background-size: cover;
-    background-position: center;
-    font-family: 'eastman', serif;
-    margin: 0;
-    padding: 0;
-    animation: fadeInUp 1s ease-out;
-    font-size: 15.5px; /* Slightly smaller */
+  background-image: url('../images/6_20241119_003250_0005.png');
+  background-size: cover;
+  background-position: center;
+  font-family: 'eastman', serif;
+  margin: 0;
+  padding: 0;
+  animation: fadeInUp 1s ease-out;
+  font-size: 15.5px;
 }
 
-/* Updated Consent Banner */
+/* Headings */
+h2 {
+  font-family: 'Cinzel Decorative', cursive;
+}
+
+/* Navigation */
+.container-nav nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+  background: #f7f7f7;
+}
+
+.container-nav nav ul li a {
+  text-decoration: none;
+  color: #222;
+  font-weight: bold;
+}
+
+/* Main Content */
+.container-body {
+  padding: 40px;
+  text-align: center;
+}
+
+.view-work-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #222;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  font-family: 'Cinzel Decorative', serif;
+  transition: background-color 0.3s ease;
+}
+
+.view-work-btn:hover {
+  background-color: #444;
+}
+
+/* Contact Section */
+.container-contact {
+  padding: 40px;
+  background-color: #fafafa;
+}
+
+#mc_embed_signup h2 {
+  font-family: 'Gladiola', serif;
+}
+
+/* Footer */
+.container-footer {
+  text-align: center;
+  padding: 30px;
+  background-color: #f0f0f0;
+}
+
+.container-footer a {
+  text-decoration: none;
+  color: #222;
+}
+
+.container-footer p {
+  margin: 5px 0;
+}
+
+/* Consent Banner */
+#cookie-consent {
+  display: none;
+}
+
 .consent-banner {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: #f4f4f4;
-    padding: 25px;
-    font-size: 14px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #f4f4f4;
+  padding: 25px;
+  font-size: 14px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Consent Text */
 .consent-banner p {
-    font-family: 'eastman', serif;
-    color: #333;
-    margin-bottom: 15px;
+  font-family: 'eastman', serif;
+  color: #333;
+  margin-bottom: 15px;
 }
 
-/* Consent Button - Larger */
 .consent-banner button {
-    background-color: #ff6c6c;
-    color: white;
-    border: none;
-    padding: 14px 30px; /* Increased size */
-    font-family: 'Cinzel Decorative', serif;
-    font-size: 18px; /* Slightly larger font */
-    border-radius: 18px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+  background-color: #ff6c6c;
+  color: white;
+  border: none;
+  padding: 14px 30px;
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 18px;
+  border-radius: 18px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-/* Button Hover */
 .consent-banner button:hover {
-    background-color: #333;
-    transform: scale(1.05);
+  background-color: #333;
+  transform: scale(1.05);
 }
 
-/* Consent Close Button (Assuming class: .close-btn) */
 .consent-banner .close-btn {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 22px; /* Slightly larger */
-    cursor: pointer;
-    color: #999;
-    transition: color 0.3s ease;
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 22px;
+  cursor: pointer;
+  color: #999;
+  transition: color 0.3s ease;
 }
 
 .consent-banner .close-btn:hover {
-    color: #333;
+  color: #333;
 }
 
-/* Responsive Buttons on Smaller Screens */
+/* Responsive */
 @media (max-width: 480px) {
-    .consent-banner {
-        padding: 20px;
-    }
+  .consent-banner {
+    padding: 20px;
+  }
 
-    .consent-banner button {
-        width: 100%;
-        font-size: 16px;
-        padding: 12px 20px;
-    }
+  .consent-banner button {
+    width: 100%;
+    font-size: 16px;
+    padding: 12px 20px;
+  }
 
-    .consent-banner .close-btn {
-        font-size: 20px;
-        top: 8px;
-        right: 12px;
-    }
+  .consent-banner .close-btn {
+    font-size: 20px;
+    top: 8px;
+    right: 12px;
+  }
+
+  .container-nav nav ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .view-work-btn {
+    width: 100%;
+  }
 }
