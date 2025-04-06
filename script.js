@@ -48,20 +48,11 @@ function disablePhotoSlides() {
   // Insert logic to pause or prevent loading of visual components
 }
 
-// === Contact Form Reveal on Load ===
-function showContactForm() {
-  const contactForm = document.getElementById('mc_embed_signup');
-  if (contactForm) {
-    contactForm.style.display = 'block';
-    contactForm.style.opacity = '0';
-    contactForm.style.transition = 'opacity 0.6s ease';
-    setTimeout(() => {
-      contactForm.style.opacity = '1';
-    }, 10);
-  }
+// === Contact Form Display (Always Anchored, No Animation) ===
+const contactForm = document.getElementById('mc_embed_signup');
+if (contactForm) {
+  contactForm.style.display = 'block';
 }
-
-setTimeout(showContactForm, 1000);
 
 // === Handle Contact Form Submission ===
 const submitBtn = document.querySelector('.submit-btn');
@@ -107,4 +98,4 @@ function closePrivacyPolicy() {
       policy.style.display = 'none';
     }, 500);
   }
-      }
+}
