@@ -4,6 +4,16 @@ const closeBtn = document.querySelector('.close-btn');
 const acceptAllBtn = document.querySelector('.accept-all');
 const importantOnlyBtn = document.querySelector('.important-only');
 
+// === Show Banner if No Consent Stored ===
+document.addEventListener('DOMContentLoaded', () => {
+  const consentStatus = localStorage.getItem('cookieConsent');
+
+  if (!consentStatus && cookieConsent) {
+    cookieConsent.style.display = 'flex'; // or 'block' based on your CSS
+    cookieConsent.style.opacity = '1';
+  }
+});
+
 // === Hide Cookie Banner ===
 function hideCookieBanner() {
   cookieConsent.style.transition = 'opacity 0.5s ease';
@@ -17,6 +27,7 @@ function hideCookieBanner() {
 if (closeBtn) {
   closeBtn.addEventListener('click', () => {
     console.log('Rejected all cookies.');
+    localStorage.setItem('cookieConsent', 'rejected');
     disablePhotoSlides();
     hideCookieBanner();
   });
@@ -25,6 +36,7 @@ if (closeBtn) {
 if (acceptAllBtn) {
   acceptAllBtn.addEventListener('click', () => {
     console.log('Accepted all cookies.');
+    localStorage.setItem('cookieConsent', 'accepted');
     initializePhotoSlides();
     hideCookieBanner();
   });
@@ -33,6 +45,7 @@ if (acceptAllBtn) {
 if (importantOnlyBtn) {
   importantOnlyBtn.addEventListener('click', () => {
     console.log('Accepted only important cookies.');
+    localStorage.setItem('cookieConsent', 'important-only');
     hideCookieBanner();
   });
 }
