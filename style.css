@@ -1,7 +1,7 @@
 /* Custom Font Definitions */
 @font-face {
     font-family: 'eastman';
-    src: url('../fonts/eastman.ttf') format('truetype');
+    src: url('../fonts/EastmanAlternate.otf') format('opentype');
     font-weight: normal;
     font-style: normal;
 }
