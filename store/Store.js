@@ -1,16 +1,17 @@
-// Toggle between Grid and List view
-document.getElementById('grid-view').addEventListener('click', function() {
-  document.getElementById('product-container').classList.remove('list-view');
-  document.getElementById('product-container').classList.add('grid-view');
-  
-  this.classList.add('active');
-  document.getElementById('list-view').classList.remove('active');
-});
+// Toggle between Grid and List view using a single button
+const toggleButton = document.getElementById('view-toggle');
+const productContainer = document.getElementById('product-container');
 
-document.getElementById('list-view').addEventListener('click', function() {
-  document.getElementById('product-container').classList.remove('grid-view');
-  document.getElementById('product-container').classList.add('list-view');
-  
-  this.classList.add('active');
-  document.getElementById('grid-view').classList.remove('active');
+toggleButton.addEventListener('click', function () {
+  const isGrid = productContainer.classList.contains('grid-view');
+
+  if (isGrid) {
+    productContainer.classList.remove('grid-view');
+    productContainer.classList.add('list-view');
+    toggleButton.textContent = 'Grid View';
+  } else {
+    productContainer.classList.remove('list-view');
+    productContainer.classList.add('grid-view');
+    toggleButton.textContent = 'List View';
+  }
 });
