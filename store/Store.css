@@ -1,71 +1,69 @@
 @font-face {
-  font-family: 'Jonathan';
-  src: url('../customfonts/Jonathan.ttf') format('truetype'); /* Use the TTF file */
-  font-weight: normal; /* Adjust as needed */
-  font-style: normal; /* Adjust as needed */
+  font-family: 'Eastman Alternate';
+  src: url('../customfonts/EastmanAlternate.ttf') format('truetype');
 }
 
-/* General Container */
+
+@font-face {
+  font-family: 'Gladiola';
+  src: url('../fonts/Gladiola.ttf') format('truetype');
+}
+
+/* General */
+body {
+  font-family: 'Eastman Alternate', serif;
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff;
+  color: #333;
+}
+
 .container {
   width: 90%;
   margin: 0 auto;
 }
 
-/* Header Section */
+/* Header */
 header {
   text-align: center;
   padding: 20px;
 }
 
-.logo {
-  font-size: 36px;
-  font-weight: bold;
-  color: #333;
-  font-family: 'Charm', cursive; /* Use Charm font for logo */
-}
-
-.tagline {
-  font-size: 18px;
-  color: #555;
-  font-family: 'Jonathan'; /* Use Jonathan font for tagline */
-}
-
-/* Navigation Bar */
+/* Navigation */
 nav ul {
   list-style: none;
   padding: 0;
   display: flex;
   justify-content: center;
-}
-
-nav ul li {
-  margin: 0 15px;
+  flex-wrap: wrap;
+  gap: 15px;
 }
 
 nav ul li a {
   text-decoration: none;
   color: #333;
   font-weight: bold;
+  font-family: 'Eastman Alternate';
 }
 
 nav ul li a:hover {
   color: #ff6c6c;
 }
 
-/* Content Section */
+/* Content */
 .content {
   margin-top: 20px;
 }
 
 h2 {
-  font-family: 'Charm', cursive; /* Use Charm font for h2 */
+  font-family: 'Cinzel Decorative', serif;
   font-size: 28px;
-  color: #333;
   text-align: center;
   margin-bottom: 20px;
+  color: #333;
 }
 
-/* View Option Toggle Buttons */
+/* View Toggle */
 .view-options {
   text-align: center;
   margin-bottom: 20px;
@@ -77,6 +75,7 @@ h2 {
   background-color: #fff;
   border: 2px solid #333;
   cursor: pointer;
+  font-family: 'Eastman Alternate';
 }
 
 .view-options button.active {
@@ -89,11 +88,17 @@ h2 {
   color: white;
 }
 
-/* Grid View (Default) */
+/* Product Grid View */
+.grid-view {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 20px;
+}
+
 .grid-view .product-item {
   width: 30%;
   text-align: center;
-  margin-bottom: 20px;
 }
 
 .grid-view .product-item img {
@@ -101,9 +106,20 @@ h2 {
   height: auto;
 }
 
-/* List View Styling */
+.grid-view .product-item h3 {
+  font-family: 'Cinzel Decorative';
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+.grid-view .product-item p {
+  font-family: 'Eastman Alternate';
+  font-size: 14px;
+  color: #666;
+}
+
+/* Product List View */
 .list-view .product-item {
-  width: 100%;
   display: flex;
   align-items: center;
   margin-bottom: 20px;
@@ -116,16 +132,18 @@ h2 {
 }
 
 .list-view .product-item h3 {
+  font-family: 'Cinzel Decorative';
   font-size: 24px;
   margin: 0;
 }
 
 .list-view .product-item p {
+  font-family: 'Eastman Alternate';
   margin: 0;
   color: #666;
 }
 
-/* Footer Section */
+/* Footer */
 footer {
   text-align: center;
   margin-top: 40px;
@@ -134,6 +152,7 @@ footer {
 }
 
 footer p {
+  font-family: 'Eastman Alternate';
   color: #777;
   font-size: 14px;
-}
+  }
