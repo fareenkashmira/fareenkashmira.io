@@ -1,7 +1,7 @@
 /* Font Face */
 @font-face {
   font-family: 'eastman';
-  src: url('fonts/EastmanAlternate.otf') format('opentype');
+  src: url('fonts/EastmanAlternate.ttf') format('truetype');
 }
 
 @font-face {
