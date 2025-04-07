@@ -9,12 +9,12 @@
 }
 
 /* General Reset and Base Styling */
-body {
+body, p, .subheading, .section-title, .toggle-button, .gladiola {
+    font-family: 'Eastman Alternate', serif;
+    color: #333;
     margin: 0;
     padding: 0;
     background-color: #fff;
-    font-family: 'Eastman Alternate', serif;
-    color: #333;
 }
 
 .container {
@@ -70,7 +70,6 @@ nav {
 
 .toggle-button {
     padding: 8px 14px;
-    font-family: 'Eastman Alternate', serif;
     font-size: 14px;
     border: 1px solid #888;
     background-color: #f0f0f0;
@@ -93,7 +92,7 @@ nav {
 .content h2 {
     font-size: 26px;
     margin-bottom: 20px;
-    font-family: 'Eastman Alternate', serif;
+    /* Inherits Cinzel Decorative from global heading rules */
 }
 
 /* Work Item Container */
@@ -197,4 +196,4 @@ footer {
         font-size: 12px;
         padding: 6px 10px;
     }
-    }
+}
