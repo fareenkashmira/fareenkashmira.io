@@ -3,30 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View Work - Kooky</title>
+    <title>View Work</title>
 
-    <!-- Link to Google Fonts for Charm -->
-    <link href="https://fonts.googleapis.com/css2?family=Garamond&display=swap" rel="stylesheet">
-    
-    <!-- Link to custom font file Jonathan -->
-    <style>
-        @font-face {
-            font-family: 'lastica';
-            src: url('../customfonts/lastica.ttf') format('truetype');
-            font-weight: normal;
-            font-style: normal;
-        }
-    </style>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Eastman+Alt&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap" rel="stylesheet"> <!-- Substitute for Gladiola -->
 
-    <!-- Link to external CSS file -->
     <link rel="stylesheet" href="/work/viewwork.css">
 </head>
 <body>
     <div class="container">
-        <!-- Header Section -->
-        <header></header>
 
-        <!-- Navigation Bar -->
+        <!-- Navigation -->
         <nav>
             <ul class="navbar">
                 <li><a href="../index.html">Home</a></li>
@@ -36,107 +25,117 @@
             </ul>
         </nav>
 
-        <!-- View Options -->
+        <!-- Toggle View Button -->
         <div class="view-options">
             <button id="toggle-view" class="toggle-button">Switch to List View</button>
         </div>
 
-        
-       <!-- Content Section -->
-        <section class="content grid-view" id="work-gallery">
-    <h2>Photos</h2>
-    <div class="work-item">
-        <div class="photo-slider">
-            <button class="prev">❮</button>
-            <div class="slides">
-                <img src="../images/book cover.jpg" alt="Book Cover" class="active">
-            </div>
-            <button class="next">❯</button>
-        </div>
-        <h3>Book Cover</h3>
-        <p>Book cover design for my unreleased book.</p>
-    </div>
-    <div class="work-item">
-        <div class="photo-slider">
-            <button class="prev">❮</button>
-            <div class="slides">
-                <img src="../images/Earth.jpeg" alt="Earth" class="active">
-            </div>
-            <button class="next">❯</button>
-        </div>
-        <h3>Earth</h3>
-        <p>I illustrated Earth in a heart shape to convey the emotion of being one home, and we should love it.</p>
-    </div>
-    <div class="work-item">
-        <div class="photo-slider">
-            <button class="prev">❮</button>
-            <div class="slides">
-                <img src="../images/coffee & cakes.png" alt="Kooky Poster" class="active">
-            </div>
-            <button class="next">❯</button>
-        </div>
-        <h3>Kooky Poster</h3>
-        <p>This is a poster for a cake shop.</p>
-    </div>
-    <div class="work-item">
-        <div class="photo-slider">
-            <button class="prev">❮</button>
-            <div class="slides">
-                <img src="../images/BS Logo.png" alt="Logo Design" class="active">
-            </div>
-            <button class="next">❯</button>
-        </div>
-        <h3>Logo</h3>
-        <p>This is from a client who wanted a 3D Logo design.</p>
-    </div>
+        <!-- Photos Section -->
+        <section class="content-category">
+            <h2 class="category-title">Photos</h2>
 
-    <h2>PDFs</h2>
-    <div class="work-item">
-        <iframe src="https://drive.google.com/file/d/1JYQ4Wi2fjYqq34TjnYjekftTuo_r4uqG/preview" 
-            width="640" height="480" frameborder="0" allowfullscreen>
-        </iframe>
-        <h3>PDF Work</h3>
-        <p>This explains the impact of Influencer Marketing on Brand Perception.</p>
-    </div>
-    <div class="work-item">
-        <iframe src="https://drive.google.com/file/d/1E1SlHwR1OIpslgSbD633MhIvkwjRMlOU/preview" 
-            width="640" height="480" frameborder="0" allowfullscreen>
-        </iframe>
-        <h3>ADM Society Induction Brochure</h3>
-        <p>This brochure was part of the Graphic Design Internship.</p>
-    </div>
-    <div class="work-item">
-        <iframe src="https://drive.google.com/file/d/1M15k5q9kzRVozkdMbxdrbYWyGOXgi0Q3/preview" 
-            width="640" height="480" frameborder="0" allowfullscreen>
-        </iframe>
-        <h3>Magazine Design</h3>
-        <p>A sample magazine design.</p>
-    </div>
+            <div class="work-item">
+                <div class="photo-slider">
+                    <button class="prev">❮</button>
+                    <div class="slides">
+                        <img src="../images/book cover.jpg" alt="Book Cover" class="active">
+                    </div>
+                    <button class="next">❯</button>
+                </div>
+                <h3>Book Cover</h3>
+                <p>Book cover design for my unreleased book.</p>
+            </div>
 
-    <h2>Videos</h2>
-    <div class="work-item">
-        <iframe src="https://drive.google.com/file/d/1lOUrfSAH0CtEi9SyU1vj2FIv_ui7uZHK/preview" 
-            width="640" height="360" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
-        </iframe>
-        <h3>ABHA Group Advertisement</h3>
-        <p>This video advertisement emphasizes the dedication and commitment of the company and gives an insight into their work environment.</p>
-    </div>
-    <div class="work-item">
-        <iframe src="https://drive.google.com/file/d/1--6-zErbfe-FQBwr04P2yaLWcRlMVpDO/preview" 
-            width="640" height="360" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
-        </iframe>
-        <h3>ABHA Group's Projects & Training Sessions</h3>
-        <p>This video comprises the training sessions that ABHA Group has undertaken recently.</p>
-    </div>
+            <div class="work-item">
+                <div class="photo-slider">
+                    <button class="prev">❮</button>
+                    <div class="slides">
+                        <img src="../images/Earth.jpeg" alt="Earth" class="active">
+                    </div>
+                    <button class="next">❯</button>
+                </div>
+                <h3>Earth</h3>
+                <p>I illustrated Earth in a heart shape to convey the emotion of being one home, and we should love it.</p>
+            </div>
+
+            <div class="work-item">
+                <div class="photo-slider">
+                    <button class="prev">❮</button>
+                    <div class="slides">
+                        <img src="../images/coffee & cakes.png" alt="Kooky Poster" class="active">
+                    </div>
+                    <button class="next">❯</button>
+                </div>
+                <h3>Kooky Poster</h3>
+                <p>This is a poster for a cake shop.</p>
+            </div>
+
+            <div class="work-item">
+                <div class="photo-slider">
+                    <button class="prev">❮</button>
+                    <div class="slides">
+                        <img src="../images/BS Logo.png" alt="Logo Design" class="active">
+                    </div>
+                    <button class="next">❯</button>
+                </div>
+                <h3>Logo</h3>
+                <p>This is from a client who wanted a 3D Logo design.</p>
+            </div>
         </section>
+
+        <!-- PDFs Section -->
+        <section class="content-category">
+            <h2 class="category-title">PDFs</h2>
+
+            <div class="work-item">
+                <iframe src="https://drive.google.com/file/d/1JYQ4Wi2fjYqq34TjnYjekftTuo_r4uqG/preview"
+                    width="640" height="480" frameborder="0" allowfullscreen></iframe>
+                <h3>PDF Work</h3>
+                <p>This explains the impact of Influencer Marketing on Brand Perception.</p>
+            </div>
+
+            <div class="work-item">
+                <iframe src="https://drive.google.com/file/d/1E1SlHwR1OIpslgSbD633MhIvkwjRMlOU/preview"
+                    width="640" height="480" frameborder="0" allowfullscreen></iframe>
+                <h3>ADM Society Induction Brochure</h3>
+                <p>This brochure was part of the Graphic Design Internship.</p>
+            </div>
+
+            <div class="work-item">
+                <iframe src="https://drive.google.com/file/d/1M15k5q9kzRVozkdMbxdrbYWyGOXgi0Q3/preview"
+                    width="640" height="480" frameborder="0" allowfullscreen></iframe>
+                <h3>Magazine Design</h3>
+                <p>A sample magazine design.</p>
+            </div>
+        </section>
+
+        <!-- Videos Section -->
+        <section class="content-category">
+            <h2 class="category-title">Videos</h2>
+
+            <div class="work-item">
+                <iframe src="https://drive.google.com/file/d/1lOUrfSAH0CtEi9SyU1vj2FIv_ui7uZHK/preview"
+                    width="640" height="360" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                <h3>ABHA Group Advertisement</h3>
+                <p>This video advertisement emphasizes the dedication and commitment of the company and gives an insight into their work environment.</p>
+            </div>
+
+            <div class="work-item">
+                <iframe src="https://drive.google.com/file/d/1--6-zErbfe-FQBwr04P2yaLWcRlMVpDO/preview"
+                    width="640" height="360" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                <h3>ABHA Group's Projects & Training Sessions</h3>
+                <p>This video comprises the training sessions that ABHA Group has undertaken recently.</p>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p class="footer-text">2022-2025 All rights reserved</p>
+        </footer>
+
     </div>
 
-    <!-- Footer Section -->
-    <footer>
-        <p>2022-2024 All rights reserved</p>
-    </footer>
-
-    <!-- Link to external JavaScript file -->
+    <!-- JS File -->
     <script src="work/viewwork.js"></script>
 </body>
-    </html>
+</html>
