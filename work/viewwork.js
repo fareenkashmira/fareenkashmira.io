@@ -1,37 +1,44 @@
-document.addEventListener("DOMContentLoaded", function() {
-    // Toggle view functionality
+document.addEventListener("DOMContentLoaded", function () {
     const toggleButton = document.getElementById("toggle-view");
     const workGallery = document.getElementById("work-gallery");
 
-    // Set initial view state (grid view by default)
-    let isListView = false;
+    let isListView = localStorage.getItem("isListView") === "true";
 
-    toggleButton.addEventListener("click", function() {
-        // Toggle the view state
-        isListView = !isListView;
+    function applyView() {
+        // Add fade class for smooth transition
+        workGallery.classList.add("fade-transition");
 
         if (isListView) {
             workGallery.classList.remove("grid-view");
             workGallery.classList.add("list-view");
-            toggleButton.textContent = "Switch to Grid View"; // Change button text
+            toggleButton.textContent = "Switch to Grid View";
         } else {
             workGallery.classList.remove("list-view");
             workGallery.classList.add("grid-view");
-            toggleButton.textContent = "Switch to List View"; // Change button text
+            toggleButton.textContent = "Switch to List View";
         }
 
-        // Toggle the active class on the button
+        // Remove fade class after animation
+        setTimeout(() => {
+            workGallery.classList.remove("fade-transition");
+        }, 300);
+    }
+
+    applyView(); // apply saved view on load
+
+    toggleButton.addEventListener("click", function () {
+        isListView = !isListView;
+        localStorage.setItem("isListView", isListView);
+        applyView();
         toggleButton.classList.toggle("active");
     });
 
-    // Photo slider functionality
+    // Slider functionality
     const sliderImages = document.querySelectorAll(".photo-slider img");
     const leftArrow = document.querySelector(".photo-slider .arrow.left");
     const rightArrow = document.querySelector(".photo-slider .arrow.right");
-
     let currentSlide = 0;
 
-    // Function to show the current slide
     function showSlide(index) {
         sliderImages.forEach((img, i) => {
             img.classList.remove("active");
@@ -41,17 +48,15 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // Event listeners for arrows
-    leftArrow.addEventListener("click", function() {
+    leftArrow.addEventListener("click", function () {
         currentSlide = (currentSlide - 1 + sliderImages.length) % sliderImages.length;
         showSlide(currentSlide);
     });
 
-    rightArrow.addEventListener("click", function() {
+    rightArrow.addEventListener("click", function () {
         currentSlide = (currentSlide + 1) % sliderImages.length;
         showSlide(currentSlide);
     });
 
-    // Initialize the slider with the first slide
     showSlide(currentSlide);
 });
