@@ -1,5 +1,4 @@
-// Toggle between Grid and List view using a single button
-const toggleButton = document.getElementById('view-toggle');
+const toggleButton = document.getElementById('toggleView'); // Corrected ID
 const productContainer = document.getElementById('product-container');
 
 toggleButton.addEventListener('click', function () {
