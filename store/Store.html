@@ -4,7 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Products</title>
-  <link rel="stylesheet" href="Store.css" />
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="store/Store.css" />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../fonts/fonts.css" />
 </head>
@@ -25,64 +27,55 @@
 
     <!-- View Toggle -->
     <div class="view-options">
-  <button id="toggleView" class="toggle-button">Switch to List View</button>
+      <button id="toggleView" class="toggle-button">Switch to List View</button>
     </div>
 
     <!-- Products Section -->
-    <section class="content" id="product-container" class="grid-view">
+    <section class="content" id="product-container">
       <h2>Our Products</h2>
 
       <div class="grid-view" id="products">
-
         <!-- Product Boxes -->
         <div class="product-item">
           <img src="images/product1.jpg" alt="Product 1" />
           <p>Butterfly Tee</p>
           <a href="https://www.redbubble.com/shop/ap/XXXX1" target="_blank">View</a>
         </div>
-
         <div class="product-item">
           <img src="images/product2.jpg" alt="Product 2" />
           <p>Whimsy Tote</p>
           <a href="https://www.redbubble.com/shop/ap/XXXX2" target="_blank">View</a>
         </div>
-
         <div class="product-item">
           <img src="images/product3.jpg" alt="Product 3" />
           <p>Magical Mug</p>
           <a href="https://www.redbubble.com/shop/ap/XXXX3" target="_blank">View</a>
         </div>
-
         <div class="product-item">
           <img src="images/product4.jpg" alt="Product 4" />
           <p>Kooky Notebook</p>
           <a href="https://www.redbubble.com/shop/ap/XXXX4" target="_blank">View</a>
         </div>
-
         <div class="product-item">
           <img src="images/product5.jpg" alt="Product 5" />
           <p>Bloom Sticker</p>
           <a href="https://www.redbubble.com/shop/ap/XXXX5" target="_blank">View</a>
         </div>
-
         <div class="product-item">
           <img src="images/product6.jpg" alt="Product 6" />
           <p>Aesthetic Poster</p>
           <a href="https://www.redbubble.com/shop/ap/XXXX6" target="_blank">View</a>
         </div>
-
         <div class="product-item">
           <img src="images/product7.jpg" alt="Product 7" />
           <p>Cosmic Socks</p>
           <a href="https://www.redbubble.com/shop/ap/XXXX7" target="_blank">View</a>
         </div>
-
         <div class="product-item">
           <img src="images/product8.jpg" alt="Product 8" />
           <p>Quirky Pouch</p>
           <a href="https://www.redbubble.com/shop/ap/XXXX8" target="_blank">View</a>
         </div>
-
       </div>
     </section>
   </div>
@@ -95,16 +88,11 @@
         <li><a href="../prev/TnC.html">TnC</a></li>
       </ul>
     </nav>
-    <p>2022–2024 All rights reserved</p>
+    <p>2022–2025 All rights reserved</p>
   </footer>
 
-  <!-- Toggle Script -->
-  <script>
-    function toggleView(view) {
-      const container = document.getElementById("products");
-      container.className = view === 'grid' ? 'grid-view' : 'list-view';
-    }
-  </script>
+  <!-- External JS -->
+  <script src="store/Store.js"></script>
 
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XMK04PPSV2"></script>
@@ -115,4 +103,4 @@
     gtag('config', 'G-XMK04PPSV2');
   </script>
 </body>
-  </html>
+</html>
