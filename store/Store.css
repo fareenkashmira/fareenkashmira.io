@@ -1,8 +1,7 @@
 @font-face {
   font-family: 'Eastman Alternate';
-  src: url('../customfonts/EastmanAlternate.ttf') format('truetype');
+  src: url('../fonts/EastmanAlternate.ttf') format('truetype');
 }
-
 
 @font-face {
   font-family: 'Gladiola';
@@ -69,21 +68,17 @@ h2 {
   margin-bottom: 20px;
 }
 
-.view-options button {
+.toggle-button {
   padding: 10px 20px;
-  margin: 0 5px;
   background-color: #fff;
   border: 2px solid #333;
   cursor: pointer;
   font-family: 'Eastman Alternate';
+  font-weight: bold;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-.view-options button.active {
-  background-color: #ff6c6c;
-  color: white;
-}
-
-.view-options button:hover {
+.toggle-button:hover {
   background-color: #333;
   color: white;
 }
@@ -119,6 +114,10 @@ h2 {
 }
 
 /* Product List View */
+.list-view {
+  display: block;
+}
+
 .list-view .product-item {
   display: flex;
   align-items: center;
