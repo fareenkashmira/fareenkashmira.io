@@ -1,79 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Research & Findings</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Gladiola, cursive;
-      background-color: #ffffff;
-      color: #333;
-    }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Research Studies</title>
 
-    h1, h2, h3 {
-      font-family: Garamond, serif;
-      margin-bottom: 0.5rem;
-    }
+  <!-- Link to external CSS file -->
+  <link rel="stylesheet" href="research.css" />
 
-    nav {
-      background-color: #f6f6f6;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #ccc;
-    }
-
-    .navbar {
-      list-style: none;
-      display: flex;
-      gap: 1rem;
-      margin: 0;
-      padding: 0;
-    }
-
-    .navbar li a {
-      text-decoration: none;
-      color: #333;
-      font-weight: bold;
-    }
-
-    .container {
-      padding: 2rem;
-    }
-
-    .section {
-      margin-bottom: 3rem;
-    }
-
-    footer {
-      background-color: #f6f6f6;
-      padding: 1rem 2rem;
-      font-size: 0.9rem;
-      border-top: 1px solid #ccc;
-      text-align: center;
-    }
-
-    .footer-links {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .footer-links a {
-      text-decoration: none;
-      color: #333;
-    }
-  </style>
+  <!-- Google Fonts: Cinzel Decorative for headings -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap" rel="stylesheet" />
 </head>
 <body>
-  <h1 style="text-align:center; padding: 1.5rem 0;">Research & Findings</h1>
+  <!-- Main Title -->
+  <header>
+    <h1>Research Studies & Insights</h1>
+  </header>
 
+  <!-- Navigation Bar -->
   <nav>
-    <div><strong>UX Designer Portfolio</strong></div>
+    <div class="nav-brand">UX Designer Portfolio</div>
     <ul class="navbar">
       <li><a href="../index.html">Home</a></li>
       <li><a href="../store/Store.html">Store</a></li>
@@ -82,24 +28,72 @@
     </ul>
   </nav>
 
+  <!-- Main Container -->
   <div class="container">
+    <!-- About Section -->
     <section id="intro" class="section">
       <h2>About Me</h2>
-      <p>I am a UX Designer with a strong focus on user research. My work is grounded in empathy, observation, and data, helping create intuitive, user-centric digital experiences. I specialize in qualitative and quantitative methods to uncover insights that lead to meaningful design solutions.</p>
+      <p>
+        I am a UX Designer with a strong focus on user research. My work is grounded in empathy, observation, and data,
+        helping create intuitive, user-centric digital experiences. I specialize in both qualitative and quantitative methods
+        to uncover insights that lead to meaningful design solutions.
+      </p>
     </section>
 
+    <!-- Research Cards Section -->
     <section id="research" class="section">
-      <h2>Researches</h2>
-      <p>Here you will find a collection of my research-driven projects, ranging from usability studies and heuristic evaluations to user journey mapping and A/B testing. Each project reflects my dedication to understanding user behavior and enhancing their experience through thoughtful design.</p>
+      <h2>Research & Case Studies</h2>
+      <div id="research-cards" class="cards-grid">
+        <!-- Each research/case study is displayed as a card -->
+        <div class="card">
+          <img src="images/research1.jpg" alt="Case Study 1" class="card-img">
+          <div class="card-body">
+            <h3 class="card-title">Usability Study: E-Commerce Checkout</h3>
+            <p class="card-text">
+              A comprehensive usability study that reveals key friction points in the checkout process and offers actionable insights.
+            </p>
+            <a href="case-study1.html" class="card-link">Read More</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/research2.jpg" alt="Case Study 2" class="card-img">
+          <div class="card-body">
+            <h3 class="card-title">User Journey Mapping for Banking App</h3>
+            <p class="card-text">
+              Detailed analysis of user paths and pain points in the digital banking experience.
+            </p>
+            <a href="case-study2.html" class="card-link">Read More</a>
+          </div>
+        </div>
+        
+        <!-- Add additional cards up to 8 as needed -->
+        <div class="card">
+          <img src="images/research3.jpg" alt="Case Study 3" class="card-img">
+          <div class="card-body">
+            <h3 class="card-title">A/B Testing for Mobile UX</h3>
+            <p class="card-text">
+              Results from iterative testing that improved mobile user engagement by 35%.
+            </p>
+            <a href="case-study3.html" class="card-link">Read More</a>
+          </div>
+        </div>
+
+        <!-- Insert more cards here as required -->
+      </div>
     </section>
   </div>
 
+  <!-- Footer -->
   <footer>
     <div class="footer-links">
-      <a href="#">Privacy Policy</a>
-      <a href="#">Terms & Conditions</a>
+      <a href="privacypolicy.html">Privacy Policy</a>
+      <a href="TnC.html">Terms & Conditions</a>
     </div>
-    <div>2022 - 2025 All Rights Reserved</div>
+    <p>© 2022–2025 All rights reserved.</p>
   </footer>
+
+  <!-- External JS -->
+  <script src="research.js"></script>
 </body>
 </html>
