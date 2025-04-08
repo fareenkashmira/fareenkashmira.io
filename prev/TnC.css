@@ -1,126 +1,142 @@
-/* Import the Charm font from Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Charm:wght@400;700&display=swap');
+/* Load custom fonts */
+@font-face {
+  font-family: 'Eastman Alternate';
+  src: url('../fonts/EastmanAlternate.ttf') format('truetype');
+}
 
-/* Apply the Charm font across the entire document */
-* {
-  font-family: 'Charm', sans-serif;
+@font-face {
+  font-family: 'Gladiola';
+  src: url('../fonts/Gladiola.ttf') format('truetype');
+}
+
+/* General Base Styling */
+body {
+  font-family: 'Eastman Alternate', serif;
+  background-color: #ffffff;
+  color: #333;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
-/* General styling for a white background */
-body {
-  background-color: #ffffff;
-  color: #333; /* Dark color for readability on white */
-  line-height: 1.6;
-  padding: 20px;
-}
-
-/* Container styling to center and add padding */
 .container {
+  width: 90%;
   max-width: 800px;
   margin: auto;
   padding: 20px;
 }
 
-/* Header styling */
+/* Header Section */
 header {
   text-align: center;
-  padding: 20px 0;
+  margin-bottom: 20px;
 }
 
-header .logo {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #ff6c6c; /* Optional: theme color */
+header h1 {
+  font-family: 'Cinzel Decorative', serif;
+  color: #ff6c6c;
+  margin-bottom: 10px;
 }
 
-header .tagline {
-  font-size: 1.2rem;
-  color: #555;
+/* Navigation Bar */
+nav {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
-/* Navigation bar styling */
-nav ul {
-  list-style-type: none;
+.navbar {
   display: flex;
   justify-content: center;
   gap: 15px;
-  margin: 20px 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-nav ul li a {
+.navbar li a {
   text-decoration: none;
   color: #333;
   font-weight: bold;
+  font-family: 'Eastman Alternate', serif;
+  transition: color 0.3s ease;
 }
 
-nav ul li a:hover {
+.navbar li a:hover {
   color: #ff6c6c;
 }
 
-/* Section styling (for main content) */
+/* Content Section */
 .content {
-  padding: 20px;
+  margin-top: 20px;
 }
 
-.content h2,
-.content h3 {
+.content h2 {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 28px;
+  text-align: center;
+  margin-bottom: 20px;
   color: #ff6c6c;
+}
+
+.content h3 {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 24px;
   margin-bottom: 10px;
+  color: #ff6c6c;
 }
 
 .content p,
-.content ul li {
-  margin-bottom: 15px;
-  color: #444;
+.content ul,
+.content li {
+  font-family: 'Eastman Alternate', serif;
+  font-size: 16px;
+  line-height: 1.6;
 }
 
-/* Terms and conditions list styling */
 .content ul {
   list-style-type: disc;
-  padding-left: 20px;
+  margin-left: 20px;
 }
 
-.content ul li {
-  margin-bottom: 10px;
+/* (Optional) Tiny Nudges – use only if needed */
+.nudge {
+  font-family: 'Gladiola', cursive;
+  font-size: 14px;
+  color: #888;
+  font-style: italic;
+  margin-top: 5px;
 }
 
-/* Footer styling */
+/* Footer Section */
 footer {
   text-align: center;
-  margin-top: 30px;
-  padding: 10px 0;
-  font-size: 0.9rem;
-  color: #666;
+  margin-top: 40px;
+  padding: 20px 0;
+  background-color: #f9f9f9;
+  border-top: 1px solid #ddd;
 }
 
-/* Background image section */
-.background-image-section {
-  background-image: url('path-to-your-image.jpg'); /* Replace with actual image path */
-  background-size: cover;
-  background-position: center;
-  padding: 50px;
-  text-align: center;
-  color: #fff;
+footer p {
+  font-family: 'Eastman Alternate', serif;
+  color: #777;
+  font-size: 14px;
 }
 
-.background-image-section h2,
-.background-image-section p {
-  color: #ffffff;
-  margin: 0;
-  padding: 10px;
-  background-color: rgba(0, 0, 0, 0.6); /* Optional: dark overlay for better readability */
-}
-
-/* Additional responsive design for small screens */
+/* Responsive Styling */
 @media (max-width: 600px) {
-  nav ul {
-    flex-direction: column;
-  }
-
   .container {
-    padding: 10px;
+    padding: 15px;
+  }
+  
+  h2 {
+    font-size: 24px;
+  }
+  
+  p, ul, li {
+    font-size: 14px;
+  }
+  
+  .navbar {
+    flex-direction: column;
+    gap: 10px;
   }
 }
