@@ -4,11 +4,6 @@
   src: url('fonts/EastmanAlternate.ttf') format('truetype');
 }
 
-@font-face {
-  font-family: 'Gladiola';
-  src: url('fonts/Gladiola.ttf') format('truetype');
-}
-
 /* Body Styling */
 body {
   background-image: url('../images/6_20241119_003250_0005.png');
@@ -23,7 +18,7 @@ body {
 
 /* Headings */
 h2 {
-  font-family: 'Cinzel Decorative', cursive;
+  font-family: 'eastman', serif;
 }
 
 /* Navigation */
@@ -51,18 +46,21 @@ h2 {
 
 .view-work-btn {
   margin-top: 20px;
-  padding: 10px 20px;
-  background-color: #222;
+  padding: 12px 24px;
+  background-color: #ff6c6c;
   color: #fff;
   border: none;
   cursor: pointer;
-  border-radius: 8px;
-  font-family: 'Cinzel Decorative', serif;
-  transition: background-color 0.3s ease;
+  border-radius: 10px;
+  font-family: 'eastman', serif;
+  font-size: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .view-work-btn:hover {
-  background-color: #444;
+  background-color: #e65757;
+  transform: scale(1.05);
 }
 
 /* Contact Section */
@@ -72,20 +70,20 @@ h2 {
 }
 
 #mc_embed_signup h2 {
-  font-family: 'Gladiola', serif;
+  font-family: 'eastman', serif;
 }
 
 /* Footer */
 .container-footer {
   text-align: center;
-  padding: 40px 20px;
+  padding: 50px 25px;
   background-color: #f0f0f0;
 }
 
 .container-footer a {
   text-decoration: none;
   color: #222;
-  margin: 0 5px;
+  margin: 0 8px;
 }
 
 .container-footer a:hover {
@@ -93,25 +91,26 @@ h2 {
 }
 
 .container-footer p {
-  margin: 8px 0;
+  margin: 6px 0;
+  font-size: 12.5px;
 }
 
 /* Social Links */
 .social-links {
   margin-bottom: 15px;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 /* Consent Banner */
 #cookie-consent {
-  display: block; /* default visible; use JS to hide/show */
+  display: block;
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
   background-color: #f4f4f4;
-  padding: 25px;
-  font-size: 14px;
+  padding: 35px 25px;
+  font-size: 15px;
   text-align: center;
   z-index: 1000;
   box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
@@ -135,23 +134,24 @@ h2 {
   gap: 15px;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 10px;
+  margin-top: 12px;
 }
 
 #cookie-consent button {
   background-color: #ff6c6c;
   color: white;
   border: none;
-  padding: 14px 30px;
-  font-family: 'Cinzel Decorative', serif;
-  font-size: 18px;
-  border-radius: 18px;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  padding: 14px 32px;
+  font-family: 'eastman', serif;
+  font-size: 17px;
+  border-radius: 20px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
   cursor: pointer;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
 }
 
 #cookie-consent button:hover {
-  background-color: #333;
+  background-color: #222;
   transform: scale(1.05);
 }
 
@@ -159,16 +159,28 @@ h2 {
   position: absolute;
   top: 10px;
   right: 15px;
-  font-size: 22px;
+  font-size: 24px;
   cursor: pointer;
   color: #999;
-  transition: color 0.3s ease;
   background: none;
   border: none;
+  transition: color 0.3s ease;
 }
 
 #cookie-consent .close-btn:hover {
   color: #333;
+}
+
+/* Animation */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Responsive */
@@ -183,18 +195,18 @@ h2 {
   }
 
   #cookie-consent {
-    padding: 20px;
+    padding: 30px 20px;
   }
 
   #cookie-consent button {
     width: 100%;
-    font-size: 16px;
+    font-size: 15px;
     padding: 12px 20px;
   }
 
   #cookie-consent .close-btn {
-    font-size: 20px;
+    font-size: 22px;
     top: 8px;
     right: 12px;
   }
-  }
+}
