@@ -1,8 +1,17 @@
-/* styles.css */
+/* Load custom fonts */
+@font-face {
+    font-family: 'Eastman';
+    src: url('../fonts/Eastman.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Gladiola';
+    src: url('../fonts/Gladiola.ttf') format('truetype');
+}
 
 /* General Styles */
 body {
-    font-family: 'Charm', sans-serif; /* Use Charm font for the body */
+    font-family: 'Eastman', serif;
     background-color: #f4f4f4;
     color: #333;
     margin: 0;
@@ -25,17 +34,18 @@ header {
 }
 
 h1 {
-    font-family: 'Charm', cursive; /* Use Charm for the title */
+    font-family: 'Cinzel Decorative', serif;
     color: #ff6c6c;
 }
 
 h2 {
-    font-family: 'Charm', cursive; /* Use Charm for h2 headings */
+    font-family: 'Cinzel Decorative', serif;
     color: #ff6c6c;
     margin-top: 20px;
 }
 
-p {
+p, ul, li {
+    font-family: 'Gladiola', serif;
     line-height: 1.6;
 }
 
@@ -46,25 +56,27 @@ ul {
 
 /* Navigation Bar Styles */
 nav {
-    text-align: center; /* Center the navigation */
+    text-align: center;
     margin-bottom: 20px;
 }
 
 .navbar {
-    display: flex; /* Use flexbox to arrange items horizontally */
-    justify-content: center; /* Center the items */
-    padding: 0; /* Remove default padding */
-    margin: 0; /* Remove default margin */
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
 }
 
 .navbar li {
-    margin: 0 15px; /* Add space between items */
+    margin: 0 15px;
+    list-style: none;
 }
 
 .navbar a {
-    text-decoration: none; /* Remove underline from links */
-    color: #ff6c6c; /* Link color */
-    font-weight: bold; /* Make the links bold */
+    text-decoration: none;
+    color: #ff6c6c;
+    font-weight: bold;
+    font-family: 'Eastman', serif;
 }
 
 /* Footer Styles */
@@ -78,4 +90,5 @@ footer {
 
 footer p {
     margin: 0;
+    font-family: 'Eastman', serif;
 }
