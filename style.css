@@ -1,68 +1,56 @@
-/* ============================= Master CSS for All Pages ============================= */
+/* ------------------------- / /        Font Faces        / / ------------------------- */ @font-face { font-family: 'Eastman Alternate'; src: url('../fonts/EastmanAlternate.ttf') format('truetype'); }
 
-/* ========== Fonts ========== */ @font-face { font-family: 'eastman'; src: url('fonts/EastmanAlternate.ttf') format('truetype'); }
+@font-face { font-family: 'Gladiola'; src: url('../fonts/Gladiola.ttf') format('truetype'); }
 
-@font-face { font-family: 'Gladiola'; src: url('fonts/Gladiola.ttf') format('truetype'); }
+/* ------------------------- / /      Global Defaults      / / ------------------------- */
 
-body { background-image: url('../images/6_20241119_003250_0005.png'); background-size: cover; background-position: center; font-family: 'eastman', serif; margin: 0; padding: 0; animation: fadeInUp 1s ease-out; font-size: 15.5px; }
+{ box-sizing: border-box; scroll-behavior: smooth; }
 
-/* ========== Headings ========== */ h2 { font-family: 'Cinzel Decorative', cursive; }
 
-/* ========== Navigation Bar ========== */ .container-nav nav ul { list-style: none; display: flex; justify-content: center; gap: 20px; padding: 20px; background: #f7f7f7; margin: 0; }
+body { font-family: 'Eastman Alternate', serif; background-color: #ffffff; color: #333; margin: 0; padding: 0; overflow-x: hidden; }
 
-.container-nav nav ul li a { text-decoration: none; color: #222; font-weight: bold; }
+.container { width: 90%; max-width: 800px; margin: auto; padding: 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); animation: fadeInUp 0.6s ease-in-out; }
 
-/* ========== Containers ========== */ .container, .container-body, .container-contact, .container-footer { max-width: 1200px; margin: 0 auto; padding: 20px 15px; box-sizing: border-box; }
+/* ------------------------- / /        Typography         / / ------------------------- */ header h1, h1, h2, h3 { font-family: 'Cinzel Decorative', serif; color: #ff6c6c; text-align: center; margin-bottom: 20px; }
 
-/* ========== View Work Button ========== */ .view-work-btn { margin-top: 20px; padding: 10px 20px; background-color: #222; color: #fff; border: none; cursor: pointer; border-radius: 8px; font-family: 'Cinzel Decorative', serif; transition: background-color 0.3s ease, transform 0.3s ease; }
+h2 { font-size: 28px; }
 
-.view-work-btn:hover { background-color: #444; transform: scale(1.05); }
+h3 { font-size: 22px; }
 
-/* ========== Contact Modal ========== */ #mc_embed_signup h2 { font-family: 'Gladiola', serif; }
+p, ul, li { font-family: 'Eastman Alternate', serif; font-size: 16px; line-height: 1.6; }
 
-/* ========== Footer ========== */ .container-footer { text-align: center; padding: 40px 20px; background-color: #f0f0f0; border-top: 1px solid #ccc; }
+ul { list-style-type: disc; margin-left: 20px; }
 
-.container-footer a { text-decoration: none; color: #222; margin: 0 5px; font-size: 14px; }
+.nudge { font-family: 'Gladiola', cursive; font-size: 14px; color: #888; font-style: italic; margin-top: 5px; }
 
-.container-footer a:hover { text-decoration: underline; }
+/* ------------------------- / /          Header           / / ------------------------- */ header { padding: 30px 0; background: linear-gradient(to right, #ffeaea, #fff6f6); background-image: url('../images/butterflies-bg.svg'); background-repeat: no-repeat; background-position: center; background-size: cover; animation: fadeIn 1.2s ease-in-out; }
 
-.container-footer p { margin: 8px 0; font-size: 12px; }
+/* ------------------------- / /       Navigation Bar      / / ------------------------- */ nav { text-align: center; margin-bottom: 30px; }
 
-/* ========== Social Links ========== */ .social-links { margin-bottom: 15px; font-size: 18px; }
+.navbar { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; list-style: none; padding: 0; margin: 0; animation: fadeIn 0.8s ease-in-out; }
 
-/* ========== Consent Banner ========== */ #cookie-consent { position: fixed; bottom: 0; left: 0; right: 0; background-color: #f4f4f4; padding: 30px; font-size: 14px; text-align: center; z-index: 1000; box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1); }
+.navbar li a { text-decoration: none; color: #ff6c6c; font-weight: bold; font-family: 'Eastman Alternate', serif; transition: all 0.3s ease; }
 
-#cookie-consent .banner { display: flex; flex-direction: column; align-items: center; position: relative; }
+.navbar li a:hover { color: #333; }
 
-#cookie-consent p { font-family: 'eastman', serif; color: #333; margin: 10px 0; }
+/* ------------------------- / /         Content           / / ------------------------- */ .content { margin-top: 20px; animation: fadeInUp 0.6s ease-in-out; }
 
-#cookie-consent .button-group { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; margin-top: 10px; }
+/* ------------------------- / /          Footer           / / ------------------------- */ footer { text-align: center; margin-top: 40px; padding: 20px 0; background-color: #f9f9f9; border-top: 1px solid #ddd; animation: fadeIn 1s ease-in-out; }
 
-#cookie-consent button { background-color: #222; color: white; border: none; padding: 14px 30px; font-family: 'Cinzel Decorative', serif; font-size: 18px; border-radius: 18px; transition: background-color 0.3s ease, transform 0.3s ease; cursor: pointer; }
+footer p { font-family: 'Eastman Alternate', serif; font-size: 14px; color: #777; }
 
-#cookie-consent button:hover { background-color: #444; transform: scale(1.05); }
+/* ------------------------- / /        Animations         / / ------------------------- */ @keyframes fadeIn { 0% { opacity: 0; } 100% { opacity: 1; } }
 
-#cookie-consent .close-btn { position: absolute; top: 10px; right: 15px; font-size: 22px; cursor: pointer; color: #999; transition: color 0.3s ease; background: none; border: none; }
+@keyframes fadeInUp { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
 
-#cookie-consent .close-btn:hover { color: #333; }
+/* ------------------------- / /     Responsive Design     / / ------------------------- */ @media (max-width: 600px) { .container { padding: 15px; }
 
-/* ========== Animations ========== */ @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+h2 { font-size: 24px; }
 
-/* ========== Responsive Design ========== */ @media (max-width: 480px) { .container-nav nav ul { flex-direction: column; gap: 10px; }
+h3 { font-size: 20px; }
 
-.view-work-btn { width: 100%; }
+p, ul, li { font-size: 14px; }
 
-#cookie-consent { padding: 20px; }
+.navbar { flex-direction: column; gap: 10px; } }
 
-#cookie-consent button { width: 100%; font-size: 16px; padding: 12px 20px; }
-
-#cookie-consent .close-btn { font-size: 20px; top: 8px; right: 12px; } }
-
-/* ========== Toggle Containers (Store, View Work) ========== */ .view-toggle, .store-toggle { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-top: 30px; }
-
-/* Optional Card Styling */ .card { border: 1px solid #ddd; border-radius: 10px; padding: 20px; background: #fff; max-width: 300px; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); }
-
-.card:hover { transform: translateY(-4px); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); }
-
-/* Final Note: All sections and containers are now structured for all 7 pages */
-
+                                                                                                    
