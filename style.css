@@ -1,36 +1,30 @@
-/* =========================== FONT FACES =========================== */ @font-face { font-family: 'eastman'; src: url('fonts/EastmanAlternate.ttf') format('truetype'); }
+/* ==================== FONT FACES ==================== */ @font-face { font-family: 'eastman'; src: url('fonts/EastmanAlternate.ttf') format('truetype'); }
 
 @font-face { font-family: 'Gladiola'; src: url('fonts/Gladiola.ttf') format('truetype'); }
 
-/* =========================== BASE STYLES =========================== */ body { background-image: url('../images/6_20241119_003250_0005.png'); background-size: cover; background-position: center; font-family: 'eastman', serif; margin: 0; padding: 0; animation: fadeInUp 1s ease-out; font-size: 15.5px; }
+/* ==================== KEYFRAMES ==================== */ @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ==================== GLOBAL STYLES ==================== */ body { background-image: url('../images/6_20241119_003250_0005.png'); background-size: cover; background-position: center; font-family: 'eastman', serif; margin: 0; padding: 0; animation: fadeInUp 1s ease-out; font-size: 15.5px; }
 
 h2 { font-family: 'Cinzel Decorative', cursive; }
 
-/* =========================== NAVIGATION BAR =========================== */ .container-nav nav ul { list-style: none; display: flex; justify-content: center; gap: 20px; padding: 20px; background: #f7f7f7; margin: 0; }
+/* ==================== NAVIGATION ==================== */ .container-nav nav ul { list-style: none; display: flex; justify-content: center; gap: 20px; padding: 20px; background: #f7f7f7; margin: 0; }
 
 .container-nav nav ul li a { text-decoration: none; color: #222; font-weight: bold; }
 
-/* =========================== MAIN CONTENT / HOME PAGE =========================== */ .container-body { padding: 40px; text-align: center; }
+/* ==================== BUTTONS ==================== */ .view-work-btn, #cookie-consent button, .contact-submit-btn { padding: 10px 20px; background-color: #222; color: #fff; border: none; cursor: pointer; border-radius: 10px; font-family: 'Cinzel Decorative', serif; transition: background-color 0.3s ease, transform 0.3s ease; }
 
-.view-work-btn { margin-top: 20px; padding: 10px 20px; background-color: #222; color: #fff; border: none; cursor: pointer; border-radius: 8px; font-family: 'Cinzel Decorative', serif; transition: background-color 0.3s ease, transform 0.3s ease; }
+.view-work-btn:hover, #cookie-consent button:hover, .contact-submit-btn:hover { background-color: #444; transform: scale(1.05); }
 
-.view-work-btn:hover { background-color: #444; transform: scale(1.05); }
+/* ==================== MAIN CONTENT ==================== */ .container-body { padding: 40px; text-align: center; }
 
-/* =========================== CONTACT MODAL =========================== */ .container-contact { padding: 40px; background-color: #fafafa; }
+/* ==================== CONTACT MODAL ==================== */ .container-contact { padding: 40px; background-color: #fafafa; }
 
 #mc_embed_signup h2 { font-family: 'Gladiola', serif; }
 
-/* =========================== FOOTER (Default) =========================== */ .container-footer { text-align: center; padding: 40px 20px; background-color: #f0f0f0; }
+.contact-submit-btn { margin-top: 15px; }
 
-.container-footer a { text-decoration: none; color: #222; margin: 0 5px; font-size: 14px; }
-
-.container-footer a:hover { text-decoration: underline; }
-
-.container-footer p { margin: 8px 0; font-size: 12px; }
-
-.social-links { margin-bottom: 15px; font-size: 17px; }
-
-/* =========================== CONSENT BANNER =========================== */ #cookie-consent { position: fixed; bottom: 0; left: 0; right: 0; background-color: #f4f4f4; padding: 28px; font-size: 14px; text-align: center; z-index: 1000; box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1); }
+/* ==================== CONSENT BANNER ==================== */ #cookie-consent { position: fixed; bottom: 0; left: 0; right: 0; background-color: #f4f4f4; padding: 25px; font-size: 14px; text-align: center; z-index: 1000; box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1); }
 
 #cookie-consent .banner { display: flex; flex-direction: column; align-items: center; position: relative; }
 
@@ -38,29 +32,33 @@ h2 { font-family: 'Cinzel Decorative', cursive; }
 
 #cookie-consent .button-group { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; margin-top: 10px; }
 
-#cookie-consent button { background-color: #222; color: white; border: none; padding: 14px 30px; font-family: 'Cinzel Decorative', serif; font-size: 18px; border-radius: 18px; transition: background-color 0.3s ease, transform 0.3s ease; cursor: pointer; }
-
-#cookie-consent button:hover { background-color: #444; transform: scale(1.05); }
-
-#cookie-consent .close-btn { position: absolute; top: 10px; right: 15px; font-size: 22px; cursor: pointer; color: #999; transition: color 0.3s ease; background: none; border: none; }
+#cookie-consent .close-btn { position: absolute; top: 10px; right: 15px; font-size: 22px; cursor: pointer; color: #999; background: none; border: none; transition: color 0.3s ease; }
 
 #cookie-consent .close-btn:hover { color: #333; }
 
-/* =========================== VIEW TOGGLE (Store & View Work Pages) =========================== */ .view-toggle { display: flex; justify-content: center; margin: 20px auto; gap: 15px; }
+/* ==================== FOOTER ==================== */ .container-footer { text-align: center; padding: 40px 20px; background-color: #f0f0f0; }
 
-.view-toggle button { padding: 10px 20px; font-size: 15px; border-radius: 8px; border: 1px solid #ccc; cursor: pointer; background-color: white; transition: transform 0.2s ease; }
+.container-footer a { text-decoration: none; color: #222; margin: 0 5px; font-size: 16px; }
 
-.view-toggle button:hover { transform: scale(1.05); background-color: #f7f7f7; }
+.container-footer a:hover { text-decoration: underline; }
 
-/* =========================== CARDS (Ink & Thoughts Page) =========================== */ .card { padding: 20px; border: 1px solid #ccc; border-radius: 12px; background-color: white; margin-bottom: 20px; transition: box-shadow 0.3s ease; }
+.container-footer p { margin: 8px 0; font-size: 12px; }
 
-.card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+.social-links { margin-bottom: 15px; font-size: 18px; }
 
-/* =========================== ANIMATIONS =========================== */ @keyframes fadeInUp { 0% { opacity: 0; transform: translateY(30px); } 100% { opacity: 1; transform: translateY(0); } }
+/* ==================== PRODUCT LIST & TOGGLE ==================== */ .product-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; padding: 20px; }
 
-/* =========================== RESPONSIVE STYLES =========================== */ @media (max-width: 480px) { .container-nav nav ul { flex-direction: column; gap: 10px; }
+.view-toggle { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; }
 
-.view-work-btn, #cookie-consent button { width: 100%; font-size: 16px; padding: 12px 20px; }
+/* ==================== CARD STYLING (INK & THOUGHTS) ==================== */ .card-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 20px; }
+
+.card { background: white; border-radius: 10px; padding: 20px; width: 300px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease; }
+
+.card:hover { transform: translateY(-5px); }
+
+/* ==================== RESPONSIVE ==================== */ @media (max-width: 480px) { .container-nav nav ul { flex-direction: column; gap: 10px; }
+
+.view-work-btn, #cookie-consent button, .contact-submit-btn { width: 100%; font-size: 16px; padding: 12px 20px; }
 
 #cookie-consent { padding: 20px; }
 
