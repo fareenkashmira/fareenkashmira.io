@@ -1,30 +1,36 @@
-/* ==================== FONT FACES ==================== */ @font-face { font-family: 'eastman'; src: url('fonts/EastmanAlternate.ttf') format('truetype'); }
+/* ============================= Master CSS for All Pages ============================= */
+
+/* ========== Fonts ========== */ @font-face { font-family: 'eastman'; src: url('fonts/EastmanAlternate.ttf') format('truetype'); }
 
 @font-face { font-family: 'Gladiola'; src: url('fonts/Gladiola.ttf') format('truetype'); }
 
-/* ==================== KEYFRAMES ==================== */ @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+body { background-image: url('../images/6_20241119_003250_0005.png'); background-size: cover; background-position: center; font-family: 'eastman', serif; margin: 0; padding: 0; animation: fadeInUp 1s ease-out; font-size: 15.5px; }
 
-/* ==================== GLOBAL STYLES ==================== */ body { background-image: url('../images/6_20241119_003250_0005.png'); background-size: cover; background-position: center; font-family: 'eastman', serif; margin: 0; padding: 0; animation: fadeInUp 1s ease-out; font-size: 15.5px; }
+/* ========== Headings ========== */ h2 { font-family: 'Cinzel Decorative', cursive; }
 
-h2 { font-family: 'Cinzel Decorative', cursive; }
-
-/* ==================== NAVIGATION ==================== */ .container-nav nav ul { list-style: none; display: flex; justify-content: center; gap: 20px; padding: 20px; background: #f7f7f7; margin: 0; }
+/* ========== Navigation Bar ========== */ .container-nav nav ul { list-style: none; display: flex; justify-content: center; gap: 20px; padding: 20px; background: #f7f7f7; margin: 0; }
 
 .container-nav nav ul li a { text-decoration: none; color: #222; font-weight: bold; }
 
-/* ==================== BUTTONS ==================== */ .view-work-btn, #cookie-consent button, .contact-submit-btn { padding: 10px 20px; background-color: #222; color: #fff; border: none; cursor: pointer; border-radius: 10px; font-family: 'Cinzel Decorative', serif; transition: background-color 0.3s ease, transform 0.3s ease; }
+/* ========== Containers ========== */ .container, .container-body, .container-contact, .container-footer { max-width: 1200px; margin: 0 auto; padding: 20px 15px; box-sizing: border-box; }
 
-.view-work-btn:hover, #cookie-consent button:hover, .contact-submit-btn:hover { background-color: #444; transform: scale(1.05); }
+/* ========== View Work Button ========== */ .view-work-btn { margin-top: 20px; padding: 10px 20px; background-color: #222; color: #fff; border: none; cursor: pointer; border-radius: 8px; font-family: 'Cinzel Decorative', serif; transition: background-color 0.3s ease, transform 0.3s ease; }
 
-/* ==================== MAIN CONTENT ==================== */ .container-body { padding: 40px; text-align: center; }
+.view-work-btn:hover { background-color: #444; transform: scale(1.05); }
 
-/* ==================== CONTACT MODAL ==================== */ .container-contact { padding: 40px; background-color: #fafafa; }
+/* ========== Contact Modal ========== */ #mc_embed_signup h2 { font-family: 'Gladiola', serif; }
 
-#mc_embed_signup h2 { font-family: 'Gladiola', serif; }
+/* ========== Footer ========== */ .container-footer { text-align: center; padding: 40px 20px; background-color: #f0f0f0; border-top: 1px solid #ccc; }
 
-.contact-submit-btn { margin-top: 15px; }
+.container-footer a { text-decoration: none; color: #222; margin: 0 5px; font-size: 14px; }
 
-/* ==================== CONSENT BANNER ==================== */ #cookie-consent { position: fixed; bottom: 0; left: 0; right: 0; background-color: #f4f4f4; padding: 25px; font-size: 14px; text-align: center; z-index: 1000; box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1); }
+.container-footer a:hover { text-decoration: underline; }
+
+.container-footer p { margin: 8px 0; font-size: 12px; }
+
+/* ========== Social Links ========== */ .social-links { margin-bottom: 15px; font-size: 18px; }
+
+/* ========== Consent Banner ========== */ #cookie-consent { position: fixed; bottom: 0; left: 0; right: 0; background-color: #f4f4f4; padding: 30px; font-size: 14px; text-align: center; z-index: 1000; box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1); }
 
 #cookie-consent .banner { display: flex; flex-direction: column; align-items: center; position: relative; }
 
@@ -32,35 +38,31 @@ h2 { font-family: 'Cinzel Decorative', cursive; }
 
 #cookie-consent .button-group { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; margin-top: 10px; }
 
-#cookie-consent .close-btn { position: absolute; top: 10px; right: 15px; font-size: 22px; cursor: pointer; color: #999; background: none; border: none; transition: color 0.3s ease; }
+#cookie-consent button { background-color: #222; color: white; border: none; padding: 14px 30px; font-family: 'Cinzel Decorative', serif; font-size: 18px; border-radius: 18px; transition: background-color 0.3s ease, transform 0.3s ease; cursor: pointer; }
+
+#cookie-consent button:hover { background-color: #444; transform: scale(1.05); }
+
+#cookie-consent .close-btn { position: absolute; top: 10px; right: 15px; font-size: 22px; cursor: pointer; color: #999; transition: color 0.3s ease; background: none; border: none; }
 
 #cookie-consent .close-btn:hover { color: #333; }
 
-/* ==================== FOOTER ==================== */ .container-footer { text-align: center; padding: 40px 20px; background-color: #f0f0f0; }
+/* ========== Animations ========== */ @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-.container-footer a { text-decoration: none; color: #222; margin: 0 5px; font-size: 16px; }
+/* ========== Responsive Design ========== */ @media (max-width: 480px) { .container-nav nav ul { flex-direction: column; gap: 10px; }
 
-.container-footer a:hover { text-decoration: underline; }
-
-.container-footer p { margin: 8px 0; font-size: 12px; }
-
-.social-links { margin-bottom: 15px; font-size: 18px; }
-
-/* ==================== PRODUCT LIST & TOGGLE ==================== */ .product-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; padding: 20px; }
-
-.view-toggle { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; }
-
-/* ==================== CARD STYLING (INK & THOUGHTS) ==================== */ .card-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 20px; }
-
-.card { background: white; border-radius: 10px; padding: 20px; width: 300px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease; }
-
-.card:hover { transform: translateY(-5px); }
-
-/* ==================== RESPONSIVE ==================== */ @media (max-width: 480px) { .container-nav nav ul { flex-direction: column; gap: 10px; }
-
-.view-work-btn, #cookie-consent button, .contact-submit-btn { width: 100%; font-size: 16px; padding: 12px 20px; }
+.view-work-btn { width: 100%; }
 
 #cookie-consent { padding: 20px; }
 
+#cookie-consent button { width: 100%; font-size: 16px; padding: 12px 20px; }
+
 #cookie-consent .close-btn { font-size: 20px; top: 8px; right: 12px; } }
+
+/* ========== Toggle Containers (Store, View Work) ========== */ .view-toggle, .store-toggle { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-top: 30px; }
+
+/* Optional Card Styling */ .card { border: 1px solid #ddd; border-radius: 10px; padding: 20px; background: #fff; max-width: 300px; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); }
+
+.card:hover { transform: translateY(-4px); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); }
+
+/* Final Note: All sections and containers are now structured for all 7 pages */
 
