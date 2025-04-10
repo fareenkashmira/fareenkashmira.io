@@ -1,3 +1,5 @@
+--- Home ---
+
 // === Cookie Consent Elements ===
 const cookieConsent = document.getElementById('cookie-consent');
 const closeBtn = document.querySelector('.close-btn');
@@ -112,3 +114,151 @@ function closePrivacyPolicy() {
     }, 500);
   }
 }
+
+
+---Store---
+
+const toggleButton = document.getElementById('toggleView'); // Corrected ID
+const productContainer = document.getElementById('product-container');
+
+toggleButton.addEventListener('click', function () {
+  const isGrid = productContainer.classList.contains('grid-view');
+
+  if (isGrid) {
+    productContainer.classList.remove('grid-view');
+    productContainer.classList.add('list-view');
+    toggleButton.textContent = 'Grid View';
+  } else {
+    productContainer.classList.remove('list-view');
+    productContainer.classList.add('grid-view');
+    toggleButton.textContent = 'List View';
+  }
+});
+
+
+--Ink& Thoughts----
+
+document.addEventListener("DOMContentLoaded", () => {
+  const entries = [
+    {
+      title: "Designing Calm",
+      date: "April 8, 2025",
+      summary: "Exploring how design can bring peace and simplicity into digital experiences.",
+    },
+    {
+      title: "Mapping Emotions",
+      date: "March 20, 2025",
+      summary: "A dive into emotional journey mapping for more intuitive user experiences.",
+    },
+    {
+      title: "Listening to Users",
+      date: "February 15, 2025",
+      summary: "What I learned from 20 user interviews about empathy in UX research.",
+    }
+  ];
+
+  const container = document.getElementById("ink-entries");
+
+  entries.forEach(entry => {
+    const card = document.createElement("div");
+    card.className = "entry-card";
+
+    card.innerHTML = `
+      <h3 class="entry-title">${entry.title}</h3>
+      <div class="entry-meta">${entry.date}</div>
+      <p class="entry-content">${entry.summary}</p>
+    `;
+
+    container.appendChild(card);
+  });
+});
+
+
+---Research Studies---
+
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('Research page loaded successfully.');
+});
+
+
+
+---- View Work ----
+
+document.addEventListener("DOMContentLoaded", function () {
+    const toggleButton = document.getElementById("toggle-view");
+    const workGallery = document.getElementById("view-wrapper"); // corrected ID
+
+    let isListView = localStorage.getItem("isListView") === "true";
+
+    function applyView() {
+        workGallery.classList.add("fade-transition");
+
+        if (isListView) {
+            workGallery.classList.remove("grid-view");
+            workGallery.classList.add("list-view");
+            toggleButton.textContent = "Switch to Grid View";
+        } else {
+            workGallery.classList.remove("list-view");
+            workGallery.classList.add("grid-view");
+            toggleButton.textContent = "Switch to List View";
+        }
+
+        setTimeout(() => {
+            workGallery.classList.remove("fade-transition");
+        }, 300);
+    }
+
+    applyView();
+
+    toggleButton.addEventListener("click", function () {
+        isListView = !isListView;
+        localStorage.setItem("isListView", isListView);
+        applyView();
+        toggleButton.classList.toggle("active");
+    });
+
+    // Handle each slider independently
+    const sliders = document.querySelectorAll(".photo-slider");
+
+    sliders.forEach((slider) => {
+        const slides = slider.querySelectorAll("img");
+        const prevBtn = slider.querySelector(".prev");
+        const nextBtn = slider.querySelector(".next");
+        let current = 0;
+
+        function showSlide(index) {
+            slides.forEach((img, i) => {
+                img.classList.remove("active");
+                if (i === index) img.classList.add("active");
+            });
+        }
+
+        prevBtn.addEventListener("click", () => {
+            current = (current - 1 + slides.length) % slides.length;
+            showSlide(current);
+        });
+
+        nextBtn.addEventListener("click", () => {
+            current = (current + 1) % slides.length;
+            showSlide(current);
+        });
+
+        showSlide(current); // initialize
+    });
+});
+
+
+
+--- Privacy Policy ---
+
+// script.js
+
+console.log("Privacy Policy JS loaded."); // Just a placeholder to indicate the script is running.
+
+
+
+--- TnC ---
+
+// script.js
+
+console.log("TnC JS loaded."); // Just a placeholder to indicate the script is running.
