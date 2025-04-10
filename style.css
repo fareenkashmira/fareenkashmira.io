@@ -32,7 +32,7 @@
 
 /* Consent Banner / #cookie-consent { display: block; / default visible; use JS to hide/show */ position: fixed; bottom: 0; left: 0; right: 0; background-color: #f4f4f4; padding: 25px; font-size: 14px; text-align: center; z-index: 1000; box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1); }
 
-#cookie-consent .banner { display: flex; flex-direction: column; align-items: center; position: relative; }
+#cookie-consent .banner { display: flex; flex-direction: column; align-items: center; justify-content: centre; position: relative; padding: 1rem; }
 
 #cookie-consent p { font-family: 'eastman', serif; color: #333; margin: 10px 0; }
 
@@ -162,7 +162,7 @@ body { font-family: 'Eastman Alternate', serif; background-color: #ffffff; color
 
 .container { width: 90%; max-width: 800px; margin: 20px auto; padding: 20px; }
 
-/* Header and Main Title */ header h1 { font-family: 'Cinzel Decorative', serif; text-align: center; color: #ff6c6c; margin-bottom: 20px; }
+/* Header and Main Title */ header h1 { font-family: 'Cinzel Decorative', serif; text-align: center; color: #0A0A0A ; margin-bottom: 20px; }
 
 /* Navigation */ nav { background-color: #f6f6f6; padding: 10px 20px; border-bottom: 1px solid #ccc; }
 
@@ -174,7 +174,7 @@ body { font-family: 'Eastman Alternate', serif; background-color: #ffffff; color
 
 /* Sections */ .section { margin: 20px 0; }
 
-/* Headings for Sections */ .content h2 { font-family: 'Cinzel Decorative', serif; font-size: 28px; text-align: center; color: #ff6c6c; margin-bottom: 20px; }
+/* Headings for Sections */ .content h2 { font-family: 'Cinzel Decorative', serif; font-size: 28px; text-align: center; color: #0A0A0A ; margin-bottom: 20px; }
 
 /* Paragraphs and lists (body text) */ .content p, .content ul, .content li { font-family: 'Eastman Alternate', serif; font-size: 16px; }
 
