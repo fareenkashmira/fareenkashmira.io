@@ -1,3 +1,5 @@
+--- Home Page ---
+
 @font-face { font-family: 'eastman'; src: url('fonts/EastmanAlternate.ttf') format('truetype'); }
 
 @font-face { font-family: 'Gladiola'; src: url('fonts/Gladiola.ttf') format('truetype'); }
@@ -56,6 +58,8 @@
 
 #cookie-consent .close-btn { font-size: 20px; top: 8px; right: 12px; } }
 
+--- store Page ---
+
 @font-face { font-family: 'Eastman Alternate'; src: url('../fonts/EastmanAlternate.ttf') format('truetype'); }
 
 @font-face { font-family: 'Gladiola'; src: url('../fonts/Gladiola.ttf') format('truetype'); }
@@ -80,7 +84,7 @@ h2 { font-family: 'Cinzel Decorative', serif; font-size: 28px; text-align: cente
 
 .toggle-button { padding: 10px 20px; background-color: #fff; border: 2px solid #333; cursor: pointer; font-family: 'Eastman Alternate'; font-weight: bold; transition: background-color 0.3s, color 0.3s; }
 
-.toggle-button:hover { background-color: #333; color: white; }
+.toggle-button:hover { background-color: #f6f6f6; color: white; }
 
 /* Product Grid View */ .grid-view { display: flex; flex-wrap: wrap; justify-content: space-around; gap: 20px; }
 
@@ -148,7 +152,7 @@ footer nav ul { list-style: none; display: flex; justify-content: center; gap: 1
 
 footer nav ul li a { text-decoration: none; color: #333; }
 
-+++--------+++
++++----Research Page----+++
 
 /* Load custom fonts using @font-face (assumes fonts are in ../fonts/) */ @font-face { font-family: 'Eastman Alternate'; src: url('../fonts/EastmanAlternate.ttf') format('truetype'); }
 
@@ -216,7 +220,7 @@ footer p { font-family: 'Eastman Alternate', serif; font-size: 14px; color: #666
 
 .content p, .content ul, .content li { font-size: 14px; } }
 
-+++--------+++
++++----view work----+++
 
 @font-face { font-family: 'Eastman Alternate'; src: url('../fonts/EastmanAlternate.ttf') format('truetype'); }
 
