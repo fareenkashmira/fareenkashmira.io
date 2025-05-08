@@ -84,35 +84,48 @@ h2 { font-family: 'Cinzel Decorative', serif; font-size: 28px; text-align: cente
 
 .toggle-button { padding: 10px 20px; background-color: #fff; border: 2px solid #333; cursor: pointer; font-family: 'Eastman Alternate'; font-weight: bold; transition: background-color 0.3s, color 0.3s; }
 
-.toggle-button:hover { background-color: #f6f6f6; color: white; }
+.toggle-button:hover { background-color: #f6f6f6; color: #ff6c6c; }
 
-/* Product Grid View */ .grid-view { display: flex; flex-wrap: wrap; justify-content: space-around; gap: 20px; }
+/* Product Grid View */ .grid-view { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
 
-.grid-view .product-item { width: 30%; text-align: center; }
+.grid-view .product-card { background-color: #fff; border: 1px solid #ddd; border-radius: 10px; overflow: hidden; text-align: center; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease; }
 
-.grid-view .product-item img { width: 100%; height: auto; }
+.grid-view .product-card:hover { transform: scale(1.03); }
 
-.grid-view .product-item h3 { font-family: 'Cinzel Decorative'; font-size: 20px; margin-top: 10px; }
+.grid-view .product-card img { width: 100%; height: 250px; object-fit: cover; }
 
-.grid-view .product-item p { font-family: 'Eastman Alternate'; font-size: 14px; color: #666; }
+.grid-view .product-details { padding: 15px; }
 
-/* Product List View */ .list-view { display: block; }
+.grid-view .product-details h3 { font-family: 'Cinzel Decorative'; font-size: 20px; margin: 10px 0; color: #333; }
 
-.list-view .product-item { display: flex; align-items: center; margin-bottom: 20px; }
+.grid-view .product-details a { display: inline-block; padding: 8px 16px; background-color: #ff6c6c; color: white; text-decoration: none; border-radius: 5px; font-size: 14px; transition: background-color 0.3s ease; }
 
-.list-view .product-item img { width: 150px; height: auto; margin-right: 20px; }
+.grid-view .product-details a:hover { background-color: #e65c5c; }
 
-.list-view .product-item h3 { font-family: 'Cinzel Decorative'; font-size: 24px; margin: 0; }
+/* Product List View */ .list-view { display: flex; flex-direction: column; gap: 20px; }
 
-.list-view .product-item p { font-family: 'Eastman Alternate'; margin: 0; color: #666; }
+.list-view .product-card { display: flex; flex-direction: row; background-color: #fff; border: 1px solid #ddd; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease; }
+
+.list-view .product-card:hover { transform: scale(1.02); }
+
+.list-view .product-card img { width: 200px; height: 200px; object-fit: cover; }
+
+.list-view .product-details { padding: 15px; display: flex; flex-direction: column; justify-content: center; }
+
+.list-view .product-details h3 { font-family: 'Cinzel Decorative'; font-size: 24px; margin: 0 0 10px 0; color: #333; }
+
+.list-view .product-details a { display: inline-block; padding: 8px 16px; background-color: #ff6c6c; color: white; text-decoration: none; border-radius: 5px; font-size: 14px; width: fit-content; transition: background-color 0.3s ease; }
+
+.list-view .product-details a:hover { background-color: #e65c5c; }
 
 /* Footer */ footer { text-align: center; margin-top: 40px; padding: 10px 0; background-color: #f1f1f1; }
 
-footer p { font-family: 'Eastman Alternate'; color: #777; font-size: 14px; } Store css
+footer p { font-family: 'Eastman Alternate'; color: #777; font-size: 14px; }
 
 /* Reset & Base Styles */
 
 { box-sizing: border-box; margin: 0; padding: 0; }
+
 
 body { background-color: #ffffff; color: #333; font-family: 'Eastman Alternate', serif; line-height: 1.6; padding: 0; }
 
@@ -152,7 +165,29 @@ footer nav ul { list-style: none; display: flex; justify-content: center; gap: 1
 
 footer nav ul li a { text-decoration: none; color: #333; }
 
-+++----Research Page----+++
+/* Kooky style for homepage */ .homepage-header { background-color: #ffffff; color: #ff6c6c; text-align: center; padding: 40px 20px; }
+
+.homepage-header h1 { font-family: 'Cambria', serif; font-size: 48px; font-weight: bold; margin-bottom: 10px; }
+
+.homepage-header h2 { font-family: 'Cinzel Decorative', serif; font-size: 24px; color: #ff6c6c; margin-bottom: 30px; }
+
+.homepage-nav ul { list-style: none; display: flex; justify-content: center; gap: 20px; padding: 0; margin-bottom: 30px; }
+
+.homepage-nav ul li a { font-family: 'Eastman Alternate'; text-decoration: none; font-weight: bold; color: #333; transition: color 0.3s; }
+
+.homepage-nav ul li a:hover { color: #ff6c6c; }
+
+.homepage-bottom { display: flex; justify-content: space-between; padding: 20px; }
+
+.homepage-bottom .left-photo { width: 45%; }
+
+.homepage-bottom .right-text { width: 45%; font-family: 'Eastman Alternate'; font-size: 14px; color: #333; }
+
+.butterfly-bg { background-image: url('../images/butterfly-outline.png'); background-repeat: repeat; background-size: 150px; opacity: 0.3; }
+
+
+
+---- Research Page ----
 
 /* Load custom fonts using @font-face (assumes fonts are in ../fonts/) */ @font-face { font-family: 'Eastman Alternate'; src: url('../fonts/EastmanAlternate.ttf') format('truetype'); }
 
