@@ -164,7 +164,7 @@ body { font-family: 'Eastman Alternate', serif; background-color: #ffffff; color
 
 /* Header and Main Title */ header h1 { font-family: 'Cinzel Decorative', serif; text-align: center; color: #0A0A0A ; margin-bottom: 20px; }
 
-/* Navigation */ nav { background-color: #f6f6f6; padding: 10px 20px; border-bottom: 1px solid #ccc; }
+/* Navigation */ nav { background-color: #333; padding: 10px 20px; border-bottom: 1px solid #ccc; }
 
 .navbar { list-style: none; display: flex; justify-content: center; gap: 15px; }
 
