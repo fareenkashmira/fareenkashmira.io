@@ -1,8 +1,9 @@
-@font-face {
-  { font-family: 'Eastman'; src: url('fonts/EastmanAlternate.ttf') format('truetype'); }
 
-@font-face {
-  { font-family: 'Gladiola'; src: url('fonts/Gladiola.ttf') format('truetype'); }
+@font-face { font-family: 'eastman'; src: url('fonts/EastmanAlternate.ttf') format('truetype'); }
+
+@font-face { font-family: 'Gladiola'; src: url('fonts/Gladiola.ttf') format('truetype'); }
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap');
 
 /* Headings */
 h1, h2, h3, h4, h5, h6 {
