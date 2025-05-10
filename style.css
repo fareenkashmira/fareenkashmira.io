@@ -421,3 +421,23 @@ p, ul, li { font-size: 14px; }
 
 .navbar { flex-direction: column; gap: 10px; } }
                                         
+
+.button {
+  padding: 10px 20px;
+  border: 2px solid #ff6c6c;
+  background-color: transparent;
+  color: #ff6c6c;
+  font-family: Cambria, serif;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.3s, color 0.3s;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+}
+
+.button:hover {
+  background-color: #ff6c6c;
+  color: #ffffff;
+}
