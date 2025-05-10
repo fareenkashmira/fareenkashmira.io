@@ -55,7 +55,7 @@ input[type="submit"] {
 --- Home Page ---
 
 
-/* Body Styling */ body { background-image: url('images/6_20241119_003250_0005.png'); background-size: cover; background-position: center; font-family: 'eastman', serif; margin: 0; padding: 0; animation: fadeInUp 1s ease-out; font-size: 15.5px; }
+/* Body Styling */ body { background-image: url('../images/6_20241119_003250_0005.png'); background-size: cover; background-position: center; font-family: 'eastman', serif; margin: 0; padding: 0; animation: fadeInUp 1s ease-out; font-size: 15.5px; }
 
 
 /* Navigation */ .container-nav nav ul { list-style: none; display: flex; justify-content: center; gap: 20px; padding: 20px; background: #f7f7f7; margin: 0; }
