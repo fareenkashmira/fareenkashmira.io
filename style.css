@@ -43,8 +43,8 @@ a {
 /* Buttons */
 button,
 .view-button,
-.other-button-class
-.button
+.other-button-class,
+.button,
 input[type="button"],
 input[type="submit"] {
   font-family: 'Cinzel Decorative', serif;
