@@ -39,6 +39,9 @@ a {
   line-height: 1.6;
 }
 
+label[for="mce-FEEDBACK"] {
+  font-family: 'Eastman', serif;
+}
 
 /* Buttons */
 .button {
