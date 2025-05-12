@@ -39,6 +39,7 @@ a {
   line-height: 1.6;
 }
 
+
 /* Buttons */
 .button {
   display: inline-block;
@@ -66,7 +67,7 @@ a {
 --- Home Page ---
 
 
-/* Body Styling */ body { background-image: url('images/6_20241119_003250_0005.png'); background-size: cover; background-position: center; font-family: 'eastman', serif; margin: 0; padding: 0; animation: fadeInUp 1s ease-out; font-size: 15.5px; }
+/* Body Styling */ body { background-image: url('../images/6_20241119_003250_0005.png'); background-size: cover; background-position: center; font-family: 'eastman', serif; margin: 0; padding: 0; animation: fadeInUp 1s ease-out; font-size: 15.5px; }
 
 
 /* Navigation */ .container-nav nav ul { list-style: none; display: flex; justify-content: center; gap: 20px; padding: 20px; background: #f7f7f7; margin: 0; }
@@ -74,6 +75,10 @@ a {
 .container-nav nav ul li a { text-decoration: none; color: #222; font-weight: bold; }
 
 /* Main Content */ .container-body { padding: 40px; text-align: center; }
+
+.view-work-btn { margin-top: 20px; padding: 10px 20px; background-color: #222; color: #fff; border: none; cursor: pointer; border-radius: 8px; font-family: 'Cinzel Decorative', serif; transition: background-color 0.3s ease; }
+
+.view-work-btn:hover { background-color: #444; }
 
 /* Contact Section */ .container-contact { padding: 40px; background-color: #fafafa; }
 
@@ -99,6 +104,8 @@ a {
 
 #cookie-consent button:hover { background-color: #333; transform: scale(1.05); }
 
+#cookie-consent .close-btn { position: absolute; top: 10px; right: 15px; font-size: 22px; cursor: pointer; color: #999; transition: color 0.3s ease; background: none; border: none; }
+
 #cookie-consent .close-btn:hover { color: #333; }
 
 /* Responsive */ @media (max-width: 480px) { .container-nav nav ul { flex-direction: column; gap: 10px; }
@@ -109,19 +116,8 @@ a {
 
 #cookie-consent button { width: 100%; font-size: 16px; padding: 12px 20px; }
 
-#cookie-consent {
-  position: relative; /* Ensures children use this as positioning context */
-  /* Add styling for the banner here if needed */
-}
+#cookie-consent .close-btn { font-size: 20px; top: 8px; right: 12px; } }
 
-#cookie-consent .close-btn {
-  position: absolute;
-  font-size: 20px;
-  top: 8px;
-  right: 12px;
-  cursor: pointer; /* Improves UX */
-  z-index: 10; /* Ensures it’s above text but not above nav */
-}
 --- store Page ---
 
 
@@ -436,3 +432,4 @@ h2 { font-size: 24px; }
 p, ul, li { font-size: 14px; }
 
 .navbar { flex-direction: column; gap: 10px; } }
+                                        
