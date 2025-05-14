@@ -152,11 +152,8 @@ body {
   cursor: pointer;
   font-family: 'Cinzel Decorative', serif;
   font-size: 16px;
+  line-height: 1.2; /* this centers the text nicely */
   transition: background-color 0.3s ease;
-}
-
-#mc_embed_signup input.button:hover {
-  background-color: #444;
 }
 
 
@@ -168,8 +165,8 @@ body {
   left: 0;
   right: 0;
   background-color: #f4f4f4;
-  padding: 25px;
-  font-size: 14px;
+  padding: 25px 20px 20px;
+  font-size: 16px; /* Slightly bigger text */
   text-align: center;
   z-index: 1000;
   box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
@@ -179,7 +176,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: centre;
+  justify-content: center; /* Fixed typo */
   position: relative;
   padding: 1rem;
 }
@@ -189,31 +186,20 @@ body {
   gap: 15px;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 10px;
+  margin-top: 15px;
 }
 
 #cookie-consent button {
-  background-color: #ff6c6c;
-  color: white;
-  border: none;
-  padding: 14px 30px;
-  font-family: 'Cinzel Decorative', serif;
-  font-size: 18px;
-  border-radius: 18px;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  cursor: pointer;
+  /* Your global `.button` CSS will apply */
+  font-size: 16px; /* Optional: match your global button size */
 }
 
-#cookie-consent button:hover {
-  background-color: #333;
-  transform: scale(1.05);
-}
-
+/* Close button */
 #cookie-consent .close-btn {
   position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 22px;
+  top: 8px;
+  right: 12px;
+  font-size: 24px;
   cursor: pointer;
   color: #999;
   transition: color 0.3s ease;
@@ -224,6 +210,20 @@ body {
 #cookie-consent .close-btn:hover {
   color: #333;
 }
+
+/* Mobile tweak */
+@media (max-width: 480px) {
+  #cookie-consent {
+    font-size: 15px;
+    padding: 20px 15px;
+  }
+
+  #cookie-consent .close-btn {
+    top: 6px;
+    right: 10px;
+  }
+  }
+
 
 /* Main Body */
 .container-body {
