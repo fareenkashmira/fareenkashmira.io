@@ -40,9 +40,6 @@ a {
   line-height: 1.6;
 }
 
-label {
-  font-family: 'Eastman', serif;
-}
 
 /* Buttons */
 .button {
@@ -103,4 +100,61 @@ body {
   gap: 20px;
   padding: 20px;
   margin: 0;
+}
+
+
+/*  Contact Model Form */
+.container-contact {
+  padding: 40px;
+  background-color: transparent; /* changed from #fafafa */
+}
+
+/* Optional: remove Mailchimp default background */
+#mc_embed_signup {
+  background-color: transparent;
+  padding: 0;
+  border: none;
+}
+
+/* Labels */
+#mc_embed_signup label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 4px;
+  font-family: 'eastman', serif;
+  color: #333; /* or white if on dark background */
+}
+
+/* Input and textarea styling */
+#mc_embed_signup input[type="text"],
+#mc_embed_signup input[type="email"],
+#mc_embed_signup textarea {
+  width: 100%;
+  padding: 12px;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #ffffff; /* white fields */
+  font-family: 'eastman', serif;
+  font-size: 15px;
+  box-sizing: border-box;
+  color: #000;
+}
+
+/* Submit Button */
+#mc_embed_signup input.button {
+  background-color: #222;
+  color: #fff;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+#mc_embed_signup input.button:hover {
+  background-color: #444;
 }
