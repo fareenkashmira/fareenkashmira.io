@@ -4,237 +4,58 @@
 
 @font-face { font-family: 'Gladiola'; src: url('../fonts/Gladiola.ttf') format('truetype'); }
 
+/* Headings */ h1, h2, h3, h4, h5, h6 { font-weight: normal; margin: 0; padding: 0; }
 
-/* Headings */
-h1, h2, h3, h4, h5, h6 {
-  font-weight: normal;
-  margin: 0;
-  padding: 0;
-}
+h1 { font-family: 'Cinzel Decorative', serif; font-size: 3rem; }
 
-h1 {
-  font-family: 'Cinzel Decorative', serif;
-  font-size: 3rem;
-}
+h2 { font-family: 'Gladiola', cursive; font-size: 2rem; }
 
-h2 {
-  font-family: 'Gladiola', cursive;
-  font-size: 2rem;
-}
+h3 { font-family: 'Cinzel Decorative', serif; font-size: 2rem; }
 
-h3 {
-  font-family: 'Cinzel Decorative', serif;
-  font-size: 2rem;
-}
+h4, h5, h6 { font-family: 'Cinzel Decorative', serif; font-size: 1.5rem; } /* Paragraphs and other text */ p, ul li, a { font-family: 'Eastman', sans-serif; font-size: 1rem; line-height: 1.6; }
 
-h4, h5, h6 {
-  font-family: 'Cinzel Decorative', serif;
-  font-size: 1.5rem;
-}
-/* Paragraphs and other text */
-p,
-ul li,
-a {
-  font-family: 'Eastman', sans-serif;
-  font-size: 1rem;
-  line-height: 1.6;
-}
+/* Buttons */ .button { display: inline-block; padding: 10px 20px; background-color: #ff6c6c; color: white; text-align: center; text-decoration: none; border: none; border-radius: 5px; cursor: pointer; font-family: Cinzel Decorative, serif; font-size: 16px; transition: background-color 0.3s, box-shadow 0.3s; }
 
+.button:hover { background-color: #e25555; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); }
 
-/* Buttons */
-.button {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #ff6c6c;
-  color: white;
-  text-align: center;
-  text-decoration: none;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-family: Cinzel Decorative, serif;
-  font-size: 16px;
-  transition: background-color 0.3s, box-shadow 0.3s;
-}
+.button:focus { outline: none; }
 
-.button:hover {
-  background-color: #e25555;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
+/* Body Styling */ body { background-image: url('../images/6_20241119_003250_0005.png'); background-size: cover; background-position: center; font-family: 'eastman', serif; margin: 0; padding: 0; animation: fadeInUp 1s ease-out; font-size: 15.5px; }
 
-.button:focus {
-  outline: none;
-}
+/* Navigation */ .navbar { width: 100%; background: #f7f7f7;  /* Add background here */ }
 
+.navbar nav { width: 100%; }
 
-/* Body Styling */ 
+.navbar nav ul { list-style: none; display: flex; justify-content: center; gap: 20px; padding: 20px; margin: 0; }
 
-body {
-  background-image: url('../images/6_20241119_003250_0005.png');
-  background-size: cover;
-  background-position: center;
-  font-family: 'eastman', serif;
-  margin: 0;
-  padding: 0;
-  animation: fadeInUp 1s ease-out;
-  font-size: 15.5px;
-}
+/*  Contact Model Form */ .container-contact { padding: 40px; background-color: transparent; / changed from #fafafa */ }
 
+/* Optional: remove Mailchimp default background */ #mc_embed_signup { background-color: transparent; padding: 0; border: none; }
 
+/* Labels */ #mc_embed_signup label { font-weight: bold; display: block; margin-bottom: 4px; font-family: 'eastman', serif; color: #333; / or white if on dark background */ }
 
-/* Navigation */ 
+/* Input and textarea styling */ #mc_embed_signup input[type="text"], #mc_embed_signup input[type="email"], #mc_embed_signup textarea { width: 100%; padding: 12px; margin-top: 6px; margin-bottom: 16px; border: 1px solid #ccc; border-radius: 8px; background-color: #ffffff; / white fields */ font-family: 'eastman', serif; font-size: 15px; box-sizing: border-box; color: #000; }
 
-.navbar {
-  width: 100%;
-  background: #f7f7f7;  /* Add background here */
-}
+/* Submit Button */ #mc_embed_signup input.button { background-color: #222; color: #fff; padding: 12px 24px; border: none; border-radius: 8px; cursor: pointer; font-family: 'Cinzel Decorative', serif; font-size: 16px; line-height: 1.2; / this centers the text nicely */ transition: background-color 0.3s ease; }
 
-.navbar nav {
-  width: 100%;
-}
+/* cookie banner */ #cookie-consent { display: block; position: fixed; bottom: 0; left: 0; right: 0; background-color: #f4f4f4; padding: 25px; font-size: 14px; text-align: center; z-index: 1000; box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1); }
 
-.navbar nav ul {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  padding: 20px;
-  margin: 0;
-}
+#cookie-consent .banner { display: flex; flex-direction: column; align-items: center; justify-content: centre; position: relative; padding: 1rem; }
 
+#cookie-consent .button-group { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; margin-top: 10px; }
 
-/*  Contact Model Form */
-.container-contact {
-  padding: 40px;
-  background-color: transparent; /* changed from #fafafa */
-}
+#cookie-consent button { background-color: #ff6c6c; color: white; border: none; padding: 14px 30px; font-family: 'Cinzel Decorative', serif; font-size: 18px; border-radius: 18px; transition: background-color 0.3s ease, transform 0.3s ease; cursor: pointer; }
 
-/* Optional: remove Mailchimp default background */
-#mc_embed_signup {
-  background-color: transparent;
-  padding: 0;
-  border: none;
-}
+#cookie-consent button:hover { background-color: #333; transform: scale(1.05); }
 
-/* Labels */
-#mc_embed_signup label {
-  font-weight: bold;
-  display: block;
-  margin-bottom: 4px;
-  font-family: 'eastman', serif;
-  color: #333; /* or white if on dark background */
-}
+#cookie-consent .close-btn { position: absolute; top: 10px; right: 15px; font-size: 22px; cursor: pointer; color: #999; transition: color 0.3s ease; background: none; border: none; }
 
-/* Input and textarea styling */
-#mc_embed_signup input[type="text"],
-#mc_embed_signup input[type="email"],
-#mc_embed_signup textarea {
-  width: 100%;
-  padding: 12px;
-  margin-top: 6px;
-  margin-bottom: 16px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  background-color: #ffffff; /* white fields */
-  font-family: 'eastman', serif;
-  font-size: 15px;
-  box-sizing: border-box;
-  color: #000;
-}
+#cookie-consent .close-btn:hover { color: #333; }
 
-/* Submit Button */
-#mc_embed_signup input.button {
-  background-color: #222;
-  color: #fff;
-  padding: 12px 24px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-family: 'Cinzel Decorative', serif;
-  font-size: 16px;
-  line-height: 1.2; /* this centers the text nicely */
-  transition: background-color 0.3s ease;
-}
+/* Main Body */ .container-body { padding: 60px 30px; text-align: center; max-width: 800px; margin: 0 auto; }
 
+@media (max-width: 480px) { .container-body { padding: 40px 20px; } }
 
-/* cookie banner */
-#cookie-consent {
-  display: block;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: #f4f4f4;
-  padding: 25px 20px 20px;
-  font-size: 16px; /* Slightly bigger text */
-  text-align: center;
-  z-index: 1000;
-  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
-}
+/* Main Body */ .container-body { padding: 60px 30px; text-align: center; max-width: 800px; margin: 0 auto; }
 
-#cookie-consent .banner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center; /* Fixed typo */
-  position: relative;
-  padding: 1rem;
-}
-
-#cookie-consent .button-group {
-  display: flex;
-  gap: 15px;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 15px;
-}
-
-#cookie-consent button {
-  /* Your global `.button` CSS will apply */
-  font-size: 16px; /* Optional: match your global button size */
-}
-
-/* Close button */
-#cookie-consent .close-btn {
-  position: absolute;
-  top: 8px;
-  right: 12px;
-  font-size: 24px;
-  cursor: pointer;
-  color: #999;
-  transition: color 0.3s ease;
-  background: none;
-  border: none;
-}
-
-#cookie-consent .close-btn:hover {
-  color: #333;
-}
-
-/* Mobile tweak */
-@media (max-width: 480px) {
-  #cookie-consent {
-    font-size: 15px;
-    padding: 20px 15px;
-  }
-
-  #cookie-consent .close-btn {
-    top: 6px;
-    right: 10px;
-  }
-  }
-
-
-/* Main Body */
-.container-body {
-  padding: 60px 30px;
-  text-align: center;
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-@media (max-width: 480px) {
-  .container-body {
-    padding: 40px 20px;
-  }
-}
+@media (max-width: 480px) { .container-body { padding: 40px 20px; } }
