@@ -87,6 +87,14 @@ body {
 
 /* Navigation */ 
 
+.navbar {
+  width: 100%;
+  background: #f7f7f7;  /* Add background here */
+}
+
+.navbar nav {
+  width: 100%;
+}
 
 .navbar nav ul {
   list-style: none;
@@ -94,12 +102,5 @@ body {
   justify-content: center;
   gap: 20px;
   padding: 20px;
-  background: #f7f7f7;
   margin: 0;
-}
-
-.navbar nav ul li a {
-  text-decoration: none;
-  color: #222;
-  font-weight: bold;
 }
