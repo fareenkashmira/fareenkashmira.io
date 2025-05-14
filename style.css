@@ -88,7 +88,7 @@ body {
 /* Navigation */ 
 
 
-.container-nav nav ul {
+.navbar nav ul {
   list-style: none;
   display: flex;
   justify-content: center;
@@ -98,7 +98,7 @@ body {
   margin: 0;
 }
 
-.container-nav nav ul li a {
+.navbar nav ul li a {
   text-decoration: none;
   color: #222;
   font-weight: bold;
