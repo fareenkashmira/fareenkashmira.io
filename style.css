@@ -158,3 +158,83 @@ body {
 #mc_embed_signup input.button:hover {
   background-color: #444;
 }
+
+
+/* cookie banner */
+#cookie-consent {
+  display: block;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #f4f4f4;
+  padding: 25px;
+  font-size: 14px;
+  text-align: center;
+  z-index: 1000;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+}
+
+#cookie-consent .banner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: centre;
+  position: relative;
+  padding: 1rem;
+}
+
+#cookie-consent .button-group {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+#cookie-consent button {
+  background-color: #ff6c6c;
+  color: white;
+  border: none;
+  padding: 14px 30px;
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 18px;
+  border-radius: 18px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+}
+
+#cookie-consent button:hover {
+  background-color: #333;
+  transform: scale(1.05);
+}
+
+#cookie-consent .close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 22px;
+  cursor: pointer;
+  color: #999;
+  transition: color 0.3s ease;
+  background: none;
+  border: none;
+}
+
+#cookie-consent .close-btn:hover {
+  color: #333;
+}
+
+/* Main Body */
+.container-body {
+  padding: 60px 30px;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+@media (max-width: 480px) {
+  .container-body {
+    padding: 40px 20px;
+  }
+}
