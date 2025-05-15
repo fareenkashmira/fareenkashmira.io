@@ -1,83 +1,28 @@
-/* Fonts */ @font-face { font-family: 'eastman'; src: url('../fonts/EastmanAlternate.ttf') format('truetype'); }
-@font-face { font-family: 'Gladiola'; src: url('../fonts/Gladiola.ttf') format('truetype'); }
+/* Fonts */ @font-face { font-family: 'eastman'; src: url('../fonts/EastmanAlternate.ttf') format('truetype'); } @font-face { font-family: 'Gladiola'; src: url('../fonts/Gladiola.ttf') format('truetype'); }
 
+/* Headings / h1, h2, h3, h4, h5, h6 { font-weight: normal; margin: 0; padding: 0; } h1 { font-family: 'Cinzel Decorative'; font-size: 2.5rem; / reduced from 3rem / } h2 { font-family: 'Gladiola'; font-size: 1.75rem; / reduced from 2rem */ } h3 { font-family: 'Cinzel Decorative'; font-size: 2rem; } h4, h5, h6 { font-family: 'Cinzel Decorative'; font-size: 1.5rem; }
 
-
-/* Headings */ h1, h2, h3, h4, h5, h6 { font-weight: normal; margin: 0; padding: 0; }
-h1 { font-family: 'Cinzel Decorative'; font-size: 3rem; }
-h2 { font-family: 'Gladiola'; font-size: 2rem; }
-h3 { font-family: 'Cinzel Decorative'; font-size: 2rem; }
-h4, h5, h6 { font-family: 'Cinzel Decorative'; font-size: 1.5rem; }
 /* Paragraphs and other text */ p, ul li, a { font-family: 'eastman'; font-size: 1rem; line-height: 1.6; }
 
-
-
-/* Buttons (general) */ .button { display: inline-block; padding: 10px 20px; background-color: #ff6c6c; color: white; text-align: center; text-decoration: none; border: none; border-radius: 5px; cursor: pointer; font-family: 'Cinzel Decorative'; font-size: 16px; transition: background-color 0.3s, box-shadow 0.3s; }
-.button:hover { background-color: #e25555; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); }
-.button:focus { outline: none; }
-
-
+/* Buttons (general) */ .button { display: inline-block; padding: 10px 20px; background-color: #ff6c6c; color: white; text-align: center; text-decoration: none; border: none; border-radius: 5px; cursor: pointer; font-family: 'Cinzel Decorative'; font-size: 16px; transition: background-color 0.3s, box-shadow 0.3s; } .button:hover { background-color: #e25555; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); } .button:focus { outline: none; }
 
 /* Body Styling */ body { background-image: url('../images/6_20241119_003250_0005.png'); background-size: cover; background-position: center; font-family: 'eastman'; margin: 0; padding: 0; animation: fadeInUp 1s ease-out; font-size: 15.5px; }
 
+/* Navigation / .navbar { width: 100%; background: #f7f7f7; } .navbar nav { width: 100%; } .navbar nav ul { list-style: none; display: flex; justify-content: center; gap: 20px; padding: 20px; margin: 0; } / Navigation Links */ .navbar nav ul li a { color: #222; text-decoration: none; padding: 8px 12px; transition: color 0.3s ease; } .navbar nav ul li a:hover { color: #ff6c6c; text-decoration: underline; }
 
+/* Contact Model Form / .container-contact { padding: 40px; background-color: transparent; } / Optional: remove Mailchimp default background / #mc_embed_signup { background-color: transparent; padding: 0; border: none; } / Labels / #mc_embed_signup label { font-weight: bold; display: block; margin-bottom: 4px; font-family: 'eastman'; color: #333; } / Input and textarea styling / #mc_embed_signup input[type="text"], #mc_embed_signup input[type="email"], #mc_embed_signup textarea { width: 100%; padding: 12px; margin-top: 6px; margin-bottom: 16px; border: 1px solid #ccc; border-radius: 8px; background-color: #ffffff; font-family: 'eastman'; font-size: 15px; box-sizing: border-box; color: #000; } / Submit Button (updated border-radius) / .form-submit { background-color: #222; color: #fff; padding: 12px 24px; border: none; border-radius: 5px; / changed from 8px to 5px */ cursor: pointer; font-family: 'Cinzel Decorative'; font-size: 16px; transition: background-color 0.3s ease; } .form-submit:hover { background-color: #ff6c6c; }
 
-/* Navigation */ .navbar { width: 100%; background: #f7f7f7; }
-.navbar nav { width: 100%; }
-.navbar nav ul { list-style: none; display: flex; justify-content: center; gap: 20px; padding: 20px; margin: 0; }
-/* Navigation Links */ .navbar nav ul li a { color: #222; text-decoration: none; padding: 8px 12px; transition: color 0.3s ease; }
-.navbar nav ul li a:hover { color: #ff6c6c; text-decoration: underline; }
+/* Cookie Banner */ #cookie-consent { display: block; position: fixed; bottom: 0; left: 0; right: 0; background-color: #f4f4f4; padding: 25px; font-size: 14px; text-align: center; z-index: 1000; box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1); } #cookie-consent .banner { display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; padding: 1rem; } #cookie-consent .button-group { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; margin-top: 10px; } #cookie-consent button { background-color: #ff6c6c; color: white; border: none; padding: 14px 30px; font-family: 'Cinzel Decorative'; font-size: 18px; border-radius: 18px; transition: background-color 0.3s ease, transform 0.3s ease; cursor: pointer; } #cookie-consent button:hover { background-color: #333; transform: scale(1.05); } #cookie-consent .close-btn { position: absolute; top: 10px; right: 15px; font-size: 22px; cursor: pointer; color: #999; transition: color 0.3s ease; background: none; border: none; } #cookie-consent .close-btn:hover { color: #333; }
 
+/* Toggle Button Container / .view-options { display: flex; justify-content: flex-end; margin: 20px 0; } / Toggle Button Base Styling / .toggle-button { padding: 8px 14px; font-size: 14px; border: 1px solid #888; background-color: #f0f0f0; cursor: pointer; transition: background 0.3s, border-color 0.3s; border-radius: 6px; } / Hover Effect / .toggle-button:hover { background-color: #ddd; } / Active State Styling / .toggle-button.active { background-color: #ccc; border-color: #555; font-weight: bold; } / Layout Classes for Toggle Effect / .grid-view { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; } .list-view { display: flex; flex-direction: column; gap: 30px; } / Optional Smooth Transition */ .fade-transition { opacity: 0.6; transition: opacity 0.3s ease; }
 
+/* Responsive View Option Positioning */ @media (max-width: 600px) { .view-options { justify-content: center; } .toggle-button { font-size: 12px; padding: 6px 10px; } }
 
-/* Contact Model Form */ .container-contact { padding: 40px; background-color: transparent; }
-/* Optional: remove Mailchimp default background */ #mc_embed_signup { background-color: transparent; padding: 0; border: none; }
-/* Labels */ #mc_embed_signup label { font-weight: bold; display: block; margin-bottom: 4px; font-family: 'eastman'; color: #333; }
-/* Input and textarea styling */ #mc_embed_signup input[type="text"], #mc_embed_signup input[type="email"], #mc_embed_signup textarea { width: 100%; padding: 12px; margin-top: 6px; margin-bottom: 16px; border: 1px solid #ccc; border-radius: 8px; background-color: #ffffff; font-family: 'eastman'; font-size: 15px; box-sizing: border-box; color: #000; }
-/* Submit Button (separate class) */ .form-submit { background-color: #222; color: #fff; padding: 12px 24px; border: none; border-radius: 8px; cursor: pointer; font-family: 'Cinzel Decorative'; font-size: 16px; transition: background-color 0.3s ease; }
-.form-submit:hover { background-color: #ff6c6c; }
+/* Main Body */ .container-body { padding: 60px 30px; text-align: center; max-width: 800px; margin: 0 auto; } @media (max-width: 480px) { .container-body { padding: 40px 20px; } }
 
+/* === UNIVERSAL CARD STYLES === / .card { background: #fff; border-radius: 1rem; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; display: flex; flex-direction: column; } .card:hover { transform: translateY(-8px); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); } / === CARD IMAGE === / .card img, .card .card-img { width: 100%; height: 200px; object-fit: cover; border-top-left-radius: 1rem; border-top-right-radius: 1rem; } / === CARD CONTENT / DETAILS === / .card-body, .product-details { padding: 1rem 1.2rem; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; } .card-title, .product-details h3 { font-family: 'Cinzel Decorative', serif; font-weight: 700; font-size: 1.3rem; margin-bottom: 0.5rem; color: #333; } .card-text, .product-details p { font-family: 'eastman', serif; font-size: 1rem; color: #555; flex-grow: 1; margin-bottom: 1rem; } / === BUTTON / LINK === / .card-link, .button { display: inline-block; font-family: 'Cinzel Decorative', serif; font-weight: 700; text-decoration: none; color: #ff6c6c; border: 2px solid #ff6c6c; padding: 0.5rem 1rem; border-radius: 25px; text-align: center; transition: all 0.3s ease; align-self: flex-start; } .card-link:hover, .button:hover { background: #ff6c6c; color: #fff; } / === GRID CONTAINER (for both products and research) === / .grid-view, .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; padding: 1rem 0; } / === SECTION HEADINGS === */ #product-container h1, #research h3 { font-family: 'Cinzel Decorative', serif; font-size: 2rem; color: #333; text-align: center; margin-bottom: 2rem; }
 
-
-/* Cookie Banner */ #cookie-consent { display: block; position: fixed; bottom: 0; left: 0; right: 0; background-color: #f4f4f4; padding: 25px; font-size: 14px; text-align: center; z-index: 1000; box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1); }
-#cookie-consent .banner { display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; padding: 1rem; }
-#cookie-consent .button-group { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; margin-top: 10px; }
-#cookie-consent button { background-color: #ff6c6c; color: white; border: none; padding: 14px 30px; font-family: 'Cinzel Decorative'; font-size: 18px; border-radius: 18px; transition: background-color 0.3s ease, transform 0.3s ease; cursor: pointer; }
-#cookie-consent button:hover { background-color: #333; transform: scale(1.05); }
-#cookie-consent .close-btn { position: absolute; top: 10px; right: 15px; font-size: 22px; cursor: pointer; color: #999; transition: color 0.3s ease; background: none; border: none; }
-#cookie-consent .close-btn:hover { color: #333; }
-
-
-/* Toggle Button Container */.view-options { display: flex; justify-content: flex-end; margin: 20px 0; }
-/* Toggle Button Base Styling */.toggle-button { padding: 8px 14px; font-size: 14px; border: 1px solid #888; background-color: #f0f0f0; cursor: pointer; transition: background 0.3s, border-color 0.3s; border-radius: 6px; }
-/* Hover Effect */.toggle-button:hover { background-color: #ddd; }
-/* Active State Styling */.toggle-button.active { background-color: #ccc; border-color: #555; font-weight: bold; }
-/* Layout Classes for Toggle Effect */.grid-view { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
-.list-view { display: flex; flex-direction: column; gap: 30px; }
-/* Optional Smooth Transition */.fade-transition { opacity: 0.6; transition: opacity 0.3s ease; }
-
-/* Responsive View Option Positioning */@media (max-width: 600px) { 
-  .view-options { justify-content: center; } 
-  .toggle-button { font-size: 12px; padding: 6px 10px; } 
-}
-
-
-/* Main Body */ .container-body { padding: 60px 30px; text-align: center; max-width: 800px; margin: 0 auto; }
-@media (max-width: 480px) { .container-body { padding: 40px 20px; } }
-
-
-/* === UNIVERSAL CARD STYLES === */ .card{background:#fff;border-radius:1rem;box-shadow:0 4px 10px rgba(0,0,0,0.1);overflow:hidden;transition:transform 0.3s ease,box-shadow 0.3s ease;display:flex;flex-direction:column;} .card:hover{transform:translateY(-8px);box-shadow:0 8px 20px rgba(0,0,0,0.15);}
-/* === CARD IMAGE === */ .card img,.card .card-img{width:100%;height:200px;object-fit:cover;border-top-left-radius:1rem;border-top-right-radius:1rem;}
-/* === CARD CONTENT / DETAILS === */ .card-body,.product-details{padding:1rem 1.2rem;flex-grow:1;display:flex;flex-direction:column;justify-content:space-between;} .card-title,.product-details h3{font-family:'Cinzel Decorative', serif;font-weight:700;font-size:1.3rem;margin-bottom:0.5rem;color:#333;} .card-text,.product-details p{font-family:'eastman', serif;font-size:1rem;color:#555;flex-grow:1;margin-bottom:1rem;}
-/* === BUTTON / LINK === */ .card-link,.button{display:inline-block;font-family:'Cinzel Decorative', serif;font-weight:700;text-decoration:none;color:#ff6c6c;border:2px solid #ff6c6c;padding:0.5rem 1rem;border-radius:25px;text-align:center;transition:all 0.3s ease;align-self:flex-start;} .card-link:hover,.button:hover{background:#ff6c6c;color:#fff;}
-/* === GRID CONTAINER (for both products and research) === */ .grid-view,.cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;padding:1rem 0;}
-/* === SECTION HEADINGS === */ #product-container h1,#research h3{font-family:'Cinzel Decorative', serif;font-size:2rem;color:#333;text-align:center;margin-bottom:2rem;}
-
-
-/* Footer */ .container-footer { text-align: center; padding: 40px 20px; background-color: transparent; }
-.container-footer a { text-decoration: none; color: #222; margin: 0 5px; }
-.container-footer a:hover { text-decoration: underline; }
-.container-footer p { margin: 8px 0; }
-
+/* Footer */ .container-footer { text-align: center; padding: 40px 20px; background-color: transparent; } .container-footer a { text-decoration: none; color: #222; margin: 0 5px; } .container-footer a:hover { text-decoration: underline; } .container-footer p { margin: 8px 0; } .container-footer ul { list-style: none; padding-left: 0; margin: 0; } .container-footer li { display: inline; margin: 0 10px; }
 
 /* Social Links inside Footer */ .social-links { margin-bottom: 15px; font-size: 16px; }
+
