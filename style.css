@@ -28,6 +28,10 @@ h4, h5, h6 { font-family: 'Cinzel Decorative'; font-size: 1.5rem; }
 
 .navbar nav ul { list-style: none; display: flex; justify-content: center; gap: 20px; padding: 20px; margin: 0; }
 
+/* Navigation Links */ .navbar nav ul li a { color: #222; text-decoration: none; padding: 8px 12px; transition: color 0.3s ease; }
+
+.navbar nav ul li a:hover { color: #ff6c6c; text-decoration: underline; }
+
 /* Contact Model Form */ .container-contact { padding: 40px; background-color: transparent; }
 
 /* Optional: remove Mailchimp default background */ #mc_embed_signup { background-color: transparent; padding: 0; border: none; }
