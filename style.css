@@ -31,11 +31,19 @@ h4, h5, h6 { font-family: 'Cinzel Decorative'; font-size: 1.5rem; }
 
 
 /* Contact Model Form */ .container-contact { padding: 40px; background-color: transparent; }
+
 /* Optional: remove Mailchimp default background */ #mc_embed_signup { background-color: transparent; padding: 0; border: none; }
+
 /* Labels */ #mc_embed_signup label { font-weight: bold; display: block; margin-bottom: 4px; font-family: 'eastman'; color: #333; }
+
 /* Input and textarea styling */ #mc_embed_signup input[type="text"], #mc_embed_signup input[type="email"], #mc_embed_signup textarea { width: 100%; padding: 12px; margin-top: 6px; margin-bottom: 16px; border: 1px solid #ccc; border-radius: 5px; background-color: #ffffff; font-family: 'eastman'; font-size: 15px; box-sizing: border-box; color: #000; }
-/* Submit Button (separate class) */ .form-submit { background-color: #ff6c6c; color: #fff; padding: 12px 24px; border: none; border-radius: 5px; cursor: pointer; font-family: 'Cinzel Decorative'; font-size: 16px; transition: background-color 0.3s ease; display: inline-block; width: auto; box-sizing: border-box; }
-.form-submit:hover { background-color: #cc5858; /* slightly darker shade for hover */ }
+
+/* Submit Button */ .form-submit { background-color: #ff6c6c; color: #fff; padding: 12px 24px; border: none; border-radius: 5px; cursor: pointer; font-family: 'Cinzel Decorative'; font-size: 16px; transition: background-color 0.3s ease; display: inline-block; width: auto; box-sizing: border-box; max-width: 100%; }
+
+.form-submit:hover { background-color: #cc5858; /* slightly darker shade */ }
+
+/* Button container */ .clear.foot { text-align: center; / centers the button */ }
+
 
 
 
