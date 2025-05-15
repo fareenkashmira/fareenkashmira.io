@@ -58,3 +58,12 @@ h4, h5, h6 { font-family: 'Cinzel Decorative'; font-size: 1.5rem; }
 
 @media (max-width: 480px) { .container-body { padding: 40px 20px; } }
 
+/* Footer */ .container-footer { text-align: center; padding: 40px 20px; background-color: #f0f0f0; }
+
+.container-footer a { text-decoration: none; color: #222; margin: 0 5px; }
+
+.container-footer a:hover { text-decoration: underline; }
+
+.container-footer p { margin: 8px 0; }
+
+/* Social Links inside Footer */ .social-links { margin-bottom: 15px; font-size: 16px; }
