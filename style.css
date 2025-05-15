@@ -66,6 +66,11 @@ h4, h5, h6 { font-family: 'Cinzel Decorative'; font-size: 1.5rem; }
 @media (max-width: 480px) { .container-body { padding: 40px 20px; } }
 
 
+.card { padding: 20px; border: 1px solid #ddd; border-radius: 12px; background-color: #fefefe; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); transition: transform 0.2s, box-shadow 0.2s; }
+.card:hover { transform: translateY(-4px); box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08); }
+@media (max-width: 600px) { .card { padding: 16px; border-radius: 10px; } }
+
+
 /* Footer */ .container-footer { text-align: center; padding: 40px 20px; background-color: #f0f0f0; }
 .container-footer a { text-decoration: none; color: #222; margin: 0 5px; }
 .container-footer a:hover { text-decoration: underline; }
