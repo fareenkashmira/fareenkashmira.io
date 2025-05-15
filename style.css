@@ -74,7 +74,7 @@ h4, h5, h6 { font-family: 'Cinzel Decorative'; font-size: 1.5rem; }
 /* === SECTION HEADINGS === */ #product-container h1,#research h3{font-family:'Cinzel Decorative', serif;font-size:2rem;color:#333;text-align:center;margin-bottom:2rem;}
 
 
-/* Footer */ .container-footer { text-align: center; padding: 40px 20px; background-color: #f0f0f0; }
+/* Footer */ .container-footer { text-align: center; padding: 40px 20px; background-color: transparent; }
 .container-footer a { text-decoration: none; color: #222; margin: 0 5px; }
 .container-footer a:hover { text-decoration: underline; }
 .container-footer p { margin: 8px 0; }
