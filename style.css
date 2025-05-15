@@ -34,8 +34,8 @@ h4, h5, h6 { font-family: 'Cinzel Decorative'; font-size: 1.5rem; }
 /* Optional: remove Mailchimp default background */ #mc_embed_signup { background-color: transparent; padding: 0; border: none; }
 /* Labels */ #mc_embed_signup label { font-weight: bold; display: block; margin-bottom: 4px; font-family: 'eastman'; color: #333; }
 /* Input and textarea styling */ #mc_embed_signup input[type="text"], #mc_embed_signup input[type="email"], #mc_embed_signup textarea { width: 100%; padding: 12px; margin-top: 6px; margin-bottom: 16px; border: 1px solid #ccc; border-radius: 5px; background-color: #ffffff; font-family: 'eastman'; font-size: 15px; box-sizing: border-box; color: #000; }
-/* Submit Button (separate class) */ .form-submit { background-color: #222; color: #fff; padding: 12px 24px; border: none; border-radius: 5px; cursor: pointer; font-family: 'Cinzel Decorative'; font-size: 16px; transition: background-color 0.3s ease; }
-.form-submit:hover { background-color: #ff6c6c; }
+/* Submit Button (separate class) */ .form-submit { background-color: #ff6c6c; color: #fff; padding: 12px 24px; border: none; border-radius: 5px; cursor: pointer; font-family: 'Cinzel Decorative'; font-size: 16px; transition: background-color 0.3s ease; display: inline-block; width: auto; box-sizing: border-box; }
+.form-submit:hover { background-color: #cc5858; /* slightly darker shade for hover */ }
 
 
 
@@ -48,6 +48,7 @@ h4, h5, h6 { font-family: 'Cinzel Decorative'; font-size: 1.5rem; }
 #cookie-consent .close-btn:hover { color: #333; }
 
 
+
 /* Toggle Button Container */.view-options { display: flex; justify-content: flex-end; margin: 20px 0; }
 /* Toggle Button Base Styling */.toggle-button { padding: 8px 14px; font-size: 14px; border: 1px solid #888; background-color: #f0f0f0; cursor: pointer; transition: background 0.3s, border-color 0.3s; border-radius: 6px; }
 /* Hover Effect */.toggle-button:hover { background-color: #ddd; }
@@ -55,6 +56,7 @@ h4, h5, h6 { font-family: 'Cinzel Decorative'; font-size: 1.5rem; }
 /* Layout Classes for Toggle Effect */.grid-view { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
 .list-view { display: flex; flex-direction: column; gap: 30px; }
 /* Optional Smooth Transition */.fade-transition { opacity: 0.6; transition: opacity 0.3s ease; }
+
 
 /* Responsive View Option Positioning */@media (max-width: 600px) { 
   .view-options { justify-content: center; } 
