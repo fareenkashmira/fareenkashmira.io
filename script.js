@@ -36,21 +36,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* --- Contact Form Handler --- */
-  const form = document.getElementById('mc_embed_signup');
-  if (form) {
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const name = form.querySelector('input[name="NAME"]')?.value.trim();
-      const email = form.querySelector('input[name="EMAIL"]')?.value.trim();
+  <script>
+document.getElementById('mc-form').addEventListener('submit', function (e) {
+  e.preventDefault();
 
-      if (!name || !email) return alert('Please fill in all required fields.');
+  const form = e.target;
+  const name = encodeURIComponent(form.NAME.value.trim());
+  const email = encodeURIComponent(form.EMAIL.value.trim());
+  const feedback = encodeURIComponent(form.FEEDBACK.value.trim());
 
-      localStorage.setItem('contactName', name);
-      localStorage.setItem('contactEmail', email);
-      form.reset();
-      alert('Thanks! Your message has been submitted.');
-    });
+  if (!name || !email || !feedback) {
+    document.getElementById('mc-response').textContent = 'Please fill in all fields.';
+    return;
   }
+
+  // Replace YOUR_U and YOUR_ID below with your actual Mailchimp values
+  const u = "68495ad73394985325e320010";
+  const id = "420ecd8c5c";
+  const url = `https://fareenkashmira.us10.list-manage.com/subscribe/post-json?u=${u}&id=${id}&c=?`;
+
+  const script = document.createElement('script');
+  const params = `&EMAIL=${email}&NAME=${name}&FEEDBACK=${feedback}`;
+
+  script.src = url + params;
+  document.body.appendChild(script);
+
+  window.callback = function (data) {
+    const msg = document.getElementById('mc-response');
+    if (data.result === "success") {
+      msg.textContent = "Thank you! Your message was sent.";
+      msg.style.color = "green";
+      form.reset();
+    } else {
+      msg.textContent = data.msg || "Oops! Something went wrong.";
+      msg.style.color = "red";
+    }
+  };
+});
 
 
   /* --- Store Page View Toggle --- */
