@@ -55,27 +55,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* --- Store Page View Toggle --- */
   const toggleBtn = document.getElementById('toggleView');
-const container = document.getElementById('product-container');
-const products = document.getElementById('products');
+const productsContainer = document.getElementById('products');
 
-if (toggleBtn && container && products) {
-  // Apply saved view from localStorage on page load
+if (toggleBtn && productsContainer) {
+  // On load, set the view from localStorage
   const savedView = localStorage.getItem('viewMode');
   if (savedView === 'list') {
-    container.classList.add('list-view');
+    productsContainer.classList.add('list-view');
+    productsContainer.classList.remove('grid-view');
     toggleBtn.textContent = 'Grid View';
   } else {
-    container.classList.remove('list-view');
+    productsContainer.classList.add('grid-view');
+    productsContainer.classList.remove('list-view');
     toggleBtn.textContent = 'List View';
   }
 
-  // Toggle view on click
+  // On button click, toggle classes and update localStorage + button text
   toggleBtn.addEventListener('click', () => {
-    const isList = container.classList.toggle('list-view');
+    const isList = productsContainer.classList.toggle('list-view');
+    productsContainer.classList.toggle('grid-view', !isList);
+
     toggleBtn.textContent = isList ? 'Grid View' : 'List View';
     localStorage.setItem('viewMode', isList ? 'list' : 'grid');
   });
-}
+      }
 
 
   /* --- View Work Toggle --- */
