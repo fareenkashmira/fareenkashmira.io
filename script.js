@@ -70,67 +70,25 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-  /* --- Store Page View Toggle --- */
-  const toggleBtn = document.getElementById('toggleView');
-const productsContainer = document.getElementById('products');
+  /* --- View Toggle --- */
+  const toggleButton = document.getElementById("toggleView");
+  const productGrid = document.querySelector("#products") || document.querySelector(".content-category .grid-view").parentElement;
 
-if (toggleBtn && productsContainer) {
-  
-  const savedView = localStorage.getItem('viewMode');
-  if (savedView === 'list') {
-    productsContainer.classList.add('list-view');
-    productsContainer.classList.remove('grid-view');
-    toggleBtn.textContent = 'Grid View';
-  } else {
-    productsContainer.classList.add('grid-view');
-    productsContainer.classList.remove('list-view');
-    toggleBtn.textContent = 'List View';
-  }
+  // Detect initial state
+  let isGrid = productGrid.classList.contains("grid-view");
 
-  toggleBtn.addEventListener('click', () => {
-    const isList = productsContainer.classList.toggle('list-view');
-    productsContainer.classList.toggle('grid-view', !isList);
+  toggleButton.addEventListener("click", function () {
+    isGrid = !isGrid;
 
-    toggleBtn.textContent = isList ? 'Grid View' : 'List View';
-    localStorage.setItem('viewMode', isList ? 'list' : 'grid');
+    // Toggle classes
+    productGrid.classList.toggle("grid-view", isGrid);
+    productGrid.classList.toggle("list-view", !isGrid);
+
+    // Update button text
+    toggleButton.textContent = isGrid ? "List View" : "Grid View";
+    toggleButton.classList.toggle("active", !isGrid);
   });
-      }
-
-
-  /* --- View Work Toggle --- */
-  function initViewToggle() {
-  const toggleBtn = document.getElementById('toggleView');
-  const contentSections = document.querySelectorAll('.content-category .grid-view');
-
-  if (toggleBtn && contentSections.length > 0) {
-    
-    const savedView = localStorage.getItem('viewMode');
-    if (savedView) {
-      const isGrid = savedView === 'grid';
-      contentSections.forEach(section => {
-        section.classList.toggle('grid-view', isGrid);
-        section.classList.toggle('list-view', !isGrid);
-      });
-      toggleBtn.textContent = isGrid ? 'List View' : 'Grid View';
-    }
-
-    toggleBtn.addEventListener('click', () => {
-      const isGrid = contentSections[0].classList.contains('grid-view');
-
-      contentSections.forEach(section => {
-        section.classList.toggle('grid-view', !isGrid);
-        section.classList.toggle('list-view', isGrid);
-      });
-
-      toggleBtn.textContent = isGrid ? 'Grid View' : 'List View';
-
-      
-      localStorage.setItem('viewMode', isGrid ? 'list' : 'grid');
-    });
-  }
-}
-
-initViewToggle();
+});
 
 
   /* --- Blog Entries Rendering --- */
