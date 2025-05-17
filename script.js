@@ -9,23 +9,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!banner || !closeBtn || !acceptAllBtn || !importantOnlyBtn) return;
 
-    // Hide banner
     function hideBanner() {
       banner.style.display = 'none';
     }
-
-    // Set consent in localStorage
+  
     function setConsent(type) {
       localStorage.setItem('cookieConsent', type);
       hideBanner();
     }
 
-    // Event listeners
+    
     closeBtn.addEventListener('click', hideBanner);
     acceptAllBtn.addEventListener('click', () => setConsent('all'));
     importantOnlyBtn.addEventListener('click', () => setConsent('important'));
 
-    // Show banner only if consent not set
     const existingConsent = localStorage.getItem('cookieConsent');
     if (!existingConsent) {
       banner.style.display = 'block';
@@ -50,7 +47,6 @@ document.getElementById('mc-form').addEventListener('submit', function (e) {
     return;
   }
 
-  // Replace YOUR_U and YOUR_ID below with your actual Mailchimp values
   const u = "68495ad73394985325e320010";
   const id = "420ecd8c5c";
   const url = `https://fareenkashmira.us10.list-manage.com/subscribe/post-json?u=${u}&id=${id}&c=?`;
@@ -80,7 +76,7 @@ document.getElementById('mc-form').addEventListener('submit', function (e) {
 const productsContainer = document.getElementById('products');
 
 if (toggleBtn && productsContainer) {
-  // On load, set the view from localStorage
+  
   const savedView = localStorage.getItem('viewMode');
   if (savedView === 'list') {
     productsContainer.classList.add('list-view');
@@ -92,7 +88,6 @@ if (toggleBtn && productsContainer) {
     toggleBtn.textContent = 'List View';
   }
 
-  // On button click, toggle classes and update localStorage + button text
   toggleBtn.addEventListener('click', () => {
     const isList = productsContainer.classList.toggle('list-view');
     productsContainer.classList.toggle('grid-view', !isList);
@@ -109,7 +104,7 @@ if (toggleBtn && productsContainer) {
   const contentSections = document.querySelectorAll('.content-category .grid-view');
 
   if (toggleBtn && contentSections.length > 0) {
-    // On page load: apply saved state from localStorage
+    
     const savedView = localStorage.getItem('viewMode');
     if (savedView) {
       const isGrid = savedView === 'grid';
@@ -130,7 +125,7 @@ if (toggleBtn && productsContainer) {
 
       toggleBtn.textContent = isGrid ? 'Grid View' : 'List View';
 
-      // Save current view mode to localStorage
+      
       localStorage.setItem('viewMode', isGrid ? 'list' : 'grid');
     });
   }
@@ -145,7 +140,7 @@ initViewToggle();
     const entries = [
       { title: "First Post", desc: "Introductory thoughts.", link: "#" },
       { title: "Design Notes", desc: "Exploring creative flows.", link: "#" }
-      // Add more entries here
+      
     ];
 
     entries.forEach(entry => {
