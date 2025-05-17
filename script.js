@@ -55,35 +55,63 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* --- Store Page View Toggle --- */
   const toggleBtn = document.getElementById('toggleView');
-  const container = document.getElementById('product-container');
-  if (toggleBtn && container) {
-    toggleBtn.addEventListener('click', () => {
-      container.classList.toggle('list-view');
-      toggleBtn.textContent = container.classList.contains('list-view') ? 'Grid View' : 'List View';
-    });
+const container = document.getElementById('product-container');
+const products = document.getElementById('products');
+
+if (toggleBtn && container && products) {
+  // Apply saved view from localStorage on page load
+  const savedView = localStorage.getItem('viewMode');
+  if (savedView === 'list') {
+    container.classList.add('list-view');
+    toggleBtn.textContent = 'Grid View';
+  } else {
+    container.classList.remove('list-view');
+    toggleBtn.textContent = 'List View';
   }
+
+  // Toggle view on click
+  toggleBtn.addEventListener('click', () => {
+    const isList = container.classList.toggle('list-view');
+    toggleBtn.textContent = isList ? 'Grid View' : 'List View';
+    localStorage.setItem('viewMode', isList ? 'list' : 'grid');
+  });
+}
 
 
   /* --- View Work Toggle --- */
   function initViewToggle() {
-    const toggleBtn = document.getElementById('toggleView');
-    const contentSections = document.querySelectorAll('.content-category .grid-view');
+  const toggleBtn = document.getElementById('toggleView');
+  const contentSections = document.querySelectorAll('.content-category .grid-view');
 
-    if (toggleBtn && contentSections.length > 0) {
-      toggleBtn.addEventListener('click', () => {
-        const isGrid = contentSections[0].classList.contains('grid-view');
-
-        contentSections.forEach(section => {
-          section.classList.toggle('grid-view', !isGrid);
-          section.classList.toggle('list-view', isGrid);
-        });
-
-        toggleBtn.textContent = isGrid ? 'Grid View' : 'List View';
+  if (toggleBtn && contentSections.length > 0) {
+    // On page load: apply saved state from localStorage
+    const savedView = localStorage.getItem('viewMode');
+    if (savedView) {
+      const isGrid = savedView === 'grid';
+      contentSections.forEach(section => {
+        section.classList.toggle('grid-view', isGrid);
+        section.classList.toggle('list-view', !isGrid);
       });
+      toggleBtn.textContent = isGrid ? 'List View' : 'Grid View';
     }
-  }
 
-  initViewToggle();
+    toggleBtn.addEventListener('click', () => {
+      const isGrid = contentSections[0].classList.contains('grid-view');
+
+      contentSections.forEach(section => {
+        section.classList.toggle('grid-view', !isGrid);
+        section.classList.toggle('list-view', isGrid);
+      });
+
+      toggleBtn.textContent = isGrid ? 'Grid View' : 'List View';
+
+      // Save current view mode to localStorage
+      localStorage.setItem('viewMode', isGrid ? 'list' : 'grid');
+    });
+  }
+}
+
+initViewToggle();
 
 
   /* --- Blog Entries Rendering --- */
