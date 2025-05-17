@@ -33,8 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* --- Contact Form Handler --- */
-  <script>
-document.getElementById('mc-form').addEventListener('submit', function (e) {
+  document.getElementById('mc-form').addEventListener('submit', function (e) {
   e.preventDefault();
 
   const form = e.target;
