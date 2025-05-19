@@ -31,14 +31,14 @@ h4, h5, h6 { font-family: 'Cinzel Decorative'; font-size: 1.3rem; }
 
 
 
-/* ===== Container ===== */ .container-contact { display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 40px 20px; background-color: transparent; }
+/* ===== Container ===== */ .container-contact { max-width: 800px; margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; box-sizing: border-box; padding: 40px 20px; background-color: transparent; }
 /* ===== Form Reset ===== */ form { background-color: rgba(255, 255, 255, 0.2); padding: 30px; border-radius: 20px; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); backdrop-filter: blur(10px); width: 100%; max-width: 500px; border: 1px solid rgba(255, 255, 255, 0.3); }
 /* ===== Labels ===== */ form label { font-weight: bold; display: block; margin-bottom: 4px; font-family: 'eastman', sans-serif; color: #333; }
 /* ===== Inputs & Textarea ===== */ form input[type="text"], form input[type="email"], form textarea { width: 100%; padding: 12px; margin: 6px 0 16px 0; border: 1px solid #ccc; border-radius: 50px; background: #fff; font-family: 'eastman', sans-serif; font-size: 15px; box-sizing: border-box; color: #000; resize: vertical; }
 /* ===== Submit Button ===== */ form input[type="submit"] { background-color: #ff6c6c; color: #fff; padding: 12px 24px; border: none; border-radius: 50px; cursor: pointer; font-family: 'Cinzel Decorative', serif; font-size: 16px; transition: background-color 0.3s ease; display: inline-block; max-width: 100%; box-sizing: border-box; }
 form input[type="submit"]:hover { background-color: #cc5858; }
 /* ===== Hidden Honeypot ===== */ form div[aria-hidden="true"] { display: none; }
-/* ===== Heading ===== */ form h2 { font-family: 'Cinzel Decorative', serif; font-size: 24px; margin-bottom: 20px; color: #333; }
+/* ===== Heading ===== */ form h2 { font-family: 'Gladiola', serif; font-size: 24px; margin-bottom: 20px; color: #333; }
 
 
 
