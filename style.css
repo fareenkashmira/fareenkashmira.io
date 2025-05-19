@@ -12,7 +12,7 @@ h4, h5, h6 { font-family: 'Cinzel Decorative'; font-size: 1.3rem; }
 
 
 
-/* Buttons (general) */ .button { display: inline-block; padding: 10px 20px; background-color: #ff6c6c; color: white; text-align: center; text-decoration: none; border: none; border-radius: 5px; cursor: pointer; font-family: 'Cinzel Decorative'; font-size: 16px; transition: background-color 0.3s, box-shadow 0.3s; }
+/* Buttons (general) */ .button { display: inline-block; padding: 10px 20px; background-color: #ff6c6c; color: white; text-align: center; text-decoration: none; border: none; border-radius: 50px; cursor: pointer; font-family: 'Cinzel Decorative'; font-size: 16px; transition: background-color 0.3s, box-shadow 0.3s; }
 .button:hover { background-color: #e25555; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); }
 .button:focus { outline: none; }
 
@@ -46,7 +46,7 @@ form input[type="submit"]:hover { background-color: #cc5858; }
 /* Cookie Banner */ #cookie-consent { display: block; position: fixed; bottom: 0; left: 0; right: 0; background-color: #f4f4f4; padding: 25px; font-size: 14px; text-align: center; z-index: 1000; box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1); }
 #cookie-consent .banner { display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; padding: 1rem; }
 #cookie-consent .button-group { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; margin-top: 10px; }
-#cookie-consent button { background-color: #ff6c6c; color: white; border: none; padding: 14px 30px; font-family: 'Cinzel Decorative'; font-size: 18px; border-radius: 18px; transition: background-color 0.3s ease, transform 0.3s ease; cursor: pointer; }
+#cookie-consent button { background-color: #ff6c6c; color: white; border: none; padding: 14px 30px; font-family: 'Cinzel Decorative'; font-size: 18px; border-radius: 50px; transition: background-color 0.3s ease, transform 0.3s ease; cursor: pointer; }
 #cookie-consent button:hover { background-color: #333; transform: scale(1.05); }
 #cookie-consent .close-btn { position: absolute; top: 10px; right: 15px; font-size: 22px; cursor: pointer; color: #999; transition: color 0.3s ease; background: none; border: none; }
 #cookie-consent .close-btn:hover { color: #333; }
@@ -54,7 +54,7 @@ form input[type="submit"]:hover { background-color: #cc5858; }
 
 
 /* Toggle Button Container */.view-options { display: flex; justify-content: flex-end; margin: 20px 0; }
-/* Toggle Button Base Styling */.toggle-button { padding: 8px 14px; font-size: 14px; border: 1px solid #888; background-color: #f0f0f0; cursor: pointer; transition: background 0.3s, border-color 0.3s; border-radius: 6px; }
+/* Toggle Button Base Styling */.toggle-button { padding: 8px 14px; font-size: 14px; border: 1px solid #888; background-color: #f0f0f0; cursor: pointer; transition: background 0.3s, border-color 0.3s; border-radius: 50px; }
 /* Hover Effect */.toggle-button:hover { background-color: #ddd; }
 /* Active State Styling */.toggle-button.active { background-color: #ccc; border-color: #555; font-weight: bold; }
 /* Layout Classes for Toggle Effect */.grid-view { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
