@@ -32,7 +32,7 @@ h4, h5, h6 { font-family: 'Cinzel Decorative'; font-size: 1.3rem; }
 
 /* ===== Container ===== */ .container-contact { padding: 40px; background-color: transparent; }
 /* ===== Form Reset ===== */ #mc_embed_signup, #mc-form { background-color: transparent; padding: 0; border: none; }
-/* ===== Labels ===== */ #mc_embed_signup label, #mc-form label { font-weight: regular; display: block; margin-bottom: 4px; font-family: 'eastman', sans-serif; color: #333; }
+/* ===== Labels ===== */ #mc_embed_signup label, #mc-form label { font-weight: normal; display: block; margin-bottom: 4px; font-family: 'eastman', sans-serif; color: #333; }
 /* ===== Inputs & Textarea ===== */ #mc_embed_signup input[type="text"], #mc_embed_signup input[type="email"], #mc_embed_signup textarea, #mc-form input[type="text"], #mc-form input[type="email"], #mc-form textarea { width: 100%; padding: 12px; margin: 6px 0 16px 0; border: 1px solid #ccc; border-radius: 5px; background: #fff; font-family: 'eastman', sans-serif; font-size: 15px; box-sizing: border-box; color: #000; resize: vertical; }
 /* ===== Submit Button ===== */ .form-submit { background-color: #ff6c6c; color: #fff; padding: 12px 24px; border: none; border-radius: 5px; cursor: pointer; font-family: 'Cinzel Decorative', serif; font-size: 16px; transition: background-color 0.3s ease; display: inline-block; max-width: 100%; box-sizing: border-box; }
 .form-submit:hover { background-color: #cc5858; }
