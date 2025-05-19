@@ -40,6 +40,18 @@ h4, h5, h6 { font-family: 'Cinzel Decorative'; font-size: 1.3rem; }
 
 
 
+/* ===== Container ===== */ .container-contact { padding: 40px; background-color: transparent; }
+/* ===== Form Reset ===== */ form { background-color: transparent; padding: 0; border: none; }
+/* ===== Labels ===== */ form label { font-weight: bold; display: block; margin-bottom: 4px; font-family: 'eastman', sans-serif; color: #333; }
+/* ===== Inputs & Textarea ===== */ form input[type="text"], form input[type="email"], form textarea { width: 100%; padding: 12px; margin: 6px 0 16px 0; border: 1px solid #ccc; border-radius: 5px; background: #fff; font-family: 'eastman', sans-serif; font-size: 15px; box-sizing: border-box; color: #000; resize: vertical; }
+/* ===== Submit Button ===== */ form input[type="submit"] { background-color: #ff6c6c; color: #fff; padding: 12px 24px; border: none; border-radius: 50px; cursor: pointer; font-family: 'Cinzel Decorative', serif; font-size: 16px; transition: background-color 0.3s ease; display: inline-block; max-width: 100%; box-sizing: border-box; }
+form input[type="submit"]:hover { background-color: #cc5858; }
+/* ===== Hidden Honeypot ===== */ form div[aria-hidden="true"] { display: none; }
+/* ===== Heading ===== */ form h2 { font-family: 'Cinzel Decorative', serif; font-size: 24px; margin-bottom: 20px; color: #333; }
+
+
+
+
 /* Cookie Banner */ #cookie-consent { display: block; position: fixed; bottom: 0; left: 0; right: 0; background-color: #f4f4f4; padding: 25px; font-size: 14px; text-align: center; z-index: 1000; box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1); }
 #cookie-consent .banner { display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; padding: 1rem; }
 #cookie-consent .button-group { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; margin-top: 10px; }
