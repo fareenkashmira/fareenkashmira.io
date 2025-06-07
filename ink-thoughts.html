@@ -9,21 +9,20 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet" />
 
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XMK04PPSV2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-XMK04PPSV2');
-</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XMK04PPSV2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XMK04PPSV2');
+  </script>
 
   <!-- External CSS -->
   <link rel="stylesheet" href="style.css" />
 </head>
-  
-<body class="ink-thoughts-page">
-  
+
+<body class="ink-thoughts-page" data-sheet="stories">
+
   <header>
     <div class="navbar">
       <nav>
@@ -44,10 +43,6 @@
     <div id="ink-entries">
       <!-- Entries will be dynamically loaded here -->
     </div>
-
-    <div class="cms-link">
-      <p>Want to manage your entries easily? <a href="https://www.netlifycms.org/" target="_blank">Connect with Netlify CMS</a>.</p>
-    </div>
   </main>
 
   <footer class="container-footer">
@@ -60,7 +55,8 @@
     <p>2022–2025 All rights reserved</p>
   </footer>
 
-  <!-- External JS -->
+  <!-- Google Sheet & Logic Scripts -->
+  <script src="https://unpkg.com/tabletop@1.6.0/tabletop.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
