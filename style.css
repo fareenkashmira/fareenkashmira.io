@@ -72,6 +72,8 @@ form input[type="submit"]:hover { background-color: #cc5858; }
 @media (max-width: 480px) { .container-body { padding: 40px 20px; } }
 
 
+/* ink & thoughts entries */.entry-block { margin: 1.5rem 0; padding: 1rem; border-left: 4px solid #ff6c6c; background-color: #fff7f7; font-family: 'eastman', serif; } .entry-block h3 { font-family: 'Cinzel Decorative', cursive; font-size: 1.5rem; margin-bottom: 0.5rem; } .entry-block .author { font-style: italic; color: #777; margin-top: 0.5rem; }
+
 /* === UNIVERSAL CARD STYLES === */ .card{background:#fff;border-radius:1rem;gap:1.5rem;box-shadow:0 4px 10px rgba(0,0,0,0.1);overflow:hidden;transition:transform 0.3s ease,box-shadow 0.3s ease;display:flex;flex-direction:column;} .card:hover { transform: translateY(-8px); box-shadow: 0 8px 25px rgba(255, 108, 108, 0.4); border: 2px solid #ff6c6c; }
 /* === CARD IMAGE === */ .card img,.card .card-img{width:100%;height:200px;object-fit:cover;border-top-left-radius:1rem;border-top-right-radius:1rem;}
 /* === CARD CONTENT / DETAILS === */ .card-body,.product-details{padding:1rem 1.2rem;flex-grow:1;display:flex;flex-direction:column;justify-content:space-between;} .card-title,.product-details h3{font-family:'Cinzel Decorative', serif;font-weight:700;font-size:1.3rem;margin-bottom:0.5rem;color:#333;} .card-text,.product-details p{font-family:'eastman', serif;font-size:1rem;color:#555;flex-grow:1;margin-bottom:1rem;}
