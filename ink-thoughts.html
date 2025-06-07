@@ -23,6 +23,7 @@
 
 <body class="ink-thoughts-page" data-sheet="stories">
 
+  <!-- Navigation -->
   <header>
     <div class="navbar">
       <nav>
@@ -36,15 +37,17 @@
     </div>
   </header>
 
+  <!-- Main Content -->
   <main class="container-body">
     <h1>Welcome to Ink & Thoughts</h1>
     <p class="intro-text">Thoughtfully crafted reflections, stories, and insights — all shared with intention and creativity.</p>
 
-    <div id="ink-entries">
-      <!-- Entries will be dynamically loaded here -->
-    </div>
+    <section class="cards-grid" id="ink-entries">
+      <!-- Dynamic entries will appear here in card layout -->
+    </section>
   </main>
 
+  <!-- Footer -->
   <footer class="container-footer">
     <nav>
       <ul>
@@ -55,7 +58,7 @@
     <p>2022–2025 All rights reserved</p>
   </footer>
 
-  <!-- Google Sheet & Logic Scripts -->
+  <!-- Scripts -->
   <script src="https://unpkg.com/tabletop@1.6.0/tabletop.js"></script>
   <script src="script.js"></script>
 </body>
