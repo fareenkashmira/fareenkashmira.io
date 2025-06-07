@@ -1,94 +1,96 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const body = document.body;
+const body = document.body;
 
-  if (body.classList.contains('home-page')) {
-    console.log('Visited: Home Page');
-    gtag('event', 'page_view', { page_title: 'Home', page_path: '/home' });
-  }
+// === PAGE VIEW TRACKING ===
+const pageMap = {
+'home-page': ['Home', '/home'],
+'store-page': ['Store', '/store'],
+'ink-thoughts-page': ['Ink Thoughts', '/ink-thoughts'],
+'work-page': ['Work', '/work'],
+'research-page': ['Research', '/research'],
+'TnC-page': ['Terms & Conditions', '/terms'],
+'privacypolicy-page': ['Privacy Policy', '/privacy'],
+};
 
-  if (body.classList.contains('store-page')) {
-    console.log('Visited: Store Page');
-    gtag('event', 'page_view', { page_title: 'Store', page_path: '/store' });
-  }
+for (const pageClass in pageMap) {
+if (body.classList.contains(pageClass)) {
+const [title, path] = pageMap[pageClass];
+console.log(Visited: ${title} Page);
+gtag('event', 'page_view', { page_title: title, page_path: path });
+}
+}
 
-  if (body.classList.contains('ink-thoughts-page')) {
-    console.log('Visited: Ink Thoughts Page');
-    gtag('event', 'page_view', { page_title: 'Ink Thoughts', page_path: '/ink-thoughts' });
-  }
+// === COOKIE CONSENT ===
+(() => {
+const banner = document.getElementById('cookie-consent');
+const closeBtn = banner?.querySelector('.close-btn');
+const acceptAllBtn = banner?.querySelector('.accept-all');
+const importantOnlyBtn = banner?.querySelector('.important-only');
+if (!banner || !closeBtn || !acceptAllBtn || !importantOnlyBtn) return;
 
-  if (body.classList.contains('work-page')) {
-    console.log('Visited: Work Page');
-    gtag('event', 'page_view', { page_title: 'Work', page_path: '/work' });
-  }
+const hideBanner = () => banner.style.display = 'none';  
+const setConsent = (type) => {  
+  localStorage.setItem('cookieConsent', type);  
+  hideBanner();  
+};  
 
-  if (body.classList.contains('research-page')) {
-    console.log('Visited: Research Page');
-    gtag('event', 'page_view', { page_title: 'Research', page_path: '/research' });
-  }
+closeBtn.addEventListener('click', hideBanner);  
+acceptAllBtn.addEventListener('click', () => setConsent('all'));  
+importantOnlyBtn.addEventListener('click', () => setConsent('important'));  
 
-  if (body.classList.contains('TnC-page')) {
-    console.log('Visited: Terms & Conditions Page');
-    gtag('event', 'page_view', { page_title: 'Terms & Conditions', page_path: '/terms' });
-  }
+if (!localStorage.getItem('cookieConsent')) banner.style.display = 'block';
 
-  if (body.classList.contains('privacypolicy-page')) {
-    console.log('Visited: Privacy Policy Page');
-    gtag('event', 'page_view', { page_title: 'Privacy Policy', page_path: '/privacy' });
-  }
+})();
 
-  // --- Cookie Consent Banner ---
-  (() => {
-    const banner = document.getElementById('cookie-consent');
-    const closeBtn = banner?.querySelector('.close-btn');
-    const acceptAllBtn = banner?.querySelector('.accept-all');
-    const importantOnlyBtn = banner?.querySelector('.important-only');
-    if (!banner || !closeBtn || !acceptAllBtn || !importantOnlyBtn) return;
+// === DYNAMIC CONTENT FROM GOOGLE SHEETS ===
+const sheetConfig = {
+stories: '1UP_qUOUz2UWhjserokK1eKRrii4uXgckLIyPXgFf7J0', // Ink & Thoughts
+research: '1PIP7aUqlpBLr7vfgtl4pdxyDwjnIh9tnKkZkFg5ygQw'  // Research
+};
 
-    const hideBanner = () => banner.style.display = 'none';
-    const setConsent = (type) => {
-      localStorage.setItem('cookieConsent', type);
-      hideBanner();
-    };
+const sheetType = body.dataset.sheet;
+const sheetID = sheetConfig[sheetType];
 
-    closeBtn.addEventListener('click', hideBanner);
-    acceptAllBtn.addEventListener('click', () => setConsent('all'));
-    importantOnlyBtn.addEventListener('click', () => setConsent('important'));
+if (!sheetID) return;
 
-    if (!localStorage.getItem('cookieConsent')) banner.style.display = 'block';
-  })();
-
-  // --- Product View Toggle ---
-  (() => {
-    const toggleButton = document.getElementById("toggleView");
-    let productGrid = document.querySelector("#products") || document.querySelector(".content-category .grid-view")?.parentElement;
-    if (!toggleButton || !productGrid) return;
-
-    let isGrid = productGrid.classList.contains("grid-view");
-
-    toggleButton.addEventListener("click", () => {
-      isGrid = !isGrid;
-      productGrid.classList.toggle("grid-view", isGrid);
-      productGrid.classList.toggle("list-view", !isGrid);
-      toggleButton.textContent = isGrid ? "List View" : "Grid View";
-      toggleButton.classList.toggle("active", !isGrid);
-    });
-  })();
-
-  // --- Blog Entries Rendering ---
-  (() => {
-    const inkContainer = document.getElementById('ink-entries');
-    if (!inkContainer) return;
-
-    const entries = [
-      { title: "First Post", desc: "Introductory thoughts.", link: "#" },
-      { title: "Design Notes", desc: "Exploring creative flows.", link: "#" }
-    ];
-
-    entries.forEach(entry => {
-      const card = document.createElement('div');
-      card.className = 'entry-card';
-      card.innerHTML = `<h3>${entry.title}</h3><p>${entry.desc}</p><a href="${entry.link}">Read more</a>`;
-      inkContainer.appendChild(card);
-    });
-  })();
+Tabletop.init({
+key: sheetID,
+callback: data => renderData(data, sheetType),
+simpleSheet: true
 });
+
+function renderData(data, type) {
+const container = document.getElementById('ink-entries') || document.getElementById('research-entries');
+if (!container) return;
+
+data.forEach(item => {  
+  const card = document.createElement('div');  
+  card.className = 'card';  
+
+  if (type === 'stories') {  
+    card.innerHTML = `  
+      <div class="card-body">  
+        <h2 class="card-title">${item.Title || 'Untitled'}</h2>  
+        <p class="card-text">${item.Content || 'No content available.'}</p>  
+        ${item.Author ? `<p class="card-text author">— ${item.Author}</p>` : ''}  
+      </div>  
+    `;  
+  }  
+
+  if (type === 'research') {  
+    card.innerHTML = `  
+      ${item.Image ? `<img src="${item.Image}" alt="${item.Title}" class="card-img" />` : ''}  
+      <div class="card-body">  
+        <h2 class="card-title">${item.Title || 'Untitled'}</h2>  
+        <p class="card-text">${item.Description || 'No description provided.'}</p>  
+        ${item.Link ? `<a href="${item.Link}" class="card-link" target="_blank">Read More</a>` : ''}  
+      </div>  
+    `;  
+  }  
+
+  container.appendChild(card);  
+});
+
+}
+});
+
