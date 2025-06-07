@@ -5,24 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Research Studies</title>
 
-  <!-- Link to external CSS file -->
+  <!-- External CSS -->
   <link rel="stylesheet" href="style.css" />
 
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XMK04PPSV2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-XMK04PPSV2');
-</script>
-  
-  <!-- Google Fonts: Cinzel Decorative for headings -->
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap" rel="stylesheet" />
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XMK04PPSV2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XMK04PPSV2');
+  </script>
 </head>
-<body class="research-page">
- 
+
+<body class="research-page" data-sheet="research">
+
   <!-- Navigation Bar -->
   <div class="navbar">
     <nav>
@@ -42,6 +42,7 @@
 
   <!-- Main Container -->
   <div class="container-body">
+
     <!-- About Section -->
     <section id="intro" class="section">
       <h3>About Me</h3>
@@ -52,51 +53,18 @@
       </p>
     </section>
 
-    <!-- Research Cards Section -->
-    <section id="research" class="card">
+    <!-- Dynamic Research Section (Google Sheets) -->
+    <section id="research" class="section">
       <h3>Research & Case Studies</h3>
       <div id="research-cards" class="cards-grid">
-        <!-- Each research/case study is displayed as a card -->
-        <div class="card">
-          <img src="images/research1.jpg" alt="Case Study 1" class="card-img">
-          <div class="card-body">
-            <h4 class="card-title">Usability Study: E-Commerce Checkout</h4>
-            <p class="card-text">
-              A comprehensive usability study that reveals key friction points in the checkout process and offers actionable insights.
-            </p>
-            <a href="case-study1.html" class="card-link">Read More</a>
-          </div>
-        </div>
-
-        <div class="card">
-          <img src="images/research2.jpg" alt="Case Study 2" class="card-img">
-          <div class="card-body">
-            <h4 class="card-title">User Journey Mapping for Banking App</h4>
-            <p class="card-text">
-              Detailed analysis of user paths and pain points in the digital banking experience.
-            </p>
-            <a href="case-study2.html" class="card-link">Read More</a>
-          </div>
-        </div>
-        
-        <div class="card">
-          <img src="images/research3.jpg" alt="Case Study 3" class="card-img">
-          <div class="card-body">
-            <h4 class="card-title">A/B Testing for Mobile UX</h4>
-            <p class="card-text">
-              Results from iterative testing that improved mobile user engagement by 35%.
-            </p>
-            <a href="case-study3.html" class="card-link">Read More</a>
-          </div>
-        </div>
-
-        <!-- Insert more cards here as required -->
+        <!-- Dynamic research entries from Google Sheet will be injected here -->
       </div>
     </section>
+
   </div>
 
   <!-- Footer -->
-  <footer class=container-footer>
+  <footer class="container-footer">
     <div class="footer-links">
       <a href="privacypolicy.html">Privacy Policy</a>
       <a href="TnC.html">TnC</a>
@@ -104,7 +72,8 @@
     <p>© 2022–2025 All rights reserved.</p>
   </footer>
 
-  <!-- External JS -->
+  <!-- Tabletop.js for Google Sheets -->
+  <script src="https://unpkg.com/tabletop@1.6.0/tabletop.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
