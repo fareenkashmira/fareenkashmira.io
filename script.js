@@ -76,4 +76,52 @@ entries.forEach(entry => {
   inkContainer.appendChild(card);  
 });
 
- 
+ /* research and ink page loading */
+const pageType = document.body.dataset.sheet;
+let sheetCSV = "";
+let containerId = "";
+
+// Assign correct sheet and container
+if (pageType === "research") {
+  sheetCSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSbe2cMrtZLdR-00gykCvOSQDLQS-Q-HNtOn6MiAyh2XIKxXRIEBjRtJOTCz6SA8dLK3MIhF1g8Vo7m/pub?gid=0&single=true&output=csv";
+  containerId = "research-cards";
+} else if (pageType === "stories") {
+  sheetCSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTlsXoO_SfeMOoSnGH4pLlFwNN5WPPxKnVBzYN8dg0akmPOP9yjFs2dY6vRstJwOsiD6pgvyf1BMPtO/pub?gid=0&single=true&output=csv";
+  containerId = "ink-card";
+} else {
+  console.warn("No matching sheet found for this page.");
+  return;
+}
+
+const container = document.getElementById(containerId);
+if (!container) {
+  console.warn("Container not found on this page.");
+  return;
+}
+
+fetch(sheetCSV)
+  .then(res => res.text())
+  .then(csv => {
+    const rows = csv.trim().split("\n").map(row => row.split(","));
+    const headers = rows.shift();
+
+    const entries = rows.map(row => {
+      return Object.fromEntries(row.map((cell, i) => [headers[i].trim(), cell.trim()]));
+    });
+
+    entries.forEach(entry => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `
+        <div class="card-body">
+          <h3 class="card-title">${entry.Title || "Untitled"}</h3>
+          <p class="card-text">${entry.Preview || "No preview available."}</p>
+          ${entry.LinkText && entry.LinkText !== " " ? `<a href="${entry.LinkText}" class="card-link" target="_blank">Read More</a>` : ""}
+        </div>
+      `;
+      container.appendChild(card);
+    });
+  })
+  .catch(err => {
+    console.error("Error fetching or processing CSV:", err);
+  });
