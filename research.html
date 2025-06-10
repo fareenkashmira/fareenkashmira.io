@@ -21,7 +21,7 @@
   </script>
 </head>
 
-<body class="research-page" data-sheet="research">
+<body class="research-page">
 
   <!-- Navigation Bar -->
   <div class="navbar">
@@ -57,7 +57,7 @@
     <section id="research" class="section">
       <h3>Research & Case Studies</h3>
       <div id="research-cards" class="cards-grid">
-        <!-- Dynamic research entries from Google Sheet will be injected here -->
+        <!-- Cards injected by JS -->
       </div>
     </section>
 
@@ -72,8 +72,36 @@
     <p>© 2022–2025 All rights reserved.</p>
   </footer>
 
-  <!-- Tabletop.js for Google Sheets -->
-  <script src="https://unpkg.com/tabletop@1.6.0/tabletop.js"></script>
-  <script src="script.js"></script>
+  <!-- Custom Script -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const sheetCSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTrIWmbVK5UPrA2UIG4mBY-R_UuGRs_GTVNblFo7V35-pcvAqLHKjCdqPz2ek0uB_KbbR8aY4Ot99qY/pub?output=csv";
+      const container = document.getElementById("research-cards");
+
+      fetch(sheetCSV)
+        .then(res => res.text())
+        .then(csv => {
+          const rows = csv.trim().split("\n").map(row => row.split(","));
+          const headers = rows.shift();
+
+          const entries = rows.map(row => {
+            return Object.fromEntries(row.map((cell, i) => [headers[i], cell]));
+          });
+
+          entries.forEach(entry => {
+            const card = document.createElement("div");
+            card.className = "card";
+            card.innerHTML = `
+              <div class="card-body">
+                <h3 class="card-title">${entry.Title || "Untitled"}</h3>
+                <p class="card-text">${entry.Preview || "No description available."}</p>
+                ${entry.FullContentURL ? `<a href="${entry.FullContentURL}" class="card-link" target="_blank">Read More</a>` : ""}
+              </div>
+            `;
+            container.appendChild(card);
+          });
+        });
+    });
+  </script>
 </body>
 </html>
