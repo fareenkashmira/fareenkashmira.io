@@ -21,7 +21,7 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 
-<body class="ink-thoughts-page" data-sheet="stories">
+<body class="ink-thoughts-page">
 
   <!-- Navigation -->
   <header>
@@ -42,7 +42,7 @@
     <h1>Welcome to Ink & Thoughts</h1>
     <p class="intro-text">Thoughtfully crafted reflections, stories, and insights — all shared with intention and creativity.</p>
 
-    <section class="cards-grid" id="ink-entries">
+    <section class="cards-grid" id="ink-card">
       <!-- Dynamic entries will appear here in card layout -->
     </section>
   </main>
@@ -58,8 +58,36 @@
     <p>2022–2025 All rights reserved</p>
   </footer>
 
-  <!-- Scripts -->
-  <script src="https://unpkg.com/tabletop@1.6.0/tabletop.js"></script>
-  <script src="script.js"></script>
+  <!-- Dynamic Card Script -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const sheetCSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSx2BS6Smiyf2wWTkNj-4mgX3z1OmAO6UfhBn3L1LAnfRswm3gRFOkPiI5Zw1hXCVhyAiZHLjzWxGVm/pub?output=csv";
+      const container = document.getElementById("ink-card");
+
+      fetch(sheetCSV)
+        .then(res => res.text())
+        .then(csv => {
+          const rows = csv.trim().split("\n").map(row => row.split(","));
+          const headers = rows.shift();
+
+          const entries = rows.map(row => {
+            return Object.fromEntries(row.map((cell, i) => [headers[i], cell]));
+          });
+
+          entries.forEach(entry => {
+            const card = document.createElement("div");
+            card.className = "card";
+            card.innerHTML = `
+              <div class="card-body">
+                <h3 class="card-title">${entry.Title || "Untitled"}</h3>
+                <p class="card-text">${entry.Preview || "No preview available."}</p>
+                ${entry.FullContentURL ? `<a href="${entry.FullContentURL}" class="card-link" target="_blank">Read More</a>` : ""}
+              </div>
+            `;
+            container.appendChild(card);
+          });
+        });
+    });
+  </script>
 </body>
 </html>
