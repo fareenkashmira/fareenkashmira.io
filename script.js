@@ -43,7 +43,66 @@ document.addEventListener('DOMContentLoaded', () => {
   })();
 
 
+/*Google Sheets */
+(() => {
+  const pageType = document.body.dataset.sheet;
+  let sheetCSV = "";
+  let containerId = "";
 
+  if (pageType === "research") {
+    sheetCSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRIYaZylHHACUYVY8qzcBTsqvwqejXi1t-sWCUm348NyF7a2wBCamdCVgXYrPnwjYuRwl7mdFxYR1RF/pub?output=csv";
+    containerId = "research-cards";
+  } else if (pageType === "ink-thoughts") {
+    sheetCSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vS5bnoJvrtUpM_jNa9aAjXrGKLsdCk1a6kdebjeKv0l85UtLmudxru4djc9TRPFTGPjqbYNoZ7Begeg/pub?output=csv";
+    containerId = "ink-card";
+  } else {
+    console.warn("No matching sheet found.");
+    return;
+  }
+
+  const container = document.getElementById(containerId);
+  if (!container) {
+    console.warn("Missing container element.");
+    return;
+  }
+
+  fetch(sheetCSV)
+    .then(res => res.text())
+    .then(csv => {
+      const lines = csv.trim().split("\n");
+      const headers = lines.shift().split(",").map(h => h.trim().toLowerCase());
+
+      const entries = lines.map(line => {
+        const values = line.split(",");
+        const entry = {};
+        headers.forEach((key, i) => {
+          entry[key] = values[i]?.trim() || "";
+        });
+        return entry;
+      });
+
+      entries.forEach(entry => {
+        let content = "";
+
+        if (entry.title) content += `<h3 class="card-title">${entry.title}</h3>`;
+        if (entry.preview) content += `<p class="card-preview">${entry.preview}</p>`;
+        if (entry.content) content += `<p class="card-content">${entry.content}</p>`;
+        if (entry.link_text) content += `<a href="${entry.link_text}" class="card-link" target="_blank">Read More</a>`;
+
+        if (content) {
+          const card = document.createElement("div");
+          card.className = "card";
+          card.innerHTML = `<div class="card-body">${content}</div>`;
+          container.appendChild(card);
+        }
+      });
+    })
+    .catch(err => {
+      console.error("CSV fetch failed:", err);
+    });
+})();
+
+  
   (() => {
   const pageType = document.body.dataset.sheet;
   let sheetCSV = "";
