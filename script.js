@@ -43,16 +43,12 @@ document.addEventListener('DOMContentLoaded', () => {
   })();
 
 
-                          // --- Google Sheet-based Content Loader ---
-(() => {
+
+  (() => {
   const pageType = document.body.dataset.sheet;
   let sheetCSV = "";
   let containerId = "";
 
-  // Log pageType for debugging
-  console.log("Detected page type:", pageType);
-
-  // Assign sheet based on data attribute
   if (pageType === "research") {
     sheetCSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSbe2cMrtZLdR-00gykCvOSQDLQS-Q-HNtOn6MiAyh2XIKxXRIEBjRtJOTCz6SA8dLK3MIhF1g8Vo7m/pub?gid=0&single=true&output=csv";
     containerId = "research-cards";
@@ -60,58 +56,48 @@ document.addEventListener('DOMContentLoaded', () => {
     sheetCSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTlsXoO_SfeMOoSnGH4pLlFwNN5WPPxKnVBzYN8dg0akmPOP9yjFs2dY6vRstJwOsiD6pgvyf1BMPtO/pub?gid=0&single=true&output=csv";
     containerId = "ink-card";
   } else {
-    console.warn("No matching sheet found for this page.");
+    console.warn("No matching sheet found.");
     return;
   }
 
   const container = document.getElementById(containerId);
   if (!container) {
-    console.warn("Container not found on this page.");
+    console.warn("Missing container element.");
     return;
   }
 
   fetch(sheetCSV)
     .then(res => res.text())
     .then(csv => {
-      const rows = csv.trim().split("\n").map(row => row.split(","));
-      const headers = rows.shift().map(h => h.trim());
+      const lines = csv.trim().split("\n");
+      const headers = lines.shift().split(",").map(h => h.trim().toLowerCase());
 
-      const entries = rows.map(row => {
-        return Object.fromEntries(row.map((cell, i) => [headers[i], cell.trim()]));
+      const entries = lines.map(line => {
+        const values = line.split(",");
+        const entry = {};
+        headers.forEach((key, i) => {
+          entry[key] = values[i]?.trim() || "";
+        });
+        return entry;
       });
 
       entries.forEach(entry => {
-        const card = document.createElement("div");
-        card.className = "card";
+        let content = "";
 
-        let cardInner = `<div class="card-body">`;
+        if (entry.title) content += `<h3 class="card-title">${entry.title}</h3>`;
+        if (entry.preview) content += `<p class="card-preview">${entry.preview}</p>`;
+        if (entry.content) content += `<p class="card-content">${entry.content}</p>`;
+        if (entry.link_text) content += `<a href="${entry.link_text}" class="card-link" target="_blank">Read More</a>`;
 
-        if (entry.Title?.trim()) {
-          cardInner += `<h3 class="card-title">${entry.Title}</h3>`;
-        }
-
-        if (entry.Preview?.trim()) {
-          cardInner += `<p class="card-preview">${entry.Preview}</p>`;
-        }
-
-        if (entry.Content?.trim()) {
-          cardInner += `<p class="card-content">${entry.Content}</p>`;
-        }
-
-        if (entry.link_text?.trim()) {
-          cardInner += `<a href="${entry.link_text}" class="card-link" target="_blank">Read More</a>`;
-        }
-
-        cardInner += `</div>`;
-        card.innerHTML = cardInner;
-
-        // Only add the card if it has any visible content
-        if (cardInner !== `<div class="card-body"></div>`) {
+        if (content) {
+          const card = document.createElement("div");
+          card.className = "card";
+          card.innerHTML = `<div class="card-body">${content}</div>`;
           container.appendChild(card);
         }
       });
     })
     .catch(err => {
-      console.error("Error fetching or processing CSV:", err);
+      console.error("CSV fetch failed:", err);
     });
 })();
