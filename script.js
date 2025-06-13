@@ -43,14 +43,11 @@ document.addEventListener('DOMContentLoaded', () => {
   })();
 
 // --- Google Sheet-based Content Loader ---
-(() => {
+                          (() => {
   const pageType = document.body.dataset.sheet;
   let sheetCSV = "";
   let containerId = "";
 
-  console.log("Detected page type:", pageType);
-
-  // Assign correct CSV based on page type
   if (pageType === "research") {
     sheetCSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRIYaZylHHACUYVY8qzcBTsqvwqejXi1t-sWCUm348NyF7a2wBCamdCVgXYrPnwjYuRwl7mdFxYR1RF/pub?gid=0&single=true&output=csv";
     containerId = "research-cards";
@@ -74,36 +71,20 @@ document.addEventListener('DOMContentLoaded', () => {
       const rows = csv.trim().split("\n").map(row => row.split(","));
       const headers = rows.shift().map(h => h.trim().toLowerCase());
 
-      const entries = rows.map(row => {
-        const entry = {};
-        row.forEach((cell, i) => {
-          entry[headers[i]] = cell.trim();
-        });
-        return entry;
-      });
-
-      if (!entries.length) {
-        container.innerHTML = `<p>No content available at the moment.</p>`;
-        return;
-      }
+      const entries = rows.map(row =>
+        Object.fromEntries(row.map((cell, i) => [headers[i], cell.trim()]))
+      );
 
       entries.forEach(entry => {
-        const title = entry.title || "Untitled";
-        const preview = entry.preview || "No preview available.";
-        const content = entry.content || "";
-        const linkText = entry.link_text;
-
-        // Skip entirely empty entries
-        if (!title && !preview && !content && !linkText) return;
-
         const card = document.createElement("div");
         card.className = "card";
         card.innerHTML = `
           <div class="card-body">
-            <h3 class="card-title">${title}</h3>
-            <p class="card-preview">${preview}</p>
-            ${content ? `<p class="card-content">${content}</p>` : ""}
-            ${linkText ? `<a href="${linkText}" class="card-link" target="_blank">Read More</a>` : ""}
+            <h3 class="card-title">${entry.title || "Untitled"}</h3>
+            <p class="card-text">${entry.preview || "No preview available."}</p>
+            ${entry.link_text && entry.link_text !== ""
+              ? `<a href="${entry.link_text}" class="card-link" target="_blank">Read More</a>`
+              : ""}
           </div>
         `;
         container.appendChild(card);
@@ -111,6 +92,5 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     .catch(err => {
       console.error("Error fetching or processing CSV:", err);
-      container.innerHTML = `<p class="error">Failed to load content. Please try again later.</p>`;
     });
 })();
