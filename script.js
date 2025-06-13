@@ -41,83 +41,109 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- CSV Content Loader ---
   (() => {
-    const pageType = document.body.dataset.sheet;
-    let sheetCSV = "";
-    let containerId = "";
+  const pageType = document.body.dataset.sheet;
+  let sheetCSV = "";
+  let containerId = "";
 
-    if (pageType === "research") {
-      sheetCSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRIYaZylHHACUYVY8qzcBTsqvwqejXi1t-sWCUm348NyF7a2wBCamdCVgXYrPnwjYuRwl7mdFxYR1RF/pub?gid=0&single=true&output=csv";
-      containerId = "research-cards";
-    } else if (pageType === "ink-thoughts") {
-      sheetCSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vS5bnoJvrtUpM_jNa9aAjXrGKLsdCk1a6kdebjeKv0l85UtLmudxru4djc9TRPFTGPjqbYNoZ7Begeg/pub?gid=0&single=true&output=csv";
-      containerId = "ink-card";
-    } else {
-      console.warn("No matching sheet found for this page.");
-      return;
-    }
+  if (pageType === "research") {
+    sheetCSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRIYaZylHHACUYVY8qzcBTsqvwqejXi1t-sWCUm348NyF7a2wBCamdCVgXYrPnwjYuRwl7mdFxYR1RF/pub?gid=0&single=true&output=csv";
+    containerId = "research-cards";
+  } else if (pageType === "ink-thoughts") {
+    sheetCSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vS5bnoJvrtUpM_jNa9aAjXrGKLsdCk1a6kdebjeKv0l85UtLmudxru4djc9TRPFTGPjqbYNoZ7Begeg/pub?gid=0&single=true&output=csv";
+    containerId = "ink-card";
+  } else {
+    console.warn("No matching sheet found for this page.");
+    return;
+  }
 
-    const container = document.getElementById(containerId);
-    if (!container) {
-      console.warn("Container not found on this page.");
-      return;
-    }
+  const container = document.getElementById(containerId);
+  if (!container) {
+    console.warn("Container not found on this page.");
+    return;
+  }
 
-    fetch(sheetCSV)
-      .then(res => res.text())
-      .then(csv => {
-        const parseCSV = (csv) => {
-          const rows = [];
-          let insideQuote = false;
-          let row = [], cell = '';
-          for (let i = 0; i < csv.length; i++) {
-            const char = csv[i];
-            const next = csv[i + 1];
-            if (char === '"' && insideQuote && next === '"') {
-              cell += '"';
-              i++;
-            } else if (char === '"') {
-              insideQuote = !insideQuote;
-            } else if (char === ',' && !insideQuote) {
-              row.push(cell);
-              cell = '';
-            } else if ((char === '\n' || char === '\r') && !insideQuote) {
-              if (cell || row.length > 0) row.push(cell);
-              if (row.length) rows.push(row);
-              row = [];
-              cell = '';
-              if (char === '\r' && next === '\n') i++; // skip \n in \r\n
-            } else {
-              cell += char;
-            }
+  fetch(sheetCSV)
+    .then(res => res.text())
+    .then(csv => {
+      const parseCSV = (csv) => {
+        const rows = [];
+        let insideQuote = false;
+        let row = [], cell = '';
+        for (let i = 0; i < csv.length; i++) {
+          const char = csv[i];
+          const next = csv[i + 1];
+          if (char === '"' && insideQuote && next === '"') {
+            cell += '"';
+            i++;
+          } else if (char === '"') {
+            insideQuote = !insideQuote;
+          } else if (char === ',' && !insideQuote) {
+            row.push(cell);
+            cell = '';
+          } else if ((char === '\n' || char === '\r') && !insideQuote) {
+            if (cell || row.length > 0) row.push(cell);
+            if (row.length) rows.push(row);
+            row = [];
+            cell = '';
+            if (char === '\r' && next === '\n') i++;
+          } else {
+            cell += char;
           }
-          if (cell || row.length > 0) row.push(cell);
-          if (row.length) rows.push(row);
-          return rows;
-        };
+        }
+        if (cell || row.length > 0) row.push(cell);
+        if (row.length) rows.push(row);
+        return rows;
+      };
 
-        const rows = parseCSV(csv);
-        const headers = rows.shift().map(h => h.trim().toLowerCase());
+      const rows = parseCSV(csv);
+      const headers = rows.shift().map(h => h.trim().toLowerCase());
 
-        rows.forEach(row => {
-          if (row.length !== headers.length) return;
-          const entry = Object.fromEntries(row.map((cell, i) => [headers[i], cell.trim()]));
+      rows.forEach(row => {
+        if (row.length !== headers.length) return;
+        const entry = Object.fromEntries(row.map((cell, i) => [headers[i], cell.trim()]));
 
-          const card = document.createElement("div");
-          card.className = "card";
-          card.innerHTML = `
-            <div class="card-body">
-              <h3 class="card-title">${entry.title || "Untitled"}</h3>
-              <p class="card-text">${entry.preview || "No preview available."}</p>
-              ${entry.link_text
-                ? `<a href="${entry.link_text}" class="card-link" target="_blank">Read More</a>`
-                : ""}
-            </div>
-          `;
-          container.appendChild(card);
+        // Skip if required fields are empty
+        if (!entry.title?.trim() || !entry.content?.trim()) return;
+
+        const card = document.createElement("div");
+        card.className = "card";
+
+        const body = document.createElement("div");
+        body.className = "card-body";
+
+        const title = document.createElement("h3");
+        title.className = "card-title";
+        title.textContent = entry.title;
+
+        const preview = document.createElement("p");
+        preview.className = "card-text preview";
+        preview.textContent = entry.preview || "";
+
+        const fullText = document.createElement("p");
+        fullText.className = "card-text full hidden";
+        fullText.textContent = entry.content;
+
+        const toggleBtn = document.createElement("button");
+        toggleBtn.className = "card-toggle-btn";
+        toggleBtn.textContent = entry.link_text || "Read more";
+
+        toggleBtn.addEventListener("click", () => {
+          const isHidden = fullText.classList.contains("hidden");
+          fullText.classList.toggle("hidden");
+          preview.classList.toggle("hidden");
+          toggleBtn.textContent = isHidden ? "Show less" : (entry.link_text || "Read more");
         });
-      })
-      .catch(err => {
-        console.error("Error fetching or processing CSV:", err);
+
+        body.appendChild(title);
+        body.appendChild(preview);
+        body.appendChild(fullText);
+        body.appendChild(toggleBtn);
+        card.appendChild(body);
+        container.appendChild(card);
       });
-  })();
-});
+    })
+    .catch(err => {
+      console.error("Error fetching or processing CSV:", err);
+    });
+})();
+  });
