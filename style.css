@@ -105,11 +105,3 @@ form {
   max-width: 500px;            /* ensures mobile sanity */
 }
 
-
-.container-contact {
-  background: rgba(0, 255, 0, 0.1); /* light green */
-}
-
-form {
-  background: rgba(255, 0, 0, 0.1); /* light red */
-}
