@@ -102,42 +102,36 @@ document.addEventListener('DOMContentLoaded', () => {
         if (row.length !== headers.length) return;
         const entry = Object.fromEntries(row.map((cell, i) => [headers[i], cell.trim()]));
 
-        // Skip if required fields are empty
-        if (!entry.title?.trim() || !entry.content?.trim()) return;
-
         const card = document.createElement("div");
         card.className = "card";
 
         const body = document.createElement("div");
         body.className = "card-body";
 
-        const title = document.createElement("h3");
-        title.className = "card-title";
-        title.textContent = entry.title;
+        if (entry.title) {
+          const title = document.createElement("h3");
+          title.className = "card-title";
+          title.textContent = entry.title;
+          body.appendChild(title);
+        }
 
         const preview = document.createElement("p");
         preview.className = "card-text preview";
         preview.textContent = entry.preview || "";
 
-        const fullText = document.createElement("p");
-        fullText.className = "card-text full hidden";
-        fullText.textContent = entry.content;
+        if (entry.content && entry.content.length > 60) {
+          const expand = document.createElement("span");
+          expand.className = "read-more";
+          expand.textContent = `... ${entry.link_text || "read more"}`;
+          expand.style.cursor = "pointer";
+          expand.style.color = "var(--accent-color, blue)";
+          expand.addEventListener("click", () => {
+            preview.textContent = entry.content;
+          });
+          preview.appendChild(expand);
+        }
 
-        const toggleBtn = document.createElement("button");
-        toggleBtn.className = "card-toggle-btn";
-        toggleBtn.textContent = entry.link_text || "Read more";
-
-        toggleBtn.addEventListener("click", () => {
-          const isHidden = fullText.classList.contains("hidden");
-          fullText.classList.toggle("hidden");
-          preview.classList.toggle("hidden");
-          toggleBtn.textContent = isHidden ? "Show less" : (entry.link_text || "Read more");
-        });
-
-        body.appendChild(title);
         body.appendChild(preview);
-        body.appendChild(fullText);
-        body.appendChild(toggleBtn);
         card.appendChild(body);
         container.appendChild(card);
       });
@@ -146,4 +140,4 @@ document.addEventListener('DOMContentLoaded', () => {
       console.error("Error fetching or processing CSV:", err);
     });
 })();
-  });
+});
