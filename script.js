@@ -82,25 +82,20 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Lightbox functionality
-  const lightbox = document.getElementById("lightbox");
-  const lightboxImg = document.getElementById("lightbox-img");
+document.querySelectorAll('#photos .card img').forEach(img => {
+  img.addEventListener('click', function () {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
 
-  function openLightbox(img) {
-    lightbox.style.display = "flex";
-    lightboxImg.src = img.src;
+    lightbox.style.display = 'flex';
+    lightboxImg.src = this.src;
+  });
+});
+
+// Optional: close lightbox on ESC key
+document.addEventListener('keydown', function (e) {
+  if (e.key === "Escape") {
+    document.getElementById('lightbox').style.display = 'none';
   }
-
-  // Add click event to images inside .grid-view
-  const images = document.querySelectorAll(".grid-view .card img");
-  images.forEach((img) => {
-    img.style.cursor = "pointer";
-    img.addEventListener("click", () => openLightbox(img));
-  });
-
-  // Close lightbox with ESC key
-  document.addEventListener("keydown", function (event) {
-    if (event.key === "Escape") {
-      lightbox.style.display = "none";
-    }
-  });
+});
 });
