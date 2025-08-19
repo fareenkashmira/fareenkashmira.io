@@ -82,20 +82,20 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Lightbox functionality
-document.querySelectorAll('#photos .card img').forEach(img => {
-  img.addEventListener('click', function () {
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
+document.querySelectorAll(".content-category").forEach(section => {
+  const title = section.querySelector(".category-title")?.textContent.trim();
 
-    lightbox.style.display = 'flex';
-    lightboxImg.src = this.src;
-  });
-});
+  if (title === "Photos") {
+    section.querySelectorAll(".grid-view .card img").forEach(img => {
+      img.style.cursor = "pointer";
+      img.addEventListener("click", () => {
+        const lightbox = document.getElementById("lightbox");
+        const lightboxImg = document.getElementById("lightbox-img");
 
-// Optional: close lightbox on ESC key
-document.addEventListener('keydown', function (e) {
-  if (e.key === "Escape") {
-    document.getElementById('lightbox').style.display = 'none';
+        lightbox.style.display = "flex"; // so it centers
+        lightboxImg.src = img.src;
+      });
+    });
   }
 });
 });
