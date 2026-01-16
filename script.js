@@ -145,21 +145,21 @@ const rows = parseCSV(csv);
 
     
 
-  // Lightbox functionality
+// Lightbox functionality
 document.querySelectorAll(".content-category").forEach(section => {
-  const title = section.querySelector(".category-title")?.textContent.trim();
+  const type = section.querySelector(".category-title")?.dataset.type;
 
-  if (title === "Photos") {
+  if (type === "Photos") {
     section.querySelectorAll(".grid-view .card img").forEach(img => {
       img.style.cursor = "pointer";
       img.addEventListener("click", () => {
         const lightbox = document.getElementById("lightbox");
         const lightboxImg = document.getElementById("lightbox-img");
 
-        lightbox.style.display = "flex"; // so it centers
+        lightbox.style.display = "flex";
         lightboxImg.src = img.src;
       });
     });
   }
 });
-});
+  });
