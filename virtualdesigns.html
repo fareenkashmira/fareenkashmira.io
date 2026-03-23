@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kooky Kafe — Design Showcase</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,700;1,400&family=Dancing+Script:wght@600&family=Cinzel:wght@400;700&family=Brown+Sugar&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0a0a;--surface:#111;--white:#f0eeea;--muted:#555;
+  --gold:#c9a96e;--glow:#4d9fff;--red:#e84545;--cream:#faf6ef;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--white);font-family:'DM Sans',sans-serif;overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 40px;display:flex;justify-content:space-between;align-items:center;background:rgba(10,10,10,0.92);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,0.05)}
+.nav-logo{font-family:'Bebas Neue';font-size:20px;letter-spacing:4px;color:var(--white)}
+.nav-links{display:flex;gap:24px}
+.nav-links a{font-size:11px;letter-spacing:2px;color:var(--muted);text-decoration:none;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--white)}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 24px 40px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(201,169,110,0.06) 0%,transparent 70%)}
+.hero-eyebrow{font-size:10px;letter-spacing:6px;color:var(--gold);opacity:.7;margin-bottom:16px;text-transform:uppercase}
+.hero-title{font-family:'Bebas Neue';font-size:clamp(60px,12vw,120px);letter-spacing:4px;line-height:.9;color:var(--white);text-shadow:0 0 80px rgba(201,169,110,0.1)}
+.hero-title span{color:transparent;-webkit-text-stroke:1px rgba(201,169,110,0.4)}
+.hero-sub{font-family:'Cormorant Garamond';font-style:italic;font-size:20px;color:var(--gold);opacity:.6;margin-top:16px;letter-spacing:2px}
+.scroll-hint{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);font-size:10px;letter-spacing:3px;color:var(--muted);animation:bob 2s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
+
+/* SECTIONS */
+section{padding:80px 40px;max-width:1200px;margin:0 auto}
+.section-eyebrow{font-size:10px;letter-spacing:5px;color:var(--gold);opacity:.55;text-transform:uppercase;margin-bottom:8px}
+.section-title{font-family:'Playfair Display';font-size:36px;font-weight:700;color:var(--white);margin-bottom:48px;line-height:1.1}
+.divider{width:100%;height:1px;background:linear-gradient(to right,transparent,rgba(201,169,110,0.2),transparent);margin:0 40px}
+
+/* CARDS GRID */
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:32px}
+.scene{width:100%;height:210px;perspective:1000px;cursor:pointer}
+.card-inner{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .7s cubic-bezier(.4,.2,.2,1);border-radius:16px;box-shadow:0 12px 50px rgba(0,0,0,0.5)}
+.scene.flipped .card-inner{transform:rotateY(180deg)}
+.card-face{position:absolute;inset:0;border-radius:16px;backface-visibility:hidden;overflow:hidden}
+.card-back-face{transform:rotateY(180deg)}
+.card-label{font-size:11px;letter-spacing:2px;color:var(--muted);margin-bottom:10px;text-transform:uppercase}
+.flip-hint{font-size:10px;color:rgba(255,255,255,0.2);text-align:center;margin-top:8px;letter-spacing:1px}
+
+/* =================== RESTAURANT MENU =================== */
+.menu-wrapper{position:relative;background:#0f0a04;border-radius:20px;overflow:hidden;padding:0;border:1px solid rgba(201,169,110,0.15)}
+.menu-header{text-align:center;padding:48px 32px 32px;position:relative;border-bottom:1px solid rgba(201,169,110,0.1)}
+.menu-logo{font-family:'Dancing Script';font-size:52px;color:var(--gold);line-height:1}
+.menu-tagline{font-family:'Cormorant Garamond';font-style:italic;font-size:14px;color:rgba(201,169,110,0.5);letter-spacing:3px;margin-top:4px}
+
+/* Steam animation */
+.steam-container{position:absolute;top:0;left:0;right:0;height:100%;pointer-events:none;overflow:hidden;opacity:.5}
+.steam{position:absolute;bottom:0;width:3px;border-radius:50%;background:rgba(201,169,110,0.15);animation:rise linear infinite}
+@keyframes rise{
+  0%{transform:translateY(0) scaleX(1);opacity:.8}
+  50%{transform:translateY(-60px) scaleX(2.5);opacity:.4}
+  100%{transform:translateY(-120px) scaleX(4);opacity:0}
+}
+
+.menu-body{display:grid;grid-template-columns:1fr 1fr;gap:0}
+@media(max-width:600px){.menu-body{grid-template-columns:1fr}}
+.menu-col{padding:32px}
+.menu-col:first-child{border-right:1px solid rgba(201,169,110,0.08)}
+.menu-cat-title{font-family:'Bebas Neue';font-size:18px;letter-spacing:4px;color:var(--gold);margin-bottom:20px;display:flex;align-items:center;gap:10px}
+.menu-cat-title::after{content:'';flex:1;height:1px;background:rgba(201,169,110,0.15)}
+.menu-item{display:flex;justify-content:space-between;align-items:flex-start;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.04);cursor:pointer;transition:background .2s;border-radius:4px;gap:12px}
+.menu-item:hover{background:rgba(201,169,110,0.04);padding-left:8px}
+.menu-item:last-child{border-bottom:none}
+.item-info{}
+.item-name{font-size:13px;font-weight:500;color:rgba(255,255,255,0.85)}
+.item-desc{font-size:11px;color:var(--muted);margin-top:2px;line-height:1.5;max-width:180px}
+.item-price{font-family:'Cormorant Garamond';font-size:16px;color:var(--gold);flex-shrink:0;font-weight:600}
+.menu-item.selected{background:rgba(201,169,110,0.08);padding-left:8px}
+.menu-item.selected .item-name{color:var(--gold)}
+
+.cup-wrapper{display:flex;justify-content:center;padding:28px 0 0;position:relative}
+.cup-svg{filter:drop-shadow(0 8px 20px rgba(201,169,110,0.15))}
+.cup-steam{position:absolute;top:10px;left:50%;transform:translateX(-50%);width:80px;height:60px}
+.s1,.s2,.s3{position:absolute;bottom:0;width:2px;border-radius:4px;background:rgba(201,169,110,0.3);animation:steamUp 2.5s ease-in-out infinite}
+.s1{left:24px;height:30px;animation-delay:0s}
+.s2{left:38px;height:42px;animation-delay:.5s}
+.s3{left:52px;height:28px;animation-delay:1s}
+@keyframes steamUp{
+  0%{transform:translateY(0) scaleX(1);opacity:.7}
+  60%{transform:translateY(-40px) scaleX(3);opacity:.2}
+  100%{transform:translateY(-60px) scaleX(5);opacity:0}
+}
+.selected-order{text-align:center;padding:16px 32px 32px;border-top:1px solid rgba(201,169,110,0.08)}
+.order-text{font-family:'Cormorant Garamond';font-style:italic;font-size:15px;color:rgba(201,169,110,0.6)}
+
+/* =================== MAGAZINE =================== */
+.mag-wrapper{background:#0a0a0a;border-radius:20px;overflow:hidden;border:1px solid rgba(255,255,255,0.06);max-width:800px;margin:0 auto}
+.mag-nav{display:flex;justify-content:space-between;align-items:center;padding:16px 24px;border-bottom:1px solid rgba(255,255,255,0.06);background:rgba(0,0,0,0.5)}
+.mag-title-bar{font-family:'Dancing Script';font-size:22px;color:var(--white)}
+.mag-pages{font-size:11px;letter-spacing:2px;color:var(--muted)}
+.mag-btns{display:flex;gap:8px}
+.mag-btn{background:none;border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.5);font-size:16px;width:32px;height:32px;border-radius:6px;cursor:pointer;transition:all .2s;font-family:sans-serif}
+.mag-btn:hover{border-color:rgba(255,255,255,0.3);color:var(--white)}
+.mag-viewport{position:relative;overflow:hidden;min-height:520px}
+.mag-page{position:absolute;inset:0;opacity:0;transform:translateX(60px);transition:all .5s cubic-bezier(.4,.2,.2,1);pointer-events:none}
+.mag-page.active{opacity:1;transform:translateX(0);pointer-events:all}
+.mag-page.exit-left{opacity:0;transform:translateX(-60px)}
+.mag-progress{display:flex;justify-content:center;gap:6px;padding:16px;border-top:1px solid rgba(255,255,255,0.06)}
+.prog-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.15);cursor:pointer;transition:all .2s}
+.prog-dot.active{background:var(--gold);transform:scale(1.3)}
+
+/* Page 1 - Cover */
+.p1{background:#1a1a1a;min-height:520px;display:flex;flex-direction:column;position:relative;overflow:hidden}
+.p1-bg{position:absolute;inset:0;background:linear-gradient(135deg,#1a1a1a 0%,#2a2a2a 100%)}
+.p1-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.8) 0%,transparent 60%)}
+.p1-content{position:relative;z-index:2;padding:32px;height:100%;display:flex;flex-direction:column;justify-content:flex-end}
+.p1-issue{font-size:9px;letter-spacing:4px;color:rgba(255,255,255,0.4);text-transform:uppercase;margin-bottom:6px}
+.p1-mag-title{font-family:'Bebas Neue';font-size:56px;letter-spacing:4px;color:#fff;line-height:.9}
+.p1-mag-title em{font-family:'Dancing Script';font-style:normal;color:rgba(255,255,255,0.6);font-size:32px}
+.p1-feat{font-family:'Cormorant Garamond';font-style:italic;font-size:16px;color:rgba(255,255,255,0.5);margin-top:8px;letter-spacing:2px}
+.p1-quote{margin-top:16px;padding:12px 16px;border-left:2px solid var(--gold);background:rgba(0,0,0,0.3)}
+.p1-quote p{font-family:'Cormorant Garamond';font-style:italic;font-size:13px;color:rgba(255,255,255,0.7);line-height:1.6}
+.p1-editor{position:absolute;top:24px;right:24px;text-align:right}
+.p1-editor-label{font-size:9px;letter-spacing:2px;color:rgba(255,255,255,0.3);text-transform:uppercase}
+.p1-editor-name{font-family:'Dancing Script';font-size:18px;color:var(--gold);opacity:.7}
+
+/* Page 2 - Letter from editor */
+.p2{background:#f9f5ef;min-height:520px;padding:40px;position:relative;overflow:hidden}
+.p2-bg-text{position:absolute;top:20px;right:20px;font-family:'Bebas Neue';font-size:120px;color:rgba(0,0,0,0.04);letter-spacing:-4px;line-height:1;pointer-events:none}
+.p2-eyebrow{font-size:9px;letter-spacing:4px;color:#9a7040;text-transform:uppercase;margin-bottom:6px}
+.p2-heading{font-family:'Playfair Display';font-size:32px;font-weight:700;color:#1a1a1a;line-height:1.1;margin-bottom:4px}
+.p2-heading em{font-family:'Playfair Display';font-style:italic;font-weight:400;color:#9a7040}
+.p2-line{width:40px;height:2px;background:#c9a96e;margin:16px 0}
+.p2-body{font-family:'Cormorant Garamond';font-size:17px;color:#3a2a1a;line-height:1.8;max-width:500px}
+.p2-sig{font-family:'Dancing Script';font-size:28px;color:#9a7040;margin-top:24px}
+.p2-sig-role{font-size:10px;letter-spacing:2px;color:#b09070;text-transform:uppercase;margin-top:4px}
+
+/* Page 3 - Fashion spread */
+.p3{background:#fff;min-height:520px;display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden}
+@media(max-width:600px){.p3{grid-template-columns:1fr}}
+.p3-left{background:linear-gradient(135deg,#f5f0e8,#ede5d5);display:flex;flex-direction:column;justify-content:center;padding:40px;position:relative}
+.p3-left::after{content:'';position:absolute;right:0;top:20%;bottom:20%;width:1px;background:rgba(0,0,0,0.08)}
+.p3-cat{font-size:9px;letter-spacing:4px;color:#9a7040;text-transform:uppercase;margin-bottom:12px}
+.p3-headline{font-family:'Playfair Display';font-size:28px;font-weight:700;color:#1a1a1a;line-height:1.1;margin-bottom:16px}
+.p3-headline em{font-style:italic;color:#9a7040}
+.p3-body-text{font-size:12px;color:#666;line-height:1.9}
+.p3-photographer{position:absolute;bottom:20px;left:40px;font-size:9px;letter-spacing:2px;color:#bbb;text-transform:uppercase}
+.p3-right{background:#1a1a1a;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:40px;text-align:center}
+.p3-num{font-family:'Bebas Neue';font-size:80px;color:rgba(255,255,255,0.05);position:absolute;line-height:1}
+.p3-pull-quote{font-family:'Cormorant Garamond';font-style:italic;font-size:22px;color:rgba(255,255,255,0.75);line-height:1.5;position:relative;z-index:1}
+.p3-quote-mark{font-size:60px;color:rgba(201,169,110,0.2);font-family:Georgia;line-height:.5;display:block;margin-bottom:8px}
+
+/* Page 4 - Subscribe */
+.p4{background:#0f0a04;min-height:520px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px 32px;text-align:center;position:relative;overflow:hidden}
+.p4::before{content:'';position:absolute;width:300px;height:300px;border-radius:50%;border:1px solid rgba(201,169,110,0.08);top:50%;left:50%;transform:translate(-50%,-50%)}
+.p4::after{content:'';position:absolute;width:500px;height:500px;border-radius:50%;border:1px solid rgba(201,169,110,0.04);top:50%;left:50%;transform:translate(-50%,-50%)}
+.p4-issue{font-size:10px;letter-spacing:4px;color:rgba(201,169,110,0.4);text-transform:uppercase;margin-bottom:16px}
+.p4-title{font-family:'Bebas Neue';font-size:48px;letter-spacing:6px;color:var(--gold);line-height:1}
+.p4-line{width:1px;height:40px;background:rgba(201,169,110,0.2);margin:24px auto}
+.p4-mag{font-family:'Dancing Script';font-size:42px;color:var(--white)}
+.p4-perks{display:flex;flex-direction:column;gap:8px;margin-top:24px}
+.p4-perk{font-size:12px;color:rgba(255,255,255,0.4);letter-spacing:1px}
+.p4-cta{margin-top:28px;padding:12px 32px;border:1px solid rgba(201,169,110,0.4);font-size:11px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;cursor:pointer;background:none;border-radius:2px;transition:all .2s;font-family:'DM Sans'}
+.p4-cta:hover{background:rgba(201,169,110,0.08);border-color:var(--gold)}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  nav{padding:14px 20px}
+  section{padding:60px 20px}
+  .cards-grid{grid-template-columns:1fr}
+  .divider{margin:0 20px}
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.fade-in{animation:fadeUp .7s ease both}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Kooky Kafe</div>
+  <div class="nav-links">
+    <a href="#cards">Cards</a>
+    <a href="#menu">Menu</a>
+    <a href="#magazine">Magazine</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">Design Studio · Sample Showcase</div>
+  <div class="hero-title">DIGITAL<br><span>DESIGN</span><br>STUDIO</div>
+  <div class="hero-sub">Virtual cards, menus & magazines</div>
+  <div class="scroll-hint">↓ scroll to explore</div>
+</div>
+
+<div class="divider"></div>
+
+<!-- VISITING CARDS -->
+<section id="cards">
+  <div class="section-eyebrow">01 — Visiting Cards</div>
+  <div class="section-title">Click any card to flip it</div>
+
+  <div class="cards-grid">
+
+    <!-- Card 1: Fareen Kashmira -->
+    <div>
+      <div class="card-label">Fareen Kashmira · Director</div>
+      <div class="scene" onclick="this.classList.toggle('flipped')">
+        <div class="card-inner">
+          <div class="card-face">
+            <div style="background:#060d24;width:100%;height:100%;display:flex;align-items:stretch;border:1px solid rgba(77,159,255,0.12);">
+              <div style="flex:1;padding:22px 20px 22px 26px;display:flex;flex-direction:column;justify-content:space-between;border-right:1px solid rgba(77,159,255,0.1);">
+                <div>
+                  <div style="font-family:'Bebas Neue';font-size:22px;letter-spacing:3px;color:#e8eeff;line-height:1;text-shadow:0 0 20px rgba(77,159,255,0.3);">FAREEN<br>KASHMIRA</div>
+                  <div style="font-size:9px;letter-spacing:3px;color:#4d9fff;opacity:.65;margin-top:6px;font-family:'DM Sans';">DIRECTOR</div>
+                  <div style="width:24px;height:1px;background:linear-gradient(to right,#4d9fff,transparent);margin:10px 0;"></div>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:7px;">
+                  <a href="tel:+917011403207" style="font-size:10px;color:#a8d4ff;text-decoration:none;display:flex;align-items:center;gap:7px;letter-spacing:.5px;">
+                    <div style="width:18px;height:18px;border:1px solid rgba(77,159,255,0.25);border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:9px;">☎</div>+91 70114 03207
+                  </a>
+                  <a href="/cdn-cgi/l/email-protection#f49d9a929bb492958691919a9f95879c999d8695da979bda9d9a" style="font-size:9.5px;color:#a8d4ff;text-decoration:none;display:flex;align-items:center;gap:7px;">
+                    <div style="width:18px;height:18px;border:1px solid rgba(77,159,255,0.25);border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:9px;">✉</div><span class="__cf_email__" data-cfemail="c5acaba3aa85a3a4b7a0a0abaea4b6ada8acb7a4eba6aaebacab">[email&#160;protected]</span>
+                  </a>
+                  <a href="https://fareenkashmira.co.in" style="font-size:9.5px;color:#a8d4ff;text-decoration:none;display:flex;align-items:center;gap:7px;">
+                    <div style="width:18px;height:18px;border:1px solid rgba(77,159,255,0.25);border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:9px;">⊕</div>fareenkashmira.co.in
+                  </a>
+                </div>
+              </div>
+              <div style="width:130px;display:flex;align-items:center;justify-content:center;position:relative;">
+                <div style="width:90px;height:90px;border-radius:50%;border:1.5px solid rgba(77,159,255,0.5);display:flex;align-items:center;justify-content:center;box-shadow:0 0 24px rgba(77,159,255,0.15);animation:pulse 3s ease-in-out infinite;">
+                  <div style="font-family:'Cormorant Garamond';font-size:32px;font-weight:600;color:#e8eeff;letter-spacing:-1px;">FK</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-face card-back-face">
+            <div style="background:linear-gradient(135deg,#060d24,#0c1840);width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;border:1px solid rgba(77,159,255,0.1);">
+              <div style="font-family:'Bebas Neue';font-size:42px;letter-spacing:6px;color:rgba(77,159,255,0.12);">KOOKY</div>
+              <div style="font-family:'Dancing Script';font-size:28px;color:rgba(77,159,255,0.5);">Kafe</div>
+              <div style="width:30px;height:1px;background:rgba(77,159,255,0.2);margin:16px 0;"></div>
+              <div style="font-size:10px;letter-spacing:2px;color:rgba(77,159,255,0.35);">@im_fareen</div>
+              <div style="font-size:10px;letter-spacing:1px;color:rgba(77,159,255,0.25);margin-top:4px;">fareenkashmira.co.in</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flip-hint">click to flip</div>
+    </div>
+
+    <!-- Card 2: Restaurant -->
+    <div>
+      <div class="card-label">Restaurant / Café</div>
+      <div class="scene" onclick="this.classList.toggle('flipped')">
+        <div class="card-inner">
+          <div class="card-face">
+            <div style="background:#0f0a04;width:100%;height:100%;display:flex;align-items:center;gap:0;border:1px solid rgba(201,169,110,0.15);">
+              <div style="width:6px;height:100%;background:linear-gradient(to bottom,#c9a96e,#8a6020);flex-shrink:0;border-radius:16px 0 0 16px;"></div>
+              <div style="flex:1;padding:20px 18px;display:flex;flex-direction:column;justify-content:space-between;height:100%;">
+                <div>
+                  <div style="font-family:'Dancing Script';font-size:28px;color:#c9a96e;">Ember & Oak</div>
+                  <div style="font-size:9px;letter-spacing:3px;color:rgba(201,169,110,0.4);text-transform:uppercase;margin-top:2px;">Fine Dining · Since 2019</div>
+                  <div style="width:20px;height:1px;background:rgba(201,169,110,0.3);margin:10px 0;"></div>
+                </div>
+                <div style="font-size:10px;color:rgba(255,255,255,0.35);line-height:2.1;">
+                  <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4436213721363225302d2b2a0421292621362b252f6a272b29">[email&#160;protected]</a><br>+91 11 4000 0000<br>Connaught Place, New Delhi
+                </div>
+                <div style="font-size:9px;letter-spacing:2px;color:rgba(201,169,110,0.25);text-transform:uppercase;">emberoak.in</div>
+              </div>
+              <div style="width:90px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:16px 12px;border-left:1px solid rgba(201,169,110,0.08);">
+                <div style="font-size:24px;">🍷</div>
+                <div style="font-size:8px;letter-spacing:2px;color:rgba(201,169,110,0.3);text-transform:uppercase;text-align:center;line-height:1.6;">Chef's<br>Table</div>
+              </div>
+            </div>
+          </div>
+          <div class="card-face card-back-face">
+            <div style="background:#0f0a04;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;border:1px solid rgba(201,169,110,0.15);">
+              <div style="font-family:'Dancing Script';font-size:38px;color:#c9a96e;">Ember & Oak</div>
+              <div style="width:30px;height:1px;background:rgba(201,169,110,0.2);margin:14px 0;"></div>
+              <div style="font-size:10px;letter-spacing:2px;color:rgba(255,255,255,0.2);text-align:center;line-height:2.2;"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4230273127303423362b2d2c02272f2027302d23296c212d2f">[email&#160;protected]</a><br>Open Tue – Sun, 12pm – 11pm</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flip-hint">click to flip</div>
+    </div>
+
+    <!-- Card 3: Black Haven -->
+    <div>
+      <div class="card-label">Black Haven · Modest Fashion</div>
+      <div class="scene" onclick="this.classList.toggle('flipped')">
+        <div class="card-inner">
+          <div class="card-face">
+            <div style="background:#100c06;width:100%;height:100%;display:flex;align-items:center;justify-content:center;flex-direction:column;position:relative;border:1px solid rgba(201,169,110,0.18);overflow:hidden;">
+              <div style="position:absolute;top:14px;left:14px;width:14px;height:14px;border-top:1px solid rgba(201,169,110,0.35);border-left:1px solid rgba(201,169,110,0.35);"></div>
+              <div style="position:absolute;top:14px;right:14px;width:14px;height:14px;border-top:1px solid rgba(201,169,110,0.35);border-right:1px solid rgba(201,169,110,0.35);"></div>
+              <div style="position:absolute;bottom:14px;left:14px;width:14px;height:14px;border-bottom:1px solid rgba(201,169,110,0.35);border-left:1px solid rgba(201,169,110,0.35);"></div>
+              <div style="position:absolute;bottom:14px;right:14px;width:14px;height:14px;border-bottom:1px solid rgba(201,169,110,0.35);border-right:1px solid rgba(201,169,110,0.35);"></div>
+              <div style="text-align:center;padding:0 20px;">
+                <div style="font-family:'Brown Sugar',cursive;font-size:11px;letter-spacing:3px;color:rgba(201,169,110,0.5);margin-bottom:10px;">Modest Fashion</div>
+                <div style="font-family:'Cinzel',serif;font-size:28px;font-weight:700;letter-spacing:5px;color:#e8dcc8;line-height:1.1;">BLACK<br>HAVEN</div>
+                <div style="width:28px;height:1px;background:rgba(201,169,110,0.3);margin:12px auto;"></div>
+                <div style="font-family:'Brown Sugar',cursive;font-size:13px;color:#c9a96e;opacity:.8;">Abayas · Accessories</div>
+                <div style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;color:rgba(201,169,110,0.35);margin-top:8px;">@blackhaven.official</div>
+              </div>
+            </div>
+          </div>
+          <div class="card-face card-back-face">
+            <div style="background:#1a1008;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;border:1px solid rgba(201,169,110,0.15);position:relative;overflow:hidden;">
+              <div style="position:absolute;width:180px;height:180px;border-radius:50%;border:1px solid rgba(201,169,110,0.06);"></div>
+              <div style="position:absolute;width:120px;height:120px;border-radius:50%;border:1px solid rgba(201,169,110,0.06);"></div>
+              <div style="font-family:'Cinzel',serif;font-size:18px;font-weight:700;letter-spacing:6px;color:rgba(201,169,110,0.2);position:relative;">BLACK HAVEN</div>
+              <div style="font-family:'Brown Sugar',cursive;font-size:20px;color:#c9a96e;opacity:.5;margin-top:6px;position:relative;">Est. 2024</div>
+              <div style="width:24px;height:1px;background:rgba(201,169,110,0.15);margin:14px 0;position:relative;"></div>
+              <div style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;color:rgba(201,169,110,0.3);position:relative;">@blackhaven.official</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flip-hint">click to flip</div>
+    </div>
+
+    <!-- Card 4: Tech -->
+    <div>
+      <div class="card-label">Tech / Startup</div>
+      <div class="scene" onclick="this.classList.toggle('flipped')">
+        <div class="card-inner">
+          <div class="card-face">
+            <div style="background:#0d1117;width:100%;height:100%;display:flex;border:1px solid #21262d;">
+              <div style="width:3px;background:linear-gradient(to bottom,#7c3aed,#2563eb);flex-shrink:0;border-radius:16px 0 0 16px;"></div>
+              <div style="flex:1;padding:22px;display:flex;flex-direction:column;justify-content:space-between;">
+                <div>
+                  <div style="font-size:9px;letter-spacing:2px;color:#30d158;font-family:monospace;">// product designer</div>
+                  <div style="font-size:20px;font-weight:600;color:#f0f6fc;letter-spacing:-.5px;margin-top:6px;">Zara Iqbal</div>
+                  <div style="font-size:10px;color:#8b949e;margin-top:2px;letter-spacing:1px;">UX · Figma · React</div>
+                </div>
+                <div style="display:flex;gap:5px;flex-wrap:wrap;">
+                  <span style="font-size:8px;padding:2px 8px;border:1px solid #21262d;border-radius:3px;color:#58a6ff;font-family:monospace;">UX</span>
+                  <span style="font-size:8px;padding:2px 8px;border:1px solid #21262d;border-radius:3px;color:#58a6ff;font-family:monospace;">Design</span>
+                  <span style="font-size:8px;padding:2px 8px;border:1px solid #21262d;border-radius:3px;color:#58a6ff;font-family:monospace;">Branding</span>
+                </div>
+                <div style="font-size:10px;color:#484f58;font-family:monospace;line-height:2;"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5d273c2f3c1d39382e343a33733432">[email&#160;protected]</a></div>
+              </div>
+            </div>
+          </div>
+          <div class="card-face card-back-face">
+            <div style="background:#0d1117;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;font-family:monospace;border:1px solid #21262d;">
+              <div style="font-size:10px;color:#30d158;align-self:flex-start;margin-bottom:8px;">$ curl zara.design/contact</div>
+              <div style="background:#161b22;border:1px solid #21262d;border-radius:6px;padding:14px 16px;width:100%;font-size:10px;color:#8b949e;line-height:2.2;">
+                <span style="color:#58a6ff;">"email"</span>: <span style="color:#a5d6ff;">"<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="275d465546674342544e4049094e48">[email&#160;protected]</a>"</span>,<br>
+                <span style="color:#58a6ff;">"portfolio"</span>: <span style="color:#a5d6ff;">"zara.design"</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flip-hint">click to flip</div>
+    </div>
+
+    <!-- Card 5: Photographer -->
+    <div>
+      <div class="card-label">Photographer</div>
+      <div class="scene" onclick="this.classList.toggle('flipped')">
+        <div class="card-inner">
+          <div class="card-face">
+            <div style="background:#fffbf5;width:100%;height:100%;display:flex;align-items:center;padding:22px 26px;gap:20px;border:1px solid #f0e4cc;">
+              <div style="flex-shrink:0;">
+                <div style="width:58px;height:58px;border-radius:50%;background:#f4a95a;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:600;color:#fff;font-family:'DM Sans';">A</div>
+              </div>
+              <div style="flex:1;">
+                <div style="font-size:18px;font-weight:600;color:#2d1a00;letter-spacing:-.3px;font-family:'DM Sans';">Aisha Raza</div>
+                <div style="font-size:10px;color:#f4a95a;letter-spacing:1.5px;margin-top:2px;text-transform:uppercase;font-family:'DM Sans';">Wedding Photographer</div>
+                <div style="width:18px;height:2px;background:#f4e0c0;margin:8px 0;border-radius:2px;"></div>
+                <div style="font-size:10px;color:#9a7040;line-height:2.1;font-family:'DM Sans';"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c9a8a0baa1a889a5aca7bae7a0a7">[email&#160;protected]</a><br>+91 99100 22200</div>
+              </div>
+            </div>
+          </div>
+          <div class="card-face card-back-face">
+            <div style="background:#f4a95a;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+              <div style="font-size:28px;">📷</div>
+              <div style="font-size:16px;font-weight:600;color:#fff;margin-top:10px;font-family:'DM Sans';"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="62030b110a03220e070c114c0b0c">[email&#160;protected]</a></div>
+              <div style="font-size:11px;color:rgba(255,255,255,0.6);margin-top:4px;font-family:'DM Sans';">lens.in</div>
+              <div style="font-size:11px;color:rgba(255,255,255,0.5);margin-top:12px;text-align:center;line-height:1.8;font-family:'DM Sans';">Capturing forever<br>in a single frame.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flip-hint">click to flip</div>
+    </div>
+
+    <!-- Card 6: Kooky Kafe -->
+    <div>
+      <div class="card-label">Kooky Kafe · Creative Studio</div>
+      <div class="scene" onclick="this.classList.toggle('flipped')">
+        <div class="card-inner">
+          <div class="card-face">
+            <div style="background:#0f0a04;width:100%;height:100%;display:flex;align-items:stretch;border:1px solid rgba(201,169,110,0.15);position:relative;overflow:hidden;">
+              <div style="position:absolute;inset:0;opacity:.03;background-image:repeating-linear-gradient(45deg,#c9a96e 0,#c9a96e 1px,transparent 0,transparent 50%);background-size:8px 8px;"></div>
+              <div style="flex:1;padding:20px 18px 20px 22px;display:flex;flex-direction:column;justify-content:space-between;position:relative;z-index:1;">
+                <div>
+                  <div style="font-family:'Dancing Script';font-size:30px;color:#c9a96e;line-height:1;">Kooky Kafe</div>
+                  <div style="font-family:'Cinzel',serif;font-size:8px;letter-spacing:3px;color:rgba(201,169,110,0.4);margin-top:3px;">CREATIVE STUDIO</div>
+                  <div style="width:20px;height:1px;background:rgba(201,169,110,0.25);margin:10px 0;"></div>
+                </div>
+                <div style="font-size:10px;color:rgba(255,255,255,0.45);line-height:2;"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="91f8fff7fed1f7f0e3f4f4fffaf0e2f9fcf8e3f0bff2febff8ff">[email&#160;protected]</a><br>fareenkashmira.co.in</div>
+                <div>
+                  <div style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:1.5px;color:rgba(201,169,110,0.5);">Fareen Kashmira</div>
+                  <div style="font-size:8px;letter-spacing:2px;color:rgba(255,255,255,0.2);margin-top:2px;text-transform:uppercase;">Founder & Director</div>
+                </div>
+              </div>
+              <div style="width:80px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;border-left:1px solid rgba(201,169,110,0.08);padding:12px;position:relative;z-index:1;">
+                <div style="font-size:20px;">☕</div>
+                <div style="font-size:7px;letter-spacing:1.5px;color:rgba(201,169,110,0.25);text-transform:uppercase;text-align:center;line-height:1.8;">Design<br>& Brew</div>
+              </div>
+            </div>
+          </div>
+          <div class="card-face card-back-face">
+            <div style="background:#0f0a04;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;border:1px solid rgba(201,169,110,0.15);text-align:center;padding:24px;">
+              <div style="font-family:'Dancing Script';font-size:36px;color:#c9a96e;">Kooky Kafe</div>
+              <div style="font-family:'Cinzel',serif;font-size:8px;letter-spacing:4px;color:rgba(201,169,110,0.35);margin-top:4px;">WHERE DESIGN MEETS DELIGHT</div>
+              <div style="width:24px;height:1px;background:rgba(201,169,110,0.15);margin:14px auto;"></div>
+              <div style="font-family:'Cinzel',serif;font-size:10px;color:rgba(201,169,110,0.4);letter-spacing:1px;">Fareen Kashmira</div>
+              <div style="font-size:9px;color:rgba(255,255,255,0.2);letter-spacing:1.5px;margin-top:3px;text-transform:uppercase;">Founder · Director</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flip-hint">click to flip</div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- RESTAURANT MENU -->
+<section id="menu" style="max-width:1200px;margin:0 auto;padding:80px 40px;">
+  <div class="section-eyebrow">02 — Interactive Menu</div>
+  <div class="section-title">Click items to select your order</div>
+
+  <div class="menu-wrapper">
+
+    <!-- Steam particles bg -->
+    <div class="steam-container" id="steamBg"></div>
+
+    <div class="menu-header">
+      <div class="menu-logo">Ember & Oak</div>
+      <div class="menu-tagline">Fine Dining · Connaught Place</div>
+    </div>
+
+    <!-- Cup with steam -->
+    <div class="cup-wrapper">
+      <svg class="cup-svg" width="80" height="70" viewBox="0 0 80 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M15 25 L20 65 Q20 68 23 68 L57 68 Q60 68 60 65 L65 25 Z" fill="#1a0f05" stroke="#c9a96e" stroke-width="1.5"/>
+        <path d="M15 25 L65 25" stroke="#c9a96e" stroke-width="1.5"/>
+        <path d="M12 25 Q8 25 8 32 Q8 40 15 40 L15 32" stroke="#c9a96e" stroke-width="1.5" fill="none"/>
+        <path d="M18 30 Q40 35 62 30" stroke="rgba(201,169,110,0.3)" stroke-width="1" fill="none"/>
+        <text x="40" y="52" text-anchor="middle" font-family="Dancing Script" font-size="12" fill="#c9a96e" opacity="0.6">E&O</text>
+      </svg>
+      <div class="cup-steam">
+        <div class="s1"></div>
+        <div class="s2"></div>
+        <div class="s3"></div>
+      </div>
+    </div>
+
+    <div class="menu-body">
+      <div class="menu-col">
+        <div class="menu-cat-title">Hot Beverages</div>
+        <div class="menu-item" onclick="selectItem(this,'Signature Espresso — ₹180')">
+          <div class="item-info"><div class="item-name">Signature Espresso</div><div class="item-desc">Double shot, dark roast blend</div></div>
+          <div class="item-price">₹180</div>
+        </div>
+        <div class="menu-item" onclick="selectItem(this,'Oak Latte — ₹220')">
+          <div class="item-info"><div class="item-name">Oak Latte</div><div class="item-desc">Oat milk, cinnamon foam</div></div>
+          <div class="item-price">₹220</div>
+        </div>
+        <div class="menu-item" onclick="selectItem(this,'Masala Chai — ₹140')">
+          <div class="item-info"><div class="item-name">Masala Chai</div><div class="item-desc">House spice blend, full-fat milk</div></div>
+          <div class="item-price">₹140</div>
+        </div>
+        <div class="menu-item" onclick="selectItem(this,'Matcha Latte — ₹260')">
+          <div class="item-info"><div class="item-name">Matcha Latte</div><div class="item-desc">Ceremonial grade, almond milk</div></div>
+          <div class="item-price">₹260</div>
+        </div>
+
+        <div class="menu-cat-title" style="margin-top:24px;">Small Plates</div>
+        <div class="menu-item" onclick="selectItem(this,'Burrata & Heirloom — ₹620')">
+          <div class="item-info"><div class="item-name">Burrata & Heirloom</div><div class="item-desc">Tomato, basil oil, flaky salt</div></div>
+          <div class="item-price">₹620</div>
+        </div>
+        <div class="menu-item" onclick="selectItem(this,'Truffle Arancini — ₹480')">
+          <div class="item-info"><div class="item-name">Truffle Arancini</div><div class="item-desc">Black truffle, aged parmesan</div></div>
+          <div class="item-price">₹480</div>
+        </div>
+      </div>
+
+      <div class="menu-col">
+        <div class="menu-cat-title">Mains</div>
+        <div class="menu-item" onclick="selectItem(this,'Ember-Grilled Salmon — ₹1,450')">
+          <div class="item-info"><div class="item-name">Ember-Grilled Salmon</div><div class="item-desc">Lemon beurre blanc, capers, dill</div></div>
+          <div class="item-price">₹1,450</div>
+        </div>
+        <div class="menu-item" onclick="selectItem(this,'Oak-Smoked Risotto — ₹980')">
+          <div class="item-info"><div class="item-name">Oak-Smoked Risotto</div><div class="item-desc">Wild mushroom, truffle, herbs</div></div>
+          <div class="item-price">₹980</div>
+        </div>
+        <div class="menu-item" onclick="selectItem(this,'Lamb Rack — ₹1,850')">
+          <div class="item-info"><div class="item-name">Lamb Rack</div><div class="item-desc">Rosemary jus, roasted garlic purée</div></div>
+          <div class="item-price">₹1,850</div>
+        </div>
+        <div class="menu-item" onclick="selectItem(this,'Paneer Wellington — ₹1,100')">
+          <div class="item-info"><div class="item-name">Paneer Wellington</div><div class="item-desc">Spinach, sun-dried tomato pastry</div></div>
+          <div class="item-price">₹1,100</div>
+        </div>
+
+        <div class="menu-cat-title" style="margin-top:24px;">Desserts</div>
+        <div class="menu-item" onclick="selectItem(this,'Burnt Caramel Tart — ₹380')">
+          <div class="item-info"><div class="item-name">Burnt Caramel Tart</div><div class="item-desc">Fleur de sel, vanilla bean cream</div></div>
+          <div class="item-price">₹380</div>
+        </div>
+        <div class="menu-item" onclick="selectItem(this,'Dark Chocolate Fondant — ₹420')">
+          <div class="item-info"><div class="item-name">Dark Chocolate Fondant</div><div class="item-desc">Warm centre, raspberry coulis</div></div>
+          <div class="item-price">₹420</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="selected-order">
+      <div class="order-text" id="orderText">Select an item to see your choice ↑</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- MAGAZINE -->
+<section id="magazine" style="max-width:1200px;margin:0 auto;padding:80px 40px;">
+  <div class="section-eyebrow">03 — Virtual Magazine</div>
+  <div class="section-title">Summer Tune · Issue No. 1</div>
+
+  <style>
+  .book-outer{display:flex;flex-direction:column;align-items:center;gap:20px}
+  .book-nav{display:flex;justify-content:space-between;align-items:center;width:100%;max-width:700px}
+  .book-nav-title{font-family:'Dancing Script';font-size:22px;color:var(--gold)}
+  .book-nav-info{font-size:11px;letter-spacing:2px;color:var(--muted)}
+  .book-nav-btns{display:flex;gap:8px}
+  .book-nav-btn{background:none;border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.4);width:36px;height:36px;border-radius:6px;cursor:pointer;font-size:16px;transition:all .2s;font-family:sans-serif}
+  .book-nav-btn:hover:not(:disabled){border-color:rgba(201,169,110,0.4);color:var(--gold)}
+  .book-nav-btn:disabled{opacity:.2;cursor:default}
+
+  .book-scene{width:100%;max-width:700px;height:460px;perspective:2000px;position:relative}
+  .book{width:100%;height:100%;position:relative;transform-style:preserve-3d}
+
+  /* Left page (always visible — previous spread left) */
+  .book-left,.book-right{position:absolute;top:0;width:50%;height:100%;overflow:hidden}
+  .book-left{left:0;border-radius:6px 0 0 6px;box-shadow:-4px 0 20px rgba(0,0,0,0.4)}
+  .book-right{right:0;border-radius:0 6px 6px 0;box-shadow:4px 0 20px rgba(0,0,0,0.4)}
+
+  /* The flipping leaf */
+  .book-leaf{position:absolute;top:0;right:0;width:50%;height:100%;transform-origin:left center;transform-style:preserve-3d;transition:transform 0.8s cubic-bezier(0.645,0.045,0.355,1.000);z-index:10;pointer-events:none}
+  .book-leaf.flipping-forward{animation:flipForward 0.8s cubic-bezier(0.645,0.045,0.355,1.000) forwards}
+  .book-leaf.flipping-backward{animation:flipBackward 0.8s cubic-bezier(0.645,0.045,0.355,1.000) forwards}
+  @keyframes flipForward{
+    0%{transform:rotateY(0deg)}
+    100%{transform:rotateY(-180deg)}
+  }
+  @keyframes flipBackward{
+    0%{transform:rotateY(-180deg)}
+    100%{transform:rotateY(0deg)}
+  }
+  .leaf-front,.leaf-back{position:absolute;inset:0;backface-visibility:hidden;overflow:hidden}
+  .leaf-back{transform:rotateY(180deg)}
+  /* Shadow on leaf during flip */
+  .leaf-front::after,.leaf-back::after{
+    content:'';position:absolute;inset:0;pointer-events:none;
+    background:linear-gradient(to right,rgba(0,0,0,0.15),transparent);
+    opacity:0;transition:opacity .4s;
+  }
+
+  .book-spine{position:absolute;left:50%;top:0;width:3px;height:100%;background:linear-gradient(to bottom,#3a2a10,#1a0f05,#3a2a10);transform:translateX(-50%);z-index:20;box-shadow:0 0 8px rgba(0,0,0,0.5)}
+
+  /* Page content styles */
+  .pg{width:100%;height:100%;overflow:hidden;position:relative}
+
+  /* Cover page */
+  .pg-cover{background:linear-gradient(160deg,#1a1208 0%,#2d1f0a 50%,#1a1208 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:28px 22px}
+  .pg-cover-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.85) 0%,rgba(0,0,0,0.2) 60%,transparent 100%)}
+  .pg-cover-stripes{position:absolute;inset:0;background:repeating-linear-gradient(135deg,rgba(201,169,110,0.02) 0,rgba(201,169,110,0.02) 1px,transparent 0,transparent 10px)}
+  .pg-cover-content{position:relative;z-index:2}
+  .pg-cover-issue{font-size:8px;letter-spacing:4px;color:rgba(201,169,110,0.5);text-transform:uppercase;margin-bottom:6px}
+  .pg-cover-title{font-family:'Bebas Neue';font-size:44px;letter-spacing:4px;color:#fff;line-height:.9}
+  .pg-cover-title em{font-family:'Dancing Script';font-style:normal;font-size:28px;color:rgba(255,255,255,0.55);display:block}
+  .pg-cover-feat{font-family:'Cormorant Garamond';font-style:italic;font-size:13px;color:rgba(255,255,255,0.45);margin-top:8px;letter-spacing:2px}
+  .pg-cover-quote{margin-top:12px;padding:10px 12px;border-left:2px solid var(--gold);background:rgba(0,0,0,0.35);font-family:'Cormorant Garamond';font-style:italic;font-size:11px;color:rgba(255,255,255,0.6);line-height:1.6}
+  .pg-cover-editor{position:absolute;top:16px;right:16px;text-align:right;z-index:2}
+  .pg-cover-editor-label{font-size:7px;letter-spacing:2px;color:rgba(255,255,255,0.25);text-transform:uppercase}
+  .pg-cover-editor-name{font-family:'Dancing Script';font-size:15px;color:rgba(201,169,110,0.6)}
+
+  /* Blank left for cover spread */
+  .pg-blank{background:#0f0a04;display:flex;align-items:center;justify-content:center}
+  .pg-blank-watermark{font-family:'Dancing Script';font-size:48px;color:rgba(201,169,110,0.04);text-align:center}
+
+  /* Editor letter */
+  .pg-editor{background:#faf6ef;padding:28px 22px;display:flex;flex-direction:column;justify-content:flex-start;position:relative;overflow:hidden}
+  .pg-editor-bgtext{position:absolute;top:10px;right:-10px;font-family:'Bebas Neue';font-size:100px;color:rgba(0,0,0,0.04);letter-spacing:-4px;line-height:1;pointer-events:none}
+  .pg-editor-eyebrow{font-size:8px;letter-spacing:4px;color:#9a7040;text-transform:uppercase;margin-bottom:6px}
+  .pg-editor-heading{font-family:'Playfair Display';font-size:22px;font-weight:700;color:#1a1a1a;line-height:1.1}
+  .pg-editor-heading em{font-style:italic;color:#9a7040;font-weight:400}
+  .pg-editor-line{width:30px;height:2px;background:#c9a96e;margin:12px 0}
+  .pg-editor-body{font-family:'Cormorant Garamond';font-size:15px;color:#3a2a1a;line-height:1.75;flex:1}
+  .pg-editor-sig{font-family:'Dancing Script';font-size:22px;color:#9a7040;margin-top:16px}
+  .pg-editor-role{font-size:8px;letter-spacing:2px;color:#b09070;text-transform:uppercase;margin-top:2px}
+
+  /* Fashion page */
+  .pg-fashion{background:#fff;padding:24px 20px;position:relative;overflow:hidden}
+  .pg-fashion-cat{font-size:8px;letter-spacing:4px;color:#9a7040;text-transform:uppercase;margin-bottom:8px}
+  .pg-fashion-head{font-family:'Playfair Display';font-size:22px;font-weight:700;color:#111;line-height:1.1;margin-bottom:12px}
+  .pg-fashion-head em{font-style:italic;color:#9a7040;font-weight:400}
+  .pg-fashion-body{font-size:11px;color:#555;line-height:1.85}
+  .pg-fashion-photo{font-size:8px;letter-spacing:2px;color:#ccc;text-transform:uppercase;position:absolute;bottom:16px;left:20px}
+
+  .pg-quote{background:#1a1a1a;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px;text-align:center;position:relative;overflow:hidden}
+  .pg-quote-num{font-family:'Bebas Neue';font-size:90px;color:rgba(255,255,255,0.03);position:absolute;line-height:1}
+  .pg-quote-mark{font-size:48px;color:rgba(201,169,110,0.15);font-family:Georgia;line-height:.4;display:block;margin-bottom:10px}
+  .pg-quote-text{font-family:'Cormorant Garamond';font-style:italic;font-size:18px;color:rgba(255,255,255,0.7);line-height:1.6;position:relative;z-index:1}
+
+  /* Subscribe */
+  .pg-sub{background:#0f0a04;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px;text-align:center;position:relative;overflow:hidden}
+  .pg-sub::before{content:'';position:absolute;width:200px;height:200px;border-radius:50%;border:1px solid rgba(201,169,110,0.06);top:50%;left:50%;transform:translate(-50%,-50%)}
+  .pg-sub-issue{font-size:8px;letter-spacing:4px;color:rgba(201,169,110,0.35);text-transform:uppercase;margin-bottom:12px}
+  .pg-sub-sub{font-family:'Bebas Neue';font-size:32px;letter-spacing:4px;color:var(--gold);line-height:1}
+  .pg-sub-line{width:1px;height:28px;background:rgba(201,169,110,0.15);margin:14px auto}
+  .pg-sub-mag{font-family:'Dancing Script';font-size:30px;color:var(--white)}
+  .pg-sub-perks{display:flex;flex-direction:column;gap:6px;margin-top:14px}
+  .pg-sub-perk{font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:.5px}
+  .pg-sub-btn{margin-top:16px;padding:9px 22px;border:1px solid rgba(201,169,110,0.35);font-size:9px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;cursor:pointer;background:none;border-radius:2px;transition:all .2s;font-family:'DM Sans'}
+  .pg-sub-btn:hover{background:rgba(201,169,110,0.08)}
+
+  .book-dots{display:flex;gap:8px;margin-top:4px}
+  .bdot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.12);cursor:pointer;transition:all .2s;border:none}
+  .bdot.active{background:var(--gold);transform:scale(1.25)}
+  .book-hint{font-size:10px;letter-spacing:2px;color:rgba(255,255,255,0.15);margin-top:2px}
+  </style>
+
+  <div class="book-outer">
+    <div class="book-nav">
+      <div class="book-nav-title">Summer Tune</div>
+      <div class="book-nav-info" id="bkInfo">Spread 1 of 4</div>
+      <div class="book-nav-btns">
+        <button class="book-nav-btn" id="bkPrev" onclick="bookFlip(-1)" disabled>←</button>
+        <button class="book-nav-btn" id="bkNext" onclick="bookFlip(1)">→</button>
+      </div>
+    </div>
+
+    <div class="book-scene">
+      <div class="book" id="theBook">
+        <!-- Left static page -->
+        <div class="book-left" id="bkLeft"></div>
+        <!-- Right static page -->
+        <div class="book-right" id="bkRight"></div>
+        <!-- Flipping leaf -->
+        <div class="book-leaf" id="bkLeaf">
+          <div class="leaf-front" id="bkLeafFront"></div>
+          <div class="leaf-back" id="bkLeafBack"></div>
+        </div>
+        <!-- Spine -->
+        <div class="book-spine"></div>
+      </div>
+    </div>
+
+    <div class="book-dots" id="bkDots"></div>
+    <div class="book-hint">use arrows or ← → keys to turn pages</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="text-align:center;padding:40px;border-top:1px solid rgba(255,255,255,0.05);margin-top:40px;">
+  <div style="font-family:'Dancing Script';font-size:28px;color:rgba(201,169,110,0.4);">Kooky Kafe</div>
+  <div style="font-size:10px;letter-spacing:3px;color:rgba(255,255,255,0.15);margin-top:8px;text-transform:uppercase;">Digital Design Studio · fareenkashmira.co.in</div>
+</footer>
+
+<style>
+@keyframes pulse{0%,100%{box-shadow:0 0 8px rgba(77,159,255,0.3)}50%{box-shadow:0 0 20px rgba(77,159,255,0.6)}}
+</style>
+
+<script>
+// Menu selection — global so inline onclick can reach it
+function selectItem(el, name) {
+  document.querySelectorAll('.menu-item').forEach(function(i){ i.classList.remove('selected'); });
+  el.classList.add('selected');
+  var ot = document.getElementById('orderText');
+  if(ot) ot.textContent = '✦ Selected: ' + name;
+}
+
+// ===================== BOOK FLIP =====================
+var bookPages=[
+
+  // SPREAD 1: Cover spread
+  [
+    `<div class="pg" style="background:#0a0805;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;gap:12px;">
+      <img src="https://picsum.photos/seed/concert1/280/200" alt="concert" style="width:100%;height:180px;object-fit:cover;border-radius:4px;opacity:.7;filter:sepia(.3);">
+      <div style="text-align:center;">
+        <div style="font-size:8px;letter-spacing:4px;color:rgba(201,169,110,0.4);text-transform:uppercase;margin-bottom:6px;">Summer Tune</div>
+        <div style="font-family:'Dancing Script';font-size:26px;color:rgba(201,169,110,0.5);">Issue One</div>
+      </div>
+      <img src="https://picsum.photos/seed/stage2/280/120" alt="stage" style="width:100%;height:110px;object-fit:cover;border-radius:4px;opacity:.5;filter:sepia(.4);">
+    </div>`,
+    `<div class="pg pg-cover" style="position:relative;overflow:hidden;">
+      <img src="https://picsum.photos/seed/fashion22/350/460" alt="cover" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.55) sepia(.2);">
+      <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.92) 0%,rgba(0,0,0,0.1) 60%,transparent 100%);"></div>
+      <div class="pg-cover-editor" style="z-index:2;">
+        <div class="pg-cover-editor-label">Editor-in-Chief</div>
+        <div class="pg-cover-editor-name">Fareen Kashmira</div>
+      </div>
+      <div class="pg-cover-content" style="z-index:2;">
+        <div class="pg-cover-issue">Issue 01 · Summer Edition</div>
+        <div class="pg-cover-title"><em>Summer</em>TUNE</div>
+        <div class="pg-cover-feat">featuring Shawn Mendes</div>
+        <div class="pg-cover-quote">"The most selfless thing you can do is take care of yourself."</div>
+      </div>
+    </div>`
+  ],
+
+  // SPREAD 2: Editor letter + full photo
+  [
+    `<div class="pg pg-editor" style="position:relative;">
+      <div class="pg-editor-bgtext">ST</div>
+      <div class="pg-editor-eyebrow">From the Editor</div>
+      <div class="pg-editor-heading">Hey, <em>Dear Readers</em></div>
+      <div class="pg-editor-line"></div>
+      <img src="https://picsum.photos/seed/portrait88/180/120" alt="editorial" style="width:100%;height:110px;object-fit:cover;border-radius:4px;margin-bottom:10px;filter:sepia(.15);">
+      <div class="pg-editor-body" style="font-size:13px;">In this edition, we explore the journey of Shawn Mendes — his fashion choices, struggles, and thoughts on life and career. We look into the advice he would offer our readers, exclusively on Summer Tune.</div>
+      <div class="pg-editor-sig" style="margin-top:12px;">Fareen Kashmira</div>
+      <div class="pg-editor-role">Editor-in-Chief · Summer Tune</div>
+    </div>`,
+    `<div class="pg" style="position:relative;overflow:hidden;background:#111;">
+      <img src="https://picsum.photos/seed/moody44/350/460" alt="feature" style="width:100%;height:100%;object-fit:cover;filter:brightness(.6) contrast(1.1);">
+      <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.8) 0%,transparent 50%);"></div>
+      <div style="position:absolute;bottom:24px;left:20px;right:20px;z-index:2;">
+        <div style="font-size:8px;letter-spacing:3px;color:rgba(201,169,110,0.6);text-transform:uppercase;margin-bottom:6px;">Pull Quote</div>
+        <div style="font-family:'Cormorant Garamond';font-style:italic;font-size:18px;color:#fff;line-height:1.5;">"Sometimes it all gets a little too much, but you gotta realise — soon the fog will clear up."</div>
+      </div>
+    </div>`
+  ],
+
+  // SPREAD 3: Fashion feature — two-column with image
+  [
+    `<div class="pg" style="background:#fff;display:flex;flex-direction:column;overflow:hidden;">
+      <img src="https://picsum.photos/seed/style77/350/200" alt="fashion" style="width:100%;height:190px;object-fit:cover;flex-shrink:0;filter:sepia(.1);">
+      <div style="padding:18px 16px;flex:1;display:flex;flex-direction:column;justify-content:space-between;">
+        <div>
+          <div style="font-size:8px;letter-spacing:3px;color:#9a7040;text-transform:uppercase;margin-bottom:6px;">Fashion · Issue 01</div>
+          <div style="font-family:'Playfair Display';font-size:19px;font-weight:700;color:#111;line-height:1.1;margin-bottom:10px;"><em style="color:#9a7040;font-weight:400;">Influencing</em><br>The New Trends</div>
+          <div style="font-size:11px;color:#555;line-height:1.85;">He works the room like the slick, suave male lead in a rom-com. From the moment he steps on stage, Shawn hits all the right notes and wears the right clothes to impress.</div>
+        </div>
+        <div style="font-size:8px;letter-spacing:2px;color:#ccc;text-transform:uppercase;">Photography · Jackson Davis</div>
+      </div>
+    </div>`,
+    `<div class="pg" style="background:#f5f0e8;display:flex;flex-direction:column;overflow:hidden;position:relative;">
+      <div style="padding:20px 16px 12px;">
+        <div style="font-size:8px;letter-spacing:3px;color:#9a7040;text-transform:uppercase;margin-bottom:6px;">Style Notes</div>
+        <div style="font-family:'Playfair Display';font-size:16px;font-weight:700;color:#111;margin-bottom:10px;">Putting a Stop<br><em style="color:#9a7040;font-weight:400;">to Fast Fashion</em></div>
+        <div style="font-size:11px;color:#666;line-height:1.85;">The Canadian heartthrob's ability to make every fan feel like they are the only one in the room has become his trademark — on stage and off it.</div>
+      </div>
+      <img src="https://picsum.photos/seed/natural55/350/180" alt="nature fashion" style="width:100%;height:170px;object-fit:cover;filter:sepia(.15);">
+      <div style="padding:10px 16px;font-size:8px;letter-spacing:2px;color:#bbb;text-transform:uppercase;">Photography · Aaron Loeb</div>
+    </div>`
+  ],
+
+  // SPREAD 4: Music + Subscribe
+  [
+    `<div class="pg" style="background:#0a0805;display:flex;flex-direction:column;overflow:hidden;position:relative;">
+      <img src="https://picsum.photos/seed/music99/350/250" alt="music" style="width:100%;height:240px;object-fit:cover;filter:brightness(.7) saturate(1.2);">
+      <div style="position:absolute;top:0;left:0;right:0;height:240px;background:linear-gradient(to top,rgba(10,8,5,0.9) 0%,transparent 60%);"></div>
+      <div style="position:absolute;top:160px;left:16px;right:16px;">
+        <div style="font-family:'Bebas Neue';font-size:26px;letter-spacing:4px;color:#fff;line-height:1;">PASSION<br><span style="font-family:'Dancing Script';font-size:22px;color:rgba(201,169,110,0.8);letter-spacing:0;">for Music</span></div>
+      </div>
+      <div style="padding:16px;flex:1;display:flex;flex-direction:column;justify-content:center;">
+        <div style="font-size:11px;color:rgba(255,255,255,0.45);line-height:1.8;">From guitar covers at 14 to sold-out arenas — the stage is where Shawn Mendes has always felt most himself. The music never stopped being personal.</div>
+      </div>
+    </div>`,
+    `<div class="pg pg-sub">
+      <div class="pg-sub-issue">Never Miss an Issue</div>
+      <div class="pg-sub-sub">SUBSCRIBE TO</div>
+      <div class="pg-sub-line"></div>
+      <div class="pg-sub-mag">Summer Tune</div>
+      <img src="https://picsum.photos/seed/summer33/200/100" alt="summer" style="width:80%;height:80px;object-fit:cover;border-radius:4px;margin:12px auto;opacity:.5;filter:sepia(.3);">
+      <div class="pg-sub-perks">
+        <div class="pg-sub-perk">✦ Enjoy huge savings on annual plans</div>
+        <div class="pg-sub-perk">✦ Get your copy before everyone else</div>
+        <div class="pg-sub-perk">✦ Catch the freshest features</div>
+        <div class="pg-sub-perk">✦ Read anytime, anywhere</div>
+      </div>
+      <button class="pg-sub-btn" onclick="alert('Coming soon!')">Subscribe Now</button>
+    </div>`
+  ]
+];
+
+let spread=0;
+var flipping=false;
+var bkLeft,bkRight,bkLeaf,bkLeafFront,bkLeafBack,bkPrev,bkNext,bkInfo,bkDotsEl;
+
+function renderSpread(idx){
+  bkLeft.innerHTML=bookPages[idx][0];
+  bkRight.innerHTML=bookPages[idx][1];
+  bkInfo.textContent='Spread '+(idx+1)+' of '+bookPages.length;
+  bkPrev.disabled=idx===0;
+  bkNext.disabled=idx===bookPages.length-1;
+  document.querySelectorAll('.bdot').forEach(function(d,i){ d.classList.toggle('active',i===idx); });
+}
+
+function bookFlip(dir){
+  if(flipping) return;
+  var next=spread+dir;
+  if(next<0||next>=bookPages.length) return;
+  flipping=true;
+  if(dir===1){
+    bkLeafFront.innerHTML=bookPages[spread][1];
+    bkLeafBack.innerHTML=bookPages[next][0];
+    bkLeaf.style.right='0';bkLeaf.style.left='auto';
+    bkLeaf.style.transformOrigin='left center';
+    bkRight.innerHTML=bookPages[next][1];
+    bkLeaf.style.animation='none';
+    bkLeaf.offsetHeight;
+    bkLeaf.style.animation='flipForward 0.8s cubic-bezier(0.645,0.045,0.355,1.000) forwards';
+  } else {
+    bkLeafFront.innerHTML=bookPages[next][1];
+    bkLeafBack.innerHTML=bookPages[spread][0];
+    bkLeaf.style.right='auto';bkLeaf.style.left='0';
+    bkLeaf.style.transformOrigin='right center';
+    bkLeft.innerHTML=bookPages[next][0];
+    bkLeaf.style.animation='none';
+    bkLeaf.offsetHeight;
+    bkLeaf.style.animation='flipBackwardLeft 0.8s cubic-bezier(0.645,0.045,0.355,1.000) forwards';
+  }
+  setTimeout(function(){
+    spread=next;
+    renderSpread(spread);
+    bkLeaf.style.animation='none';
+    flipping=false;
+  },800);
+}
+
+function goSpread(idx){
+  if(idx===spread||flipping) return;
+  var dir=idx>spread?1:-1;
+  bookFlip(dir);
+}
+
+document.addEventListener('DOMContentLoaded', function(){
+  // Steam particles
+  var steamBg=document.getElementById('steamBg');
+  if(steamBg){
+    for(var j=0;j<18;j++){
+      var s=document.createElement('div');
+      s.className='steam';
+      s.style.cssText='left:'+Math.round(Math.random()*100)+'%;width:'+(2+Math.round(Math.random()*4))+'px;height:'+(30+Math.round(Math.random()*60))+'px;animation-duration:'+(3+Math.random()*4).toFixed(1)+'s;animation-delay:'+(Math.random()*4).toFixed(1)+'s;border-radius:'+Math.round(Math.random()*50)+'%;';
+      steamBg.appendChild(s);
+    }
+  }
+
+  // Book flip init
+  bkLeft=document.getElementById('bkLeft');
+  bkRight=document.getElementById('bkRight');
+  bkLeaf=document.getElementById('bkLeaf');
+  bkLeafFront=document.getElementById('bkLeafFront');
+  bkLeafBack=document.getElementById('bkLeafBack');
+  bkPrev=document.getElementById('bkPrev');
+  bkNext=document.getElementById('bkNext');
+  bkInfo=document.getElementById('bkInfo');
+  bkDotsEl=document.getElementById('bkDots');
+
+  if(bkDotsEl){
+    for(var k=0;k<bookPages.length;k++){
+      (function(t){
+        var d=document.createElement('button');
+        d.className='bdot'+(t===0?' active':'');
+        d.id='bdot'+t;
+        d.onclick=function(){ goSpread(t); };
+        bkDotsEl.appendChild(d);
+      })(k);
+    }
+  }
+
+  if(bkLeft) renderSpread(0);
+
+  // Keyboard nav
+  document.addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight') bookFlip(1);
+    if(e.key==='ArrowLeft') bookFlip(-1);
+  });
+
+  // Scroll fade-in
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; } });
+  },{threshold:0.1});
+  document.querySelectorAll('section').forEach(function(s){
+    s.style.opacity='0'; s.style.transform='translateY(20px)'; s.style.transition='opacity .6s ease, transform .6s ease';
+    obs.observe(s);
+  });
+
+  // backward flip keyframe
+  var styleEl=document.createElement('style');
+  styleEl.textContent='@keyframes flipBackwardLeft{0%{transform:rotateY(180deg)}100%{transform:rotateY(0deg)}}';
+  document.head.appendChild(styleEl);
+});
+</script>
+</body>
+</html>
