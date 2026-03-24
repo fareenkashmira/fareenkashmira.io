@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BH Journal — Black Haven Magazine</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Cinzel:wght@400;600;700&family=Raleway:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --black:#060606;--deep:#0d0d0d;--maroon:#5c0a14;--maroon-light:#8a1020;
+  --gold:#c9a84c;--gold-bright:#e8c86a;--cream:#f0e8d8;--cream-dim:#c8b89a;
+  --muted:#7a6a58;--dim:#3a3020;--blue-deep:#0a0f20;--blue-mid:#0d1a3a;
+}
+html,body{height:100%;overflow:hidden}
+body{background:var(--black);color:var(--cream);font-family:'Raleway',sans-serif;font-weight:300;overflow:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:999;opacity:.3}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:900;padding:16px 40px;display:flex;justify-content:space-between;align-items:center;background:rgba(6,6,6,.95);border-bottom:.5px solid rgba(201,168,76,.15);backdrop-filter:blur(12px)}
+.nav-logo{font-family:'Cinzel',serif;font-size:13px;color:var(--gold);letter-spacing:4px;text-decoration:none}
+.nav-back{font-size:10px;color:var(--muted);text-decoration:none;letter-spacing:3px;text-transform:uppercase;transition:color .3s}
+.nav-back:hover{color:var(--gold)}
+.nav-center{font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--cream-dim);font-style:italic}
+.nav-links{display:flex;gap:24px;list-style:none}
+.nav-links a{font-size:10px;color:var(--muted);text-decoration:none;letter-spacing:2px;text-transform:uppercase;transition:color .3s}
+.nav-links a:hover{color:var(--gold)}
+
+/* BOOK STAGE */
+.book-stage{
+  position:fixed;
+  inset:0;
+  top:60px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  perspective:2000px;
+  background:radial-gradient(ellipse at center,rgba(92,10,20,.08) 0%,transparent 60%);
+  overflow:hidden;
+}
+
+.book-bg-lines{position:absolute;inset:0;background-image:linear-gradient(to right,rgba(201,168,76,.02) 1px,transparent 1px),linear-gradient(to bottom,rgba(201,168,76,.02) 1px,transparent 1px);background-size:60px 60px}
+
+/* BOOK CONTAINER */
+.book-container{
+  position:relative;
+  width:700px;
+  height:480px;
+  transform-style:preserve-3d;
+}
+
+/* BOOK SHADOW */
+.book-shadow{
+  position:absolute;
+  bottom:-30px;
+  left:50%;
+  transform:translateX(-50%);
+  width:600px;height:20px;
+  background:radial-gradient(ellipse,rgba(0,0,0,.6) 0%,transparent 70%);
+  filter:blur(10px);
+}
+
+/* BOOK SPINE */
+.book-spine{
+  position:absolute;
+  left:50%;
+  top:0;bottom:0;
+  width:24px;
+  margin-left:-12px;
+  background:linear-gradient(to right,#1a0a04,#3a1a08,#1a0a04);
+  z-index:10;
+  border-left:.5px solid rgba(201,168,76,.2);
+  border-right:.5px solid rgba(201,168,76,.2);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.spine-text{
+  font-family:'Cormorant Garamond',serif;
+  font-size:9px;
+  color:rgba(201,168,76,.4);
+  letter-spacing:3px;
+  writing-mode:vertical-rl;
+  text-transform:uppercase;
+}
+
+/* PAGE WRAPPER — holds a spread (left + right pages) */
+.page-spread{
+  position:absolute;
+  inset:0;
+  display:none;
+  pointer-events:none;
+}
+.page-spread.current{
+  display:flex;
+  pointer-events:all;
+}
+
+/* INDIVIDUAL PAGES */
+.page-left,.page-right{
+  width:50%;
+  height:100%;
+  overflow:hidden;
+  position:relative;
+}
+.page-left{
+  border-right:.5px solid rgba(42,24,8,.8);
+  box-shadow:inset -8px 0 20px rgba(0,0,0,.4);
+}
+.page-right{
+  border-left:.5px solid rgba(42,24,8,.4);
+  box-shadow:inset 8px 0 20px rgba(0,0,0,.3);
+}
+
+/* PAGE TURN ANIMATION */
+.flip-left,.flip-right{
+  position:absolute;
+  top:0;bottom:0;
+  width:50%;
+  transform-style:preserve-3d;
+  transition:transform .8s cubic-bezier(.4,0,.2,1);
+  z-index:20;
+}
+.flip-left{
+  left:0;
+  transform-origin:right center;
+}
+.flip-right{
+  right:0;
+  transform-origin:left center;
+}
+.flip-left.flipping{transform:rotateY(-180deg)}
+.flip-right.flipping{transform:rotateY(180deg)}
+
+.flip-face{
+  position:absolute;
+  inset:0;
+  backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;
+  overflow:hidden;
+}
+.flip-face-back{transform:rotateY(180deg)}
+
+/* PAGE CONTENT STYLES */
+
+/* COVER PAGE */
+.page-cover{
+  width:100%;height:100%;
+  background:#050505;
+  display:flex;flex-direction:column;
+  position:relative;
+  overflow:hidden;
+}
+.cover-gold-top{height:4px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.cover-body{flex:1;display:flex;flex-direction:column;justify-content:center;padding:32px 28px}
+.cover-issue{font-size:7px;color:rgba(201,168,76,.5);letter-spacing:4px;text-transform:uppercase;margin-bottom:20px}
+.cover-vol{font-family:'Cormorant Garamond',serif;font-size:72px;color:rgba(201,168,76,.06);font-weight:600;line-height:1;position:absolute;bottom:20px;right:-4px}
+.cover-bh{font-family:'Cinzel',serif;font-size:28px;color:var(--gold);letter-spacing:4px;line-height:1.1;margin-bottom:8px}
+.cover-journal{font-family:'Cormorant Garamond',serif;font-size:14px;color:rgba(240,232,216,.4);letter-spacing:3px;font-style:italic;margin-bottom:24px}
+.cover-rule{width:50px;height:.5px;background:var(--gold);margin-bottom:20px}
+.cover-headline{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--cream);font-weight:300;line-height:1.3;margin-bottom:12px}
+.cover-deck{font-size:10px;color:var(--muted);line-height:1.8}
+.cover-gold-bottom{height:2px;background:linear-gradient(90deg,var(--gold),transparent)}
+
+/* INSIDE PAGES */
+.page-inner{
+  width:100%;height:100%;
+  background:#06060a;
+  padding:28px 24px;
+  display:flex;flex-direction:column;
+  gap:12px;
+  position:relative;
+}
+
+.pg-overline{font-size:7px;color:var(--gold);letter-spacing:3px;text-transform:uppercase;padding-bottom:8px;border-bottom:.5px solid var(--dim)}
+.pg-title{font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--cream);font-weight:300;line-height:1.2;margin-top:4px}
+.pg-title em{color:var(--gold);font-style:italic}
+.pg-rule{width:30px;height:.5px;background:var(--maroon)}
+.pg-body{font-size:10px;color:var(--muted);line-height:1.9;flex:1}
+.pg-body p{margin-bottom:10px}
+.pg-pull{font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--gold);font-style:italic;border-left:1px solid var(--maroon);padding-left:12px;line-height:1.5;margin:8px 0}
+.pg-folio{position:absolute;bottom:12px;right:16px;font-size:7px;color:rgba(58,48,32,.8);letter-spacing:2px}
+.pg-folio-l{position:absolute;bottom:12px;left:16px;font-size:7px;color:rgba(58,48,32,.8);letter-spacing:2px}
+
+/* MAROON ACCENT PAGE */
+.page-maroon{
+  width:100%;height:100%;
+  background:var(--maroon);
+  padding:28px 24px;
+  display:flex;flex-direction:column;
+  justify-content:center;
+  position:relative;
+  overflow:hidden;
+}
+.pm-big{font-family:'Cormorant Garamond',serif;font-size:80px;color:rgba(0,0,0,.15);font-weight:600;position:absolute;bottom:-10px;right:-5px;line-height:1}
+.pm-overline{font-size:7px;color:rgba(201,168,76,.6);letter-spacing:4px;text-transform:uppercase;margin-bottom:16px}
+.pm-quote{font-family:'Cormorant Garamond',serif;font-size:24px;color:#fff;font-weight:300;line-height:1.4;font-style:italic;margin-bottom:16px}
+.pm-attr{font-size:9px;color:rgba(255,255,255,.4);letter-spacing:2px}
+
+/* BLUE DEEP PAGE */
+.page-blue{
+  width:100%;height:100%;
+  background:var(--blue-deep);
+  padding:28px 24px;
+  display:flex;flex-direction:column;
+  position:relative;
+  overflow:hidden;
+}
+.pb-header{border-bottom:.5px solid rgba(13,26,58,.8);padding-bottom:14px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center}
+.pb-title{font-family:'Cinzel',serif;font-size:12px;color:rgba(201,168,76,.5);letter-spacing:3px}
+.pb-issue{font-size:7px;color:rgba(201,168,76,.3);letter-spacing:2px}
+.pb-section-title{font-family:'Cormorant Garamond',serif;font-size:22px;color:rgba(240,232,216,.9);margin-bottom:10px;font-weight:300}
+.pb-body{font-size:10px;color:rgba(90,96,122,.9);line-height:1.9}
+.pb-body p{margin-bottom:8px}
+.pb-highlight{background:rgba(92,10,20,.3);border-left:2px solid var(--maroon);padding:10px 14px;margin:10px 0;font-size:11px;color:rgba(201,168,76,.8);font-style:italic;line-height:1.6}
+
+/* BACK COVER */
+.page-back-cover{
+  width:100%;height:100%;
+  background:#040404;
+  display:flex;flex-direction:column;
+  justify-content:space-between;
+  padding:28px;
+  border:.5px solid rgba(201,168,76,.1);
+}
+.bc-top{text-align:center;flex:1;display:flex;flex-direction:column;justify-content:center}
+.bc-logo{font-family:'Cinzel',serif;font-size:22px;color:var(--gold);letter-spacing:6px;margin-bottom:8px}
+.bc-tagline{font-size:8px;color:rgba(122,106,88,.6);letter-spacing:3px;text-transform:uppercase}
+.bc-rule{width:40px;height:.5px;background:var(--gold);margin:20px auto}
+.bc-text{font-family:'Cormorant Garamond',serif;font-size:14px;color:rgba(240,232,216,.4);font-style:italic;line-height:1.6;max-width:200px;margin:0 auto}
+.bc-footer{text-align:center;font-size:7px;color:rgba(58,48,32,.7);letter-spacing:2px}
+
+/* CONTROLS */
+.book-controls{
+  position:fixed;
+  bottom:32px;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  align-items:center;
+  gap:20px;
+  z-index:500;
+}
+.ctrl-btn{
+  display:flex;align-items:center;gap:8px;
+  padding:12px 28px;
+  border:.5px solid rgba(201,168,76,.3);
+  background:rgba(6,6,6,.8);
+  color:var(--muted);
+  font-size:9px;letter-spacing:3px;text-transform:uppercase;
+  cursor:pointer;font-family:'Raleway',sans-serif;
+  transition:all .3s;
+  backdrop-filter:blur(8px);
+}
+.ctrl-btn:hover:not(:disabled){border-color:var(--gold);color:var(--gold)}
+.ctrl-btn:disabled{opacity:.2;cursor:default}
+.ctrl-btn .arrow{display:inline-block;font-size:14px;transition:transform .3s}
+.ctrl-btn.prev:hover .arrow{transform:translateX(-3px)}
+.ctrl-btn.next:hover .arrow{transform:translateX(3px)}
+
+.page-indicator{
+  display:flex;align-items:center;gap:8px;
+  font-size:9px;color:rgba(122,106,88,.6);letter-spacing:3px;text-transform:uppercase;
+}
+.page-dots{display:flex;gap:6px}
+.page-dot{width:4px;height:4px;border-radius:50%;background:var(--dim);transition:all .3s;cursor:pointer}
+.page-dot.active{background:var(--gold);transform:scale(1.3)}
+
+/* PAGE TURN HINT */
+.click-zones{position:absolute;inset:0;display:flex;pointer-events:none;z-index:50}
+.click-left{flex:0 0 40%;cursor:w-resize;pointer-events:all;display:flex;align-items:center;justify-content:flex-start;padding-left:8px;opacity:0;transition:opacity .3s}
+.click-right{flex:0 0 40%;margin-left:auto;cursor:e-resize;pointer-events:all;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;opacity:0;transition:opacity .3s}
+.book-container:hover .click-left,.book-container:hover .click-right{opacity:1}
+.click-hint{font-size:8px;color:rgba(201,168,76,.3);letter-spacing:2px;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:4px}
+.click-hint-arrow{font-size:20px;color:rgba(201,168,76,.2);animation:hintPulse 2s ease-in-out infinite}
+@keyframes hintPulse{0%,100%{opacity:.2;transform:translateX(0)}50%{opacity:.5;transform:translateX(4px)}}
+.click-left .click-hint-arrow{animation-name:hintPulseL}
+@keyframes hintPulseL{0%,100%{opacity:.2;transform:translateX(0)}50%{opacity:.5;transform:translateX(-4px)}}
+
+/* MOBILE */
+@media(max-width:768px){
+  html,body{overflow:auto}
+  .book-stage{position:relative;top:0;height:auto;min-height:100vh;padding:80px 16px 140px;perspective:none}
+  .book-container{width:100%;max-width:360px;height:auto;min-height:500px}
+  .page-spread.current{flex-direction:column}
+  .page-left,.page-right{width:100%;height:auto;min-height:250px}
+  .book-spine{display:none}
+  .book-shadow{display:none}
+  .click-zones{display:none}
+  nav{padding:14px 20px}
+  .nav-center{display:none}
+  .book-controls{bottom:20px;gap:12px}
+  .ctrl-btn{padding:10px 20px;font-size:8px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="virtualdesigns.html" class="nav-logo">FK</a>
+  <div class="nav-center">BH Journal — Vol. I</div>
+  <ul class="nav-links">
+    <li><a href="cards.html">Cards</a></li>
+    <li><a href="menus.html">Menus</a></li>
+  </ul>
+  <a href="virtualdesigns.html" class="nav-back">← Home</a>
+</nav>
+
+<div class="book-stage">
+  <div class="book-bg-lines"></div>
+
+  <div class="book-container" id="bookContainer">
+
+    <!-- CLICK ZONES -->
+    <div class="click-zones">
+      <div class="click-left" onclick="prevPage()">
+        <div class="click-hint"><span class="click-hint-arrow">‹</span><span>Prev</span></div>
+      </div>
+      <div class="click-right" onclick="nextPage()">
+        <div class="click-hint"><span class="click-hint-arrow" style="animation-name:hintPulse">›</span><span>Next</span></div>
+      </div>
+    </div>
+
+    <!-- SPINE -->
+    <div class="book-spine"><div class="spine-text">Black Haven · Vol. I · 2025</div></div>
+
+    <!-- SPREAD 0 — COVER -->
+    <div class="page-spread current" id="spread-0">
+      <div class="page-left">
+        <div class="page-cover">
+          <div class="cover-gold-top"></div>
+          <div class="cover-body">
+            <div class="cover-issue">Issue 01 · Spring 2025</div>
+            <div class="cover-bh">BLACK<br>HAVEN</div>
+            <div class="cover-journal">The Journal</div>
+            <div class="cover-rule"></div>
+            <div class="cover-headline">Why black is not absence — it is presence</div>
+            <div class="cover-deck">A meditation on modest fashion, identity, and the quiet power of intentional dressing.</div>
+            <div class="cover-vol">I</div>
+          </div>
+          <div class="cover-gold-bottom"></div>
+        </div>
+      </div>
+      <div class="page-right">
+        <div class="page-inner">
+          <div class="pg-overline">Contents</div>
+          <div style="display:flex;flex-direction:column;gap:16px;margin-top:8px;flex:1">
+            <div style="display:flex;justify-content:space-between;padding-bottom:10px;border-bottom:.5px solid var(--dim)">
+              <div>
+                <div style="font-size:8px;color:var(--gold);letter-spacing:2px;margin-bottom:4px">COVER</div>
+                <div style="font-family:'Cormorant Garamond',serif;font-size:14px;color:var(--cream)">On wearing black like a language</div>
+              </div>
+              <div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:rgba(201,168,76,.4)">03</div>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding-bottom:10px;border-bottom:.5px solid var(--dim)">
+              <div>
+                <div style="font-size:8px;color:var(--gold);letter-spacing:2px;margin-bottom:4px">ESSAY</div>
+                <div style="font-family:'Cormorant Garamond',serif;font-size:14px;color:var(--cream)">Modesty is not a limit — it is a lens</div>
+              </div>
+              <div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:rgba(201,168,76,.4)">06</div>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding-bottom:10px;border-bottom:.5px solid var(--dim)">
+              <div>
+                <div style="font-size:8px;color:var(--gold);letter-spacing:2px;margin-bottom:4px">FEATURE</div>
+                <div style="font-family:'Cormorant Garamond',serif;font-size:14px;color:var(--cream)">The woman behind the abaya</div>
+              </div>
+              <div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:rgba(201,168,76,.4)">10</div>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding-bottom:10px;border-bottom:.5px solid var(--dim)">
+              <div>
+                <div style="font-size:8px;color:var(--gold);letter-spacing:2px;margin-bottom:4px">EDITORIAL</div>
+                <div style="font-family:'Cormorant Garamond',serif;font-size:14px;color:var(--cream)">Spring 2025 collection lookbook</div>
+              </div>
+              <div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:rgba(201,168,76,.4)">14</div>
+            </div>
+          </div>
+          <div class="pg-folio-l">Black Haven · The Journal</div>
+          <div class="pg-folio">02</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SPREAD 1 — COVER STORY -->
+    <div class="page-spread" id="spread-1">
+      <div class="page-left">
+        <div class="page-maroon">
+          <div class="pm-big">BH</div>
+          <div class="pm-overline">Cover Story</div>
+          <div class="pm-quote">"She dressed not to be seen — but to be felt."</div>
+          <div class="pm-attr">— Black Haven Journal, Issue 01</div>
+        </div>
+      </div>
+      <div class="page-right">
+        <div class="page-inner">
+          <div class="pg-overline">On wearing black like a language</div>
+          <div class="pg-title">Why black is not<br><em>absence</em> — it is presence</div>
+          <div class="pg-rule"></div>
+          <div class="pg-body">
+            <p>There is a silence that speaks. In modest fashion, the choice of dark fabric is rarely about erasure. It is about drawing the eye inward — inviting a different kind of attention. Not the loud, immediate kind. The kind that lingers.</p>
+            <div class="pg-pull">To wear black, deliberately, every day — is to choose a consistent language. One that does not shout.</div>
+            <p>Black Haven exists at that intersection: where cloth becomes conviction. Where a garment is not decoration but declaration.</p>
+            <p>The women who wear these abayas are not hiding. They are composing themselves, the way a writer chooses their words.</p>
+          </div>
+          <div class="pg-folio">03</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SPREAD 2 — ESSAY -->
+    <div class="page-spread" id="spread-2">
+      <div class="page-left">
+        <div class="page-inner">
+          <div class="pg-overline">Essay · Identity</div>
+          <div class="pg-title">Modesty is not<br>a limit —</div>
+          <div class="pg-rule"></div>
+          <div class="pg-body">
+            <p>We have inherited a strange idea: that covering is concealing. That modesty is subtraction. That the woman who chooses a longer hem, a looser silhouette, a covered wrist — is somehow less.</p>
+            <div class="pg-pull">What if the opposite were true?</div>
+            <p>What if choosing to clothe yourself deliberately — with thought, with intention, with a clear sense of what you want to say — is a form of amplification rather than reduction?</p>
+            <p>Modest fashion, at its best, is not reactive. It is proactive. It is a woman saying: this is my body, this is my faith, this is my aesthetic — and they are not in conflict with each other.</p>
+          </div>
+          <div class="pg-folio">06</div>
+        </div>
+      </div>
+      <div class="page-right">
+        <div class="page-blue">
+          <div class="pb-header"><div class="pb-title">Black Haven</div><div class="pb-issue">Issue 01</div></div>
+          <div class="pb-section-title">It is a lens.</div>
+          <div class="pb-body">
+            <p>The woman who wears an abaya is not absent from the room. She is present in a way that most people never learn to be. She has decided, each morning, what she values. That decision shows.</p>
+            <div class="pb-highlight">"Modesty, in the end, is about what you choose to carry with you — and what you choose to leave behind."</div>
+            <p>This is what Black Haven is built around. Not a uniform. Not a restriction. A vocabulary. One that is personal, deliberate, and — above all — entirely your own.</p>
+          </div>
+          <div class="pg-folio">07</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SPREAD 3 — FEATURE + BACK COVER HINT -->
+    <div class="page-spread" id="spread-3">
+      <div class="page-left">
+        <div class="page-inner">
+          <div class="pg-overline">Feature · Spring Collection</div>
+          <div class="pg-title"><em>The Garment</em><br>as gesture</div>
+          <div class="pg-rule"></div>
+          <div class="pg-body">
+            <p>Fabric carries memory. Every abaya is a quiet manifesto — a decision made before leaving the door. The weight of crepe at the wrists. The particular fall of chiffon at the hem.</p>
+            <div class="pg-pull">She is not defined by what she covers. She is defined by what she chooses to say with it.</div>
+            <p>This spring, Black Haven introduces four silhouettes: each one rooted in function, each one elevated by detail. The embroidered hem that catches light. The butterfly sleeve that moves with the wearer.</p>
+            <p>Clothing as living architecture.</p>
+          </div>
+          <div class="pg-folio">10</div>
+        </div>
+      </div>
+      <div class="page-right">
+        <div class="page-back-cover">
+          <div class="bc-top">
+            <div class="bc-logo">BLACK HAVEN</div>
+            <div class="bc-tagline">Modest · Refined · Intentional</div>
+            <div class="bc-rule"></div>
+            <div class="bc-text">"Designed for the woman who does not need to be loud to be heard."</div>
+          </div>
+          <div style="text-align:center;padding:16px 0;border-top:.5px solid var(--dim)">
+            <div style="font-size:9px;color:rgba(201,168,76,.4);letter-spacing:3px;text-transform:uppercase;margin-bottom:8px">Find us</div>
+            <div style="font-size:10px;color:rgba(122,106,88,.7);letter-spacing:2px">@blackhaven.official</div>
+          </div>
+          <div class="bc-footer">Black Haven · The Journal · Issue 01 · Spring 2025</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="book-shadow"></div>
+
+    <!-- FLIP ANIMATION LAYERS -->
+    <div class="flip-left" id="flipLeft">
+      <div class="flip-face" id="flipLeftFront"></div>
+      <div class="flip-face flip-face-back" id="flipLeftBack"></div>
+    </div>
+    <div class="flip-right" id="flipRight">
+      <div class="flip-face" id="flipRightFront"></div>
+      <div class="flip-face flip-face-back" id="flipRightBack"></div>
+    </div>
+
+  </div><!-- /book-container -->
+
+</div><!-- /book-stage -->
+
+<div class="book-controls">
+  <button class="ctrl-btn prev" id="btnPrev" onclick="prevPage()" disabled>
+    <span class="arrow">‹</span> Prev Page
+  </button>
+  <div class="page-indicator">
+    <div class="page-dots" id="pageDots"></div>
+    <span id="pageLabel">1 / 4</span>
+  </div>
+  <button class="ctrl-btn next" id="btnNext" onclick="nextPage()">
+    Next Page <span class="arrow">›</span>
+  </button>
+</div>
+
+<script>
+const totalSpreads=4;
+let current=0;
+let isFlipping=false;
+
+// Build dots
+const dotsEl=document.getElementById('pageDots');
+for(let i=0;i<totalSpreads;i++){
+  const d=document.createElement('div');
+  d.className='page-dot'+(i===0?' active':'');
+  d.onclick=()=>goToSpread(i);
+  dotsEl.appendChild(d);
+}
+
+function updateUI(){
+  document.getElementById('btnPrev').disabled=current===0;
+  document.getElementById('btnNext').disabled=current===totalSpreads-1;
+  document.getElementById('pageLabel')`${current+1} / ${totalSpreads}`;
+  document.querySelectorAll('.page-dot').forEach((d,i)=>d.classList.toggle('active',i===current));
+}
+// fix label update
+function updateLabel(){
+  document.getElementById('pageLabel').textContent=(current+1)+' / '+totalSpreads;
+}
+
+function showSpread(idx){
+  document.querySelectorAll('.page-spread').forEach(s=>s.classList.remove('current'));
+  document.getElementById('spread-'+idx).classList.add('current');
+  updateUI();
+  updateLabel();
+}
+
+function nextPage(){
+  if(isFlipping||current>=totalSpreads-1)return;
+  animateFlip('next',()=>{
+    current++;
+    showSpread(current);
+  });
+}
+
+function prevPage(){
+  if(isFlipping||current<=0)return;
+  animateFlip('prev',()=>{
+    current--;
+    showSpread(current);
+  });
+}
+
+function goToSpread(idx){
+  if(idx===current||isFlipping)return;
+  const dir=idx>current?'next':'prev';
+  animateFlip(dir,()=>{
+    current=idx;
+    showSpread(current);
+  });
+}
+
+function animateFlip(dir,cb){
+  isFlipping=true;
+
+  const flipEl=dir==='next'?document.getElementById('flipRight'):document.getElementById('flipLeft');
+  flipEl.style.display='block';
+  flipEl.classList.remove('flipping');
+
+  // brief delay then flip
+  requestAnimationFrame(()=>{
+    requestAnimationFrame(()=>{
+      flipEl.classList.add('flipping');
+      setTimeout(()=>{
+        flipEl.classList.remove('flipping');
+        flipEl.style.display='none';
+        isFlipping=false;
+        cb();
+      },820);
+    });
+  });
+}
+
+// keyboard
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key===' ')nextPage();
+  if(e.key==='ArrowLeft')prevPage();
+});
+
+// touch swipe
+let touchStartX=0;
+document.addEventListener('touchstart',e=>{touchStartX=e.touches[0].clientX});
+document.addEventListener('touchend',e=>{
+  const dx=e.changedTouches[0].clientX-touchStartX;
+  if(Math.abs(dx)>60){dx<0?nextPage():prevPage();}
+});
+
+showSpread(0);
+updateLabel();
+</script>
+</body>
+</html>
