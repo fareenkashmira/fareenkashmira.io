@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Virtual Visiting Cards — Fareen Kashmira</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Cinzel:wght@400;600;700&family=Raleway:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --black:#060606;--deep:#0d0d0d;--maroon:#5c0a14;--maroon-light:#8a1020;
+  --gold:#c9a84c;--gold-bright:#e8c86a;--cream:#f0e8d8;--cream-dim:#c8b89a;
+  --muted:#7a6a58;--dim:#3a3020;
+}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--cream);font-family:'Raleway',sans-serif;font-weight:300;overflow-x:hidden;min-height:100vh}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:999;opacity:.35}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:900;padding:18px 60px;display:flex;justify-content:space-between;align-items:center;background:rgba(6,6,6,.9);border-bottom:.5px solid rgba(201,168,76,.15);backdrop-filter:blur(12px)}
+.nav-logo{font-family:'Cinzel',serif;font-size:13px;color:var(--gold);letter-spacing:4px;text-decoration:none}
+.nav-back{display:flex;align-items:center;gap:10px;font-size:10px;color:var(--muted);text-decoration:none;letter-spacing:3px;text-transform:uppercase;transition:color .3s}
+.nav-back:hover{color:var(--gold)}
+.nav-links{display:flex;gap:24px;list-style:none}
+.nav-links a{font-size:10px;color:var(--muted);text-decoration:none;letter-spacing:2px;text-transform:uppercase;transition:color .3s}
+.nav-links a:hover{color:var(--gold)}
+
+/* HERO */
+.page-hero{padding:140px 60px 80px;text-align:center;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at center top,rgba(92,10,20,.12) 0%,transparent 60%)}
+.hero-bg-lines{position:absolute;inset:0;background-image:linear-gradient(to right,rgba(201,168,76,.025) 1px,transparent 1px),linear-gradient(to bottom,rgba(201,168,76,.025) 1px,transparent 1px);background-size:80px 80px}
+.section-label{font-size:8px;color:var(--gold);letter-spacing:5px;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;justify-content:center;gap:14px}
+.section-label::before,.section-label::after{content:'';width:30px;height:.5px;background:var(--gold)}
+.page-title{font-family:'Cormorant Garamond',serif;font-size:clamp(48px,8vw,100px);font-weight:300;line-height:.9;color:var(--cream);margin-bottom:20px}
+.page-title em{font-style:italic;color:var(--gold)}
+.page-subtitle{font-size:12px;color:var(--muted);letter-spacing:3px;max-width:500px;margin:0 auto;line-height:2}
+
+/* FLIP INSTRUCTION */
+.flip-hint{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:40px;font-size:9px;color:rgba(201,168,76,.6);letter-spacing:3px;text-transform:uppercase}
+.flip-hint-icon{width:20px;height:20px;border:.5px solid rgba(201,168,76,.4);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;animation:flipHint 2s ease-in-out infinite}
+@keyframes flipHint{0%,100%{transform:rotateY(0)}50%{transform:rotateY(30deg)}}
+
+/* CARDS SHOWCASE */
+.cards-section{padding:60px;max-width:1100px;margin:0 auto}
+.cards-row{display:flex;gap:60px;justify-content:center;align-items:flex-start;flex-wrap:wrap;margin-bottom:80px}
+
+/* THE CARD FLIP */
+.card-wrapper{display:flex;flex-direction:column;align-items:center;gap:24px}
+.card-flip-container{width:320px;height:190px;perspective:1200px;cursor:pointer}
+.card-flip-inner{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .8s cubic-bezier(.4,0,.2,1)}
+.card-flip-container.flipped .card-flip-inner{transform:rotateY(180deg)}
+.card-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.card-back{transform:rotateY(180deg)}
+
+/* CARD DESIGN 1 — Noir Gold */
+.card-noir{background:#080808;border:.5px solid rgba(201,168,76,.2);position:relative;overflow:hidden}
+.card-noir::before{content:'';position:absolute;inset:8px;border:.5px solid rgba(201,168,76,.15)}
+.card-noir-corner{position:absolute;width:10px;height:10px;border-color:var(--gold);border-style:solid}
+.card-noir-corner.tl{top:12px;left:12px;border-width:1px 0 0 1px}
+.card-noir-corner.tr{top:12px;right:12px;border-width:1px 1px 0 0}
+.card-noir-corner.bl{bottom:12px;left:12px;border-width:0 0 1px 1px}
+.card-noir-corner.br{bottom:12px;right:12px;border-width:0 1px 1px 0}
+.card-noir-content{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:0}
+.card-noir-name{font-family:'Cinzel',serif;font-size:13px;color:var(--gold);letter-spacing:4px;text-align:center}
+.card-noir-rule{width:40px;height:.5px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:10px auto}
+.card-noir-role{font-size:8px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;text-align:center}
+.card-noir-url{font-size:7px;color:rgba(122,106,88,.6);letter-spacing:1px;margin-top:8px}
+
+/* CARD BACK — noir */
+.card-noir-back{background:#0a0a0a;border:.5px solid rgba(201,168,76,.15);position:relative;overflow:hidden}
+.card-noir-back-content{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:24px 28px;gap:8px}
+.cnb-label{font-size:7px;color:rgba(201,168,76,.5);letter-spacing:3px;text-transform:uppercase;margin-bottom:4px}
+.cnb-item{display:flex;align-items:center;gap:10px;font-size:10px;color:rgba(240,232,216,.7)}
+.cnb-icon{width:14px;height:14px;fill:rgba(201,168,76,.6)}
+.cnb-gold-stripe{position:absolute;top:0;left:0;bottom:0;width:3px;background:linear-gradient(to bottom,transparent,var(--gold),transparent)}
+
+/* CARD DESIGN 2 — Maroon Deep Blue */
+.card-maroon{background:#0a0210;border:.5px solid rgba(92,10,20,.8);position:relative;overflow:hidden}
+.card-maroon-stripe{position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--maroon)}
+.card-maroon-content{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:24px 28px 24px 36px;gap:4px}
+.card-maroon-name{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--cream);font-weight:300;letter-spacing:1px}
+.card-maroon-role{font-size:8px;color:rgba(201,168,76,.7);letter-spacing:3px;text-transform:uppercase;margin-top:2px}
+.card-maroon-rule{width:50px;height:.5px;background:var(--maroon);margin:10px 0}
+.card-maroon-url{font-size:9px;color:rgba(122,106,88,.7);letter-spacing:1px}
+.card-maroon-glow{position:absolute;bottom:-30px;right:-30px;width:120px;height:120px;background:radial-gradient(circle,rgba(92,10,20,.3) 0%,transparent 70%)}
+
+.card-maroon-back{background:#06040f;border:.5px solid rgba(92,10,20,.6);position:relative;overflow:hidden}
+.card-maroon-back::after{content:'BH';font-family:'Cinzel',serif;font-size:100px;color:rgba(92,10,20,.15);position:absolute;right:-10px;bottom:-20px;line-height:1;font-weight:700}
+.card-maroon-back-content{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:24px 28px;gap:8px}
+
+/* CARD LABEL + FLIP BUTTON */
+.card-label{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--cream);font-weight:300;text-align:center}
+.card-tag{font-size:8px;color:var(--gold);letter-spacing:3px;text-transform:uppercase;text-align:center;margin-bottom:4px}
+.flip-btn{display:flex;align-items:center;gap:8px;padding:10px 24px;border:.5px solid rgba(201,168,76,.3);background:transparent;color:var(--muted);font-size:9px;letter-spacing:3px;text-transform:uppercase;cursor:pointer;transition:all .3s;font-family:'Raleway',sans-serif}
+.flip-btn:hover{border-color:var(--gold);color:var(--gold)}
+.flip-btn.active{background:rgba(201,168,76,.08);color:var(--gold);border-color:var(--gold)}
+.flip-icon{display:inline-block;transition:transform .6s}
+.flip-btn.active .flip-icon{transform:rotateY(180deg)}
+
+/* INFO PANEL */
+.card-info-panel{max-width:700px;margin:0 auto;padding:60px;border-top:.5px solid var(--dim)}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:40px}
+.info-item{}
+.info-item-label{font-size:8px;color:var(--gold);letter-spacing:3px;text-transform:uppercase;margin-bottom:8px}
+.info-item-value{font-size:14px;color:var(--cream-dim);line-height:1.8}
+
+/* PRICING */
+.card-pricing{background:var(--maroon);padding:60px;text-align:center;margin-top:0}
+.pricing-heading{font-family:'Cormorant Garamond',serif;font-size:40px;font-weight:300;color:var(--cream);margin-bottom:8px}
+.pricing-sub{font-size:10px;color:rgba(240,208,212,.5);letter-spacing:3px;text-transform:uppercase;margin-bottom:40px}
+.pricing-tiers{display:flex;justify-content:center;gap:2px;flex-wrap:wrap}
+.tier{padding:32px 48px;border:.5px solid rgba(201,168,76,.15);background:rgba(0,0,0,.2);text-align:center;min-width:200px}
+.tier-price{font-family:'Cormorant Garamond',serif;font-size:36px;color:var(--gold);font-weight:300}
+.tier-name{font-size:9px;color:rgba(240,208,212,.5);letter-spacing:3px;text-transform:uppercase;margin-top:8px}
+.tier-desc{font-size:11px;color:rgba(240,208,212,.4);margin-top:8px;line-height:1.7}
+
+/* CTA */
+.page-cta{padding:80px 60px;text-align:center}
+.cta-title{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:300;color:var(--cream);margin-bottom:16px}
+.cta-title em{color:var(--gold);font-style:italic}
+.cta-sub{font-size:11px;color:var(--muted);letter-spacing:2px;margin-bottom:40px}
+.cta-btns{display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
+.cta-btn{display:inline-flex;align-items:center;gap:10px;padding:16px 40px;text-decoration:none;font-size:10px;letter-spacing:3px;text-transform:uppercase;transition:all .4s;position:relative;overflow:hidden}
+.cta-btn-primary{border:.5px solid var(--gold);color:var(--gold)}
+.cta-btn-primary::before{content:'';position:absolute;inset:0;background:var(--maroon);transform:scaleX(0);transform-origin:left;transition:transform .4s;z-index:0}
+.cta-btn-primary:hover::before{transform:scaleX(1)}
+.cta-btn-primary:hover{border-color:var(--maroon-light);color:var(--cream)}
+.cta-btn-primary span{position:relative;z-index:1}
+.cta-btn-secondary{border:.5px solid var(--dim);color:var(--muted)}
+.cta-btn-secondary:hover{border-color:rgba(201,168,76,.3);color:var(--gold)}
+.cta-arrow{display:inline-block;transition:transform .3s;position:relative;z-index:1}
+.cta-btn:hover .cta-arrow{transform:translateX(5px)}
+
+/* FOOTER */
+footer{border-top:.5px solid var(--dim);padding:30px 60px;display:flex;justify-content:space-between;align-items:center}
+.footer-logo{font-family:'Cinzel',serif;font-size:12px;color:var(--gold);letter-spacing:4px}
+.footer-copy{font-size:9px;color:var(--dim);letter-spacing:2px}
+.footer-tagline{font-size:9px;color:var(--dim);font-style:italic}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-d1{transition-delay:.1s}.reveal-d2{transition-delay:.2s}.reveal-d3{transition-delay:.3s}
+
+@media(max-width:768px){
+  nav{padding:16px 24px}
+  .page-hero{padding:100px 24px 60px}
+  .cards-section{padding:40px 24px}
+  .cards-row{flex-direction:column;align-items:center}
+  .card-info-panel{padding:40px 24px}
+  .info-grid{grid-template-columns:1fr}
+  .card-pricing{padding:40px 24px}
+  .pricing-tiers{flex-direction:column;align-items:center}
+  .page-cta{padding:60px 24px}
+  footer{padding:24px;flex-direction:column;gap:8px;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="virtualdesigns.html" class="nav-logo">FK</a>
+  <ul class="nav-links">
+    <li><a href="menus.html">Menus</a></li>
+    <li><a href="magazine.html">Magazine</a></li>
+    <li><a href="virtualdesigns.html#social">Contact</a></li>
+  </ul>
+  <a href="virtualdesigns.html" class="nav-back">← Back to Home</a>
+</nav>
+
+<div class="page-hero">
+  <div class="hero-bg"></div>
+  <div class="hero-bg-lines"></div>
+  <div class="section-label">Sample Work</div>
+  <h1 class="page-title">Virtual<br><em>Visiting Cards</em></h1>
+  <p class="page-subtitle">Cards that live as webpages. Hosted, animated, clickable — and designed to be remembered.</p>
+  <div class="flip-hint">
+    <div class="flip-hint-icon">↺</div>
+    Click any card to flip and see the back
+  </div>
+</div>
+
+<div class="cards-section">
+  <div class="cards-row">
+
+    <!-- CARD 1 -->
+    <div class="card-wrapper reveal">
+      <div class="card-tag">Design 01 — Noir Gold</div>
+      <div class="card-flip-container" id="card1" onclick="flipCard('card1','btn1')">
+        <div class="card-flip-inner">
+          <div class="card-face card-noir">
+            <div class="card-noir-corner tl"></div>
+            <div class="card-noir-corner tr"></div>
+            <div class="card-noir-corner bl"></div>
+            <div class="card-noir-corner br"></div>
+            <div class="card-noir-content">
+              <div class="card-noir-name">FAREEN KASHMIRA</div>
+              <div class="card-noir-rule"></div>
+              <div class="card-noir-role">Creative Director · Graphic Designer</div>
+              <div class="card-noir-url">fareenkashmira.co.in</div>
+            </div>
+          </div>
+          <div class="card-face card-back card-noir-back">
+            <div class="cnb-gold-stripe"></div>
+            <div class="card-noir-back-content">
+              <div class="cnb-label">Get in touch</div>
+              <div class="cnb-item">
+                <svg class="cnb-icon" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                @im_fareen
+              </div>
+              <div class="cnb-item">
+                <svg class="cnb-icon" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                t.me/im_fareen
+              </div>
+              <div class="cnb-item">
+                <svg class="cnb-icon" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                Fareen Kashmira
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-label">Noir Gold Edition</div>
+      <button class="flip-btn" id="btn1" onclick="flipCard('card1','btn1')">
+        <span class="flip-icon">↺</span> Flip Card
+      </button>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="card-wrapper reveal reveal-d2">
+      <div class="card-tag">Design 02 — Maroon Depth</div>
+      <div class="card-flip-container" id="card2" onclick="flipCard('card2','btn2')">
+        <div class="card-flip-inner">
+          <div class="card-face card-maroon">
+            <div class="card-maroon-stripe"></div>
+            <div class="card-maroon-glow"></div>
+            <div class="card-maroon-content">
+              <div class="card-maroon-name">Fareen Kashmira</div>
+              <div class="card-maroon-role">Creative Director · Designer</div>
+              <div class="card-maroon-rule"></div>
+              <div class="card-maroon-url">fareenkashmira.co.in</div>
+            </div>
+          </div>
+          <div class="card-face card-back card-maroon-back">
+            <div class="card-maroon-back-content">
+              <div class="cnb-label">Kooky Kafe Studio</div>
+              <div class="cnb-item" style="font-size:11px;color:rgba(240,232,216,.6)">Design · UX · Editorial · Branding</div>
+              <div style="width:40px;height:.5px;background:var(--maroon);margin:10px 0"></div>
+              <div class="cnb-item">
+                <svg class="cnb-icon" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                @im_fareen
+              </div>
+              <div class="cnb-item">
+                <svg class="cnb-icon" viewBox="0 0 24 24"><path d="M6.938 4.503c.702 0 1.34.06 1.92.188.577.13 1.07.33 1.485.6.41.272.733.635.96 1.09.225.455.337 1.02.337 1.69 0 .73-.164 1.36-.49 1.89-.328.52-.8.95-1.415 1.29.84.29 1.47.77 1.885 1.45.415.68.625 1.49.625 2.44 0 .73-.14 1.365-.42 1.91-.28.55-.67 1.01-1.16 1.37-.49.36-1.06.63-1.7.8-.64.17-1.31.26-2.015.26H0V4.503h6.938zm-.34 5.387c.555 0 1.01-.12 1.35-.36.34-.24.51-.63.51-1.16 0-.31-.055-.57-.17-.78-.115-.21-.27-.375-.47-.495-.2-.12-.43-.2-.686-.24-.258-.04-.53-.06-.82-.06H3.34v3.095h3.258zm.19 5.65c.32 0 .618-.03.897-.1.28-.07.52-.18.73-.33.207-.15.37-.35.49-.59.12-.24.18-.535.18-.88 0-.7-.197-1.2-.59-1.51-.393-.31-.92-.467-1.58-.467H3.34v3.877h3.448zM20.565 7.33c-.51-.49-1.22-.74-2.13-.74-.61 0-1.13.11-1.57.34-.43.23-.79.52-1.08.88-.28.36-.49.76-.63 1.2-.13.43-.2.86-.21 1.28h5.65c0-.97-.03-1.47-.03-1.47-.03-.55-.48-1-.52-1.49h.003c-.01-.01-.4-.5-.51-.99zM24 13.97c0 .03-.005.16-.02.39H14.97c.07.83.37 1.46.88 1.88.52.43 1.15.64 1.9.64.71 0 1.32-.16 1.83-.47.51-.31.83-.64.96-.99h3.15c-.49 1.5-1.24 2.58-2.25 3.23-1.01.65-2.24.98-3.7.98-.99 0-1.89-.15-2.7-.47-.8-.31-1.48-.76-2.04-1.35-.56-.59-.99-1.3-1.29-2.13-.3-.83-.45-1.75-.45-2.76 0-.97.155-1.87.46-2.7.31-.83.74-1.55 1.31-2.15.56-.6 1.24-1.07 2.03-1.4.79-.34 1.67-.51 2.64-.51.99 0 1.87.19 2.63.57.77.38 1.4.9 1.91 1.55.51.65.88 1.4 1.12 2.24.23.84.34 1.73.33 2.67z"/></svg>
+                behance.net/fareenkashmira
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-label">Maroon Depth Edition</div>
+      <button class="flip-btn" id="btn2" onclick="flipCard('card2','btn2')">
+        <span class="flip-icon">↺</span> Flip Card
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<div class="card-info-panel reveal">
+  <div class="section-label">What's included</div>
+  <h2 style="font-family:'Cormorant Garamond',serif;font-size:40px;font-weight:300;color:var(--cream);margin-top:8px">Every card comes <em>complete</em></h2>
+  <div class="info-grid">
+    <div class="info-item"><div class="info-item-label">Format</div><div class="info-item-value">Hosted HTML webpage · Fully responsive · Opens on any device</div></div>
+    <div class="info-item"><div class="info-item-label">QR Code</div><div class="info-item-value">Custom QR generated and delivered · Ready to print or embed anywhere</div></div>
+    <div class="info-item"><div class="info-item-label">Flip Animation</div><div class="info-item-value">Front + back card with smooth 3D flip · Contact details on the back</div></div>
+    <div class="info-item"><div class="info-item-label">Turnaround</div><div class="info-item-value">3–5 business days · Revisions included in price</div></div>
+    <div class="info-item"><div class="info-item-label">Customisation</div><div class="info-item-value">Your name, links, colour palette, brand fonts — fully tailored</div></div>
+    <div class="info-item"><div class="info-item-label">Delivery</div><div class="info-item-value">HTML file + deployed link · Can be added to your own domain</div></div>
+  </div>
+</div>
+
+<div class="card-pricing">
+  <div class="pricing-heading">Pricing</div>
+  <div class="pricing-sub">All tiers include QR code + hosted link</div>
+  <div class="pricing-tiers">
+    <div class="tier"><div class="tier-price">₹1,500</div><div class="tier-name">Basic</div><div class="tier-desc">Single design · Static · 1 revision</div></div>
+    <div class="tier" style="border-color:rgba(201,168,76,.4);background:rgba(201,168,76,.05)"><div class="tier-price">₹2,500</div><div class="tier-name">Premium</div><div class="tier-desc">Flip animation · Custom colours · 3 revisions</div></div>
+    <div class="tier"><div class="tier-price">₹3,500</div><div class="tier-name">Luxury</div><div class="tier-desc">Full animation · Hosted on your domain · Unlimited revisions</div></div>
+  </div>
+</div>
+
+<div class="page-cta reveal">
+  <h2 class="cta-title">Want your own <em>card?</em></h2>
+  <p class="cta-sub">Reach out on any platform below</p>
+  <div class="cta-btns">
+    <a href="https://t.me/im_fareen" target="_blank" class="cta-btn cta-btn-primary"><span>Message on Telegram</span> <span class="cta-arrow">→</span></a>
+    <a href="menus.html" class="cta-btn cta-btn-secondary">View Menus <span class="cta-arrow">→</span></a>
+    <a href="magazine.html" class="cta-btn cta-btn-secondary">View Magazine <span class="cta-arrow">→</span></a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">FAREEN KASHMIRA</div>
+  <div class="footer-tagline">Designing with intention. Always.</div>
+  <div class="footer-copy">© 2025 · All rights reserved</div>
+</footer>
+
+<script>
+function flipCard(cardId,btnId){
+  const card=document.getElementById(cardId);
+  const btn=document.getElementById(btnId);
+  card.classList.toggle('flipped');
+  btn.classList.toggle('active');
+  btn.innerHTML=card.classList.contains('flipped')
+    ?'<span class="flip-icon" style="display:inline-block;transform:rotateY(180deg)">↺</span> Flip Back'
+    :'<span class="flip-icon">↺</span> Flip Card';
+}
+const reveals=document.querySelectorAll('.reveal');
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});
+},{threshold:.1});
+reveals.forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
