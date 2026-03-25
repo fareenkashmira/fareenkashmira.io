@@ -3,294 +3,253 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BH Journal — Black Haven Magazine</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Cinzel:wght@400;600;700&family=Raleway:wght@200;300;400;500&display=swap" rel="stylesheet">
+<title>Magazine Design — Fareen Kashmira</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Cinzel:wght@400;600;700&family=Raleway:wght@200;300;400;500&family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=Dancing+Script:wght@600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --black:#060606;--deep:#0d0d0d;--maroon:#5c0a14;--maroon-light:#8a1020;
-  --gold:#c9a84c;--gold-bright:#e8c86a;--cream:#f0e8d8;--cream-dim:#c8b89a;
-  --muted:#7a6a58;--dim:#3a3020;--blue-deep:#0a0f20;--blue-mid:#0d1a3a;
+  --black:#060606;--maroon:#5c0a14;--gold:#c9a84c;--cream:#f0e8d8;
+  --cream-dim:#c8b89a;--muted:#7a6a58;--dim:#3a3020;--blue-deep:#0a0f20;--blue-mid:#0d1a3a;
 }
-html,body{height:100%;overflow:hidden}
+html,body{height:100%}
 body{background:var(--black);color:var(--cream);font-family:'Raleway',sans-serif;font-weight:300;overflow:hidden}
-body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:999;opacity:.3}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:999;opacity:.28}
 
-nav{position:fixed;top:0;left:0;right:0;z-index:900;padding:16px 40px;display:flex;justify-content:space-between;align-items:center;background:rgba(6,6,6,.95);border-bottom:.5px solid rgba(201,168,76,.15);backdrop-filter:blur(12px)}
+nav{position:fixed;top:0;left:0;right:0;z-index:900;padding:14px 40px;display:flex;justify-content:space-between;align-items:center;background:rgba(6,6,6,.95);border-bottom:.5px solid rgba(201,168,76,.14);backdrop-filter:blur(12px)}
 .nav-logo{font-family:'Cinzel',serif;font-size:13px;color:var(--gold);letter-spacing:4px;text-decoration:none}
 .nav-back{font-size:10px;color:var(--muted);text-decoration:none;letter-spacing:3px;text-transform:uppercase;transition:color .3s}
 .nav-back:hover{color:var(--gold)}
-.nav-center{font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--cream-dim);font-style:italic}
-.nav-links{display:flex;gap:24px;list-style:none}
+.nav-center{font-family:'Cormorant Garamond',serif;font-size:14px;color:var(--cream-dim);font-style:italic}
+.nav-links{display:flex;gap:22px;list-style:none}
 .nav-links a{font-size:10px;color:var(--muted);text-decoration:none;letter-spacing:2px;text-transform:uppercase;transition:color .3s}
 .nav-links a:hover{color:var(--gold)}
 
-/* BOOK STAGE */
-.book-stage{
-  position:fixed;
-  inset:0;
-  top:60px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  perspective:2000px;
-  background:radial-gradient(ellipse at center,rgba(92,10,20,.08) 0%,transparent 60%);
-  overflow:hidden;
-}
+.mode-bar{position:fixed;top:56px;left:0;right:0;z-index:800;display:flex;justify-content:center;gap:2px;padding:9px 20px;background:rgba(6,6,6,.88);border-bottom:.5px solid rgba(201,168,76,.07);backdrop-filter:blur(8px)}
+.mode-btn{padding:9px 28px;border:.5px solid var(--dim);background:transparent;color:var(--muted);font-size:9px;letter-spacing:3px;text-transform:uppercase;cursor:pointer;font-family:'Raleway',sans-serif;transition:all .3s;white-space:nowrap}
+.mode-btn:hover{color:var(--gold);border-color:rgba(201,168,76,.3)}
+.mode-btn.active{background:var(--maroon);border-color:var(--maroon);color:var(--cream)}
 
-.book-bg-lines{position:absolute;inset:0;background-image:linear-gradient(to right,rgba(201,168,76,.02) 1px,transparent 1px),linear-gradient(to bottom,rgba(201,168,76,.02) 1px,transparent 1px);background-size:60px 60px}
+.book-stage{position:fixed;inset:0;top:108px;display:flex;flex-direction:column;align-items:center;justify-content:center;perspective:2000px;overflow:hidden}
+.book-bg-lines{position:absolute;inset:0;background-image:linear-gradient(to right,rgba(201,168,76,.016) 1px,transparent 1px),linear-gradient(to bottom,rgba(201,168,76,.016) 1px,transparent 1px);background-size:60px 60px}
 
-/* BOOK CONTAINER */
-.book-container{
-  position:relative;
-  width:700px;
-  height:480px;
-  transform-style:preserve-3d;
-}
-
-/* BOOK SHADOW */
-.book-shadow{
-  position:absolute;
-  bottom:-30px;
-  left:50%;
-  transform:translateX(-50%);
-  width:600px;height:20px;
-  background:radial-gradient(ellipse,rgba(0,0,0,.6) 0%,transparent 70%);
-  filter:blur(10px);
-}
-
-/* BOOK SPINE */
-.book-spine{
-  position:absolute;
-  left:50%;
-  top:0;bottom:0;
-  width:24px;
-  margin-left:-12px;
-  background:linear-gradient(to right,#1a0a04,#3a1a08,#1a0a04);
-  z-index:10;
-  border-left:.5px solid rgba(201,168,76,.2);
-  border-right:.5px solid rgba(201,168,76,.2);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-.spine-text{
-  font-family:'Cormorant Garamond',serif;
-  font-size:9px;
-  color:rgba(201,168,76,.4);
-  letter-spacing:3px;
-  writing-mode:vertical-rl;
-  text-transform:uppercase;
-}
-
-/* PAGE WRAPPER — holds a spread (left + right pages) */
-.page-spread{
-  position:absolute;
-  inset:0;
-  display:none;
-  pointer-events:none;
-}
-.page-spread.current{
-  display:flex;
-  pointer-events:all;
-}
-
-/* INDIVIDUAL PAGES */
-.page-left,.page-right{
-  width:50%;
-  height:100%;
-  overflow:hidden;
-  position:relative;
-}
-.page-left{
-  border-right:.5px solid rgba(42,24,8,.8);
-  box-shadow:inset -8px 0 20px rgba(0,0,0,.4);
-}
-.page-right{
-  border-left:.5px solid rgba(42,24,8,.4);
-  box-shadow:inset 8px 0 20px rgba(0,0,0,.3);
-}
-
-/* PAGE TURN ANIMATION */
-.flip-left,.flip-right{
-  position:absolute;
-  top:0;bottom:0;
-  width:50%;
-  transform-style:preserve-3d;
-  transition:transform .8s cubic-bezier(.4,0,.2,1);
-  z-index:20;
-}
-.flip-left{
-  left:0;
-  transform-origin:right center;
-}
-.flip-right{
-  right:0;
-  transform-origin:left center;
-}
+.book-container{position:relative;width:700px;height:460px;transform-style:preserve-3d}
+.book-shadow{position:absolute;bottom:-24px;left:50%;transform:translateX(-50%);width:560px;height:14px;background:radial-gradient(ellipse,rgba(0,0,0,.5) 0%,transparent 70%);filter:blur(8px)}
+.book-spine{position:absolute;left:50%;top:0;bottom:0;width:20px;margin-left:-10px;background:linear-gradient(to right,#1a0a04,#3a1a08,#1a0a04);z-index:10;border-left:.5px solid rgba(201,168,76,.16);border-right:.5px solid rgba(201,168,76,.16);display:flex;align-items:center;justify-content:center}
+.spine-text{font-family:'Cormorant Garamond',serif;font-size:7px;color:rgba(201,168,76,.3);letter-spacing:3px;writing-mode:vertical-rl;text-transform:uppercase}
+.page-spread{position:absolute;inset:0;display:none;pointer-events:none}
+.page-spread.current{display:flex;pointer-events:all}
+.page-left,.page-right{width:50%;height:100%;overflow:hidden;position:relative}
+.page-left{border-right:.5px solid rgba(42,24,8,.7);box-shadow:inset -7px 0 18px rgba(0,0,0,.35)}
+.page-right{border-left:.5px solid rgba(42,24,8,.35);box-shadow:inset 7px 0 18px rgba(0,0,0,.28)}
+.flip-left,.flip-right{position:absolute;top:0;bottom:0;width:50%;transform-style:preserve-3d;transition:transform .8s cubic-bezier(.4,0,.2,1);z-index:20}
+.flip-left{left:0;transform-origin:right center}
+.flip-right{right:0;transform-origin:left center}
 .flip-left.flipping{transform:rotateY(-180deg)}
 .flip-right.flipping{transform:rotateY(180deg)}
-
-.flip-face{
-  position:absolute;
-  inset:0;
-  backface-visibility:hidden;
-  -webkit-backface-visibility:hidden;
-  overflow:hidden;
-}
+.flip-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden}
 .flip-face-back{transform:rotateY(180deg)}
-
-/* PAGE CONTENT STYLES */
-
-/* COVER PAGE */
-.page-cover{
-  width:100%;height:100%;
-  background:#050505;
-  display:flex;flex-direction:column;
-  position:relative;
-  overflow:hidden;
-}
-.cover-gold-top{height:4px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
-.cover-body{flex:1;display:flex;flex-direction:column;justify-content:center;padding:32px 28px}
-.cover-issue{font-size:7px;color:rgba(201,168,76,.5);letter-spacing:4px;text-transform:uppercase;margin-bottom:20px}
-.cover-vol{font-family:'Cormorant Garamond',serif;font-size:72px;color:rgba(201,168,76,.06);font-weight:600;line-height:1;position:absolute;bottom:20px;right:-4px}
-.cover-bh{font-family:'Cinzel',serif;font-size:28px;color:var(--gold);letter-spacing:4px;line-height:1.1;margin-bottom:8px}
-.cover-journal{font-family:'Cormorant Garamond',serif;font-size:14px;color:rgba(240,232,216,.4);letter-spacing:3px;font-style:italic;margin-bottom:24px}
-.cover-rule{width:50px;height:.5px;background:var(--gold);margin-bottom:20px}
-.cover-headline{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--cream);font-weight:300;line-height:1.3;margin-bottom:12px}
-.cover-deck{font-size:10px;color:var(--muted);line-height:1.8}
-.cover-gold-bottom{height:2px;background:linear-gradient(90deg,var(--gold),transparent)}
-
-/* INSIDE PAGES */
-.page-inner{
-  width:100%;height:100%;
-  background:#06060a;
-  padding:28px 24px;
-  display:flex;flex-direction:column;
-  gap:12px;
-  position:relative;
-}
-
-.pg-overline{font-size:7px;color:var(--gold);letter-spacing:3px;text-transform:uppercase;padding-bottom:8px;border-bottom:.5px solid var(--dim)}
-.pg-title{font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--cream);font-weight:300;line-height:1.2;margin-top:4px}
-.pg-title em{color:var(--gold);font-style:italic}
-.pg-rule{width:30px;height:.5px;background:var(--maroon)}
-.pg-body{font-size:10px;color:var(--muted);line-height:1.9;flex:1}
-.pg-body p{margin-bottom:10px}
-.pg-pull{font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--gold);font-style:italic;border-left:1px solid var(--maroon);padding-left:12px;line-height:1.5;margin:8px 0}
-.pg-folio{position:absolute;bottom:12px;right:16px;font-size:7px;color:rgba(58,48,32,.8);letter-spacing:2px}
-.pg-folio-l{position:absolute;bottom:12px;left:16px;font-size:7px;color:rgba(58,48,32,.8);letter-spacing:2px}
-
-/* MAROON ACCENT PAGE */
-.page-maroon{
-  width:100%;height:100%;
-  background:var(--maroon);
-  padding:28px 24px;
-  display:flex;flex-direction:column;
-  justify-content:center;
-  position:relative;
-  overflow:hidden;
-}
-.pm-big{font-family:'Cormorant Garamond',serif;font-size:80px;color:rgba(0,0,0,.15);font-weight:600;position:absolute;bottom:-10px;right:-5px;line-height:1}
-.pm-overline{font-size:7px;color:rgba(201,168,76,.6);letter-spacing:4px;text-transform:uppercase;margin-bottom:16px}
-.pm-quote{font-family:'Cormorant Garamond',serif;font-size:24px;color:#fff;font-weight:300;line-height:1.4;font-style:italic;margin-bottom:16px}
-.pm-attr{font-size:9px;color:rgba(255,255,255,.4);letter-spacing:2px}
-
-/* BLUE DEEP PAGE */
-.page-blue{
-  width:100%;height:100%;
-  background:var(--blue-deep);
-  padding:28px 24px;
-  display:flex;flex-direction:column;
-  position:relative;
-  overflow:hidden;
-}
-.pb-header{border-bottom:.5px solid rgba(13,26,58,.8);padding-bottom:14px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center}
-.pb-title{font-family:'Cinzel',serif;font-size:12px;color:rgba(201,168,76,.5);letter-spacing:3px}
-.pb-issue{font-size:7px;color:rgba(201,168,76,.3);letter-spacing:2px}
-.pb-section-title{font-family:'Cormorant Garamond',serif;font-size:22px;color:rgba(240,232,216,.9);margin-bottom:10px;font-weight:300}
-.pb-body{font-size:10px;color:rgba(90,96,122,.9);line-height:1.9}
-.pb-body p{margin-bottom:8px}
-.pb-highlight{background:rgba(92,10,20,.3);border-left:2px solid var(--maroon);padding:10px 14px;margin:10px 0;font-size:11px;color:rgba(201,168,76,.8);font-style:italic;line-height:1.6}
-
-/* BACK COVER */
-.page-back-cover{
-  width:100%;height:100%;
-  background:#040404;
-  display:flex;flex-direction:column;
-  justify-content:space-between;
-  padding:28px;
-  border:.5px solid rgba(201,168,76,.1);
-}
-.bc-top{text-align:center;flex:1;display:flex;flex-direction:column;justify-content:center}
-.bc-logo{font-family:'Cinzel',serif;font-size:22px;color:var(--gold);letter-spacing:6px;margin-bottom:8px}
-.bc-tagline{font-size:8px;color:rgba(122,106,88,.6);letter-spacing:3px;text-transform:uppercase}
-.bc-rule{width:40px;height:.5px;background:var(--gold);margin:20px auto}
-.bc-text{font-family:'Cormorant Garamond',serif;font-size:14px;color:rgba(240,232,216,.4);font-style:italic;line-height:1.6;max-width:200px;margin:0 auto}
-.bc-footer{text-align:center;font-size:7px;color:rgba(58,48,32,.7);letter-spacing:2px}
-
-/* CONTROLS */
-.book-controls{
-  position:fixed;
-  bottom:32px;
-  left:50%;
-  transform:translateX(-50%);
-  display:flex;
-  align-items:center;
-  gap:20px;
-  z-index:500;
-}
-.ctrl-btn{
-  display:flex;align-items:center;gap:8px;
-  padding:12px 28px;
-  border:.5px solid rgba(201,168,76,.3);
-  background:rgba(6,6,6,.8);
-  color:var(--muted);
-  font-size:9px;letter-spacing:3px;text-transform:uppercase;
-  cursor:pointer;font-family:'Raleway',sans-serif;
-  transition:all .3s;
-  backdrop-filter:blur(8px);
-}
-.ctrl-btn:hover:not(:disabled){border-color:var(--gold);color:var(--gold)}
-.ctrl-btn:disabled{opacity:.2;cursor:default}
-.ctrl-btn .arrow{display:inline-block;font-size:14px;transition:transform .3s}
-.ctrl-btn.prev:hover .arrow{transform:translateX(-3px)}
-.ctrl-btn.next:hover .arrow{transform:translateX(3px)}
-
-.page-indicator{
-  display:flex;align-items:center;gap:8px;
-  font-size:9px;color:rgba(122,106,88,.6);letter-spacing:3px;text-transform:uppercase;
-}
-.page-dots{display:flex;gap:6px}
-.page-dot{width:4px;height:4px;border-radius:50%;background:var(--dim);transition:all .3s;cursor:pointer}
-.page-dot.active{background:var(--gold);transform:scale(1.3)}
-
-/* PAGE TURN HINT */
 .click-zones{position:absolute;inset:0;display:flex;pointer-events:none;z-index:50}
-.click-left{flex:0 0 40%;cursor:w-resize;pointer-events:all;display:flex;align-items:center;justify-content:flex-start;padding-left:8px;opacity:0;transition:opacity .3s}
-.click-right{flex:0 0 40%;margin-left:auto;cursor:e-resize;pointer-events:all;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;opacity:0;transition:opacity .3s}
-.book-container:hover .click-left,.book-container:hover .click-right{opacity:1}
-.click-hint{font-size:8px;color:rgba(201,168,76,.3);letter-spacing:2px;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:4px}
-.click-hint-arrow{font-size:20px;color:rgba(201,168,76,.2);animation:hintPulse 2s ease-in-out infinite}
-@keyframes hintPulse{0%,100%{opacity:.2;transform:translateX(0)}50%{opacity:.5;transform:translateX(4px)}}
-.click-left .click-hint-arrow{animation-name:hintPulseL}
-@keyframes hintPulseL{0%,100%{opacity:.2;transform:translateX(0)}50%{opacity:.5;transform:translateX(-4px)}}
+.cz-l{flex:0 0 38%;cursor:w-resize;pointer-events:all;display:flex;align-items:center;justify-content:flex-start;padding-left:6px;opacity:0;transition:opacity .3s}
+.cz-r{flex:0 0 38%;margin-left:auto;cursor:e-resize;pointer-events:all;display:flex;align-items:center;justify-content:flex-end;padding-right:6px;opacity:0;transition:opacity .3s}
+.book-container:hover .cz-l,.book-container:hover .cz-r{opacity:1}
+.cz-hint{font-size:7px;color:rgba(201,168,76,.22);letter-spacing:2px;display:flex;flex-direction:column;align-items:center;gap:3px}
+.cz-ar{font-size:18px;color:rgba(201,168,76,.16);animation:czar 2s ease-in-out infinite}
+.cz-arl{animation-name:czarl}
+@keyframes czar{0%,100%{opacity:.16;transform:translateX(0)}50%{opacity:.38;transform:translateX(4px)}}
+@keyframes czarl{0%,100%{opacity:.16;transform:translateX(0)}50%{opacity:.38;transform:translateX(-4px)}}
 
-/* MOBILE */
+.book-controls{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:16px;z-index:500}
+.ctrl-btn{display:flex;align-items:center;gap:7px;padding:10px 22px;border:.5px solid rgba(201,168,76,.25);background:rgba(6,6,6,.82);color:var(--muted);font-size:9px;letter-spacing:3px;text-transform:uppercase;cursor:pointer;font-family:'Raleway',sans-serif;transition:all .3s;backdrop-filter:blur(8px)}
+.ctrl-btn:hover:not(:disabled){border-color:var(--gold);color:var(--gold)}
+.ctrl-btn:disabled{opacity:.15;cursor:default}
+.car{display:inline-block;font-size:12px;transition:transform .3s}
+.ctrl-btn.prev:hover .car{transform:translateX(-3px)}
+.ctrl-btn.next:hover .car{transform:translateX(3px)}
+.page-ind{display:flex;align-items:center;gap:7px;font-size:9px;color:rgba(122,106,88,.48);letter-spacing:2px}
+.pdots{display:flex;gap:5px}
+.pdot{width:4px;height:4px;border-radius:50%;background:var(--dim);transition:all .3s;cursor:pointer}
+.pdot.active{background:var(--gold);transform:scale(1.3)}
+
+/* ════════════════════════════════════════
+   MAG 1: SUMMER TUNE
+   Fareen's editorial magazine
+   Style: dark bg, mixed serif+script, bold editorial
+   ════════════════════════════════════════ */
+
+/* Cover */
+.st-cover{width:100%;height:100%;background:#1c1c1c;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end}
+.stc-bg{position:absolute;inset:0;background:linear-gradient(135deg,#1c1c1c 0%,#2a2a2a 100%)}
+.stc-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.75) 0%,rgba(0,0,0,.1) 60%)}
+.stc-body{position:relative;z-index:2;padding:22px}
+.stc-issue{font-size:7px;letter-spacing:5px;color:rgba(255,255,255,.3);text-transform:uppercase;margin-bottom:6px}
+.stc-title{display:flex;flex-direction:column;gap:0;line-height:1}
+.stc-s{font-family:'Dancing Script';font-size:38px;color:rgba(255,255,255,.9)}
+.stc-ummer{font-family:'Bebas Neue';font-size:42px;color:white;letter-spacing:4px;margin-top:-8px}
+.stc-j{font-family:'Dancing Script';font-size:32px;color:rgba(255,255,255,.6);margin-top:-6px}
+.stc-une{font-family:'Bebas Neue';font-size:42px;color:white;letter-spacing:4px;margin-top:-10px}
+.stc-quote{display:flex;align-items:flex-start;gap:6px;margin-top:14px;padding:10px 12px;background:rgba(0,0,0,.35)}
+.stc-qm{font-family:Georgia;font-size:22px;color:rgba(255,255,255,.4);line-height:.8;flex-shrink:0}
+.stc-qt{font-size:10px;font-weight:500;color:rgba(255,255,255,.75);letter-spacing:1px;line-height:1.5;text-transform:uppercase;font-family:'DM Sans',sans-serif}
+.stc-tag{position:absolute;top:20px;right:16px;z-index:2;text-align:right}
+.stc-feat{font-family:'Dancing Script';font-size:13px;color:rgba(255,255,255,.35);margin-bottom:2px}
+.stc-name{font-family:'Dancing Script';font-size:18px;color:rgba(255,255,255,.55)}
+
+/* Inner quote spread */
+.st-quote-pg{width:100%;height:100%;position:relative;overflow:hidden}
+.stqp-bg{position:absolute;left:0;top:0;bottom:0;width:55%;background:linear-gradient(135deg,#4a5a8a,#c07080)}
+.stqp-border{position:absolute;left:0;top:8px;bottom:8px;width:55%;border:1px dashed rgba(255,255,255,.15);pointer-events:none}
+.stqp-body{position:absolute;right:0;top:0;bottom:0;width:45%;background:#fff;display:flex;flex-direction:column;justify-content:center;padding:20px 16px}
+.stqp-photo-credit{font-size:7px;letter-spacing:2px;color:#aaa;text-transform:uppercase;font-weight:700;margin-bottom:12px;font-family:'DM Sans',sans-serif}
+.stqp-quote-text{font-family:'Dancing Script';font-size:20px;color:#1a1a1a;line-height:1.4}
+
+/* Letter from editor */
+.st-letter{width:100%;height:100%;background:#111;display:flex;flex-direction:column;padding:26px 22px}
+.stl-hey{font-family:'Dancing Script';font-size:50px;color:white;line-height:.9;margin-bottom:2px}
+.stl-dear{font-family:'Bebas Neue';font-size:26px;color:white;letter-spacing:4px}
+.stl-body{display:flex;gap:14px;margin-top:14px;flex:1}
+.stl-img{width:80px;height:95px;background:linear-gradient(135deg,#3a3a3a,#555);flex-shrink:0;border:.5px solid rgba(255,255,255,.15)}
+.stl-text{font-size:11px;color:rgba(255,255,255,.7);line-height:1.8}
+.stl-sig{font-family:'Dancing Script';font-size:28px;color:white;margin-top:14px}
+.stl-role{font-size:9px;color:rgba(255,255,255,.35);letter-spacing:2px;text-transform:uppercase;margin-top:2px}
+
+/* Article spread */
+.st-article-l{width:100%;height:100%;position:relative;overflow:hidden}
+.sta-img{position:absolute;inset:0;background:linear-gradient(160deg,#2a4a2a,#4a6a3a)}
+.sta-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.8) 0%,rgba(0,0,0,.1) 50%)}
+.sta-credit{position:absolute;top:10px;left:12px;font-size:7px;letter-spacing:2px;color:rgba(255,255,255,.35);text-transform:uppercase;font-weight:700;font-family:'DM Sans',sans-serif}
+.sta-hl{position:absolute;bottom:18px;left:14px;right:14px}
+.sta-hl-i{font-family:'Dancing Script';font-size:22px;color:white}
+.sta-hl-n{font-family:'Bebas Neue';font-size:28px;color:white;letter-spacing:3px;line-height:.95}
+.st-article-r{width:100%;height:100%;background:#fff;padding:26px 20px;display:flex;flex-direction:column}
+.star-kicker{font-size:7px;letter-spacing:3px;color:#888;text-transform:uppercase;margin-bottom:8px;font-family:'DM Sans',sans-serif}
+.star-body{font-family:'Playfair Display';font-size:12px;color:#1a1a1a;line-height:1.9;flex:1}
+.star-credit-ft{font-size:7px;letter-spacing:2px;color:#bbb;text-transform:uppercase;font-weight:700;font-family:'DM Sans',sans-serif;margin-top:10px;align-self:flex-end}
+
+/* Fashion editorial page */
+.st-fashion{width:100%;height:100%;background:#111;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:20px}
+.stf-top{font-family:'Bebas Neue';font-size:32px;color:white;letter-spacing:4px;display:flex;align-items:center;gap:6px}
+.stf-top-i{font-family:'Dancing Script';font-size:28px;color:white}
+.stf-img{width:82%;aspect-ratio:4/3;background:linear-gradient(135deg,#8a2040,#2a1a30);border:1px solid rgba(255,255,255,.1)}
+.stf-bot{font-family:'Bebas Neue';font-size:32px;color:white;letter-spacing:4px;display:flex;align-items:center;gap:6px}
+.stf-bot-i{font-family:'Dancing Script';font-size:28px;color:white}
+
+/* Subscribe page */
+.st-subscribe{width:100%;height:100%;background:#fff;display:flex;flex-direction:column}
+.sts-top{display:flex;justify-content:space-between;align-items:flex-start;padding:18px 18px 10px}
+.sts-title{font-size:14px;font-weight:700;color:#1a1a1a;font-family:'DM Sans',sans-serif;line-height:1.2}
+.sts-site{font-size:8px;letter-spacing:1px;color:#888;font-family:'DM Sans',sans-serif}
+.sts-img{flex:1;background:linear-gradient(160deg,#3a6a3a,#8a9a6a);margin:0 18px}
+.sts-bottom{padding:14px 18px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.sts-col{}
+.sts-col-title{font-size:8px;font-weight:700;color:#1a1a1a;letter-spacing:1px;margin-bottom:5px;font-family:'DM Sans',sans-serif}
+.sts-qr{width:28px;height:28px;background:#1a1a1a;margin-bottom:5px;display:inline-block}
+.sts-item{font-size:9px;color:#555;line-height:1.8;font-family:'DM Sans',sans-serif}
+
+/* ════════════════════════════════════════
+   MAG 2: BLACK HAVEN BRAND STORY
+   ADM Society layout → 100% Black Haven
+   Light background, editorial structure
+   ════════════════════════════════════════ */
+
+/* Cover */
+.bh-cover{width:100%;height:100%;background:#f8f4ee;position:relative;overflow:hidden;display:flex;flex-direction:column}
+.bhc-top{flex:1;position:relative;overflow:hidden}
+.bhc-circle{position:absolute;top:-10%;right:-8%;width:72%;aspect-ratio:1;border-radius:50%;background:linear-gradient(135deg,#3a3a3a 0%,#1a1a1a 100%);overflow:hidden}
+.bhc-circle-inner{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.bhc-circle-bg{position:absolute;inset:0;background:linear-gradient(160deg,#2a0208 0%,#1a1a1a 100%)}
+.bhc-logo-area{position:absolute;top:16px;left:14px;z-index:2}
+.bhc-logo-icon{display:flex;align-items:center;gap:8px}
+.bhc-li{width:50px;height:50px;border-radius:50%;background:white;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.bhc-li-text{font-family:'Cinzel',serif;font-size:13px;color:#1a1a1a;letter-spacing:1px;font-weight:600}
+.bhc-brand{font-size:9px;font-weight:700;color:#1a1a1a;font-family:'DM Sans',sans-serif;margin-top:2px}
+.bhc-title-block{position:absolute;top:35%;left:10%;right:30%;z-index:2}
+.bhc-title-main{font-family:'Playfair Display';font-size:26px;font-weight:700;color:#1a1a1a;line-height:1.1}
+.bhc-title-main em{font-style:italic;color:#5c0a14}
+.bhc-title-sub{font-size:9px;color:#3a2a1a;line-height:1.8;margin-top:8px;font-family:'DM Sans',sans-serif}
+.bhc-bottom{padding:12px 14px;background:#f0e8d8;display:flex;justify-content:space-between;align-items:center;border-top:.5px solid rgba(201,168,76,.3)}
+.bhc-ft-logo{font-family:'Cinzel',serif;font-size:10px;color:#5c0a14;letter-spacing:3px}
+.bhc-ft-social{font-size:8px;color:rgba(92,10,20,.6);letter-spacing:1px}
+
+/* Introduction page */
+.bh-intro{width:100%;height:100%;background:#f8f4ee;padding:26px 22px;display:flex;flex-direction:column;position:relative;overflow:hidden}
+.bhi-brush{position:absolute;top:50%;right:-20px;width:60%;height:80%;transform:translateY(-50%) rotate(-5deg);background:rgba(201,168,76,.08);border-radius:50%}
+.bhi-heading{font-family:'Playfair Display';font-size:18px;font-weight:700;color:#1a1a1a;line-height:1.2;margin-bottom:14px;position:relative;z-index:1}
+.bhi-body{font-size:11px;color:#3a2a1a;line-height:1.9;position:relative;z-index:1;flex:1}
+.bhi-footer{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-top:.5px solid rgba(201,168,76,.3);font-size:7px;color:rgba(92,10,20,.5);letter-spacing:2px;text-transform:uppercase}
+
+/* Highlights page */
+.bh-highlights{width:100%;height:100%;background:#f8f4ee;padding:26px 22px;display:flex;flex-direction:column;position:relative;overflow:hidden}
+.bhh-brush{position:absolute;bottom:-30px;right:-10px;width:50%;height:60%;background:rgba(201,168,76,.07);transform:rotate(10deg);border-radius:50%}
+.bhh-title{font-family:'Playfair Display';font-size:22px;font-weight:700;color:#1a1a1a;margin-bottom:16px;position:relative;z-index:1}
+.bhh-list{display:flex;flex-direction:column;gap:9px;position:relative;z-index:1}
+.bhh-item{display:flex;align-items:flex-start;gap:10px;font-size:11px;color:#1a1a1a;line-height:1.5}
+.bhh-dot{width:6px;height:6px;border-radius:50%;background:#c9a84c;margin-top:4px;flex-shrink:0}
+.bh-footer{display:flex;justify-content:space-between;align-items:center;padding:10px 0 0;border-top:.5px solid rgba(201,168,76,.3);font-size:7px;color:rgba(92,10,20,.45);letter-spacing:2px;text-transform:uppercase;margin-top:auto;position:relative;z-index:1}
+
+/* Content sections */
+.bh-content{width:100%;height:100%;background:#f8f4ee;padding:22px 20px;display:flex;flex-direction:column;position:relative;overflow:hidden}
+.bhc-content-brush{position:absolute;bottom:-20px;left:-10px;width:40%;height:50%;background:rgba(201,168,76,.06);transform:rotate(-8deg);border-radius:50%}
+.bhc-heading{font-family:'Playfair Display';font-size:18px;font-weight:700;color:#1a1a1a;line-height:1.1;margin-bottom:12px;position:relative;z-index:1}
+.bhc-body-text{font-size:10px;color:#1a1a1a;line-height:1.95;position:relative;z-index:1;flex:1}
+.bhc-footer-info{display:flex;justify-content:space-between;padding:8px 0 0;border-top:.5px solid rgba(201,168,76,.3);font-size:7px;color:rgba(92,10,20,.45);letter-spacing:2px;text-transform:uppercase;position:relative;z-index:1}
+
+/* Conclusion */
+.bh-conclusion{width:100%;height:100%;background:#f8f4ee;padding:26px 22px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+.bhcon-brush{position:absolute;inset:0;background:radial-gradient(circle at 70% 60%,rgba(201,168,76,.08) 0%,transparent 60%)}
+.bhcon-heading{font-family:'Playfair Display';font-size:22px;font-weight:700;color:#1a1a1a;line-height:1.1;margin-bottom:16px;position:relative;z-index:1}
+.bhcon-body{font-size:11px;color:#1a1a1a;line-height:1.9;position:relative;z-index:1;text-align:center;max-width:90%;margin:0 auto}
+.bhcon-footer{display:flex;justify-content:space-between;align-items:center;padding:12px 0 0;border-top:.5px solid rgba(201,168,76,.3);font-size:7px;color:rgba(92,10,20,.45);letter-spacing:2px;text-transform:uppercase;position:relative;z-index:1}
+
+/* ════════════════════════════════════════
+   MAG 3: BH. DARK EDITORIAL
+   ════════════════════════════════════════ */
+
+.m1-cover{width:100%;height:100%;background:#050505;position:relative;overflow:hidden}
+.m1-gold-top{height:4px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.m1-body{padding:28px 24px;height:calc(100% - 4px);display:flex;flex-direction:column;justify-content:space-between}
+.m1-issue{font-size:7px;color:rgba(201,168,76,.4);letter-spacing:4px;text-transform:uppercase}
+.m1-big{font-family:'Bebas Neue';font-size:72px;color:rgba(201,168,76,.07);position:absolute;bottom:10px;right:-4px;line-height:1;letter-spacing:-2px}
+.m1-mid{flex:1;display:flex;flex-direction:column;justify-content:center}
+.m1-bh{font-family:'Bebas Neue';font-size:54px;letter-spacing:5px;color:var(--cream);line-height:.9}
+.m1-bh span{color:var(--gold)}
+.m1-rule{width:40px;height:.5px;background:var(--gold);margin:14px 0}
+.m1-hl{font-family:'Cormorant Garamond',serif;font-size:16px;color:rgba(240,232,216,.7);font-style:italic;line-height:1.4;margin-bottom:10px}
+.m1-deck{font-size:9px;color:var(--muted);line-height:1.8}
+.m1-ft{font-size:7px;color:rgba(58,48,32,.7);letter-spacing:3px;text-transform:uppercase}
+.m1-contents{width:100%;height:100%;background:#06060a;padding:26px 22px;display:flex;flex-direction:column}
+.m1-ol{font-size:7px;color:var(--gold);letter-spacing:3px;text-transform:uppercase;padding-bottom:7px;border-bottom:.5px solid var(--dim);margin-bottom:14px}
+.m1-row{display:flex;justify-content:space-between;padding:9px 0;border-bottom:.5px solid rgba(58,48,32,.5)}
+.m1-row-cat{font-size:7px;color:var(--gold);letter-spacing:2px;margin-bottom:3px}
+.m1-row-title{font-family:'Cormorant Garamond',serif;font-size:13px;color:var(--cream)}
+.m1-pg{font-family:'Cormorant Garamond',serif;font-size:15px;color:rgba(201,168,76,.3)}
+.m1-inner{width:100%;height:100%;background:#06060a;padding:26px 22px;display:flex;flex-direction:column;gap:10px;position:relative}
+.m1-pgl{position:absolute;bottom:10px;left:14px;font-size:7px;color:rgba(58,48,32,.65);letter-spacing:2px}
+.m1-pgr{position:absolute;bottom:10px;right:14px;font-size:7px;color:rgba(58,48,32,.65);letter-spacing:2px}
+.m1-pull{font-family:'Cormorant Garamond',serif;font-size:14px;color:var(--gold);font-style:italic;border-left:1px solid var(--maroon);padding-left:10px;line-height:1.5;margin:7px 0}
+.m1-maroon{width:100%;height:100%;background:var(--maroon);padding:26px 22px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+.m1-mrn-big{font-family:'Bebas Neue';font-size:80px;color:rgba(0,0,0,.12);position:absolute;bottom:-8px;right:-3px;line-height:1}
+.m1-back{width:100%;height:100%;background:#040404;display:flex;flex-direction:column;justify-content:space-between;padding:26px;border:.5px solid rgba(201,168,76,.07)}
+.m1-back-mid{text-align:center;flex:1;display:flex;flex-direction:column;justify-content:center}
+
 @media(max-width:768px){
   html,body{overflow:auto}
-  .book-stage{position:relative;top:0;height:auto;min-height:100vh;padding:80px 16px 140px;perspective:none}
-  .book-container{width:100%;max-width:360px;height:auto;min-height:500px}
+  .book-stage{position:relative;top:0;height:auto;min-height:100vh;padding:120px 10px 120px;perspective:none}
+  .book-container{width:100%;max-width:340px;height:auto;min-height:460px}
   .page-spread.current{flex-direction:column}
-  .page-left,.page-right{width:100%;height:auto;min-height:250px}
-  .book-spine{display:none}
-  .book-shadow{display:none}
-  .click-zones{display:none}
-  nav{padding:14px 20px}
+  .page-left,.page-right{width:100%;height:auto;min-height:230px}
+  .book-spine,.book-shadow,.click-zones{display:none}
+  .mode-bar{flex-wrap:wrap;gap:3px;padding:6px 12px}
+  .mode-btn{padding:7px 14px;font-size:7px}
+  nav{padding:12px 18px}
   .nav-center{display:none}
-  .book-controls{bottom:20px;gap:12px}
-  .ctrl-btn{padding:10px 20px;font-size:8px}
+  .book-controls{bottom:12px;gap:10px}
+  .ctrl-btn{padding:9px 14px;font-size:8px}
+  .bhc-circle{width:55%;top:-5%}
+  .bhc-title-block{top:30%;left:8%;right:25%}
+  .bhc-title-main{font-size:20px}
+  .stqp-body{width:50%}
+  .stqp-bg{width:50%}
+  .stqp-border{width:50%}
 }
 </style>
 </head>
@@ -298,7 +257,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;padding:16px 40px;display:fl
 
 <nav>
   <a href="virtualdesigns.html" class="nav-logo">FK</a>
-  <div class="nav-center">BH Journal — Vol. I</div>
+  <div class="nav-center" id="navCenter">Summer Tune</div>
   <ul class="nav-links">
     <li><a href="cards.html">Cards</a></li>
     <li><a href="menus.html">Menus</a></li>
@@ -306,292 +265,473 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;padding:16px 40px;display:fl
   <a href="virtualdesigns.html" class="nav-back">← Home</a>
 </nav>
 
+<div class="mode-bar">
+  <button class="mode-btn active" onclick="switchMode('st',this)">Summer Tune</button>
+  <button class="mode-btn" onclick="switchMode('bhs',this)">Black Haven — Brand Story</button>
+  <button class="mode-btn" onclick="switchMode('bh',this)">BH. Dark Editorial</button>
+</div>
+
 <div class="book-stage">
   <div class="book-bg-lines"></div>
-
   <div class="book-container" id="bookContainer">
-
-    <!-- CLICK ZONES -->
     <div class="click-zones">
-      <div class="click-left" onclick="prevPage()">
-        <div class="click-hint"><span class="click-hint-arrow">‹</span><span>Prev</span></div>
-      </div>
-      <div class="click-right" onclick="nextPage()">
-        <div class="click-hint"><span class="click-hint-arrow" style="animation-name:hintPulse">›</span><span>Next</span></div>
-      </div>
+      <div class="cz-l" onclick="prevPage()"><div class="cz-hint"><span class="cz-ar cz-arl">‹</span><span>Prev</span></div></div>
+      <div class="cz-r" onclick="nextPage()"><div class="cz-hint"><span class="cz-ar">›</span><span>Next</span></div></div>
     </div>
+    <div class="book-spine"><div class="spine-text" id="spineText">Summer Tune · Issue 01</div></div>
 
-    <!-- SPINE -->
-    <div class="book-spine"><div class="spine-text">Black Haven · Vol. I · 2025</div></div>
-
-    <!-- SPREAD 0 — COVER -->
-    <div class="page-spread current" id="spread-0">
+    <!-- ═══════ MAG 1: SUMMER TUNE ═══════ -->
+    <div class="page-spread current" id="st-0">
       <div class="page-left">
-        <div class="page-cover">
-          <div class="cover-gold-top"></div>
-          <div class="cover-body">
-            <div class="cover-issue">Issue 01 · Spring 2025</div>
-            <div class="cover-bh">BLACK<br>HAVEN</div>
-            <div class="cover-journal">The Journal</div>
-            <div class="cover-rule"></div>
-            <div class="cover-headline">Why black is not absence — it is presence</div>
-            <div class="cover-deck">A meditation on modest fashion, identity, and the quiet power of intentional dressing.</div>
-            <div class="cover-vol">I</div>
+        <div class="st-cover">
+          <div class="stc-bg"></div>
+          <div class="stc-overlay"></div>
+          <div class="stc-tag">
+            <div class="stc-feat">featuring</div>
+            <div class="stc-name">Your Cover Star</div>
           </div>
-          <div class="cover-gold-bottom"></div>
+          <div class="stc-body">
+            <div class="stc-issue">Issue 01 · Summer Edition</div>
+            <div class="stc-title">
+              <div class="stc-s">S</div>
+              <div class="stc-ummer">UMMER</div>
+              <div class="stc-j">J</div>
+              <div class="stc-une">UNE</div>
+            </div>
+            <div class="stc-quote">
+              <div class="stc-qm">"</div>
+              <div class="stc-qt">The most selfless thing<br>you can do is<br>take care of yourself</div>
+              <div class="stc-qm" style="align-self:flex-end">"</div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="page-right">
-        <div class="page-inner">
-          <div class="pg-overline">Contents</div>
-          <div style="display:flex;flex-direction:column;gap:16px;margin-top:8px;flex:1">
-            <div style="display:flex;justify-content:space-between;padding-bottom:10px;border-bottom:.5px solid var(--dim)">
-              <div>
-                <div style="font-size:8px;color:var(--gold);letter-spacing:2px;margin-bottom:4px">COVER</div>
-                <div style="font-family:'Cormorant Garamond',serif;font-size:14px;color:var(--cream)">On wearing black like a language</div>
-              </div>
-              <div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:rgba(201,168,76,.4)">03</div>
-            </div>
-            <div style="display:flex;justify-content:space-between;padding-bottom:10px;border-bottom:.5px solid var(--dim)">
-              <div>
-                <div style="font-size:8px;color:var(--gold);letter-spacing:2px;margin-bottom:4px">ESSAY</div>
-                <div style="font-family:'Cormorant Garamond',serif;font-size:14px;color:var(--cream)">Modesty is not a limit — it is a lens</div>
-              </div>
-              <div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:rgba(201,168,76,.4)">06</div>
-            </div>
-            <div style="display:flex;justify-content:space-between;padding-bottom:10px;border-bottom:.5px solid var(--dim)">
-              <div>
-                <div style="font-size:8px;color:var(--gold);letter-spacing:2px;margin-bottom:4px">FEATURE</div>
-                <div style="font-family:'Cormorant Garamond',serif;font-size:14px;color:var(--cream)">The woman behind the abaya</div>
-              </div>
-              <div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:rgba(201,168,76,.4)">10</div>
-            </div>
-            <div style="display:flex;justify-content:space-between;padding-bottom:10px;border-bottom:.5px solid var(--dim)">
-              <div>
-                <div style="font-size:8px;color:var(--gold);letter-spacing:2px;margin-bottom:4px">EDITORIAL</div>
-                <div style="font-family:'Cormorant Garamond',serif;font-size:14px;color:var(--cream)">Spring 2025 collection lookbook</div>
-              </div>
-              <div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:rgba(201,168,76,.4)">14</div>
-            </div>
+        <div class="st-quote-pg">
+          <div class="stqp-bg"></div>
+          <div class="stqp-border"></div>
+          <div class="stqp-body">
+            <div class="stqp-photo-credit">Photographers<br>Francois Mercer, Jin Ae Soo</div>
+            <div class="stqp-quote-text">Sometimes it all gets a little too much, but you gotta realise that soon the fog will clear up</div>
           </div>
-          <div class="pg-folio-l">Black Haven · The Journal</div>
-          <div class="pg-folio">02</div>
         </div>
       </div>
     </div>
 
-    <!-- SPREAD 1 — COVER STORY -->
-    <div class="page-spread" id="spread-1">
+    <div class="page-spread" id="st-1">
       <div class="page-left">
-        <div class="page-maroon">
-          <div class="pm-big">BH</div>
-          <div class="pm-overline">Cover Story</div>
-          <div class="pm-quote">"She dressed not to be seen — but to be felt."</div>
-          <div class="pm-attr">— Black Haven Journal, Issue 01</div>
+        <div class="st-letter">
+          <div class="stl-hey">Hey,</div>
+          <div class="stl-dear">DEAR READERS</div>
+          <div class="stl-body">
+            <div class="stl-img"></div>
+            <div class="stl-text">In this edition, we explore the journey of our cover star — their fashion choices, struggles and thoughts on life and career. We look into their advice to our readers, exclusively on Summer Tune.</div>
+          </div>
+          <div class="stl-sig">Fareen Kashmira</div>
+          <div class="stl-role">Editor-in-Chief</div>
         </div>
       </div>
       <div class="page-right">
-        <div class="page-inner">
-          <div class="pg-overline">On wearing black like a language</div>
-          <div class="pg-title">Why black is not<br><em>absence</em> — it is presence</div>
-          <div class="pg-rule"></div>
-          <div class="pg-body">
-            <p>There is a silence that speaks. In modest fashion, the choice of dark fabric is rarely about erasure. It is about drawing the eye inward — inviting a different kind of attention. Not the loud, immediate kind. The kind that lingers.</p>
-            <div class="pg-pull">To wear black, deliberately, every day — is to choose a consistent language. One that does not shout.</div>
-            <p>Black Haven exists at that intersection: where cloth becomes conviction. Where a garment is not decoration but declaration.</p>
-            <p>The women who wear these abayas are not hiding. They are composing themselves, the way a writer chooses their words.</p>
+        <div class="st-article-l">
+          <div class="sta-img"></div>
+          <div class="sta-overlay"></div>
+          <div class="sta-credit">Photography by Jackson Davis</div>
+          <div class="sta-hl">
+            <div class="sta-hl-i">I</div>
+            <div class="sta-hl-n">NFLUENCING THE<br>NEW TRENDS</div>
           </div>
-          <div class="pg-folio">03</div>
         </div>
       </div>
     </div>
 
-    <!-- SPREAD 2 — ESSAY -->
-    <div class="page-spread" id="spread-2">
+    <div class="page-spread" id="st-2">
       <div class="page-left">
-        <div class="page-inner">
-          <div class="pg-overline">Essay · Identity</div>
-          <div class="pg-title">Modesty is not<br>a limit —</div>
-          <div class="pg-rule"></div>
-          <div class="pg-body">
-            <p>We have inherited a strange idea: that covering is concealing. That modesty is subtraction. That the woman who chooses a longer hem, a looser silhouette, a covered wrist — is somehow less.</p>
-            <div class="pg-pull">What if the opposite were true?</div>
-            <p>What if choosing to clothe yourself deliberately — with thought, with intention, with a clear sense of what you want to say — is a form of amplification rather than reduction?</p>
-            <p>Modest fashion, at its best, is not reactive. It is proactive. It is a woman saying: this is my body, this is my faith, this is my aesthetic — and they are not in conflict with each other.</p>
+        <div class="st-fashion">
+          <div class="stf-top">
+            <div class="stf-top-i">T</div>
+            <div>HE FUTURE OF</div>
           </div>
-          <div class="pg-folio">06</div>
+          <div class="stf-img"></div>
+          <div class="stf-bot">
+            <div style="font-family:'Dancing Script';font-size:28px">F</div>
+            <div>ASHION IS</div>
+            <div style="font-family:'Dancing Script';font-size:28px">H</div>
+            <div>ERE</div>
+          </div>
         </div>
       </div>
       <div class="page-right">
-        <div class="page-blue">
-          <div class="pb-header"><div class="pb-title">Black Haven</div><div class="pb-issue">Issue 01</div></div>
-          <div class="pb-section-title">It is a lens.</div>
-          <div class="pb-body">
-            <p>The woman who wears an abaya is not absent from the room. She is present in a way that most people never learn to be. She has decided, each morning, what she values. That decision shows.</p>
-            <div class="pb-highlight">"Modesty, in the end, is about what you choose to carry with you — and what you choose to leave behind."</div>
-            <p>This is what Black Haven is built around. Not a uniform. Not a restriction. A vocabulary. One that is personal, deliberate, and — above all — entirely your own.</p>
+        <div class="st-article-r">
+          <div class="star-kicker">Putting a stop to fast fashion · Photography by Aaron Loeb</div>
+          <div class="star-body">
+            <p style="margin-bottom:10px">A short intro or kicker of the article goes here. This part acts as a bridge between the headline and the article itself.</p>
+            <p style="margin-bottom:10px">Our cover star gives readers something real — not just hits delivered with aplomb, but a genuine perspective on what fashion means when you're living under a spotlight. What we need to talk about is the ability to make every person in a room feel like the only one there.</p>
+            <p>From the moment they step on stage to the finale — all the right notes, all the right things, the right clothes. No need for outfit changes to impress anyone. The look is the statement. The statement is the person.</p>
           </div>
-          <div class="pg-folio">07</div>
+          <div class="star-credit-ft">Photography by Aaron Loeb</div>
         </div>
       </div>
     </div>
 
-    <!-- SPREAD 3 — FEATURE + BACK COVER HINT -->
-    <div class="page-spread" id="spread-3">
+    <div class="page-spread" id="st-3">
       <div class="page-left">
-        <div class="page-inner">
-          <div class="pg-overline">Feature · Spring Collection</div>
-          <div class="pg-title"><em>The Garment</em><br>as gesture</div>
-          <div class="pg-rule"></div>
-          <div class="pg-body">
-            <p>Fabric carries memory. Every abaya is a quiet manifesto — a decision made before leaving the door. The weight of crepe at the wrists. The particular fall of chiffon at the hem.</p>
-            <div class="pg-pull">She is not defined by what she covers. She is defined by what she chooses to say with it.</div>
-            <p>This spring, Black Haven introduces four silhouettes: each one rooted in function, each one elevated by detail. The embroidered hem that catches light. The butterfly sleeve that moves with the wearer.</p>
-            <p>Clothing as living architecture.</p>
+        <div class="st-fashion" style="background:#000">
+          <div style="font-family:'Bebas Neue';font-size:34px;color:white;letter-spacing:6px;display:flex;align-items:center;gap:6px">
+            <span style="font-family:'Dancing Script';font-size:28px">P</span>ASSION
           </div>
-          <div class="pg-folio">10</div>
+          <div style="width:78%;aspect-ratio:3/4;max-height:55%;background:linear-gradient(135deg,#3a3a8a,#2a2a4a);border:.5px solid rgba(255,255,255,.1)"></div>
+          <div style="font-family:'Bebas Neue';font-size:34px;color:white;letter-spacing:4px;display:flex;align-items:center;gap:4px">
+            FOR MU<span style="font-family:'Dancing Script';font-size:28px">s</span>IC
+          </div>
         </div>
       </div>
       <div class="page-right">
-        <div class="page-back-cover">
-          <div class="bc-top">
-            <div class="bc-logo">BLACK HAVEN</div>
-            <div class="bc-tagline">Modest · Refined · Intentional</div>
-            <div class="bc-rule"></div>
-            <div class="bc-text">"Designed for the woman who does not need to be loud to be heard."</div>
+        <div class="st-subscribe">
+          <div class="sts-top">
+            <div class="sts-title">SUBSCRIBE TO<br>SUMMER TUNE</div>
+            <div class="sts-site">WWW.FAREENKASHMIRA.CO.IN</div>
           </div>
-          <div style="text-align:center;padding:16px 0;border-top:.5px solid var(--dim)">
-            <div style="font-size:9px;color:rgba(201,168,76,.4);letter-spacing:3px;text-transform:uppercase;margin-bottom:8px">Find us</div>
-            <div style="font-size:10px;color:rgba(122,106,88,.7);letter-spacing:2px">@blackhaven.official</div>
+          <div class="sts-img"></div>
+          <div class="sts-bottom">
+            <div class="sts-col">
+              <div class="sts-col-title">NEVER MISS AN ISSUE!</div>
+              <div class="sts-qr"></div>
+              <div class="sts-item">Enjoy huge savings<br>Free home delivery<br>Get your copy before everyone else</div>
+            </div>
+            <div class="sts-col">
+              <div class="sts-col-title">CHECK OUT OUR ONLINE EDITION</div>
+              <div class="sts-qr"></div>
+              <div class="sts-item">Catch the freshest features<br>Updated daily<br>Read anytime, anywhere</div>
+            </div>
           </div>
-          <div class="bc-footer">Black Haven · The Journal · Issue 01 · Spring 2025</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════ MAG 2: BLACK HAVEN BRAND STORY ═══════ -->
+    <div class="page-spread" id="bhs-0" style="display:none">
+      <div class="page-left">
+        <div class="bh-cover">
+          <div class="bhc-top">
+            <div class="bhc-circle">
+              <div class="bhc-circle-bg"></div>
+            </div>
+            <div class="bhc-logo-area">
+              <div class="bhc-logo-icon">
+                <div class="bhc-li"><div class="bhc-li-text">BH</div></div>
+                <div>
+                  <div class="bhc-brand">Black Haven</div>
+                  <div style="font-size:8px;color:rgba(92,10,20,.5);letter-spacing:1px;font-family:'DM Sans',sans-serif">@blackhaven.official</div>
+                </div>
+              </div>
+            </div>
+            <div class="bhc-title-block">
+              <div class="bhc-title-main">The Impact of<br>Modest Fashion<br>on <em>Brand Identity</em></div>
+              <div class="bhc-title-sub">Black Haven · Modest Fashion · Est. 2024</div>
+            </div>
+          </div>
+          <div class="bhc-bottom">
+            <div class="bhc-ft-logo">BLACK HAVEN</div>
+            <div class="bhc-ft-social">blackhaven.in · @blackhaven.official</div>
+          </div>
+        </div>
+      </div>
+      <div class="page-right">
+        <div class="bh-intro">
+          <div class="bhi-brush"></div>
+          <div class="bhi-heading">Introduction</div>
+          <div class="bhi-body">
+            In the evolving landscape of conscious fashion, modest wear has emerged as a powerful and intentional form of self-expression. Black Haven was founded on one premise: that modest fashion deserves the same level of craft, editorial presence, and brand identity as any high-end fashion house.<br><br>
+            This issue explores how intentional dressing shapes identity, community, and brand perception — and why Black Haven exists at that intersection of faith, aesthetics, and conviction.
+          </div>
+          <div class="bhi-footer">
+            <span>Black Haven · Brand Story · Issue 01</span>
+            <span>blackhaven.in</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-spread" id="bhs-1" style="display:none">
+      <div class="page-left">
+        <div class="bh-highlights">
+          <div class="bhh-brush"></div>
+          <div class="bhh-title">Highlights :</div>
+          <div class="bhh-list">
+            <div class="bhh-item"><div class="bhh-dot"></div>What is modest fashion</div>
+            <div class="bhh-item"><div class="bhh-dot"></div>Impact of modest fashion on identity</div>
+            <div class="bhh-item"><div class="bhh-dot"></div>Role of Black Haven on brand perception</div>
+            <div class="bhh-item"><div class="bhh-dot"></div>How intentional dressing attracts a conscious community</div>
+          </div>
+          <div class="bh-footer">
+            <span>Black Haven · Issue 01</span>
+            <span>@blackhaven.official</span>
+          </div>
+        </div>
+      </div>
+      <div class="page-right">
+        <div class="bh-content">
+          <div class="bhc-content-brush"></div>
+          <div class="bhc-heading">What is modest fashion?</div>
+          <div class="bhc-body-text">
+            Modest fashion is the practice of dressing in a way that aligns personal values — faith, identity, aesthetic conviction — with how one presents to the world. It is not defined by what it covers, but by what it communicates.<br><br>
+            Black Haven was founded on the premise that modest fashion deserves intentional design, premium material, and editorial presence. Not as an afterthought — but as the primary intention.<br><br>
+            The woman who wears a Black Haven abaya is not hiding. She is composing herself, the way a writer chooses their words.
+          </div>
+          <div class="bhc-footer-info">
+            <span>Black Haven · Issue 01</span>
+            <span>blackhaven.in · @blackhaven.official</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-spread" id="bhs-2" style="display:none">
+      <div class="page-left">
+        <div class="bh-content">
+          <div class="bhc-heading">Role of Black Haven<br>on Brand Perception</div>
+          <div class="bhc-body-text">
+            A brand is not a logo. A brand is the feeling a person has the moment they encounter it. Black Haven is built to communicate three things: refinement, faith, and quiet confidence.<br><br>
+            Positive brand identity comes from consistency. Every piece we create reinforces the same truth. When a customer wears a Black Haven abaya, they are wearing a set of values made visible.<br><br>
+            That alignment between brand and wearer is what builds loyalty — not just transactions.
+          </div>
+          <div class="bhc-footer-info">
+            <span>Black Haven · Issue 01</span>
+            <span>blackhaven.in</span>
+          </div>
+        </div>
+      </div>
+      <div class="page-right">
+        <div class="bh-content">
+          <div class="bhc-heading">Attracting a<br>Conscious Community</div>
+          <div class="bhc-body-text">
+            The Black Haven customer is not defined by a single demographic. She is defined by a set of values: intentionality, faith, and aesthetic clarity. She wants clothes that understand her — not just fit her.<br><br>
+            Word-of-mouth in this community travels differently. When a woman recommends Black Haven, it is not an endorsement. It is an identity statement.<br><br>
+            Those are the most powerful endorsements of all. They do not expire. They compound.
+          </div>
+          <div class="bhc-footer-info">
+            <span>Black Haven · Issue 01</span>
+            <span>@blackhaven.official</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-spread" id="bhs-3" style="display:none">
+      <div class="page-left">
+        <div class="bh-conclusion">
+          <div class="bhcon-brush"></div>
+          <div class="bhcon-heading" style="text-align:center">In Conclusion :</div>
+          <div class="bhcon-body">
+            Modest fashion significantly shapes the identity and self-perception of the women who wear it. It enhances confidence, builds community, and creates a deeply personal relationship between a brand and its wearer.<br><br>
+            Effective modest fashion design is not about restraint. It is about resonance. Black Haven exists to prove that modest and beautiful are not opposites — and that a brand built on values can still be the most compelling thing in the room.
+          </div>
+          <div class="bhcon-footer">
+            <span>Black Haven · Brand Story · Issue 01</span>
+            <span>blackhaven.in</span>
+          </div>
+        </div>
+      </div>
+      <div class="page-right">
+        <div style="width:100%;height:100%;background:#f0e8d8;display:flex;flex-direction:column;justify-content:space-between;padding:26px;border:.5px solid rgba(201,168,76,.2)">
+          <div style="text-align:center;flex:1;display:flex;flex-direction:column;justify-content:center">
+            <div style="font-family:'Cinzel',serif;font-size:18px;color:#5c0a14;letter-spacing:6px;margin-bottom:8px">BLACK HAVEN</div>
+            <div style="font-size:8px;color:rgba(92,10,20,.5);letter-spacing:3px;text-transform:uppercase">Modest · Refined · Intentional</div>
+            <div style="width:32px;height:1px;background:rgba(201,168,76,.5);margin:18px auto"></div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:14px;color:rgba(92,10,20,.6);font-style:italic;line-height:1.7;padding:0 14px">"She dressed not to be seen — but to be felt. Not to impress — but to express."</div>
+          </div>
+          <div style="text-align:center;padding:12px 0;border-top:.5px solid rgba(201,168,76,.3)">
+            <div style="font-size:8px;color:rgba(92,10,20,.4);letter-spacing:3px;text-transform:uppercase;margin-bottom:5px">Find us</div>
+            <div style="font-size:9px;color:rgba(92,10,20,.55);letter-spacing:2px">@blackhaven.official · blackhaven.in</div>
+          </div>
+          <div style="text-align:center;font-size:7px;color:rgba(92,10,20,.35);letter-spacing:2px">Black Haven · Brand Story · Issue 01 · 2025</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════ MAG 3: BH. DARK EDITORIAL ═══════ -->
+    <div class="page-spread" id="bh-0" style="display:none">
+      <div class="page-left">
+        <div class="m1-cover">
+          <div class="m1-gold-top"></div>
+          <div class="m1-body">
+            <div class="m1-issue">Issue 01 · Spring 2025</div>
+            <div class="m1-mid">
+              <div class="m1-bh">BH<span>.</span></div>
+              <div class="m1-rule"></div>
+              <div class="m1-hl">Why black is not absence — it is presence</div>
+              <div class="m1-deck">Modest fashion, identity, and the quiet power of intentional dressing.</div>
+              <div class="m1-big">BH.</div>
+            </div>
+            <div class="m1-ft">The Black Haven Journal</div>
+          </div>
+        </div>
+      </div>
+      <div class="page-right">
+        <div class="m1-contents">
+          <div class="m1-ol">Contents — Issue 01</div>
+          <div class="m1-row"><div><div class="m1-row-cat">COVER</div><div class="m1-row-title">On wearing black like a language</div></div><div class="m1-pg">03</div></div>
+          <div class="m1-row"><div><div class="m1-row-cat">ESSAY</div><div class="m1-row-title">Modesty is not a limit — it is a lens</div></div><div class="m1-pg">06</div></div>
+          <div class="m1-row"><div><div class="m1-row-cat">FEATURE</div><div class="m1-row-title">The woman behind the abaya</div></div><div class="m1-pg">10</div></div>
+          <div class="m1-row"><div><div class="m1-row-cat">EDITORIAL</div><div class="m1-row-title">Spring 2025 lookbook</div></div><div class="m1-pg">14</div></div>
+          <div style="margin-top:auto;padding-top:12px;border-top:.5px solid var(--dim);font-size:8px;color:rgba(58,48,32,.55);text-align:center;letter-spacing:2px">Black Haven · The Journal · 2025</div>
+        </div>
+      </div>
+    </div>
+    <div class="page-spread" id="bh-1" style="display:none">
+      <div class="page-left">
+        <div class="m1-maroon">
+          <div class="m1-mrn-big">BH</div>
+          <div style="font-size:7px;color:rgba(201,168,76,.55);letter-spacing:4px;text-transform:uppercase;margin-bottom:14px">Cover Story</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:24px;color:#fff;font-weight:300;line-height:1.4;font-style:italic;margin-bottom:14px">"She dressed not to be seen — but to be felt."</div>
+          <div style="font-size:8px;color:rgba(255,255,255,.3);letter-spacing:2px">— Black Haven Journal, Issue 01</div>
+        </div>
+      </div>
+      <div class="page-right">
+        <div class="m1-inner">
+          <div style="font-size:7px;color:var(--gold);letter-spacing:3px;text-transform:uppercase;padding-bottom:6px;border-bottom:.5px solid var(--dim)">On wearing black like a language</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--cream);font-weight:300;line-height:1.2">Why black is not <em style="font-style:italic;color:var(--gold)">absence</em></div>
+          <div style="width:26px;height:.5px;background:var(--maroon);margin:8px 0"></div>
+          <div style="font-size:9px;color:var(--muted);line-height:1.9;flex:1">
+            <p>There is a silence that speaks. In modest fashion, the choice of dark fabric is rarely about erasure. It is about drawing the eye inward.</p>
+            <div class="m1-pull">To wear black, deliberately, every day — is to choose a language that does not shout.</div>
+            <p>Black Haven exists where cloth becomes conviction. Where a garment is not decoration but declaration. Where the woman has decided, once and entirely, who she is.</p>
+          </div>
+          <div class="m1-pgr">03</div>
+        </div>
+      </div>
+    </div>
+    <div class="page-spread" id="bh-2" style="display:none">
+      <div class="page-left">
+        <div class="m1-inner">
+          <div style="font-size:7px;color:var(--gold);letter-spacing:3px;text-transform:uppercase;padding-bottom:6px;border-bottom:.5px solid var(--dim)">Essay · Identity</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--cream);font-weight:300;line-height:1.2">Modesty is not a limit —</div>
+          <div style="width:26px;height:.5px;background:var(--maroon);margin:8px 0"></div>
+          <div style="font-size:9px;color:var(--muted);line-height:1.9;flex:1">
+            <p>We have inherited a strange idea: that covering is concealing. That the woman who chooses a longer hem is somehow less.</p>
+            <div class="m1-pull">What if the opposite were true?</div>
+            <p>Modest fashion, at its best, is proactive. It is a woman saying: this is my body, this is my faith, this is my aesthetic — and they are not in conflict.</p>
+          </div>
+          <div class="m1-pgr">06</div>
+        </div>
+      </div>
+      <div class="page-right">
+        <div class="m1-inner" style="background:#060810">
+          <div style="border-bottom:.5px solid rgba(13,26,58,.8);padding-bottom:10px;margin-bottom:12px;display:flex;justify-content:space-between">
+            <div style="font-family:'Cinzel',serif;font-size:10px;color:rgba(201,168,76,.38);letter-spacing:3px">Black Haven</div>
+            <div style="font-size:7px;color:rgba(201,168,76,.22);letter-spacing:2px">Issue 01</div>
+          </div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:19px;color:rgba(240,232,216,.85);margin-bottom:9px;font-weight:300">It is a lens.</div>
+          <div style="font-size:9px;color:rgba(90,96,122,.85);line-height:1.9;flex:1">
+            <p>The woman who wears an abaya is not absent from the room. She is present in a way that most people never learn to be.</p>
+            <div style="background:rgba(92,10,20,.25);border-left:2px solid var(--maroon);padding:8px 11px;margin:8px 0;font-size:9px;color:rgba(201,168,76,.7);font-style:italic;line-height:1.6">"Modesty is about what you choose to carry — and what you leave behind."</div>
+            <p>This is what Black Haven is built around. Not a uniform. A vocabulary.</p>
+          </div>
+          <div style="position:absolute;bottom:10px;right:14px;font-size:7px;color:rgba(26,32,64,.8);letter-spacing:2px">07</div>
+        </div>
+      </div>
+    </div>
+    <div class="page-spread" id="bh-3" style="display:none">
+      <div class="page-left">
+        <div class="m1-inner">
+          <div style="font-size:7px;color:var(--gold);letter-spacing:3px;text-transform:uppercase;padding-bottom:6px;border-bottom:.5px solid var(--dim)">Feature · Spring Collection</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--cream);font-weight:300;line-height:1.2"><em style="font-style:italic;color:var(--gold)">The Garment</em><br>as gesture</div>
+          <div style="width:26px;height:.5px;background:var(--maroon);margin:8px 0"></div>
+          <div style="font-size:9px;color:var(--muted);line-height:1.9;flex:1">
+            <p>Fabric carries memory. Every abaya is a quiet manifesto — a decision made before leaving the door.</p>
+            <div class="m1-pull">She is defined not by what she covers, but by what she chooses to say with it.</div>
+            <p>This spring, Black Haven introduces four silhouettes. Each one rooted in function, each elevated by detail.</p>
+          </div>
+          <div class="m1-pgr">10</div>
+        </div>
+      </div>
+      <div class="page-right">
+        <div class="m1-back">
+          <div class="m1-back-mid">
+            <div style="font-family:'Cinzel',serif;font-size:20px;color:var(--gold);letter-spacing:6px;margin-bottom:6px">BLACK HAVEN</div>
+            <div style="font-size:7px;color:rgba(122,106,88,.45);letter-spacing:3px;text-transform:uppercase">Modest · Refined · Intentional</div>
+            <div style="width:32px;height:.5px;background:var(--gold);margin:16px auto"></div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:12px;color:rgba(240,232,216,.28);font-style:italic;line-height:1.6;padding:0 14px">"Designed for the woman who does not need to be loud to be heard."</div>
+          </div>
+          <div style="text-align:center;padding:12px 0;border-top:.5px solid var(--dim)"><div style="font-size:8px;color:rgba(201,168,76,.3);letter-spacing:3px;text-transform:uppercase;margin-bottom:5px">Find us</div><div style="font-size:9px;color:rgba(122,106,88,.5);letter-spacing:2px">@blackhaven.official</div></div>
+          <div style="text-align:center;font-size:7px;color:rgba(58,48,32,.5);letter-spacing:2px">Black Haven · The Journal · Issue 01 · 2025</div>
         </div>
       </div>
     </div>
 
     <div class="book-shadow"></div>
-
-    <!-- FLIP ANIMATION LAYERS -->
-    <div class="flip-left" id="flipLeft">
-      <div class="flip-face" id="flipLeftFront"></div>
-      <div class="flip-face flip-face-back" id="flipLeftBack"></div>
-    </div>
-    <div class="flip-right" id="flipRight">
-      <div class="flip-face" id="flipRightFront"></div>
-      <div class="flip-face flip-face-back" id="flipRightBack"></div>
-    </div>
-
-  </div><!-- /book-container -->
-
-</div><!-- /book-stage -->
+    <div class="flip-left" id="flipLeft" style="display:none"><div class="flip-face"></div><div class="flip-face flip-face-back"></div></div>
+    <div class="flip-right" id="flipRight" style="display:none"><div class="flip-face"></div><div class="flip-face flip-face-back"></div></div>
+  </div>
+</div>
 
 <div class="book-controls">
-  <button class="ctrl-btn prev" id="btnPrev" onclick="prevPage()" disabled>
-    <span class="arrow">‹</span> Prev Page
-  </button>
-  <div class="page-indicator">
-    <div class="page-dots" id="pageDots"></div>
-    <span id="pageLabel">1 / 4</span>
-  </div>
-  <button class="ctrl-btn next" id="btnNext" onclick="nextPage()">
-    Next Page <span class="arrow">›</span>
-  </button>
+  <button class="ctrl-btn prev" id="btnPrev" onclick="prevPage()" disabled><span class="car">‹</span> Prev</button>
+  <div class="page-ind"><div class="pdots" id="pageDots"></div><span id="pageLabel">1 / 4</span></div>
+  <button class="ctrl-btn next" id="btnNext" onclick="nextPage()">Next <span class="car">›</span></button>
 </div>
 
 <script>
-const totalSpreads=4;
-let current=0;
-let isFlipping=false;
+const modes={
+  st:{count:4,label:'Summer Tune — Issue 01',spine:'Summer Tune · Fareen Kashmira · Issue 01'},
+  bhs:{count:4,label:'Black Haven — Brand Story',spine:'Black Haven · Brand Story · Issue 01 · 2025'},
+  bh:{count:4,label:'BH. Dark Editorial',spine:'Black Haven · BH. · 2025'}
+};
+let mode='st',current=0,isFlipping=false;
 
-// Build dots
-const dotsEl=document.getElementById('pageDots');
-for(let i=0;i<totalSpreads;i++){
-  const d=document.createElement('div');
-  d.className='page-dot'+(i===0?' active':'');
-  d.onclick=()=>goToSpread(i);
-  dotsEl.appendChild(d);
+function buildDots(){
+  const d=document.getElementById('pageDots');
+  d.innerHTML='';
+  for(let i=0;i<modes[mode].count;i++){
+    const dot=document.createElement('div');
+    dot.className='pdot'+(i===0?' active':'');
+    const idx=i;
+    dot.onclick=()=>goTo(idx);
+    d.appendChild(dot);
+  }
 }
-
 function updateUI(){
   document.getElementById('btnPrev').disabled=current===0;
-  document.getElementById('btnNext').disabled=current===totalSpreads-1;
-  document.getElementById('pageLabel')`${current+1} / ${totalSpreads}`;
-  document.querySelectorAll('.page-dot').forEach((d,i)=>d.classList.toggle('active',i===current));
+  document.getElementById('btnNext').disabled=current===modes[mode].count-1;
+  document.getElementById('pageLabel').textContent=(current+1)+' / '+modes[mode].count;
+  document.querySelectorAll('.pdot').forEach((d,i)=>d.classList.toggle('active',i===current));
 }
-// fix label update
-function updateLabel(){
-  document.getElementById('pageLabel').textContent=(current+1)+' / '+totalSpreads;
-}
-
 function showSpread(idx){
-  document.querySelectorAll('.page-spread').forEach(s=>s.classList.remove('current'));
-  document.getElementById('spread-'+idx).classList.add('current');
+  document.querySelectorAll('.page-spread').forEach(s=>{s.classList.remove('current');s.style.display='none'});
+  const el=document.getElementById(mode+'-'+idx);
+  if(el){el.style.display='flex';el.classList.add('current')}
+  current=idx;
   updateUI();
-  updateLabel();
 }
-
-function nextPage(){
-  if(isFlipping||current>=totalSpreads-1)return;
-  animateFlip('next',()=>{
-    current++;
-    showSpread(current);
-  });
-}
-
-function prevPage(){
-  if(isFlipping||current<=0)return;
-  animateFlip('prev',()=>{
-    current--;
-    showSpread(current);
-  });
-}
-
-function goToSpread(idx){
-  if(idx===current||isFlipping)return;
-  const dir=idx>current?'next':'prev';
-  animateFlip(dir,()=>{
-    current=idx;
-    showSpread(current);
-  });
-}
-
-function animateFlip(dir,cb){
+function nextPage(){if(isFlipping||current>=modes[mode].count-1)return;animFlip('next',()=>showSpread(current+1))}
+function prevPage(){if(isFlipping||current<=0)return;animFlip('prev',()=>showSpread(current-1))}
+function goTo(idx){if(idx===current||isFlipping)return;animFlip(idx>current?'next':'prev',()=>showSpread(idx))}
+function animFlip(dir,cb){
   isFlipping=true;
-
-  const flipEl=dir==='next'?document.getElementById('flipRight'):document.getElementById('flipLeft');
-  flipEl.style.display='block';
-  flipEl.classList.remove('flipping');
-
-  // brief delay then flip
-  requestAnimationFrame(()=>{
-    requestAnimationFrame(()=>{
-      flipEl.classList.add('flipping');
-      setTimeout(()=>{
-        flipEl.classList.remove('flipping');
-        flipEl.style.display='none';
-        isFlipping=false;
-        cb();
-      },820);
-    });
-  });
+  const el=dir==='next'?document.getElementById('flipRight'):document.getElementById('flipLeft');
+  el.style.display='block';el.classList.remove('flipping');
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    el.classList.add('flipping');
+    setTimeout(()=>{el.classList.remove('flipping');el.style.display='none';isFlipping=false;cb()},820);
+  }));
 }
-
-// keyboard
+function switchMode(m,btn){
+  document.querySelectorAll('.mode-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  mode=m;
+  document.getElementById('navCenter').textContent=modes[m].label;
+  document.getElementById('spineText').textContent=modes[m].spine;
+  buildDots();
+  showSpread(0);
+}
 document.addEventListener('keydown',e=>{
   if(e.key==='ArrowRight'||e.key===' ')nextPage();
   if(e.key==='ArrowLeft')prevPage();
 });
-
-// touch swipe
-let touchStartX=0;
-document.addEventListener('touchstart',e=>{touchStartX=e.touches[0].clientX});
-document.addEventListener('touchend',e=>{
-  const dx=e.changedTouches[0].clientX-touchStartX;
-  if(Math.abs(dx)>60){dx<0?nextPage():prevPage();}
-});
-
-showSpread(0);
-updateLabel();
+let tx=0;
+document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX});
+document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>55){dx<0?nextPage():prevPage()}});
+buildDots();showSpread(0);
 </script>
 </body>
 </html>
