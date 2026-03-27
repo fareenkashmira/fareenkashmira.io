@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Black Haven - Luxury modest fashion and design studio. Abayas, accessories, and bespoke creative design services." />
+  <title>Black Haven | Design Studio & Modest Fashion</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Cormorant+Garamond:wght@300;400;600&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --black: #000000;
+      --gold: #C9A961;
+      --gold-bright: #E0C78F;
+      --white: #FFFFFF;
+      --maroon: #800020;
+      --maroon-light: #A0173A;
+      --gold-dim: #9B8458;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--black);
+      color: var(--white);
+      font-family: 'Outfit', sans-serif;
+      overflow-x: hidden;
+      cursor: default;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+
+    /* Animated background gradient */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 30%, rgba(201, 169, 97, 0.02) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(128, 0, 32, 0.03) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+      animation: gradientShift 25s ease-in-out infinite;
+    }
+
+    @keyframes gradientShift {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 2rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      background: linear-gradient(180deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0) 100%);
+      backdrop-filter: blur(10px);
+      animation: navSlideDown 0.8s ease-out;
+    }
+
+    @keyframes navSlideDown {
+      from {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .logo-image {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+      filter: brightness(1.1);
+      transition: all 0.4s ease;
+    }
+
+    .logo-image:hover {
+      filter: brightness(1.3) drop-shadow(0 0 10px rgba(201, 169, 97, 0.5));
+      transform: scale(1.05);
+    }
+
+    .logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 900;
+      letter-spacing: 3px;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 3rem;
+      list-style: none;
+    }
+
+    nav a {
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 300;
+      font-size: 0.95rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    nav a::before {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 1px;
+      background: var(--maroon);
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover {
+      color: var(--gold);
+    }
+
+    nav a:hover::before {
+      width: 100%;
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 10vw, 8rem);
+      font-weight: 900;
+      letter-spacing: 8px;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-title .word {
+      display: inline-block;
+      perspective: 1000px;
+    }
+
+    .hero-title .letter {
+      display: inline-block;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      color: var(--gold);
+      text-shadow: 
+        0 0 20px rgba(201, 169, 97, 0.4),
+        0 2px 4px rgba(0, 0, 0, 0.8);
+      animation: subtleGlow 4s ease-in-out infinite;
+      animation-delay: calc(var(--letter-index) * 0.15s);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      font-weight: 900;
+    }
+
+    @keyframes subtleGlow {
+      0%, 100% {
+        text-shadow: 
+          0 0 20px rgba(201, 169, 97, 0.4),
+          0 2px 4px rgba(0, 0, 0, 0.8);
+        color: var(--gold);
+      }
+      50% {
+        text-shadow: 
+          0 0 30px rgba(224, 199, 143, 0.6),
+          0 2px 8px rgba(0, 0, 0, 0.9);
+        color: var(--gold-bright);
+      }
+    }
+
+    .hero-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.2rem, 3vw, 2rem);
+      font-weight: 400;
+      color: var(--white);
+      letter-spacing: 4px;
+      margin-bottom: 3rem;
+      opacity: 0;
+      animation: fadeInUp 1s ease-out 0.5s forwards;
+      -webkit-font-smoothing: antialiased;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-divider {
+      width: 200px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--maroon), transparent);
+      margin: 2rem 0;
+      opacity: 0;
+      animation: fadeIn 1s ease-out 1s forwards;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    .hero-description {
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.9);
+      max-width: 600px;
+      line-height: 1.8;
+      letter-spacing: 0.5px;
+      opacity: 0;
+      animation: fadeInUp 1s ease-out 1.5s forwards;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 2rem;
+      margin-top: 3rem;
+      opacity: 0;
+      animation: fadeInUp 1s ease-out 2s forwards;
+    }
+
+    .btn {
+      padding: 1.2rem 3rem;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 2px solid;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: var(--gold);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.6s ease, height 0.6s ease;
+      z-index: -1;
+    }
+
+    .btn:hover::before {
+      width: 400px;
+      height: 400px;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--black);
+      border-color: var(--gold);
+    }
+
+    .btn-primary:hover {
+      color: var(--white);
+      border-color: var(--gold-bright);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--white);
+      border-color: var(--maroon);
+    }
+
+    .btn-secondary::before {
+      background: var(--maroon);
+    }
+
+    .btn-secondary:hover {
+      color: var(--white);
+      border-color: var(--maroon-light);
+    }
+
+    /* Scroll Indicator */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 3rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      opacity: 0;
+      animation: fadeIn 1s ease-out 2.5s forwards;
+    }
+
+    .scroll-text {
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 60px;
+      background: linear-gradient(180deg, var(--gold), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% {
+        opacity: 0.3;
+        transform: translateY(0);
+      }
+      50% {
+        opacity: 1;
+        transform: translateY(10px);
+      }
+    }
+
+    /* Dual Mission Section */
+    .dual-mission {
+      padding: 8rem 4rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .mission-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 4rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .mission-card {
+      background: rgba(201, 169, 97, 0.02);
+      border: 1px solid rgba(201, 169, 97, 0.25);
+      padding: 4rem;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.5s ease;
+      opacity: 0;
+      transform: translateY(50px);
+    }
+
+    .mission-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .mission-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(201, 169, 97, 0.08), transparent);
+      transition: left 0.8s ease;
+    }
+
+    .mission-card:hover::before {
+      left: 100%;
+    }
+
+    .mission-card:hover {
+      border-color: var(--gold);
+      box-shadow: 0 0 40px rgba(201, 169, 97, 0.15);
+      transform: translateY(-10px);
+    }
+
+    .mission-icon {
+      font-size: 3rem;
+      margin-bottom: 2rem;
+      display: inline-block;
+      background: linear-gradient(135deg, var(--gold), var(--maroon));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .mission-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      letter-spacing: 2px;
+      -webkit-font-smoothing: antialiased;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .mission-description {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: rgba(255, 255, 255, 0.85);
+      margin-bottom: 2rem;
+      font-weight: 400;
+    }
+
+    .mission-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--maroon-light);
+      text-decoration: none;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+    }
+
+    .mission-link:hover {
+      color: var(--gold-bright);
+      gap: 1rem;
+    }
+
+    /* Footer */
+    footer {
+      padding: 4rem;
+      text-align: center;
+      border-top: 1px solid rgba(201, 169, 97, 0.25);
+      background: rgba(0, 0, 0, 0.5);
+      position: relative;
+      z-index: 2;
+    }
+
+    .footer-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-logo-image {
+      width: 50px;
+      height: 50px;
+      object-fit: contain;
+    }
+
+    .footer-logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: var(--gold);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.6);
+      text-decoration: none;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--gold);
+    }
+
+    .footer-social {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .social-icon {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(201, 169, 97, 0.3);
+      border-radius: 50%;
+      color: var(--gold-dim);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-size: 1.2rem;
+    }
+
+    .social-icon:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(201, 169, 97, 0.25);
+    }
+
+    .footer-copyright {
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      margin-top: 2rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav {
+        padding: 1.5rem 2rem;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .logo-image {
+        width: 50px;
+        height: 50px;
+      }
+
+      .logo-text {
+        font-size: 1.2rem;
+      }
+
+      nav ul {
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .hero-title {
+        font-size: 3rem;
+      }
+
+      .mission-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .mission-card {
+        padding: 2rem;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .footer-logo-image {
+        width: 40px;
+        height: 40px;
+      }
+
+      .footer-logo-text {
+        font-size: 1.5rem;
+      }
+    }
+
+    /* Custom cursor effect */
+    .custom-cursor {
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--gold);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      transition: all 0.15s ease;
+      mix-blend-mode: difference;
+      opacity: 0;
+    }
+
+    .custom-cursor.active {
+      opacity: 1;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Custom Cursor -->
+  <div class="custom-cursor"></div>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="logo">
+      <img src="/mnt/user-data/uploads/WhatsApp_Image_2026-03-27_at_2_55_48_PM.jpeg" alt="Black Haven Logo" class="logo-image">
+      <span class="logo-text">Black Haven</span>
+    </div>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#studio">Studio</a></li>
+      <li><a href="#collection">Collection</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <h1 class="hero-title">
+      <span class="word">
+        <span class="letter" style="--letter-index: 0;">B</span><span class="letter" style="--letter-index: 1;">L</span><span class="letter" style="--letter-index: 2;">A</span><span class="letter" style="--letter-index: 3;">C</span><span class="letter" style="--letter-index: 4;">K</span>
+      </span>
+      <br>
+      <span class="word">
+        <span class="letter" style="--letter-index: 5;">H</span><span class="letter" style="--letter-index: 6;">A</span><span class="letter" style="--letter-index: 7;">V</span><span class="letter" style="--letter-index: 8;">E</span><span class="letter" style="--letter-index: 9;">N</span>
+      </span>
+    </h1>
+    <p class="hero-subtitle">Where Elegance Meets Design</p>
+    <div class="hero-divider"></div>
+    <p class="hero-description">
+      A sanctuary of modest luxury fashion and bespoke creative design. 
+      Crafting timeless abayas, refined accessories, and visionary brand experiences.
+    </p>
+    <div class="cta-buttons">
+      <a href="#collection" class="btn btn-primary">Explore Collection</a>
+      <a href="#studio" class="btn btn-secondary">Design Studio</a>
+    </div>
+
+    <div class="scroll-indicator">
+      <span class="scroll-text">Discover</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- Dual Mission Section -->
+  <section class="dual-mission" id="missions">
+    <div class="mission-grid">
+      <!-- Fashion Card -->
+      <div class="mission-card" data-card="fashion">
+        <div class="mission-icon">🌙</div>
+        <h2 class="mission-title">Modest Fashion</h2>
+        <p class="mission-description">
+          Timeless abayas and accessories designed for the modern woman who values elegance and modesty. 
+          Each piece is thoughtfully crafted to celebrate grace, sophistication, and personal expression.
+        </p>
+        <a href="#collection" class="mission-link">
+          View Collection
+          <span>→</span>
+        </a>
+      </div>
+
+      <!-- Studio Card -->
+      <div class="mission-card" data-card="studio">
+        <div class="mission-icon">✦</div>
+        <h2 class="mission-title">Design Studio</h2>
+        <p class="mission-description">
+          Strategic brand design and creative direction for visionaries. 
+          From UX research to visual identity, we build systems that align business goals with authentic human connection.
+        </p>
+        <a href="#studio" class="mission-link">
+          Explore Services
+          <span>→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-logo">
+        <img src="/mnt/user-data/uploads/WhatsApp_Image_2026-03-27_at_2_55_48_PM.jpeg" alt="Black Haven Logo" class="footer-logo-image">
+        <span class="footer-logo-text">BLACK HAVEN</span>
+      </div>
+      
+      <div class="footer-links">
+        <a href="#home">Home</a>
+        <a href="#studio">Studio</a>
+        <a href="#collection">Collection</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+      <div class="footer-social">
+        <a href="#" class="social-icon">📷</a>
+        <a href="#" class="social-icon">✉️</a>
+        <a href="#" class="social-icon">🔗</a>
+      </div>
+
+      <p class="footer-copyright">
+        © 2025 Black Haven. All rights reserved. | Designed with intention.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // Custom cursor
+    const cursor = document.querySelector('.custom-cursor');
+    let mouseX = 0;
+    let mouseY = 0;
+    let cursorX = 0;
+    let cursorY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      cursor.classList.add('active');
+    });
+
+    function animateCursor() {
+      const dx = mouseX - cursorX;
+      const dy = mouseY - cursorY;
+      
+      cursorX += dx * 0.15;
+      cursorY += dy * 0.15;
+      
+      cursor.style.left = cursorX + 'px';
+      cursor.style.top = cursorY + 'px';
+      
+      requestAnimationFrame(animateCursor);
+    }
+    animateCursor();
+
+    // Letter floating effect on cursor proximity
+    const letters = document.querySelectorAll('.letter');
+    
+    document.addEventListener('mousemove', (e) => {
+      letters.forEach((letter) => {
+        const rect = letter.getBoundingClientRect();
+        const letterCenterX = rect.left + rect.width / 2;
+        const letterCenterY = rect.top + rect.height / 2;
+        
+        const distanceX = e.clientX - letterCenterX;
+        const distanceY = e.clientY - letterCenterY;
+        const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
+        
+        const maxDistance = 150;
+        const influence = Math.max(0, 1 - distance / maxDistance);
+        
+        if (influence > 0) {
+          const rotateX = (distanceY / maxDistance) * 15 * influence;
+          const rotateY = -(distanceX / maxDistance) * 15 * influence;
+          const scale = 1 + (influence * 0.1);
+          
+          letter.style.transform = `
+            perspective(1000px)
+            rotateX(${rotateX}deg)
+            rotateY(${rotateY}deg)
+            scale(${scale})
+          `;
+        } else {
+          letter.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+        }
+      });
+    });
+
+    // Intersection Observer for mission cards
+    const observerOptions = {
+      threshold: 0.2,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, index * 200);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.mission-card').forEach(card => {
+      observer.observe(card);
+    });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
