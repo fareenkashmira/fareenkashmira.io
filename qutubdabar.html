@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qutub Darbar - A Delhi Heritage Experience</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ice-light: #5a9abd;
+            --ice-medium: #4a7fa3;
+            --ice-deep: #2e5c7a;
+            --ice-dark: #1a3a4f;
+            --gold: #d4af37;
+            --gold-light: #f4e4b7;
+            --gold-dark: #b8941f;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background: linear-gradient(135deg, var(--ice-light) 0%, var(--ice-medium) 40%, var(--ice-deep) 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Pixie Dust Animation */
+        .droplet-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .droplet {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: radial-gradient(circle, var(--gold-light), var(--gold));
+            border-radius: 50%;
+            opacity: 0;
+            animation: pixieFall 6s ease-in-out infinite;
+            box-shadow: 0 0 6px var(--gold), 0 0 12px var(--gold-light);
+        }
+
+        .droplet:nth-child(odd) {
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.9), var(--ice-light));
+            box-shadow: 0 0 6px rgba(255, 255, 255, 0.8), 0 0 12px var(--ice-light);
+        }
+
+        .droplet:nth-child(1) { left: 5%; animation-delay: 0s; animation-duration: 7s; }
+        .droplet:nth-child(2) { left: 15%; animation-delay: 1.5s; animation-duration: 5.5s; }
+        .droplet:nth-child(3) { left: 28%; animation-delay: 3s; animation-duration: 6.5s; }
+        .droplet:nth-child(4) { left: 42%; animation-delay: 0.8s; animation-duration: 6s; }
+        .droplet:nth-child(5) { left: 58%; animation-delay: 2.2s; animation-duration: 5s; }
+        .droplet:nth-child(6) { left: 70%; animation-delay: 4s; animation-duration: 7.5s; }
+        .droplet:nth-child(7) { left: 82%; animation-delay: 1s; animation-duration: 6.2s; }
+        .droplet:nth-child(8) { left: 92%; animation-delay: 3.5s; animation-duration: 5.8s; }
+        .droplet:nth-child(9) { left: 35%; animation-delay: 2.8s; animation-duration: 6.8s; }
+        .droplet:nth-child(10) { left: 65%; animation-delay: 4.5s; animation-duration: 5.3s; }
+
+        @keyframes pixieFall {
+            0% {
+                top: -20px;
+                opacity: 0;
+                transform: translateX(0) rotate(0deg) scale(0.5);
+            }
+            10% {
+                opacity: 1;
+                transform: translateX(10px) rotate(180deg) scale(1);
+            }
+            30% {
+                opacity: 0.8;
+                transform: translateX(-15px) rotate(360deg) scale(1.2);
+            }
+            50% {
+                opacity: 1;
+                transform: translateX(20px) rotate(540deg) scale(0.8);
+            }
+            70% {
+                opacity: 0.6;
+                transform: translateX(-10px) rotate(720deg) scale(1.1);
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                top: 100vh;
+                opacity: 0;
+                transform: translateX(15px) rotate(900deg) scale(0.5);
+            }
+        }
+
+        /* Logo Container */
+        .logo-container {
+            text-align: center;
+            padding: 40px 20px 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Animated Logo - Qutub Minar Inspired */
+        .logo {
+            display: inline-block;
+            position: relative;
+        }
+
+        .logo-tower {
+            width: 60px;
+            height: 120px;
+            margin: 0 auto 15px;
+            position: relative;
+            animation: towerGlow 3s ease-in-out infinite;
+        }
+
+        .tower-segment {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(to bottom, var(--gold-light), var(--gold), var(--gold-dark));
+            border-radius: 2px;
+        }
+
+        .tower-segment:nth-child(1) {
+            width: 12px;
+            height: 30px;
+            top: 0;
+            animation: segmentPulse 3s ease-in-out infinite;
+        }
+
+        .tower-segment:nth-child(2) {
+            width: 18px;
+            height: 25px;
+            top: 32px;
+            animation: segmentPulse 3s ease-in-out infinite 0.2s;
+        }
+
+        .tower-segment:nth-child(3) {
+            width: 24px;
+            height: 25px;
+            top: 59px;
+            animation: segmentPulse 3s ease-in-out infinite 0.4s;
+        }
+
+        .tower-segment:nth-child(4) {
+            width: 30px;
+            height: 30px;
+            top: 86px;
+            animation: segmentPulse 3s ease-in-out infinite 0.6s;
+        }
+
+        .tower-dome {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 20px;
+            background: radial-gradient(circle, var(--gold-light), var(--gold));
+            border-radius: 50% 50% 50% 50% / 100% 100% 0% 0%;
+            animation: domeShine 3s ease-in-out infinite;
+        }
+
+        @keyframes towerGlow {
+            0%, 100% {
+                filter: drop-shadow(0 0 8px var(--gold)) brightness(1);
+            }
+            50% {
+                filter: drop-shadow(0 0 20px var(--gold-light)) brightness(1.2);
+            }
+        }
+
+        @keyframes segmentPulse {
+            0%, 100% {
+                transform: translateX(-50%) scaleY(1);
+                opacity: 1;
+            }
+            50% {
+                transform: translateX(-50%) scaleY(1.05);
+                opacity: 0.9;
+            }
+        }
+
+        @keyframes domeShine {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.8;
+            }
+        }
+
+        .logo-text {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--gold);
+            text-shadow: 0 2px 12px rgba(212, 175, 55, 0.5);
+            letter-spacing: 3px;
+            margin-bottom: 5px;
+        }
+
+        .logo-subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            color: var(--gold-light);
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            font-weight: 300;
+        }
+
+        /* Order Button - Visual Only Animation */
+        .order-pulse {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 70px;
+            height: 70px;
+            background: radial-gradient(circle, var(--gold-light), var(--gold));
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.6);
+            animation: orderPulse 2s ease-in-out infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .order-pulse:hover {
+            transform: scale(1.1);
+        }
+
+        .order-pulse::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: var(--gold);
+            opacity: 0.3;
+            animation: ripple 2s ease-out infinite;
+        }
+
+        .order-icon {
+            width: 35px;
+            height: 35px;
+            fill: var(--ice-dark);
+        }
+
+        @keyframes orderPulse {
+            0%, 100% {
+                box-shadow: 0 4px 20px rgba(212, 175, 55, 0.6);
+            }
+            50% {
+                box-shadow: 0 8px 40px rgba(212, 175, 55, 1);
+            }
+        }
+
+        @keyframes ripple {
+            0% {
+                transform: scale(1);
+                opacity: 0.3;
+            }
+            100% {
+                transform: scale(1.8);
+                opacity: 0;
+            }
+        }
+
+        /* Menu Container */
+        .menu-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .menu-section {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(46, 92, 122, 0.2);
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: var(--gold);
+            text-align: center;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 8px rgba(212, 175, 55, 0.4);
+        }
+
+        .section-subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            color: var(--gold-light);
+            text-align: center;
+            margin-bottom: 30px;
+            font-style: italic;
+            font-weight: 300;
+        }
+
+        .menu-grid {
+            display: grid;
+            gap: 20px;
+        }
+
+        .menu-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(212, 175, 55, 0.15), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .menu-item:hover::before,
+        .menu-item:active::before {
+            opacity: 1;
+        }
+
+        .menu-item:hover,
+        .menu-item:active {
+            transform: scale(1.05) translateY(-4px);
+            box-shadow: 0 12px 32px rgba(212, 175, 55, 0.3);
+            border-color: var(--gold);
+        }
+
+        .item-name {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            color: var(--gold);
+            margin-bottom: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .menu-item:hover .item-name,
+        .menu-item:active .item-name {
+            transform: scale(1.08);
+            text-shadow: 0 2px 12px rgba(212, 175, 55, 0.8);
+        }
+
+        .item-desc {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            color: var(--gold-light);
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--gold-light);
+            font-size: 0.9rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .heritage-note {
+            font-style: italic;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .logo-text {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.6rem;
+            }
+
+            .order-pulse {
+                width: 60px;
+                height: 60px;
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .order-icon {
+                width: 28px;
+                height: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Water Droplets -->
+    <div class="droplet-container">
+        <div class="droplet"></div>
+        <div class="droplet"></div>
+        <div class="droplet"></div>
+        <div class="droplet"></div>
+        <div class="droplet"></div>
+        <div class="droplet"></div>
+        <div class="droplet"></div>
+        <div class="droplet"></div>
+        <div class="droplet"></div>
+        <div class="droplet"></div>
+    </div>
+
+    <!-- Logo -->
+    <div class="logo-container">
+        <div class="logo">
+            <div class="logo-tower">
+                <div class="tower-segment"></div>
+                <div class="tower-segment"></div>
+                <div class="tower-segment"></div>
+                <div class="tower-segment"></div>
+                <div class="tower-dome"></div>
+            </div>
+            <div class="logo-text">QUTUB DARBAR</div>
+            <div class="logo-subtitle">Delhi Heritage</div>
+        </div>
+    </div>
+
+    <!-- Order Button -->
+    <div class="order-pulse">
+        <svg class="order-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M3 3h18v2H3V3zm0 4h18v2H3V7zm0 4h18v2H3v-2zm0 4h18v2H3v-2zm0 4h18v2H3v-2z"/>
+            <circle cx="18" cy="18" r="5" fill="currentColor"/>
+            <path d="M16 18l2 2 4-4" stroke="white" stroke-width="1.5" fill="none"/>
+        </svg>
+    </div>
+
+    <!-- Menu Container -->
+    <div class="menu-container">
+        
+        <!-- Delhi Heritage Section -->
+        <div class="menu-section">
+            <h2 class="section-title">Delhi Darbar Classics</h2>
+            <p class="section-subtitle">From the lanes of Purani Dilli to your table</p>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="item-name">Dilli ki Nihari</div>
+                    <div class="item-desc">Slow-cooked overnight lamb stew with bone marrow, crowned with ginger julienne and fresh coriander. A Shahjahanabad legacy.</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-name">Mutton Burrah Kebab</div>
+                    <div class="item-desc">Tender ribs marinated in mace, nutmeg and royal spices, charcoal-roasted. The pride of Jama Masjid.</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-name">Aloo Tikki Chaat</div>
+                    <div class="item-desc">Crispy potato medallions layered with spiced chickpeas, tamarind chutney, yogurt and pomegranate. Straight from Chandni Chowk.</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-name">Butter Chicken Masala</div>
+                    <div class="item-desc">Tandoori chicken simmered in tomato-cashew gravy enriched with butter and fenugreek. Born in Daryaganj, 1950s.</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-name">Tunday Kababi</div>
+                    <div class="item-desc">Melt-in-mouth minced mutton patties with 160 secret spices. A Lucknow tradition reimagined for Delhi palates.</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-name">Chole Bhature</div>
+                    <div class="item-desc">Fluffy deep-fried bread with spiced chickpea curry, pickled onions and green chutney. The ultimate Delhi breakfast.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Drinks Section -->
+        <div class="menu-section">
+            <h2 class="section-title">Sharbat & Libations</h2>
+            <p class="section-subtitle">Chilled to perfection</p>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="item-name">Rooh Afza Falooda</div>
+                    <div class="item-desc">Rose syrup with basil seeds, vermicelli and ice cream. A Ramadan staple turned year-round indulgence.</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-name">Chaas Masala</div>
+                    <div class="item-desc">Spiced buttermilk churned with cumin, black salt and fresh mint. The original Delhi cooler.</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-name">Kesar Badam Milk</div>
+                    <div class="item-desc">Chilled saffron-almond milk garnished with silver leaf and pistachios. Royal sustenance.</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-name">Nimbu Pani Pudina</div>
+                    <div class="item-desc">Fresh lime water with mint and black salt, served ice-cold in traditional clay glass.</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-name">Cold Coffee Shake</div>
+                    <div class="item-desc">Blended coffee with vanilla ice cream and chocolate shavings. Modern Delhi café culture.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Continental Section -->
+        <div class="menu-section">
+            <h2 class="section-title">Continental Selections</h2>
+            <p class="section-subtitle">Global flavors meet Delhi's heart</p>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="item-name">Grilled Mediterranean Chicken</div>
+                    <div class="item-desc">Herb-marinated chicken breast with roasted vegetables, olive tapenade and lemon butter sauce.</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-name">Mushroom Risotto</div>
+                    <div class="item-desc">Creamy arborio rice with wild mushrooms, parmesan and truffle oil. Finished with fresh thyme.</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-name">Classic Caesar Salad</div>
+                    <div class="item-desc">Crisp romaine lettuce, garlic croutons, parmesan shavings and anchovy-based dressing.</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-name">Penne Arrabbiata</div>
+                    <div class="item-desc">Pasta in spicy tomato sauce with garlic, red chili and fresh basil. Simple, bold, unforgettable.</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-name">Chocolate Lava Cake</div>
+                    <div class="item-desc">Warm chocolate cake with molten center, served with vanilla bean ice cream and berry compote.</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p class="heritage-note">"Where Delhi's Soul Meets Timeless Taste"</p>
+        <p>Qutub Darbar • A Culinary Journey Through Seven Cities</p>
+    </div>
+
+</body>
+</html>
