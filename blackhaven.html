@@ -155,13 +155,15 @@
     /* Hero Section */
     .hero {
       position: relative;
-      height: 100vh;
+      min-height: 100vh;
+      padding-bottom: 10rem;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
-      overflow: hidden;
+      overflow: visible;
+      z-index: 5;
     }
 
     .hero-title {
@@ -263,8 +265,11 @@
       display: flex;
       gap: 2rem;
       margin-top: 3rem;
+      margin-bottom: 8rem;
       opacity: 0;
       animation: fadeInUp 1s ease-out 2s forwards;
+      position: relative;
+      z-index: 10;
     }
 
     .btn {
@@ -278,6 +283,7 @@
       transition: all 0.4s ease;
       position: relative;
       overflow: hidden;
+      z-index: 1;
     }
 
     .btn::before {
@@ -328,7 +334,7 @@
     /* Scroll Indicator */
     .scroll-indicator {
       position: absolute;
-      bottom: 3rem;
+      bottom: 6rem;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
@@ -337,6 +343,7 @@
       gap: 1rem;
       opacity: 0;
       animation: fadeIn 1s ease-out 2.5s forwards;
+      z-index: 10;
     }
 
     .scroll-text {
@@ -367,6 +374,7 @@
     /* Dual Mission Section */
     .dual-mission {
       padding: 8rem 4rem;
+      margin-top: 8rem;
       position: relative;
       z-index: 2;
     }
@@ -577,8 +585,20 @@
         justify-content: center;
       }
 
+      .hero {
+        padding-bottom: 6rem;
+      }
+
       .hero-title {
         font-size: 3rem;
+      }
+
+      .cta-buttons {
+        margin-bottom: 4rem;
+      }
+
+      .dual-mission {
+        margin-top: 4rem;
       }
 
       .mission-grid {
