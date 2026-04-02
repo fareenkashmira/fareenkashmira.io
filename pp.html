@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portfolio — Black Haven Design Studio</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XMK04PPSV2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XMK04PPSV2');
+  </script>
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --black: #0a0a0a;
+      --off-black: #1a1a1a;
+      --gold: #e5bb61;
+      --gold-dark: #D4A843;
+      --cream: #f5f5dc;
+      --grey: #6a6a6a;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--black);
+      color: var(--cream);
+      line-height: 1.6;
+    }
+
+    /* Navigation - matching hero page */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 2rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(10px);
+      background: rgba(10, 10, 10, 0.9);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+    }
+
+    .logo {
+      font-family: 'Bodoni Moda', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--gold);
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 3rem;
+      list-style: none;
+    }
+
+    nav a {
+      color: var(--cream);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--gold);
+      transition: width 0.4s ease;
+    }
+
+    nav a:hover {
+      color: var(--gold);
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    /* Main content */
+    main {
+      padding: 10rem 4rem 8rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    /* Page header */
+    .page-header {
+      text-align: center;
+      margin-bottom: 5rem;
+    }
+
+    .page-title {
+      font-family: 'Bodoni Moda', serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      color: var(--cream);
+      margin-bottom: 1rem;
+    }
+
+    .page-subtitle {
+      font-size: 0.85rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* Category sections */
+    .content-category {
+      margin-bottom: 6rem;
+    }
+
+    .category-title {
+      font-family: 'Bodoni Moda', serif;
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--gold);
+      margin-bottom: 2.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+      letter-spacing: 0.05em;
+    }
+
+    /* Grid layout */
+    .grid-view {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 2.5rem;
+    }
+
+    /* Card styling */
+    .card {
+      background: var(--off-black);
+      border: 1px solid rgba(212, 175, 55, 0.1);
+      overflow: hidden;
+      transition: all 0.4s ease;
+      position: relative;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transition: transform 0.4s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      border-color: var(--gold);
+    }
+
+    .card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .card img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .card:hover img {
+      transform: scale(1.05);
+    }
+
+    .card iframe {
+      width: 100%;
+      height: 280px;
+      border: none;
+      display: block;
+    }
+
+    .card-body {
+      padding: 1.5rem;
+    }
+
+    .card-title {
+      font-family: 'Bodoni Moda', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--cream);
+      margin-bottom: 0.8rem;
+      letter-spacing: 0.02em;
+    }
+
+    .card-text {
+      font-size: 0.95rem;
+      color: var(--grey);
+      line-height: 1.6;
+    }
+
+    /* Contact CTA */
+    .contact-cta {
+      text-align: center;
+      margin: 5rem 0 6rem;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 1.2rem 3rem;
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 0.9rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: 500;
+      position: relative;
+      overflow: hidden;
+      transition: color 0.4s ease;
+    }
+
+    .cta-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: var(--gold);
+      transition: left 0.4s ease;
+      z-index: -1;
+    }
+
+    .cta-button:hover {
+      color: var(--black);
+    }
+
+    .cta-button:hover::before {
+      left: 0;
+    }
+
+    /* Footer - matching hero page social footer */
+    footer {
+      border-top: 1px solid rgba(212, 175, 55, 0.1);
+      padding: 3rem 4rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+      background: rgba(10, 10, 10, 0.7);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 2.5rem;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .social-link {
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 1.3rem;
+      transition: all 0.3s ease;
+    }
+
+    .social-link:hover {
+      color: var(--cream);
+      transform: translateY(-5px);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .footer-links a {
+      color: var(--grey);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--gold);
+    }
+
+    .copyright {
+      font-size: 0.8rem;
+      color: var(--grey);
+      letter-spacing: 0.05em;
+    }
+
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+    }
+
+    /* Mobile responsive */
+    @media (max-width: 768px) {
+      nav {
+        padding: 1.5rem 2rem;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      nav ul {
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      main {
+        padding: 12rem 2rem 6rem;
+      }
+
+      .grid-view {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .page-title {
+        font-size: 2rem;
+      }
+
+      .category-title {
+        font-size: 1.5rem;
+      }
+
+      footer {
+        padding: 2rem;
+      }
+
+      .social-links {
+        gap: 1.5rem;
+        flex-wrap: wrap;
+      }
+
+      .footer-links {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav>
+    <a href="index.html" class="logo">Black Haven</a>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="store.html">Store</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="research.html">Research</a></li>
+      <li><a href="credentials.html">Credentials</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <!-- Page Header -->
+    <div class="page-header">
+      <h1 class="page-title">Portfolio</h1>
+      <p class="page-subtitle">Selected Works</p>
+    </div>
+
+    <!-- PHOTOS SECTION -->
+    <section class="content-category">
+      <h2 class="category-title">Photos</h2>
+      <div class="grid-view">
+
+        <div class="card">
+          <img src="../images/Aris.png" alt="Aris Logo">
+          <div class="card-body">
+            <h3 class="card-title">Aris Logo</h3>
+            <p class="card-text">Logo design for beauty product company located in Uganda.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="../images/AS Logo.jpg" alt="AS Logo">
+          <div class="card-body">
+            <h3 class="card-title">AS Logo</h3>
+            <p class="card-text">Logo design for a recruitment firm</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="../images/KP Logo.png" alt="KP Logo">
+          <div class="card-body">
+            <h3 class="card-title">KP Logo</h3>
+            <p class="card-text">Logo design for a letting company in UK London</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="../images/BS Logo.png" alt="Logo Design">
+          <div class="card-body">
+            <h3 class="card-title">Logo</h3>
+            <p class="card-text">This is from a client who wanted a 3D Logo design.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="../images/packaging.jpg" alt="Packaging Design">
+          <div class="card-body">
+            <h3 class="card-title">Packaging Design</h3>
+            <p class="card-text">Sample package design</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="../images/tshirt.jpg" alt="T Shirt Print">
+          <div class="card-body">
+            <h3 class="card-title">T Shirt Print</h3>
+            <p class="card-text">Sample for apparel and T Shirts prints</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="../images/Earth.jpeg" alt="Earth">
+          <div class="card-body">
+            <h3 class="card-title">Earth</h3>
+            <p class="card-text">One Love</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="../images/label.jpg" alt="Aris Body Cream Label">
+          <div class="card-body">
+            <h3 class="card-title">Aris Body Cream Label</h3>
+            <p class="card-text">Label design for beauty product company located in Uganda.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="../images/coffee & cakes.png" alt="Kooky Poster">
+          <div class="card-body">
+            <h3 class="card-title">Kooky Poster</h3>
+            <p class="card-text">This is a poster for a cake shop.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="../images/KP Letterhead.png" alt="Letterhead Design">
+          <div class="card-body">
+            <h3 class="card-title">Letterhead Design</h3>
+            <p class="card-text">Letterhead Design for a letting company in London</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PDFs SECTION -->
+    <section class="content-category">
+      <h2 class="category-title">PDFs</h2>
+      <div class="grid-view">
+
+        <div class="card">
+          <iframe src="https://drive.google.com/file/d/1JYQ4Wi2fjYqq34TjnYjekftTuo_r4uqG/preview" allowfullscreen></iframe>
+          <div class="card-body">
+            <h3 class="card-title">PDF Work</h3>
+            <p class="card-text">This explains the impact of Influencer Marketing on Brand Perception.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <iframe src="https://drive.google.com/file/d/1E1SlHwR1OIpslgSbD633MhIvkwjRMlOU/preview" allowfullscreen></iframe>
+          <div class="card-body">
+            <h3 class="card-title">ADM Society Induction Brochure</h3>
+            <p class="card-text">This brochure was part of the Graphic Design Internship.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <iframe src="https://drive.google.com/file/d/1M15k5q9kzRVozkdMbxdrbYWyGOXgi0Q3/preview" allowfullscreen></iframe>
+          <div class="card-body">
+            <h3 class="card-title">Magazine Design</h3>
+            <p class="card-text">A sample magazine design.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- VIDEOS SECTION -->
+    <section class="content-category">
+      <h2 class="category-title">Videos</h2>
+      <div class="grid-view">
+
+        <div class="card">
+          <iframe src="https://www.youtube.com/embed/BcHWrcX3GQ4" allowfullscreen></iframe>
+          <div class="card-body">
+            <h3 class="card-title">ABHA Group Advertisement</h3>
+            <p class="card-text">This video advertisement emphasizes the dedication and commitment of the company and gives an insight into their work environment.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <iframe src="https://www.youtube.com/embed/8LtbKt6-8vY" allowfullscreen></iframe>
+          <div class="card-body">
+            <h3 class="card-title">ABHA Group's Training Sessions</h3>
+            <p class="card-text">This video comprises the training sessions that ABHA Group has undertaken recently.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <iframe src="https://www.youtube.com/embed/ps1TkWwsTD0" allowfullscreen></iframe>
+          <div class="card-body">
+            <h3 class="card-title">InAmigos Foundation Reel</h3>
+            <p class="card-text">This is InAmigos foundation reel about their work, it was the part of the internship.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <iframe src="https://www.youtube.com/embed/QPvfCFFDeaE" allowfullscreen></iframe>
+          <div class="card-body">
+            <h3 class="card-title">SkillGenic Academy Reel</h3>
+            <p class="card-text">This is a short reel about the workspace of SkillGenic Academy.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Contact CTA -->
+    <div class="contact-cta">
+      <a href="https://wa.me/917011403207?text=Hi%2C%20I%20checked%20out%20your%20work%20and%20I%20want%20more%20information%20about%20your%20charges." 
+         target="_blank" 
+         class="cta-button">
+        Let's Work Together
+      </a>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer id="contact">
+    <div class="social-links">
+      <a href="#" class="https://www.instagram.com/im_fareen" title="Instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="#" class="https://www.behance.net/fareenkashmira " title="Behance">
+        <i class="fab fa-behance"></i>
+      </a>
+      <a href="#" class="https://www.linkedin.com/in/fareen-kashmira-53087020a" title="LinkedIn">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+      <a href="#" class="https://in.pinterest.com/ablackhaven" title="Pinterest">
+        <i class="fab fa-pinterest-p"></i>
+      </a>
+      <a href="mailto:info@blackhaven.co.in" class="social-link" title="Email">
+        <i class="far fa-envelope"></i>
+      </a>
+      <a href="https://wa.me/917011403207" class="social-link" title="WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+      </a>
+    </div>
+    <div class="footer-links">
+      <a href="privacypolicy.html">Privacy Policy</a>
+      <a href="TnC.html">Terms & Conditions</a>
+    </div>
+    <p class="copyright">&copy; 2022-2025 Black Haven Design Studio. All rights reserved.</p>
+  </footer>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
+    <img id="lightbox-img">
+  </div>
+
+  <script>
+    // Lightbox functionality
+    document.querySelectorAll('.card img').forEach(img => {
+      img.style.cursor = 'pointer';
+      img.addEventListener('click', function() {
+        document.getElementById('lightbox').style.display = 'flex';
+        document.getElementById('lightbox-img').src = this.src;
+      });
+    });
+  </script>
+
+</body>
+</html>
