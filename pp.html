@@ -90,13 +90,9 @@
       background: rgba(229, 187, 97, 0.06);
     }
     body.cursor-hover #cursor-text { opacity: 1; }
-    body.cursor-hover #cursor-dot { width: 4px; height: 4px; background: var(--gold); }
+    body.cursor-hover #cursor-dot { width: 4px; height: 4px; }
 
-    body.cursor-click #cursor-ring {
-      width: 20px; height: 20px;
-      border-color: var(--cream);
-    }
-    body.cursor-click #cursor-dot { background: var(--cream); }
+    body.cursor-click #cursor-ring { width: 16px; height: 16px; }
 
     body.cursor-link #cursor-ring {
       width: 40px; height: 40px;
@@ -104,7 +100,6 @@
       background: rgba(245,245,220,0.04);
     }
     body.cursor-link #cursor-text { opacity: 1; }
-    body.cursor-link #cursor-dot { width: 3px; height: 3px; }
 
     /* ── Page Styles ── */
     body {
@@ -587,81 +582,100 @@
 
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     // ── Custom Cursor Logic ──
-    const dot   = document.getElementById('cursor-dot');
-    const ring  = document.getElementById('cursor-ring');
-    const label = document.getElementById('cursor-text');
+    (function(){
+      const dot   = document.getElementById('cursor-dot');
+      const ring  = document.getElementById('cursor-ring');
+      const label = document.getElementById('cursor-text');
 
-    // Hide both until mouse enters
-    dot.style.opacity  = '0';
-    ring.style.opacity = '0';
-
-    let mouseX = -999, mouseY = -999;
-    let ringX  = -999, ringY  = -999;
-    let started = false;
-
-    document.addEventListener('mousemove', e => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-
-      // Snap everything into position on first move
-      if (!started) {
-        ringX = mouseX;
-        ringY = mouseY;
-        started = true;
-        dot.style.opacity  = '1';
-        ring.style.opacity = '1';
-      }
-
-      dot.style.left = mouseX + 'px';
-      dot.style.top  = mouseY + 'px';
-    });
-
-    function animateRing() {
-      ringX += (mouseX - ringX) * 0.12;
-      ringY += (mouseY - ringY) * 0.12;
-      ring.style.left = ringX + 'px';
-      ring.style.top  = ringY + 'px';
-      requestAnimationFrame(animateRing);
-    }
-    animateRing();
-
-    // Click burst
-    document.addEventListener('mousedown', () => document.body.classList.add('cursor-click'));
-    document.addEventListener('mouseup',   () => document.body.classList.remove('cursor-click'));
-
-    // Hide when mouse leaves window
-    document.addEventListener('mouseleave', () => {
+      // Start hidden, off-screen
       dot.style.opacity  = '0';
       ring.style.opacity = '0';
-    });
-    document.addEventListener('mouseenter', () => {
-      if (started) {
-        dot.style.opacity  = '1';
-        ring.style.opacity = '1';
-      }
-    });
 
-    // Cards — hover with contextual label (View / Play / Read)
-    document.querySelectorAll('[data-cursor-text]').forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        label.textContent = el.dataset.cursorText || 'View';
-        document.body.classList.add('cursor-hover');
-      });
-      el.addEventListener('mouseleave', () => {
-        document.body.classList.remove('cursor-hover');
-      });
-    });
+      let mx = 0, my = 0, rx = 0, ry = 0, ready = false;
 
-    // Nav links & social links — smaller "Go" ring
-    document.querySelectorAll('nav a, .social-link, .footer-links a').forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        label.textContent = 'Go';
-        document.body.classList.add('cursor-link');
+      document.addEventListener('mousemove', e => {
+        mx = e.clientX;
+        my = e.clientY;
+
+        if (!ready) {
+          // Snap ring to cursor on first move so it doesn't slide in from corner
+          rx = mx; ry = my;
+          ready = true;
+          dot.style.opacity  = '1';
+          ring.style.opacity = '1';
+        }
+
+        dot.style.left = mx + 'px';
+        dot.style.top  = my + 'px';
       });
-      el.addEventListener('mouseleave', () => {
-        document.body.classList.remove('cursor-link');
+
+      (function loop(){
+        rx += (mx - rx) * 0.13;
+        ry += (my - ry) * 0.13;
+        ring.style.left = rx + 'px';
+        ring.style.top  = ry + 'px';
+        requestAnimationFrame(loop);
+      })();
+
+      document.addEventListener('mouseleave', () => {
+        dot.style.opacity = '0';
+        ring.style.opacity = '0';
+        ready = false;
       });
-    });
+      document.addEventListener('mouseenter', () => {
+        if (ready) { dot.style.opacity = '1'; ring.style.opacity = '1'; }
+      });
+
+      // Click burst
+      document.addEventListener('mousedown', () => {
+        ring.style.width = '16px'; ring.style.height = '16px';
+      });
+      document.addEventListener('mouseup', () => {
+        ring.style.width = '24px'; ring.style.height = '24px';
+      });
+
+      // Cards — expand ring with label
+      document.querySelectorAll('[data-cursor-text]').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          label.textContent = el.dataset.cursorText || 'View';
+          label.style.opacity = '1';
+          ring.style.width  = '52px';
+          ring.style.height = '52px';
+          ring.style.borderColor = '#e5bb61';
+          ring.style.background  = 'rgba(229,187,97,0.06)';
+          dot.style.width  = '4px';
+          dot.style.height = '4px';
+        });
+        el.addEventListener('mouseleave', () => {
+          label.style.opacity = '0';
+          ring.style.width  = '24px';
+          ring.style.height = '24px';
+          ring.style.borderColor = 'rgba(229,187,97,0.6)';
+          ring.style.background  = 'transparent';
+          dot.style.width  = '7px';
+          dot.style.height = '7px';
+        });
+      });
+
+      // Nav / social links
+      document.querySelectorAll('nav a, .social-link, .footer-links a').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          label.textContent = 'Go';
+          label.style.opacity = '1';
+          ring.style.width  = '40px';
+          ring.style.height = '40px';
+          ring.style.borderColor = '#f5f5dc';
+          ring.style.background  = 'rgba(245,245,220,0.04)';
+        });
+        el.addEventListener('mouseleave', () => {
+          label.style.opacity = '0';
+          ring.style.width  = '24px';
+          ring.style.height = '24px';
+          ring.style.borderColor = 'rgba(229,187,97,0.6)';
+          ring.style.background  = 'transparent';
+        });
+      });
+    })();
 
     // ── Lightbox ──
     document.querySelectorAll('.card img').forEach(img => {
