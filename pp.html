@@ -5,13 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Portfolio — Black Haven Design Studio</title>
 
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XMK04PPSV2"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -19,7 +17,7 @@
     gtag('js', new Date());
     gtag('config', 'G-XMK04PPSV2');
   </script>
-  
+
   <style>
     * {
       margin: 0;
@@ -36,6 +34,79 @@
       --grey: #6a6a6a;
     }
 
+    /* ── Custom Cursor ── */
+    * { cursor: none !important; }
+
+    #cursor-dot {
+      position: fixed;
+      top: 0; left: 0;
+      width: 8px; height: 8px;
+      background: var(--gold);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.08s ease, background 0.3s ease, width 0.3s ease, height 0.3s ease;
+      mix-blend-mode: difference;
+    }
+
+    #cursor-ring {
+      position: fixed;
+      top: 0; left: 0;
+      width: 24px; height: 24px;
+      border: 1.5px solid rgba(229, 187, 97, 0.6);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: width 0.45s cubic-bezier(0.23,1,0.32,1),
+                  height 0.45s cubic-bezier(0.23,1,0.32,1),
+                  border-color 0.3s ease,
+                  background 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      will-change: transform;
+    }
+
+    #cursor-text {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      white-space: nowrap;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    /* States */
+    body.cursor-hover #cursor-ring {
+      width: 52px; height: 52px;
+      border-color: var(--gold);
+      background: rgba(229, 187, 97, 0.06);
+    }
+    body.cursor-hover #cursor-text { opacity: 1; }
+    body.cursor-hover #cursor-dot { width: 4px; height: 4px; background: var(--gold); }
+
+    body.cursor-click #cursor-ring {
+      width: 20px; height: 20px;
+      border-color: var(--cream);
+    }
+    body.cursor-click #cursor-dot { background: var(--cream); }
+
+    body.cursor-link #cursor-ring {
+      width: 40px; height: 40px;
+      border-color: var(--cream);
+      background: rgba(245,245,220,0.04);
+    }
+    body.cursor-link #cursor-text { opacity: 1; }
+    body.cursor-link #cursor-dot { width: 3px; height: 3px; }
+
+    /* ── Page Styles ── */
     body {
       font-family: 'DM Sans', sans-serif;
       background-color: var(--black);
@@ -43,12 +114,9 @@
       line-height: 1.6;
     }
 
-    /* Navigation - matching hero page */
     nav {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 0; left: 0; right: 0;
       z-index: 1000;
       padding: 2rem 4rem;
       display: flex;
@@ -67,13 +135,10 @@
       color: var(--gold);
       text-transform: uppercase;
       text-decoration: none;
+      white-space: nowrap;
     }
 
-    nav ul {
-      display: flex;
-      gap: 3rem;
-      list-style: none;
-    }
+    nav ul { display: flex; gap: 3rem; list-style: none; }
 
     nav a {
       color: var(--cream);
@@ -89,30 +154,21 @@
     nav a::after {
       content: '';
       position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 0;
-      height: 1px;
+      bottom: -5px; left: 0;
+      width: 0; height: 1px;
       background: var(--gold);
       transition: width 0.4s ease;
     }
 
-    nav a:hover {
-      color: var(--gold);
-    }
+    nav a:hover { color: var(--gold); }
+    nav a:hover::after { width: 100%; }
 
-    nav a:hover::after {
-      width: 100%;
-    }
-
-    /* Main content */
     main {
       padding: 10rem 4rem 8rem;
       max-width: 1400px;
       margin: 0 auto;
     }
 
-    /* Page header */
     .page-header {
       text-align: center;
       margin-bottom: 5rem;
@@ -133,10 +189,7 @@
       color: var(--gold);
     }
 
-    /* Category sections */
-    .content-category {
-      margin-bottom: 6rem;
-    }
+    .content-category { margin-bottom: 6rem; }
 
     .category-title {
       font-family: 'Bodoni Moda', serif;
@@ -149,14 +202,12 @@
       letter-spacing: 0.05em;
     }
 
-    /* Grid layout */
     .grid-view {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
       gap: 2.5rem;
     }
 
-    /* Card styling */
     .card {
       background: var(--off-black);
       border: 1px solid rgba(212, 175, 55, 0.1);
@@ -168,46 +219,31 @@
     .card::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 0; left: 0; right: 0;
       height: 2px;
       background: var(--gold);
       transform: scaleX(0);
       transition: transform 0.4s ease;
     }
 
-    .card:hover {
-      transform: translateY(-10px);
-      border-color: var(--gold);
-    }
-
-    .card:hover::before {
-      transform: scaleX(1);
-    }
+    .card:hover { transform: translateY(-10px); border-color: var(--gold); }
+    .card:hover::before { transform: scaleX(1); }
 
     .card img {
-      width: 100%;
-      height: 280px;
+      width: 100%; height: 280px;
       object-fit: cover;
       display: block;
       transition: transform 0.4s ease;
     }
 
-    .card:hover img {
-      transform: scale(1.05);
-    }
+    .card:hover img { transform: scale(1.05); }
 
     .card iframe {
-      width: 100%;
-      height: 280px;
-      border: none;
-      display: block;
+      width: 100%; height: 280px;
+      border: none; display: block;
     }
 
-    .card-body {
-      padding: 1.5rem;
-    }
+    .card-body { padding: 1.5rem; }
 
     .card-title {
       font-family: 'Bodoni Moda', serif;
@@ -218,17 +254,9 @@
       letter-spacing: 0.02em;
     }
 
-    .card-text {
-      font-size: 0.95rem;
-      color: var(--grey);
-      line-height: 1.6;
-    }
+    .card-text { font-size: 0.95rem; color: var(--grey); line-height: 1.6; }
 
-    /* Contact CTA */
-    .contact-cta {
-      text-align: center;
-      margin: 5rem 0 6rem;
-    }
+    .contact-cta { text-align: center; margin: 5rem 0 6rem; }
 
     .cta-button {
       display: inline-block;
@@ -249,24 +277,16 @@
     .cta-button::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
       background: var(--gold);
       transition: left 0.4s ease;
       z-index: -1;
     }
 
-    .cta-button:hover {
-      color: var(--black);
-    }
+    .cta-button:hover { color: var(--black); }
+    .cta-button:hover::before { left: 0; }
 
-    .cta-button:hover::before {
-      left: 0;
-    }
-
-    /* Footer - matching hero page social footer */
     footer {
       border-top: 1px solid rgba(212, 175, 55, 0.1);
       padding: 3rem 4rem;
@@ -291,10 +311,7 @@
       transition: all 0.3s ease;
     }
 
-    .social-link:hover {
-      color: var(--cream);
-      transform: translateY(-5px);
-    }
+    .social-link:hover { color: var(--cream); transform: translateY(-5px); }
 
     .footer-links {
       display: flex;
@@ -304,93 +321,49 @@
       text-transform: uppercase;
     }
 
-    .footer-links a {
-      color: var(--grey);
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
+    .footer-links a { color: var(--grey); text-decoration: none; transition: color 0.3s ease; }
+    .footer-links a:hover { color: var(--gold); }
 
-    .footer-links a:hover {
-      color: var(--gold);
-    }
+    .copyright { font-size: 0.8rem; color: var(--grey); letter-spacing: 0.05em; }
 
-    .copyright {
-      font-size: 0.8rem;
-      color: var(--grey);
-      letter-spacing: 0.05em;
-    }
-
-    /* Lightbox */
     .lightbox {
       display: none;
       position: fixed;
       z-index: 2000;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       background: rgba(0, 0, 0, 0.95);
       justify-content: center;
       align-items: center;
-      cursor: pointer;
     }
 
-    .lightbox img {
-      max-width: 90%;
-      max-height: 90%;
-      object-fit: contain;
-    }
+    .lightbox img { max-width: 90%; max-height: 90%; object-fit: contain; }
 
-    /* Mobile responsive */
     @media (max-width: 768px) {
-      nav {
-        padding: 1.5rem 2rem;
-        flex-direction: column;
-        gap: 1.5rem;
-      }
+      * { cursor: auto !important; }
+      #cursor-dot, #cursor-ring { display: none; }
 
-      nav ul {
-        gap: 1.5rem;
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-
-      main {
-        padding: 12rem 2rem 6rem;
-      }
-
-      .grid-view {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-      }
-
-      .page-title {
-        font-size: 2rem;
-      }
-
-      .category-title {
-        font-size: 1.5rem;
-      }
-
-      footer {
-        padding: 2rem;
-      }
-
-      .social-links {
-        gap: 1.5rem;
-        flex-wrap: wrap;
-      }
-
-      .footer-links {
-        flex-direction: column;
-        gap: 1rem;
-        text-align: center;
-      }
+      nav { padding: 1.5rem 2rem; flex-direction: column; gap: 1.5rem; }
+      nav ul { gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
+      main { padding: 12rem 2rem 6rem; }
+      .grid-view { grid-template-columns: 1fr; gap: 2rem; }
+      .page-title { font-size: 2rem; }
+      .category-title { font-size: 1.5rem; }
+      footer { padding: 2rem; }
+      .social-links { gap: 1.5rem; flex-wrap: wrap; }
+      .footer-links { flex-direction: column; gap: 1rem; text-align: center; }
     }
   </style>
 </head>
 
 <body>
+
+  <!-- Custom Cursor -->
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring">
+    <span id="cursor-text">View</span>
+  </div>
+
   <!-- Navigation -->
   <nav>
     <a href="index.html" class="logo">Black Haven</a>
@@ -405,7 +378,6 @@
   </nav>
 
   <main>
-    <!-- Page Header -->
     <div class="page-header">
       <h1 class="page-title">Portfolio</h1>
       <p class="page-subtitle">Selected Works</p>
@@ -416,7 +388,7 @@
       <h2 class="category-title">Photos</h2>
       <div class="grid-view">
 
-        <div class="card">
+        <div class="card" data-cursor-text="View">
           <img src="../images/Aris.png" alt="Aris Logo">
           <div class="card-body">
             <h3 class="card-title">Aris Logo</h3>
@@ -424,7 +396,7 @@
           </div>
         </div>
 
-        <div class="card">
+        <div class="card" data-cursor-text="View">
           <img src="../images/AS Logo.jpg" alt="AS Logo">
           <div class="card-body">
             <h3 class="card-title">AS Logo</h3>
@@ -432,7 +404,7 @@
           </div>
         </div>
 
-        <div class="card">
+        <div class="card" data-cursor-text="View">
           <img src="../images/KP Logo.png" alt="KP Logo">
           <div class="card-body">
             <h3 class="card-title">KP Logo</h3>
@@ -440,7 +412,7 @@
           </div>
         </div>
 
-        <div class="card">
+        <div class="card" data-cursor-text="View">
           <img src="../images/BS Logo.png" alt="Logo Design">
           <div class="card-body">
             <h3 class="card-title">Logo</h3>
@@ -448,7 +420,7 @@
           </div>
         </div>
 
-        <div class="card">
+        <div class="card" data-cursor-text="View">
           <img src="../images/packaging.jpg" alt="Packaging Design">
           <div class="card-body">
             <h3 class="card-title">Packaging Design</h3>
@@ -456,7 +428,7 @@
           </div>
         </div>
 
-        <div class="card">
+        <div class="card" data-cursor-text="View">
           <img src="../images/tshirt.jpg" alt="T Shirt Print">
           <div class="card-body">
             <h3 class="card-title">T Shirt Print</h3>
@@ -464,7 +436,7 @@
           </div>
         </div>
 
-        <div class="card">
+        <div class="card" data-cursor-text="View">
           <img src="../images/Earth.jpeg" alt="Earth">
           <div class="card-body">
             <h3 class="card-title">Earth</h3>
@@ -472,7 +444,7 @@
           </div>
         </div>
 
-        <div class="card">
+        <div class="card" data-cursor-text="View">
           <img src="../images/label.jpg" alt="Aris Body Cream Label">
           <div class="card-body">
             <h3 class="card-title">Aris Body Cream Label</h3>
@@ -480,7 +452,7 @@
           </div>
         </div>
 
-        <div class="card">
+        <div class="card" data-cursor-text="View">
           <img src="../images/coffee & cakes.png" alt="Kooky Poster">
           <div class="card-body">
             <h3 class="card-title">Kooky Poster</h3>
@@ -488,7 +460,7 @@
           </div>
         </div>
 
-        <div class="card">
+        <div class="card" data-cursor-text="View">
           <img src="../images/KP Letterhead.png" alt="Letterhead Design">
           <div class="card-body">
             <h3 class="card-title">Letterhead Design</h3>
@@ -504,7 +476,7 @@
       <h2 class="category-title">PDFs</h2>
       <div class="grid-view">
 
-        <div class="card">
+        <div class="card" data-cursor-text="Read">
           <iframe src="https://drive.google.com/file/d/1JYQ4Wi2fjYqq34TjnYjekftTuo_r4uqG/preview" allowfullscreen></iframe>
           <div class="card-body">
             <h3 class="card-title">PDF Work</h3>
@@ -512,7 +484,7 @@
           </div>
         </div>
 
-        <div class="card">
+        <div class="card" data-cursor-text="Read">
           <iframe src="https://drive.google.com/file/d/1E1SlHwR1OIpslgSbD633MhIvkwjRMlOU/preview" allowfullscreen></iframe>
           <div class="card-body">
             <h3 class="card-title">ADM Society Induction Brochure</h3>
@@ -520,7 +492,7 @@
           </div>
         </div>
 
-        <div class="card">
+        <div class="card" data-cursor-text="Read">
           <iframe src="https://drive.google.com/file/d/1M15k5q9kzRVozkdMbxdrbYWyGOXgi0Q3/preview" allowfullscreen></iframe>
           <div class="card-body">
             <h3 class="card-title">Magazine Design</h3>
@@ -536,7 +508,7 @@
       <h2 class="category-title">Videos</h2>
       <div class="grid-view">
 
-        <div class="card">
+        <div class="card" data-cursor-text="Play">
           <iframe src="https://www.youtube.com/embed/BcHWrcX3GQ4" allowfullscreen></iframe>
           <div class="card-body">
             <h3 class="card-title">ABHA Group Advertisement</h3>
@@ -544,7 +516,7 @@
           </div>
         </div>
 
-        <div class="card">
+        <div class="card" data-cursor-text="Play">
           <iframe src="https://www.youtube.com/embed/8LtbKt6-8vY" allowfullscreen></iframe>
           <div class="card-body">
             <h3 class="card-title">ABHA Group's Training Sessions</h3>
@@ -552,7 +524,7 @@
           </div>
         </div>
 
-        <div class="card">
+        <div class="card" data-cursor-text="Play">
           <iframe src="https://www.youtube.com/embed/ps1TkWwsTD0" allowfullscreen></iframe>
           <div class="card-body">
             <h3 class="card-title">InAmigos Foundation Reel</h3>
@@ -560,7 +532,7 @@
           </div>
         </div>
 
-        <div class="card">
+        <div class="card" data-cursor-text="Play">
           <iframe src="https://www.youtube.com/embed/QPvfCFFDeaE" allowfullscreen></iframe>
           <div class="card-body">
             <h3 class="card-title">SkillGenic Academy Reel</h3>
@@ -571,32 +543,31 @@
       </div>
     </section>
 
-    <!-- Contact CTA -->
     <div class="contact-cta">
-      <a href="https://wa.me/917011403207?text=Hi%2C%20I%20checked%20out%20your%20work%20and%20I%20want%20more%20information%20about%20your%20charges." 
-         target="_blank" 
-         class="cta-button">
+      <a href="https://wa.me/917011403207?text=Hi%2C%20I%20checked%20out%20your%20work%20and%20I%20want%20more%20information%20about%20your%20charges."
+         target="_blank"
+         class="cta-button"
+         data-cursor-text="Chat">
         Let's Work Together
       </a>
     </div>
   </main>
 
-  <!-- Footer -->
   <footer id="contact">
     <div class="social-links">
-      <a href="#" class="https://www.instagram.com/im_fareen" title="Instagram">
+      <a href="https://www.instagram.com/im_fareen" class="social-link" title="Instagram">
         <i class="fab fa-instagram"></i>
       </a>
-      <a href="#" class="https://www.behance.net/fareenkashmira " title="Behance">
+      <a href="https://www.behance.net/fareenkashmira" class="social-link" title="Behance">
         <i class="fab fa-behance"></i>
       </a>
-      <a href="#" class="https://www.linkedin.com/in/fareen-kashmira-53087020a" title="LinkedIn">
+      <a href="https://www.linkedin.com/in/fareen-kashmira-53087020a" class="social-link" title="LinkedIn">
         <i class="fab fa-linkedin-in"></i>
       </a>
-      <a href="#" class="https://in.pinterest.com/ablackhaven" title="Pinterest">
+      <a href="https://in.pinterest.com/ablackhaven" class="social-link" title="Pinterest">
         <i class="fab fa-pinterest-p"></i>
       </a>
-      <a href="mailto:info@blackhaven.co.in" class="social-link" title="Email">
+      <a href="/cdn-cgi/l/email-protection#10797e767f50727c71737b787166757e3e737f3e797e" class="social-link" title="Email">
         <i class="far fa-envelope"></i>
       </a>
       <a href="https://wa.me/917011403207" class="social-link" title="WhatsApp">
@@ -610,21 +581,74 @@
     <p class="copyright">&copy; 2022-2025 Black Haven Design Studio. All rights reserved.</p>
   </footer>
 
-  <!-- Lightbox -->
   <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
     <img id="lightbox-img">
   </div>
 
-  <script>
-    // Lightbox functionality
-    document.querySelectorAll('.card img').forEach(img => {
-      img.style.cursor = 'pointer';
-      img.addEventListener('click', function() {
-        document.getElementById('lightbox').style.display = 'flex';
-        document.getElementById('lightbox-img').src = this.src;
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    // ── Custom Cursor Logic ──
+    const dot   = document.getElementById('cursor-dot');
+    const ring  = document.getElementById('cursor-ring');
+    const label = document.getElementById('cursor-text');
+
+    let mouseX = 0, mouseY = 0;
+    let ringX  = 0, ringY  = 0;
+    let raf;
+
+    // Dot follows instantly; ring lerps behind
+    document.addEventListener('mousemove', e => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      dot.style.left = mouseX + 'px';
+      dot.style.top  = mouseY + 'px';
+    });
+
+    function animateRing() {
+      ringX += (mouseX - ringX) * 0.12;
+      ringY += (mouseY - ringY) * 0.12;
+      ring.style.left = ringX + 'px';
+      ring.style.top  = ringY + 'px';
+      raf = requestAnimationFrame(animateRing);
+    }
+    animateRing();
+
+    // Click burst
+    document.addEventListener('mousedown', () => document.body.classList.add('cursor-click'));
+    document.addEventListener('mouseup',   () => document.body.classList.remove('cursor-click'));
+
+    // Cards — hover with contextual label (View / Play / Read)
+    document.querySelectorAll('[data-cursor-text]').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        label.textContent = el.dataset.cursorText || 'View';
+        document.body.classList.add('cursor-hover');
+      });
+      el.addEventListener('mouseleave', () => {
+        document.body.classList.remove('cursor-hover');
       });
     });
-  </script>
 
-</body>
-</html>
+    // Nav links & social links — smaller "Go" ring
+    document.querySelectorAll('nav a, .social-link, .footer-links a').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        label.textContent = 'Go';
+        document.body.classList.add('cursor-link');
+      });
+      el.addEventListener('mouseleave', () => {
+        document.body.classList.remove('cursor-link');
+      });
+    });
+
+    // Hide cursor when leaving window
+    document.addEventListener('mouseleave', () => {
+      dot.style.opacity = '0';
+      ring.style.opacity = '0';
+    });
+    document.addEventListener('mouseenter', () => {
+      dot.style.opacity = '1';
+      ring.style.opacity = '1';
+    });
+
+    // ── Lightbox ──
+    document.querySelectorAll('.card img').forEach(img => {
+      img.addEventListener('click', function () {
+        document.getElement
