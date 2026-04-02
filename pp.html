@@ -591,14 +591,27 @@
     const ring  = document.getElementById('cursor-ring');
     const label = document.getElementById('cursor-text');
 
-    let mouseX = 0, mouseY = 0;
-    let ringX  = 0, ringY  = 0;
-    let raf;
+    // Hide both until mouse enters
+    dot.style.opacity  = '0';
+    ring.style.opacity = '0';
 
-    // Dot follows instantly; ring lerps behind
+    let mouseX = -999, mouseY = -999;
+    let ringX  = -999, ringY  = -999;
+    let started = false;
+
     document.addEventListener('mousemove', e => {
       mouseX = e.clientX;
       mouseY = e.clientY;
+
+      // Snap everything into position on first move
+      if (!started) {
+        ringX = mouseX;
+        ringY = mouseY;
+        started = true;
+        dot.style.opacity  = '1';
+        ring.style.opacity = '1';
+      }
+
       dot.style.left = mouseX + 'px';
       dot.style.top  = mouseY + 'px';
     });
@@ -608,13 +621,25 @@
       ringY += (mouseY - ringY) * 0.12;
       ring.style.left = ringX + 'px';
       ring.style.top  = ringY + 'px';
-      raf = requestAnimationFrame(animateRing);
+      requestAnimationFrame(animateRing);
     }
     animateRing();
 
     // Click burst
     document.addEventListener('mousedown', () => document.body.classList.add('cursor-click'));
     document.addEventListener('mouseup',   () => document.body.classList.remove('cursor-click'));
+
+    // Hide when mouse leaves window
+    document.addEventListener('mouseleave', () => {
+      dot.style.opacity  = '0';
+      ring.style.opacity = '0';
+    });
+    document.addEventListener('mouseenter', () => {
+      if (started) {
+        dot.style.opacity  = '1';
+        ring.style.opacity = '1';
+      }
+    });
 
     // Cards — hover with contextual label (View / Play / Read)
     document.querySelectorAll('[data-cursor-text]').forEach(el => {
@@ -636,16 +661,6 @@
       el.addEventListener('mouseleave', () => {
         document.body.classList.remove('cursor-link');
       });
-    });
-
-    // Hide cursor when leaving window
-    document.addEventListener('mouseleave', () => {
-      dot.style.opacity = '0';
-      ring.style.opacity = '0';
-    });
-    document.addEventListener('mouseenter', () => {
-      dot.style.opacity = '1';
-      ring.style.opacity = '1';
     });
 
     // ── Lightbox ──
