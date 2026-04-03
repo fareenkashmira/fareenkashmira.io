@@ -1,0 +1,1296 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Black Haven — Design Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Black Haven — Design Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --white: #ffffff;
+            --off-white: #f8f6f2;
+            --deep-blue: #0d1b3e;
+            --deep-blue-mid: #1a2d5a;
+            --deep-blue-light: #2a4080;
+            --gold: #c9973a;
+            --gold-bright: #e3b54d;
+            --gold-pale: #f5dfa0;
+            --baby-pink: #f4c6cf;
+            --baby-pink-deep: #e8a4b0;
+            --baby-pink-pale: #fdf0f2;
+            --grey: #8a9ab5;
+            --text-blue: #0d1b3e;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--white);
+            color: var(--text-blue);
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        /* ── Custom Golden Dot Cursor ── */
+        .custom-cursor {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background-color: var(--gold-bright);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0;
+            transform: translate(-50%, -50%);
+            transition: opacity 0.3s ease, width 0.2s ease, height 0.2s ease, background-color 0.2s ease;
+            box-shadow: 0 0 14px rgba(227, 181, 77, 0.7), 0 0 28px rgba(227, 181, 77, 0.3);
+        }
+        .custom-cursor.active {
+            opacity: 1;
+        }
+        .custom-cursor.hovering {
+            width: 18px;
+            height: 18px;
+            background-color: var(--baby-pink-deep);
+            box-shadow: 0 0 18px rgba(232, 164, 176, 0.8);
+        }
+
+        
+        /* Text magnify near cursor */
+        body * { transition: letter-spacing 0.2s ease, color 0.2s ease; }
+
+        /* Text Selection */
+        ::selection {
+            background: var(--baby-pink);
+            color: var(--deep-blue);
+        }
+
+        /* ── Navigation ── */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.5rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(16px);
+            background: rgba(255, 255, 255, 0.88);
+            border-bottom: 1px solid rgba(201, 151, 58, 0.18);
+            animation: slideDown 0.8s ease-out;
+            box-shadow: 0 2px 24px rgba(13, 27, 62, 0.06);
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .logo {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            color: var(--deep-blue);
+            text-transform: uppercase;
+            position: relative;
+        }
+        .logo span {
+            color: var(--gold);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.8rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--deep-blue);
+            text-decoration: none;
+            font-size: 0.82rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1.5px;
+            background: linear-gradient(90deg, var(--gold), var(--baby-pink-deep));
+            transition: width 0.4s ease;
+        }
+
+        .nav-links a:hover { color: var(--gold); }
+        .nav-links a:hover::after { width: 100%; }
+
+        /* ── Hero Section ── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 8rem 4rem 12rem;
+            overflow: hidden;
+            background: var(--white);
+        }
+
+        /* Circuit board SVG canvas */
+        #circuit-canvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.13;
+        }
+
+        /* Soft gradient blobs */
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            pointer-events: none;
+        }
+        .blob-1 {
+            width: 520px; height: 520px;
+            background: radial-gradient(circle, rgba(244, 198, 207, 0.55) 0%, transparent 70%);
+            top: -100px; right: -80px;
+            animation: blobDrift 12s ease-in-out infinite alternate;
+        }
+        .blob-2 {
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(201, 151, 58, 0.18) 0%, transparent 70%);
+            bottom: 60px; left: -80px;
+            animation: blobDrift 16s ease-in-out infinite alternate-reverse;
+        }
+        .blob-3 {
+            width: 300px; height: 300px;
+            background: radial-gradient(circle, rgba(13, 27, 62, 0.07) 0%, transparent 70%);
+            top: 40%; left: 55%;
+            animation: blobDrift 10s ease-in-out infinite alternate;
+        }
+
+        @keyframes blobDrift {
+            from { transform: translate(0, 0) scale(1); }
+            to { transform: translate(30px, 20px) scale(1.08); }
+        }
+
+        /* Circuit card floating element */
+        .circuit-card {
+            position: absolute;
+            right: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 340px;
+            height: 210px;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(13, 27, 62, 0.12), 0 0 0 1px rgba(201, 151, 58, 0.18);
+            opacity: 0;
+            animation: fadeSlideLeft 1s ease-out 1s forwards;
+        }
+        @keyframes fadeSlideLeft {
+            from { opacity: 0; transform: translateY(-50%) translateX(40px); }
+            to { opacity: 1; transform: translateY(-50%) translateX(0); }
+        }
+
+        .hero-content {
+            text-align: left;
+            z-index: 10;
+            max-width: 680px;
+            margin-right: auto;
+            padding-left: 2rem;
+        }
+
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.75rem;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: var(--deep-blue-light);
+            margin-bottom: 1.8rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.3s forwards;
+        }
+        .hero-tag::before {
+            content: '';
+            display: inline-block;
+            width: 28px; height: 1.5px;
+            background: var(--gold);
+        }
+
+        .hero-title {
+            font-family: 'Bodoni Moda', serif;
+            font-size: clamp(3rem, 6vw, 5.8rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.8rem;
+            color: var(--deep-blue);
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.5s forwards;
+        }
+
+        .hero-title .accent {
+            color: var(--gold);
+            font-style: italic;
+            display: block;
+            margin-top: 0.15em;
+        }
+
+        .hero-title .pink-word {
+            color: var(--baby-pink-deep);
+        }
+
+        .hero-description {
+            font-size: 1.05rem;
+            line-height: 1.85;
+            color: var(--deep-blue-light);
+            max-width: 580px;
+            margin-bottom: 1.2rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.7s forwards;
+        }
+
+        .sub-description {
+            font-size: 0.82rem;
+            line-height: 1.7;
+            color: var(--grey);
+            max-width: 560px;
+            margin-bottom: 2.8rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.8s forwards;
+            font-style: italic;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(28px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1.2rem;
+            align-items: center;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.95s forwards;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.4rem;
+            background: var(--deep-blue);
+            border: 1.5px solid var(--deep-blue);
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.82rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+            transition: color 0.4s ease, transform 0.2s ease;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, var(--gold), var(--baby-pink-deep));
+            transition: left 0.4s ease;
+            z-index: -1;
+        }
+
+        .cta-button:hover { color: var(--deep-blue); border-color: var(--gold); }
+        .cta-button:hover::before { left: 0; }
+
+        .cta-outline {
+            display: inline-block;
+            padding: 1rem 2.2rem;
+            background: transparent;
+            border: 1.5px solid var(--baby-pink-deep);
+            color: var(--baby-pink-deep);
+            text-decoration: none;
+            font-size: 0.82rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .cta-outline:hover {
+            background: var(--baby-pink-pale);
+            color: var(--deep-blue);
+        }
+
+        /* Decorative divider */
+        .decorative-line {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 3.5rem 0 0 2rem;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-out 1.2s forwards;
+        }
+        .decorative-line span {
+            width: 80px; height: 1px;
+            background: linear-gradient(90deg, var(--gold), transparent);
+        }
+        .decorative-line p {
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--grey);
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 0.8; } }
+
+        /* ── Scroll indicator ── */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            animation: fadeIn 1.5s ease-out 1.5s forwards, floatY 2.5s ease-in-out infinite 2s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.4rem;
+            color: var(--grey);
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+        .scroll-indicator::after {
+            content: '';
+            display: block;
+            width: 1px; height: 40px;
+            background: linear-gradient(180deg, var(--gold), transparent);
+        }
+        @keyframes floatY {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+
+        /* ── Stats ribbon ── */
+        .stats-bar {
+            background: var(--deep-blue);
+            padding: 2.2rem 4rem;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .stats-bar::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 60px,
+                rgba(201,151,58,0.04) 60px,
+                rgba(201,151,58,0.04) 61px
+            );
+        }
+        .stat-item { text-align: center; position: relative; z-index: 1; }
+        .stat-number {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--gold);
+            display: block;
+        }
+        .stat-label {
+            font-size: 0.72rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: rgba(244, 198, 207, 0.75);
+            margin-top: 0.3rem;
+        }
+        .stat-sep {
+            width: 1px; height: 50px;
+            background: rgba(201,151,58,0.2);
+        }
+
+        /* ── Footer ── */
+        footer {
+            padding: 2.5rem 4rem 1.5rem;
+            background: var(--deep-blue);
+            border-top: 1px solid rgba(201,151,58,0.15);
+        }
+        .footer-logo-text {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 1rem;
+            color: var(--gold);
+            letter-spacing: 0.05em;
+        }
+        .footer-links a {
+            color: rgba(248,246,242,0.75);
+            text-decoration: none;
+            font-size: 0.78rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+        .footer-links a:hover { color: var(--gold); }
+
+        .social-link {
+            color: var(--gold);
+            text-decoration: none;
+            font-size: 1.15rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+        }
+        .social-link:hover {
+            color: var(--baby-pink);
+            transform: translateY(-4px);
+        }
+        .footer-copyright {
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--grey);
+            margin-top: 1.5rem;
+        }
+
+        /* ── Mobile ── */
+        @media (max-width: 900px) {
+            .circuit-card { display: none; }
+            .hero-content { padding-left: 0; text-align: center; margin: 0 auto; }
+            .hero-tag { justify-content: center; }
+            .cta-group { justify-content: center; }
+            .decorative-line { justify-content: center; margin-left: 0; }
+        }
+
+        @media (max-width: 768px) {
+            nav { padding: 1.2rem 2rem; flex-direction: column; gap: 1rem; }
+            .nav-links { gap: 1.2rem; flex-wrap: wrap; justify-content: center; }
+            .hero { padding: 10rem 2rem 12rem; }
+            .stats-bar { padding: 1.5rem 2rem; }
+            .stat-sep { display: none; }
+            footer { padding: 2rem 2rem 1rem; }
+        }
+
+        @media (hover: none) and (pointer: coarse) {
+            body { cursor: auto; }
+            .custom-cursor, .cursor-ring { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Golden Dot Cursor -->
+    <div class="custom-cursor" id="dot"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">Black <span>Haven</span></div>
+        <ul class="nav-links">
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="research.html">Research</a></li>
+            <li><a href="credentials.html">Credentials</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+
+        <!-- Animated circuit SVG background -->
+        <svg id="circuit-canvas" viewBox="0 0 1400 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <!-- Circuit tracks -->
+            <g stroke="#0d1b3e" stroke-width="1.2" fill="none">
+                <!-- Horizontal tracks -->
+                <path d="M0,120 L200,120 L230,150 L500,150" />
+                <path d="M0,280 L150,280 L180,310 L400,310 L430,340 L700,340" />
+                <path d="M0,450 L300,450 L330,480 L600,480 L630,510 L900,510" />
+                <path d="M300,700 L600,700 L630,670 L900,670 L930,640 L1400,640" />
+                <path d="M700,100 L900,100 L930,130 L1200,130" />
+                <path d="M800,250 L1100,250 L1130,280 L1400,280" />
+                <path d="M1000,400 L1200,400 L1230,430 L1400,430" />
+                <path d="M400,580 L650,580 L680,610 L1000,610" />
+                <!-- Vertical connects -->
+                <path d="M230,0 L230,150" />
+                <path d="M430,150 L430,340" />
+                <path d="M630,340 L630,510" />
+                <path d="M930,510 L930,640" />
+                <path d="M1130,130 L1130,280" />
+                <path d="M680,480 L680,610" />
+                <!-- Extra branches -->
+                <path d="M150,280 L150,380" />
+                <path d="M300,450 L300,560" />
+                <path d="M900,100 L900,250" />
+                <path d="M1200,130 L1200,400" />
+            </g>
+            <!-- Nodes / pads -->
+            <g fill="none" stroke="#c9973a" stroke-width="1.5">
+                <circle cx="230" cy="150" r="5"/>
+                <circle cx="500" cy="150" r="4"/>
+                <circle cx="180" cy="310" r="5"/>
+                <circle cx="430" cy="340" r="4"/>
+                <circle cx="330" cy="480" r="5"/>
+                <circle cx="630" cy="510" r="4"/>
+                <circle cx="930" cy="640" r="5"/>
+                <circle cx="930" cy="130" r="4"/>
+                <circle cx="1130" cy="280" r="5"/>
+                <circle cx="680" cy="610" r="4"/>
+                <circle cx="600" cy="700" r="5"/>
+                <circle cx="900" cy="250" r="4"/>
+            </g>
+            <!-- Golden accent glows -->
+            <g stroke="#c9973a" stroke-width="2" fill="none" opacity="0.7">
+                <path d="M0,120 L200,120 L230,150">
+                    <animate attributeName="stroke-dashoffset" from="400" to="0" dur="3s" repeatCount="indefinite"/>
+                    <animate attributeName="stroke-dasharray" values="0,400;400,0" dur="3s" repeatCount="indefinite"/>
+                </path>
+                <path d="M630,340 L630,510 L900,510">
+                    <animate attributeName="stroke-dashoffset" from="600" to="0" dur="4s" begin="1s" repeatCount="indefinite"/>
+                    <animate attributeName="stroke-dasharray" values="0,600;600,0" dur="4s" begin="1s" repeatCount="indefinite"/>
+                </path>
+                <path d="M1130,130 L1130,280 L1400,280">
+                    <animate attributeName="stroke-dashoffset" from="500" to="0" dur="3.5s" begin="0.5s" repeatCount="indefinite"/>
+                    <animate attributeName="stroke-dasharray" values="0,500;500,0" dur="3.5s" begin="0.5s" repeatCount="indefinite"/>
+                </path>
+                <path d="M300,700 L600,700 L630,670">
+                    <animate attributeName="stroke-dashoffset" from="400" to="0" dur="3s" begin="2s" repeatCount="indefinite"/>
+                    <animate attributeName="stroke-dasharray" values="0,400;400,0" dur="3s" begin="2s" repeatCount="indefinite"/>
+                </path>
+            </g>
+            <!-- Pink accent nodes that pulse -->
+            <g fill="#f4c6cf">
+                <circle cx="180" cy="310" r="3.5"><animate attributeName="r" values="3.5;6;3.5" dur="2.5s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.6;1;0.6" dur="2.5s" repeatCount="indefinite"/></circle>
+                <circle cx="930" cy="130" r="3.5"><animate attributeName="r" values="3.5;6;3.5" dur="3s" begin="0.8s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.6;1;0.6" dur="3s" begin="0.8s" repeatCount="indefinite"/></circle>
+                <circle cx="630" cy="510" r="3.5"><animate attributeName="r" values="3.5;6;3.5" dur="2s" begin="1.5s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.6;1;0.6" dur="2s" begin="1.5s" repeatCount="indefinite"/></circle>
+            </g>
+        </svg>
+
+        <!-- Background blobs -->
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+
+        <!-- Circuit Card (right side) -->
+        <div class="circuit-card">
+            <svg width="340" height="210" viewBox="0 0 340 210" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="cardBg" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#0d1b3e"/>
+                        <stop offset="60%" style="stop-color:#1a2d5a"/>
+                        <stop offset="100%" style="stop-color:#0d1b3e"/>
+                    </linearGradient>
+                    <filter id="glow">
+                        <feGaussianBlur stdDeviation="2" result="blur"/>
+                        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                    </filter>
+                </defs>
+                <rect width="340" height="210" fill="url(#cardBg)"/>
+                <!-- Circuit lines on card -->
+                <g stroke="#c9973a" stroke-width="1" fill="none" opacity="0.5" filter="url(#glow)">
+                    <path d="M0,60 L80,60 L100,80 L200,80"/>
+                    <path d="M0,130 L60,130 L80,110 L160,110 L180,130 L280,130"/>
+                    <path d="M100,0 L100,80"/>
+                    <path d="M180,80 L180,130"/>
+                    <path d="M260,60 L340,60"/>
+                    <path d="M240,130 L240,210"/>
+                    <path d="M60,150 L60,210"/>
+                    <path d="M140,0 L140,40 L160,60 L340,60"/>
+                </g>
+                <!-- Nodes -->
+                <g stroke="#e3b54d" fill="none" stroke-width="1.5">
+                    <circle cx="100" cy="80" r="4"/>
+                    <circle cx="180" cy="130" r="4"/>
+                    <circle cx="80" cy="110" r="3"/>
+                    <circle cx="160" cy="110" r="3"/>
+                </g>
+                <!-- Pink glowing pads -->
+                <g fill="#f4c6cf">
+                    <circle cx="60" cy="130" r="4"><animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/></circle>
+                    <circle cx="240" cy="130" r="4"><animate attributeName="opacity" values="0.5;1;0.5" dur="2.5s" begin="0.5s" repeatCount="indefinite"/></circle>
+                </g>
+                <!-- Gold animated trace -->
+                <path d="M0,60 L80,60 L100,80 L200,80" stroke="#e3b54d" stroke-width="2" fill="none" filter="url(#glow)">
+                    <animate attributeName="stroke-dashoffset" from="350" to="0" dur="2.5s" repeatCount="indefinite"/>
+                    <animate attributeName="stroke-dasharray" values="0,350;350,0" dur="2.5s" repeatCount="indefinite"/>
+                </path>
+                <!-- Card text -->
+                <text x="24" y="185" font-family="'Bodoni Moda', serif" font-size="13" fill="#e3b54d" letter-spacing="2">BLACK HAVEN</text>
+                <text x="24" y="200" font-family="'DM Sans', sans-serif" font-size="8" fill="rgba(244,198,207,0.7)" letter-spacing="3">DESIGN STUDIO</text>
+            </svg>
+        </div>
+
+        <!-- Main content -->
+        <div class="hero-content">
+            <div class="hero-tag">Design Studio</div>
+            <h1 class="hero-title">
+                Where vision meets
+                <span class="accent">execution</span>
+            </h1>
+            <p class="hero-description">
+                Crafting refined digital experiences through meticulous design, strategic thinking, and unwavering attention to detail. We transform concepts into reality.
+            </p>
+            <p class="sub-description">
+                Collaborated with companies across the globe — ABHA Group, Iraq · Nilo Beauty Product, Uganda · Braun Elevators, Oman · Kizal Properties LLP, UK.
+            </p>
+            <div class="cta-group">
+                <a href="#portfolio" class="cta-button">View Our Work</a>
+                <a href="contact.html" class="cta-outline">Let's Talk</a>
+            </div>
+        </div>
+
+        <div class="decorative-line">
+            <span></span>
+            <p>Refined by design</p>
+        </div>
+
+        <div class="scroll-indicator">Scroll</div>
+    </section>
+
+    <!-- Stats Bar -->
+    <div class="stats-bar">
+        <div class="stat-item">
+            <span class="stat-number">80+</span>
+            <div class="stat-label">Projects Delivered</div>
+        </div>
+        <div class="stat-sep"></div>
+        <div class="stat-item">
+            <span class="stat-number">4</span>
+            <div class="stat-label">Countries</div>
+        </div>
+        <div class="stat-sep"></div>
+        <div class="stat-item">
+            <span class="stat-number">5+</span>
+            <div class="stat-label">Years Experience</div>
+        </div>
+        <div class="stat-sep"></div>
+        <div class="stat-item">
+            <span class="stat-number">100%</span>
+            <div class="stat-label">Client Satisfaction</div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1.5rem; justify-content:center;">
+            <span class="footer-logo-text">BLACK HAVEN — Design Studio</span>
+        </div>
+
+        <div class="footer-links" style="display:flex; justify-content:center; gap:2rem; margin-bottom:1.5rem; flex-wrap:wrap;">
+            <a href="about.html">About</a>
+            <a href="termnconditions.html">Terms &amp; Conditions</a>
+            <a href="privacypolicy.html">Privacy Policy</a>
+        </div>
+
+        <div style="display:flex; justify-content:center; align-items:center; gap:2.2rem; margin-bottom:1.5rem; padding:1rem 0; border-top:1px solid rgba(201,151,58,0.12); border-bottom:1px solid rgba(201,151,58,0.12); flex-wrap:wrap;">
+            <a href="https://www.instagram.com/ablackhaven" class="social-link" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.behance.net/fareenkashmira" class="social-link" title="Behance"><i class="fab fa-behance"></i></a>
+            <a href="https://www.linkedin.com/in/fareen-kashmira-53087020a" class="social-link" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://in.pinterest.com/ablackhaven" class="social-link" title="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+            <a href="mailto:info@blackhaven.co.in" class="social-link" title="Email"><i class="far fa-envelope"></i></a>
+            <a href="https://wa.me/+917011403207" class="social-link" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+
+        <p class="footer-copyright">© 2025 Black Haven. All rights reserved. | Designed by Fareen.</p>
+    </footer>
+
+    <script>
+        // ── Golden Dot Cursor ──
+        const dot = document.getElementById('dot');
+        const ring = document.getElementById('ring');
+        let mx = 0, my = 0;
+        let rx = 0, ry = 0;
+
+        document.addEventListener('mousemove', e => {
+            mx = e.clientX;
+            my = e.clientY;
+            dot.classList.add('active');
+            ring.classList.add('active');
+        });
+
+        // Smooth ring follow
+        (function animateRing() {
+            rx += (mx - rx) * 0.12;
+            ry += (my - ry) * 0.12;
+            dot.style.left = mx + 'px';
+            dot.style.top = my + 'px';
+            ring.style.left = rx + 'px';
+            ring.style.top = ry + 'px';
+            requestAnimationFrame(animateRing);
+        })();
+
+        // Hover state
+        document.querySelectorAll('a, button, .cta-button, .cta-outline').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                dot.classList.add('hovering');
+                ring.classList.add('hovering');
+            });
+            el.addEventListener('mouseleave', () => {
+                dot.classList.remove('hovering');
+                ring.classList.remove('hovering');
+            });
+        });
+
+        // ── Text magnify near cursor ──
+        // Elements whose text slightly scales when cursor is close
+        const magnifyTargets = document.querySelectorAll('.nav-links a, .hero-title, .logo');
+        document.addEventListener('mousemove', e => {
+            magnifyTargets.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                const cx = rect.left + rect.width / 2;
+                const cy = rect.top + rect.height / 2;
+                const dist = Math.hypot(e.clientX - cx, e.clientY - cy);
+                const threshold = 120;
+                if (dist < threshold) {
+                    const scale = 1 + (1 - dist / threshold) * 0.04;
+                    el.style.transform = `scale(${scale})`;
+                    el.style.transformOrigin = 'center';
+                } else {
+                    el.style.transform = 'scale(1)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #0a0a0a;
+            --off-black: #1a1a1a;
+            --gold: #e5bb61;
+            --gold-dark: #D4A843;
+            --cream: #f5f5dc;
+            --grey: #6a6a6a;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--black);
+            color: var(--cream);
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        /* Custom Cursor */
+        .cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--gold);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: all 0.15s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        .cursor-follower {
+            width: 8px;
+            height: 8px;
+            background: var(--gold);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            transition: all 0.3s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        .cursor.hover {
+            transform: translate(-50%, -50%) scale(1.5);
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        /* Text Selection */
+        ::selection {
+            background: var(--gold);
+            color: var(--black);
+        }
+
+        ::-moz-selection {
+            background: var(--gold);
+            color: var(--black);
+        }
+
+        /* Mobile - disable custom cursor */
+        @media (hover: none) and (pointer: coarse) {
+            body {
+                cursor: auto;
+            }
+            .cursor,
+            .cursor-follower {
+                display: none;
+            }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 2rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(10px);
+            background: rgba(10, 10, 10, 0.7);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            animation: slideDown 0.8s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .logo {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            color: var(--gold);
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--cream);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--gold);
+            transition: width 0.4s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 8rem 4rem 10rem;
+            overflow: hidden;
+        }
+
+        /* Animated background pattern */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            border: 1px solid rgba(212, 175, 55, 0.08);
+            border-radius: 50%;
+            animation: rotate 30s linear infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -50%;
+            left: -20%;
+            width: 600px;
+            height: 600px;
+            border: 1px solid rgba(212, 175, 55, 0.05);
+            border-radius: 50%;
+            animation: rotate 40s linear infinite reverse;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 10;
+            max-width: 1200px;
+        }
+
+        .hero-subtitle {
+            font-size: 0.85rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--grey);
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.3s forwards;
+        }
+
+        .hero-title {
+            font-family: 'Bodoni Moda', serif;
+            font-size: clamp(3.5rem, 8vw, 7rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            color: var(--cream);
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.5s forwards;
+        }
+
+        .hero-title .accent {
+            color: var(--gold);
+            font-style: italic;
+            display: block;
+            margin-top: 0.3em;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--grey);
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.7s forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+            transition: color 0.4s ease;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.9s forwards;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gold);
+            transition: left 0.4s ease;
+            z-index: -1;
+        }
+
+        .cta-button:hover {
+            color: var(--black);
+        }
+
+        .cta-button:hover::before {
+            left: 0;
+        }
+
+        /* Decorative line */
+        .decorative-line {
+            width: 150px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            margin: 4rem auto;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-out 1.1s forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 0.5; }
+        }
+
+        /* Social Links Footer */
+        .social-footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem 4rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2.5rem;
+            backdrop-filter: blur(10px);
+            background: rgba(10, 10, 10, 0.7);
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            z-index: 1000;
+        }
+
+        .social-link {
+            color: var(--gold);
+            text-decoration: none;
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .social-link i {
+            transition: transform 0.3s ease;
+        }
+
+        .social-link:hover {
+            color: var(--cream);
+            transform: translateY(-5px);
+        }
+
+        .social-link:hover i {
+            transform: scale(1.15);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1.5rem 2rem;
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero {
+                padding: 10rem 2rem 12rem;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-description {
+                font-size: 1rem;
+            }
+
+            .social-footer {
+                padding: 1.5rem 2rem;
+                gap: 1.5rem;
+                flex-wrap: wrap;
+            }
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 8rem;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            animation: fadeIn 1.5s ease-out 1.3s forwards, float 2s ease-in-out infinite 2s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(-50%, 0); }
+            50% { transform: translate(-50%, 10px); }
+        }
+
+        .scroll-indicator::before {
+            content: '';
+            display: block;
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(180deg, transparent, var(--gold), transparent);
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">Black Haven</div>
+        <ul class="nav-links">
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="research.html">Research</a></li>
+            <li><a href="credentials.html">Credentials</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-subtitle">Design Studio</div>
+            <div class="hero-subtitle" style="margin-top: 0.5rem; font-size: 0.75rem; color: var(--gold); opacity: 0; animation: fadeInUp 1s ease-out 0.4s forwards;">    
+            </div>
+            <h1 class="hero-title">
+                Where vision meets
+                <span class="accent">execution</span>
+            </h1>
+            <p class="hero-description">
+                Crafting refined digital experiences through meticulous design, strategic thinking, and unwavering attention to detail. We transform concepts into reality.
+            </p>
+      <p class="sub-description">
+             Collaborated with companies across the globe like ABHA Group, Iraq · Nilo Beauty Product, Uganda · Braun Elevators, Oman · Kizal Properties LLP, UK.
+         </p>
+            
+            <div class="decorative-line"></div>
+            <a href="#portfolio" class="cta-button">View Our Work</a>
+        </div>
+        <div class="scroll-indicator"></div>
+    </section>
+
+
+     <!-- Footer -->
+<!-- Footer -->
+<footer style="padding: 2rem 4rem 1rem; background: rgba(10,10,10,0.9); border-top: 1px solid rgba(212,175,55,0.1);">
+  <div class="footer-content">
+    <div class="footer-logo" style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem; justify-content: center;">
+      <img src="/images/BH.jpeg" alt="Black Haven Logo" style="width: 40px; height: 40px; object-fit: contain; border-radius: 4px;">
+      <span class="footer-logo-text" style="font-family: 'Bodoni Moda', serif; font-size: 1rem; color: var(--gold); letter-spacing: 0.05em;">BLACK HAVEN — Design Studio</span>
+    </div>
+
+    <div class="footer-links" style="display: flex; justify-content: center; gap: 2rem; margin-bottom: 1.5rem;">
+      <a href="about.html" style="color: var(--cream); text-decoration: none; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.3s ease;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color=''">About</a>
+      <a href="termnconditions.html" style="color: var(--cream); text-decoration: none; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.3s ease;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color=''">Terms & Conditions</a>
+      <a href="privacypolicy.html" style="color: var(--cream); text-decoration: none; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.3s ease;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color=''">Privacy Policy</a>
+    </div>
+
+    <div class="social-footer" style="display: flex; justify-content: center; align-items: center; gap: 2rem; margin-bottom: 1.5rem; padding: 1rem 0; border-top: 1px solid rgba(212,175,55,0.1); border-bottom: 1px solid rgba(212,175,55,0.1);">
+      <a href="#" class="https://www.instagram.com/ablackhaven" title="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="#" class="https://www.behance.net/fareenkashmira " title="Behance"><i class="fab fa-behance"></i></a>
+      <a href="#" class="https://www.linkedin.com/in/fareen-kashmira-53087020a" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="#" class="https://in.pinterest.com/ablackhaven" title="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+      <a href="mailto:info@blackhaven.co.in" class="social-link" title="Email"><i class="far fa-envelope"></i></a>
+      <a href="https://wa.me/+917011403207" class="social-link" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+    </div>
+
+    <p class="footer-copyright" style="text-align: center; font-size: 0.8rem; color: var(--grey);">
+      © 2025 Black Haven. All rights reserved. | Designed by Fareen.
+    </p>
+  </div>
+</footer>
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <script>
+        // Custom Cursor Animation
+        const cursor = document.querySelector('.cursor');
+        const follower = document.querySelector('.cursor-follower');
+
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
+        let followerX = 0, followerY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function animate() {
+            // Smooth cursor movement
+            cursorX += (mouseX - cursorX) * 0.3;
+            cursorY += (mouseY - cursorY) * 0.3;
+            
+            followerX += (mouseX - followerX) * 0.1;
+            followerY += (mouseY - followerY) * 0.1;
+
+            cursor.style.left = cursorX + 'px';
+            cursor.style.top = cursorY + 'px';
+            
+            follower.style.left = followerX + 'px';
+            follower.style.top = followerY + 'px';
+
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        // Cursor hover effects
+        const hoverElements = document.querySelectorAll('a, button, .cta-button');
+        hoverElements.forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+        });
+    </script>
+</body>
+</html>
