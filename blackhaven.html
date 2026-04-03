@@ -3,29 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Black Haven - Luxury modest fashion and design studio. Abayas, accessories, and bespoke creative design services." />
   <title>Black Haven | Design Studio & Modest Fashion</title>
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Cormorant+Garamond:wght@300;400;600&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet" />
-  
+
   <!-- Font Awesome for Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
   <style>
     :root {
+      --white: #FFFFFF;
       --black: #000000;
       --gold: #e5bb61;
-      --gold-bright: #e5bb61;
-      --white: #FFFFFF;
+      --gold-bright: #e3b54d;
+      --gold-dim: #D4A843;
       --maroon: #800020;
       --maroon-light: #A0173A;
-      --gold-dim: #deb850;
+      --deep-blue: #1a2a4e;
+      --deep-blue-light: #2d4175;
+      --baby-pink: #FFD6E8;
+      --text-black: #1a1a1a;
     }
 
     * {
@@ -35,17 +34,17 @@
     }
 
     body {
-      background-color: var(--black);
-      color: var(--white);
+      background-color: var(--white);
+      color: var(--text-black);
       font-family: 'Outfit', sans-serif;
       overflow-x: hidden;
-      cursor: default;
+      cursor: none;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       text-rendering: optimizeLegibility;
     }
 
-    /* Animated background gradient */
+    /* Subtle background gradient */
     body::before {
       content: '';
       position: fixed;
@@ -53,17 +52,51 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: 
-        radial-gradient(circle at 20% 30%, rgba(201, 169, 97, 0.02) 0%, transparent 50%),
-        radial-gradient(circle at 80% 70%, rgba(128, 0, 32, 0.03) 0%, transparent 50%);
+      background:
+        radial-gradient(circle at 20% 30%, rgba(255, 214, 232, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(26, 42, 78, 0.05) 0%, transparent 50%);
       pointer-events: none;
       z-index: 0;
-      animation: gradientShift 25s ease-in-out infinite;
     }
 
-    @keyframes gradientShift {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.7; }
+    /* Custom Moon Cursor */
+    .custom-cursor {
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      font-size: 20px;
+      transition: transform 0.15s ease;
+      opacity: 0;
+      filter: drop-shadow(0 0 8px rgba(229, 187, 97, 0.6));
+    }
+
+    .custom-cursor.active {
+      opacity: 1;
+    }
+
+    .custom-cursor::before {
+      content: '🌕';
+    }
+
+    /* Hide cursor on mobile */
+    @media (hover: none) and (pointer: coarse) {
+      body {
+        cursor: auto;
+      }
+      .custom-cursor {
+        display: none;
+      }
+    }
+
+    /* Text Magnification Effect */
+    .magnify-text {
+      transition: transform 0.3s ease, color 0.3s ease;
+      display: inline-block;
+    }
+
+    .magnify-text:hover {
+      transform: scale(1.1);
+      color: var(--gold);
     }
 
     /* Navigation */
@@ -76,38 +109,695 @@
       justify-content: space-between;
       align-items: center;
       z-index: 1000;
-      background: linear-gradient(180deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0) 100%);
+      background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(26, 42, 78, 0.1);
       animation: navSlideDown 0.8s ease-out;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     }
 
     @keyframes navSlideDown {
-      from {
-        transform: translateY(-100%);
-        opacity: 0;
-      }
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
+      from { transform: translateY(-100%); opacity: 0; }
+      to   { transform: translateY(0);    opacity: 1; }
     }
 
     .logo {
       display: flex;
       align-items: center;
       gap: 1rem;
+      text-decoration: none;
     }
 
     .logo-image {
       width: 60px;
       height: 60px;
       object-fit: contain;
-      filter: brightness(1.1);
       transition: all 0.4s ease;
     }
 
     .logo-image:hover {
-      filter: brightness(1.3) drop-shadow(0 0 10px rgba(201, 169, 97, 0.5));
+      filter: drop-shadow(0 0 10px rgba(229, 187, 97, 0.5));
+      transform: scale(1.05);
+    }
+
+    .logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 900;
+      letter-spacing: 3px;
+      color: var(--deep-blue);
+      text-transform: uppercase;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 3rem;
+      list-style: none;
+    }
+
+    nav a {
+      color: var(--deep-blue);
+      text-decoration: none;
+      font-weight: 400;
+      font-size: 0.95rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    nav a::before {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 2px;
+      background: var(--maroon);
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover {
+      color: var(--gold);
+      transform: scale(1.05);
+    }
+
+    nav a:hover::before {
+      width: 100%;
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      padding-bottom: 10rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      overflow: visible;
+      z-index: 5;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 10vw, 8rem);
+      font-weight: 900;
+      letter-spacing: 8px;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-title .word {
+      display: inline-block;
+      perspective: 1000px;
+    }
+
+    .hero-title .letter {
+      display: inline-block;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      color: var(--deep-blue);
+      text-shadow:
+        0 2px 8px rgba(26, 42, 78, 0.2),
+        0 4px 12px rgba(229, 187, 97, 0.15);
+      animation: subtleGlow 4s ease-in-out infinite;
+      animation-delay: calc(var(--letter-index) * 0.15s);
+      font-weight: 900;
+    }
+
+    @keyframes subtleGlow {
+      0%, 100% {
+        color: var(--deep-blue);
+        text-shadow:
+          0 2px 8px rgba(26, 42, 78, 0.2),
+          0 4px 12px rgba(229, 187, 97, 0.15);
+      }
+      50% {
+        color: var(--gold);
+        text-shadow:
+          0 2px 8px rgba(229, 187, 97, 0.4),
+          0 4px 12px rgba(26, 42, 78, 0.2);
+      }
+    }
+
+    .hero-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.2rem, 3vw, 2rem);
+      font-weight: 600;
+      color: var(--maroon);
+      letter-spacing: 4px;
+      margin-bottom: 3rem;
+      opacity: 0;
+      animation: fadeInUp 1s ease-out 0.5s forwards;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0);    }
+    }
+
+    .hero-divider {
+      width: 200px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 2rem 0;
+      opacity: 0;
+      animation: fadeIn 1s ease-out 1s forwards;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    .hero-description {
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--text-black);
+      max-width: 600px;
+      line-height: 1.8;
+      letter-spacing: 0.5px;
+      opacity: 0;
+      animation: fadeInUp 1s ease-out 1.5s forwards;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 2rem;
+      margin-top: 3rem;
+      margin-bottom: 8rem;
+      opacity: 0;
+      animation: fadeInUp 1s ease-out 2s forwards;
+      position: relative;
+      z-index: 10;
+    }
+
+    .btn {
+      padding: 1.2rem 3rem;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 2px solid;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+      z-index: 1;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.6s ease, height 0.6s ease;
+      z-index: -1;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+    }
+
+    .btn:hover::before {
+      width: 500px;
+      height: 500px;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--black);
+      border-color: var(--gold);
+    }
+
+    .btn-primary::before {
+      background: var(--gold-bright);
+    }
+
+    .btn-primary:hover {
+      color: var(--white);
+      border-color: var(--gold-bright);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--maroon);
+      border-color: var(--maroon);
+    }
+
+    .btn-secondary::before {
+      background: var(--maroon);
+    }
+
+    .btn-secondary:hover {
+      color: var(--white);
+      border-color: var(--maroon-light);
+    }
+
+    /* Scroll Indicator */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 6rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      opacity: 0;
+      animation: fadeIn 1s ease-out 2.5s forwards;
+      z-index: 10;
+    }
+
+    .scroll-text {
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--deep-blue);
+    }
+
+    .scroll-line {
+      width: 2px;
+      height: 60px;
+      background: linear-gradient(180deg, var(--gold), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.3; transform: translateY(0);    }
+      50%       { opacity: 1;   transform: translateY(10px); }
+    }
+
+    /* Dual Mission Section */
+    .dual-mission {
+      padding: 8rem 4rem;
+      margin-top: 8rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .mission-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 4rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .mission-card {
+      background: var(--white);
+      border: 2px solid var(--baby-pink);
+      padding: 4rem;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.5s ease;
+      opacity: 0;
+      transform: translateY(50px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .mission-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .mission-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 214, 232, 0.4), transparent);
+      transition: left 0.8s ease;
+    }
+
+    .mission-card:hover::before {
+      left: 100%;
+    }
+
+    .mission-card:hover {
+      border-color: var(--gold);
+      box-shadow: 0 8px 30px rgba(229, 187, 97, 0.25);
+      transform: translateY(-10px);
+    }
+
+    .mission-icon {
+      font-size: 3rem;
+      margin-bottom: 2rem;
+      display: inline-block;
+      color: var(--gold);
+      filter: drop-shadow(0 2px 8px rgba(229, 187, 97, 0.3));
+    }
+
+    .mission-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--deep-blue);
+      margin-bottom: 1.5rem;
+      letter-spacing: 2px;
+    }
+
+    .mission-description {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--text-black);
+      margin-bottom: 2rem;
+      font-weight: 400;
+    }
+
+    .mission-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--maroon);
+      text-decoration: none;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+    }
+
+    .mission-link:hover {
+      color: var(--gold);
+      gap: 1rem;
+      transform: scale(1.05);
+    }
+
+    /* Footer */
+    footer {
+      padding: 4rem;
+      text-align: center;
+      border-top: 2px solid var(--baby-pink);
+      background: rgba(255, 255, 255, 0.8);
+      position: relative;
+      z-index: 2;
+    }
+
+    .footer-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-logo-image {
+      width: 50px;
+      height: 50px;
+      object-fit: contain;
+    }
+
+    .footer-logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: var(--deep-blue);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: var(--text-black);
+      text-decoration: none;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--gold);
+      transform: scale(1.05);
+    }
+
+    .footer-social {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .social-icon {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid var(--gold);
+      border-radius: 50%;
+      color: var(--gold);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-size: 1.2rem;
+    }
+
+    .social-icon:hover {
+      border-color: var(--maroon);
+      background: var(--maroon);
+      color: var(--white);
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: 0 10px 20px rgba(128, 0, 32, 0.25);
+    }
+
+    .footer-copyright {
+      color: var(--deep-blue);
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      margin-top: 2rem;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      nav {
+        padding: 1.5rem 2rem;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .logo-image {
+        width: 50px;
+        height: 50px;
+      }
+
+      .logo-text {
+        font-size: 1.2rem;
+      }
+
+      nav ul {
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .hero {
+        padding-bottom: 6rem;
+      }
+
+      .hero-title {
+        font-size: 3rem;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+        gap: 1rem;
+        margin-bottom: 4rem;
+      }
+
+      .btn {
+        width: 100%;
+        text-align: center;
+      }
+
+      .dual-mission {
+        margin-top: 4rem;
+        padding: 4rem 2rem;
+      }
+
+      .mission-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .mission-card {
+        padding: 2rem;
+      }
+
+      .footer-logo-image {
+        width: 40px;
+        height: 40px;
+      }
+
+      .footer-logo-text {
+        font-size: 1.5rem;
+      }
+
+      footer {
+        padding: 2rem;
+      }
+
+      .footer-links {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+      }
+
+      .footer-social {
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Custom Moon Cursor -->
+  <div class="custom-cursor" id="custom-cursor"></div>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="index.html" class="logo">
+      <img src="/images/BH.png" alt="Black Haven Logo" class="logo-image">
+      <span class="logo-text">Black Haven</span>
+    </a>
+    <ul>
+      <li><a href="index.html" class="magnify-text">Home</a></li>
+      <li><a href="studio.html" class="magnify-text">Studio</a></li>
+      <li><a href="store.html" class="magnify-text">Store</a></li>
+      <li><a href="about.html" class="magnify-text">About</a></li>
+      <li><a href="contact.html" class="magnify-text">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <h1 class="hero-title">
+      <span class="word">
+        <span class="letter" style="--letter-index: 0;">B</span><span class="letter" style="--letter-index: 1;">L</span><span class="letter" style="--letter-index: 2;">A</span><span class="letter" style="--letter-index: 3;">C</span><span class="letter" style="--letter-index: 4;">K</span>
+      </span>
+      <br>
+      <span class="word">
+        <span class="letter" style="--letter-index: 5;">H</span><span class="letter" style="--letter-index: 6;">A</span><span class="letter" style="--letter-index: 7;">V</span><span class="letter" style="--letter-index: 8;">E</span><span class="letter" style="--letter-index: 9;">N</span>
+      </span>
+    </h1>
+    <p class="hero-subtitle">Where Elegance Meets Design</p>
+    <div class="hero-divider"></div>
+    <p class="hero-description">
+      A sanctuary of modest Premium Fashion and Bespoke Creative Design.
+      Crafting timeless abayas, refined accessories, and visionary brand experiences.
+    </p>
+    <div class="cta-buttons">
+      <a href="store.html" class="btn btn-primary">Explore Store</a>
+      <a href="#missions" class="btn btn-secondary">Design Studio</a>
+    </div>
+
+    <div class="scroll-indicator">
+      <span class="scroll-text">Discover</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- Dual Mission Section -->
+  <section class="dual-mission" id="missions">
+    <div class="mission-grid">
+
+      <!-- Fashion Card -->
+      <div class="mission-card" data-card="fashion">
+        <div class="mission-icon">☾</div>
+        <h2 class="mission-title">Modest Fashion</h2>
+        <p class="mission-description">
+          Timeless abayas and accessories designed for the modern woman who values elegance and modesty.
+          Each piece is thoughtfully crafted to celebrate grace, sophistication, and personal expression.
+        </p>
+        <a href="store.html" class="mission-link">
+          View Store <span>→</span>
+        </a>
+      </div>
+
+      <!-- Studio Card -->
+      <div class="mission-card" data-card="studio">
+        <div class="mission-icon">✦</div>
+        <h2 class="mission-title">Design Studio</h2>
+        <p class="mission-description">
+          Strategic brand design and creative direction for visionaries.
+          From UX research to visual identity, we build systems that align business goals with authentic human connection.
+        </p>
+        <a href="studio.html" class="mission-link">
+          Explore Services <span>→</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-logo">
+        <img src="/images/BH.png" alt="Black Haven Logo" class="footer-logo-image">
+        <span class="footer-logo-text">BLACK HAVEN</span>
+      </div>
+
+      <div class="footer-links">
+        <a href="about.html" class="magnify-text">About</a>
+        <a href="TnC.html" class="magnify-text">Terms &amp; Conditions</a>
+        <a href="privacypolicy.html" class="magnify-text">Privacy Policy</a>
+        <a href="returnexchange.html" class="magnify-text">Returns &amp; Exchange</a>
+        <a href="shippingpolicy.html" class="magnify-text">Shipping Policy</a>
+      </div>
+
+      <div class="footer-social">
+        <a href="https://wa.me/917011403207" target="_blank" rel="noopener noreferrer" class="social-icon" title="WhatsApp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="https://www.instagram.com/ablackhaven" target="_blank" rel="noopener noreferrer" class="social-icon" title="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://in.pinterest.com/ablackhaven" target="_blank" rel="noopener noreferrer" class="social-icon" title="Pinterest">
+          <i class="fab fa-pinterest"></i>
+        </a>
+        <a href="https://blackhaven.co.in" target="_blank" rel="noopener noreferrer" class="social-icon" title="Website">
+          <i class="fas fa-globe"></i>
+        </a>
+        <a href="mailto:info@blackhaven.co.in" class="social-icon" title="Email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </div>
+
+      <p class="footer-copyright">
+        &copy; 2025 Black Haven. All rights reserved. | Designed by Fareen.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // ── Custom moon cursor ──
+    const cursor = document.getElementById('custom-cursor');
+    let mouseX = 0, mouseY = 0;
+        filter: brightness(1.3) drop-shadow(0 0 10px rgba(201, 169, 97, 0.5));
       transform: scale(1.05);
     }
 
