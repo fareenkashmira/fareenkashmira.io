@@ -64,25 +64,26 @@
     }
 
 
+/* Custom Golden Dot Cursor */
+.custom-cursor {
+  position: fixed;
+  /* Adjust width/height here to change the dot size */
+  width: 8px; 
+  height: 8px;
+  background-color: #e3b54d;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0;
+  /* Centering the dot on the actual mouse coordinates */
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s ease;
+  box-shadow: 0 0 10px rgba(227, 181, 77, 0.5);
+}
 
-        /* ── Cursor ── */
-    #cur {
-      width: 12px; height: 12px;
-      background: var(--gold);
-      border-radius: 50%;
-      position: fixed; top: 0; left: 0;
-      pointer-events: none; z-index: 9999;
-      transform: translate(-50%,-50%);
-      transition: width .2s, height .2s, background .2s;
-    }
-    #cur.h { width: 7px; height: 7px; background: var(--black); }
- 
-    .mag {
-      display: inline-block;
-      transition: transform .28s cubic-bezier(.34,1.56,.64,1), color .2s;
-      cursor: none;
-    }
-    .mag:hover { transform: scale(1.15); color: var(--gold); }
+.custom-cursor.active {
+  opacity: 1;
+}
 
 
     /* Hide custom cursor on mobile */
