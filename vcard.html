@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kooky Kafe — Digital Card</title>
+<link href="https://fonts.googleapis.com/css2?family=Mirza:wght@400;500;600;700&family=Great+Vibes&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+  /* Dark Brown and Cream Palette */
+  --deep-brown: #1E0C03;
+  --roast:      #321205;
+  --cream:      #FFF6E8;
+  --cream-dark: #DCCAA4;
+  --accent:     #9B4A18;
+}
+  body {
+    background: var(--cream);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+    overflow: hidden;
+  }
+
+  /* Scene & Card Core */
+  .scene {
+    position: relative;
+    z-index: 1;
+    width: 420px;
+    height: 260px;
+    perspective: 1200px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.9s cubic-bezier(0.45, 0.05, 0.55, 0.95);
+  }
+  .card.flipped { transform: rotateY(180deg) !important; }
+
+  .face {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--cream-dark);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+  }
+
+  /* FRONT: Dark Brown Theme */
+  .face-front {
+    background: var(--deep-brown);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .front-inner {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    padding: 0 44px;
+  }
+
+  /* Logo Replacement */
+  .logo-wrap {
+    width: 90px; height: 90px;
+    border-radius: 50%;
+    border: 2px solid var(--cream-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--roast);
+    color: var(--cream);
+    font-family: 'Mirza', serif;
+    font-size: 44px;
+    font-weight: 700;
+  }
+
+  .text-block { display: flex; flex-direction: column; gap: 2px; }
+  
+  .card-name {
+    font-family: 'Mirza', serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1;
+  }
+  
+  .card-title {
+    font-family: "Bauhaus 93", "ITC Bauhaus", sans-serif;
+    font-size: 14px;
+    color: var(--cream-dark);
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+  }
+  
+  .tagline {
+    font-family: 'Great Vibes', cursive;
+    font-size: 20px;
+    color: var(--accent);
+    margin-top: 5px;
+  }
+
+  /* BACK: Cream Theme */
+  .face-back {
+    background: var(--cream);
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    color: var(--deep-brown);
+  }
+  .back-header {
+    font-family: 'Mirza', serif;
+    font-size: 24px;
+    font-weight: 700;
+    border-bottom: 2px solid var(--cream-dark);
+    margin-bottom: 15px;
+  }
+  .contact-text {
+    font-family: "Bauhaus 93", sans-serif;
+    font-size: 13px;
+    margin-bottom: 8px;
+  }
+
+  /* Particles */
+  .particles { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+  .particle {
+    position: absolute;
+    width: 2px; height: 2px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: float-up linear infinite;
+    opacity: 0;
+  }
+  @keyframes float-up {
+    0% { opacity: 0; transform: translateY(0); }
+    50% { opacity: 0.5; }
+    100% { opacity: 0; transform: translateY(-100vh); }
+  }
+</style>
+</head>
+<body>
+
+<div class="particles" id="particles"></div>
+
+<div class="scene" id="scene">
+  <div class="card" id="card">
+    <div class="face face-front">
+      <div class="front-inner">
+        <div class="logo-wrap">K</div>
+        <div class="text-block">
+          <div class="card-name">Kooky Kafe</div>
+          <div class="card-title">Premium Brews & Bites</div>
+          <div class="tagline">Where flavors get creative</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="face face-back">
+      <div class="back-header">Contact Us</div>
+      <div class="contact-text">hello@kookykafe.com</div>
+      <div class="contact-text">+91 98765 43210</div>
+      <div class="contact-text">Delhi, India</div>
+    </div>
+  </div>
+</div>
+
+<script>
+const scene = document.getElementById('scene');
+const card  = document.getElementById('card');
+const particlesContainer = document.getElementById('particles');
+let flipped = false;
+
+// Functional Flip Logic
+scene.addEventListener('click', () => {
+  flipped = !flipped;
+  if (flipped) {
+    card.classList.add('flipped');
+    card.style.transform = "rotateY(180deg)";
+  } else {
+    card.classList.remove('flipped');
+    card.style.transform = "rotateY(0deg)";
+  }
+});
+
+// Interactive Tilt Logic
+scene.addEventListener('mousemove', e => {
+  if (flipped) return;
+  const r = scene.getBoundingClientRect();
+  const x = (e.clientX - r.left) / r.width - 0.5;
+  const y = (e.clientY - r.top)  / r.height - 0.5;
+  card.style.transform = `rotateY(${x*20}deg) rotateX(${-y*15}deg)`;
+});
+
+scene.addEventListener('mouseleave', () => {
+  if (!flipped) card.style.transform = `rotateY(0deg) rotateX(0deg)`;
+});
+
+// Particle Generation
+function createParticle() {
+  const p = document.createElement('div');
+  p.className = 'particle';
+  p.style.left = Math.random() * 100 + 'vw';
+  p.style.top = '100vh';
+  p.style.animationDuration = (Math.random() * 3 + 2) + 's';
+  particlesContainer.appendChild(p);
+  setTimeout(() => p.remove(), 5000);
+}
+setInterval(createParticle, 200);
+</script>
+
+</body>
+</html>
