@@ -1,0 +1,341 @@
+
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=DM+Sans:wght@300;400;500&display=swap');
+  *{box-sizing:border-box;margin:0;padding:0;}
+  #sr{font-family:'DM Sans',sans-serif;background:#080608;border-radius:16px;overflow:hidden;min-height:580px;position:relative;}
+  .bg{position:absolute;inset:0;pointer-events:none;z-index:0;}
+  .cnt{position:relative;z-index:1;}
+  .hdr{padding:1.1rem 1.5rem;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;gap:10px;}
+  .hdr-title{font-family:'Playfair Display',serif;font-size:15px;color:rgba(255,255,255,0.7);font-style:italic;}
+  .hdr-sub{font-size:11px;color:rgba(255,255,255,0.25);margin-left:auto;}
+  .rooms-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:1.25rem;}
+  .room{border-radius:14px;border:1px solid rgba(255,255,255,0.07);padding:1.1rem;cursor:pointer;transition:border-color 0.2s,background 0.2s;background:rgba(255,255,255,0.03);}
+  .room:hover{background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.14);}
+  .room.active{border-color:rgba(200,160,255,0.4);background:rgba(130,80,200,0.1);}
+  .room-icon{width:32px;height:32px;margin-bottom:10px;opacity:0.7;}
+  .room-name{font-size:13px;font-weight:500;color:rgba(255,255,255,0.8);margin-bottom:4px;}
+  .room-desc{font-size:11px;color:rgba(255,255,255,0.3);line-height:1.6;}
+  .room-tag{display:inline-block;font-size:10px;padding:2px 8px;border-radius:20px;margin-top:8px;font-weight:400;}
+  .player{margin:0 1.25rem 1.25rem;border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:1.1rem;background:rgba(255,255,255,0.02);}
+  .player-name{font-family:'Playfair Display',serif;font-size:17px;color:rgba(255,255,255,0.75);font-style:italic;margin-bottom:4px;}
+  .player-hint{font-size:11px;color:rgba(255,255,255,0.25);margin-bottom:1rem;line-height:1.5;}
+  .vis-bar{height:40px;display:flex;align-items:center;gap:2px;margin-bottom:1rem;}
+  .bar{width:4px;border-radius:2px;background:rgba(160,120,255,0.5);transition:height 0.1s;}
+  .controls{display:flex;align-items:center;gap:10px;}
+  .play-btn{width:38px;height:38px;border-radius:50%;border:1px solid rgba(200,160,255,0.4);background:rgba(130,80,200,0.15);cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background 0.15s;}
+  .play-btn:hover{background:rgba(130,80,200,0.3);}
+  .play-icon{width:0;height:0;border-style:solid;border-width:6px 0 6px 10px;border-color:transparent transparent transparent rgba(200,160,255,0.9);margin-left:2px;}
+  .pause-icon{width:10px;height:12px;display:flex;gap:3px;}
+  .pause-bar{width:3px;height:12px;background:rgba(200,160,255,0.9);border-radius:1px;}
+  .vol-wrap{display:flex;align-items:center;gap:8px;flex:1;}
+  .vol-label{font-size:11px;color:rgba(255,255,255,0.3);white-space:nowrap;}
+  input[type=range]{flex:1;accent-color:rgba(160,120,255,0.8);}
+  .spatial-wrap{display:flex;align-items:center;gap:8px;margin-top:10px;}
+  .spatial-label{font-size:11px;color:rgba(255,255,255,0.3);}
+  .hint-box{margin:0 1.25rem 1.25rem;border:1px solid rgba(255,255,255,0.05);border-radius:10px;padding:.75rem 1rem;font-size:11px;color:rgba(255,255,255,0.2);line-height:1.7;font-style:italic;}
+</style>
+
+<div id="sr">
+  <canvas class="bg" id="bg-canvas"></canvas>
+  <div class="cnt">
+    <div class="hdr">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+        <circle cx="9" cy="9" r="7" stroke="rgba(160,120,255,0.6)" stroke-width="0.8"/>
+        <path d="M5 9 Q9 4 13 9 Q9 14 5 9Z" fill="rgba(160,120,255,0.3)" stroke="rgba(160,120,255,0.5)" stroke-width="0.5"/>
+        <circle cx="9" cy="9" r="1.5" fill="rgba(160,120,255,0.8)"/>
+      </svg>
+      <span class="hdr-title">Sonic Rooms</span>
+      <span class="hdr-sub">use headphones for full effect</span>
+    </div>
+
+    <div class="rooms-grid" id="rooms-grid"></div>
+
+    <div class="player" id="player">
+      <div class="player-name" id="p-name">Select a room</div>
+      <div class="player-hint" id="p-hint">Choose a room above to enter it</div>
+      <div class="vis-bar" id="vis-bar"></div>
+      <div class="controls">
+        <button class="play-btn" id="play-btn" onclick="togglePlay()">
+          <div class="play-icon" id="play-icon"></div>
+        </button>
+        <div class="vol-wrap">
+          <span class="vol-label">volume</span>
+          <input type="range" min="0" max="100" value="70" step="1" id="vol-slider" oninput="setVol(this.value)"/>
+        </div>
+      </div>
+      <div class="spatial-wrap">
+        <span class="spatial-label">pan</span>
+        <input type="range" min="-1" max="1" value="0" step="0.01" id="pan-slider" oninput="setPan(this.value)" style="flex:1;accent-color:rgba(160,120,255,0.8);"/>
+        <span class="spatial-label">spatial drift</span>
+      </div>
+    </div>
+
+    <div class="hint-box">Close your eyes. Let the sound settle into the background of your thoughts. These rooms are designed to feel like they exist just behind your ears.</div>
+  </div>
+</div>
+
+<script>
+const ROOMS = [
+  {
+    id:'void',
+    name:'The Void',
+    desc:'Sub-bass drone that lives below consciousness. You feel it more than hear it.',
+    tag:'40–60 Hz · infrasonic',
+    tagColor:'rgba(80,50,160,0.6)',
+    color:'#8060c8',
+    build(ac,dst){
+      const nodes=[];
+      [41,48,55].forEach((f,i)=>{
+        const o=ac.createOscillator();
+        const g=ac.createGain();
+        o.type='sine';o.frequency.value=f;
+        g.gain.value=0.18-i*0.04;
+        o.connect(g);g.connect(dst);o.start();
+        nodes.push(o,g);
+      });
+      const lfo=ac.createOscillator();
+      const lfog=ac.createGain();
+      lfo.frequency.value=0.07;lfog.gain.value=8;
+      lfo.connect(lfog);lfog.connect(nodes[0].frequency);lfo.start();
+      nodes.push(lfo,lfog);
+      return nodes;
+    }
+  },
+  {
+    id:'whisper',
+    name:'The Whispering Hall',
+    desc:'Binaural tones with long reverb tails. Voices that aren\'t there.',
+    tag:'binaural 432Hz · 4Hz delta',
+    tagColor:'rgba(40,80,140,0.6)',
+    color:'#5090d0',
+    build(ac,dst){
+      const nodes=[];
+      const L=ac.createOscillator(),R=ac.createOscillator();
+      const Lg=ac.createGain(),Rg=ac.createGain();
+      const merge=ac.createChannelMerger(2);
+      L.frequency.value=432;R.frequency.value=436;
+      L.type='sine';R.type='sine';
+      Lg.gain.value=0.12;Rg.gain.value=0.12;
+      L.connect(Lg);Lg.connect(merge,0,0);
+      R.connect(Rg);Rg.connect(merge,0,1);
+      merge.connect(dst);L.start();R.start();
+      const noise=ac.createOscillator();
+      const ng=ac.createGain();
+      noise.type='sawtooth';noise.frequency.value=0.3;
+      ng.gain.value=0.03;noise.connect(ng);ng.connect(dst);noise.start();
+      nodes.push(L,R,Lg,Rg,merge,noise,ng);
+      return nodes;
+    }
+  },
+  {
+    id:'clock',
+    name:'The Ticking Room',
+    desc:'Rhythmic pulses at theta frequency — the brain\'s borderline between wake and sleep.',
+    tag:'6Hz theta · entrainment',
+    tagColor:'rgba(120,60,40,0.6)',
+    color:'#d08040',
+    build(ac,dst){
+      const nodes=[];
+      const base=ac.createOscillator();
+      const bg=ac.createGain();
+      base.frequency.value=200;base.type='triangle';bg.gain.value=0;
+      base.connect(bg);bg.connect(dst);base.start();
+      nodes.push(base,bg);
+      let tick=0;
+      const interval=setInterval(()=>{
+        const now=ac.currentTime;
+        bg.gain.setValueAtTime(0.2,now);
+        bg.gain.exponentialRampToValueAtTime(0.001,now+0.08);
+        tick++;
+      },167);
+      nodes._interval=interval;
+      const hum=ac.createOscillator();
+      const hg=ac.createGain();
+      hum.frequency.value=55;hum.type='sine';hg.gain.value=0.06;
+      hum.connect(hg);hg.connect(dst);hum.start();
+      nodes.push(hum,hg);
+      return nodes;
+    }
+  },
+  {
+    id:'mirror',
+    name:'The Mirror Room',
+    desc:'Your own thoughts reflected back — panning echoes that loop just out of reach.',
+    tag:'stereo echo · 0.3s tail',
+    tagColor:'rgba(40,100,80,0.6)',
+    color:'#40b090',
+    build(ac,dst){
+      const nodes=[];
+      const freqs=[220,330,440,550,660];
+      freqs.forEach((f,i)=>{
+        const o=ac.createOscillator();
+        const g=ac.createGain();
+        const pan=ac.createStereoPanner();
+        o.type='sine';o.frequency.value=f;
+        g.gain.value=0;
+        pan.pan.value=0;
+        const lfo=ac.createOscillator();
+        const lfog=ac.createGain();
+        lfo.frequency.value=0.05+i*0.03;
+        lfog.gain.value=0.9;
+        lfo.connect(lfog);lfog.connect(pan.pan);lfo.start();
+        const ampLfo=ac.createOscillator();
+        const ampLfog=ac.createGain();
+        ampLfo.frequency.value=0.08+i*0.02;
+        ampLfog.gain.value=0.07;
+        ampLfo.connect(ampLfog);ampLfog.connect(g.gain);
+        ampLfo.start();
+        g.gain.value=0.07;
+        o.connect(g);g.connect(pan);pan.connect(dst);
+        o.start();
+        nodes.push(o,g,pan,lfo,lfog,ampLfo,ampLfog);
+      });
+      return nodes;
+    }
+  }
+];
+
+let ac=null,masterGain=null,pannerNode=null,activeNodes=[],playingRoom=null,isPlaying=false,animFrame=null,analyser=null;
+const bars=[];
+
+function initAC(){
+  if(ac)return;
+  ac=new (window.AudioContext||window.webkitAudioContext)();
+  masterGain=ac.createGain();
+  pannerNode=ac.createStereoPanner();
+  analyser=ac.createAnalyser();
+  analyser.fftSize=64;
+  masterGain.connect(pannerNode);
+  pannerNode.connect(analyser);
+  analyser.connect(ac.destination);
+  masterGain.gain.value=0.7;
+}
+
+function buildVis(){
+  const vb=document.getElementById('vis-bar');
+  vb.innerHTML='';bars.length=0;
+  for(let i=0;i<32;i++){
+    const b=document.createElement('div');b.className='bar';
+    b.style.height='4px';vb.appendChild(b);bars.push(b);
+  }
+}
+
+function animVis(){
+  if(!analyser||!isPlaying){bars.forEach(b=>b.style.height='4px');return;}
+  const data=new Uint8Array(analyser.frequencyBinCount);
+  analyser.getByteFrequencyData(data);
+  bars.forEach((b,i)=>{
+    const v=data[i]||0;
+    const h=Math.max(4,Math.round(v/255*38));
+    b.style.height=h+'px';
+  });
+  animFrame=requestAnimationFrame(animVis);
+}
+
+function stopAll(){
+  if(animFrame){cancelAnimationFrame(animFrame);animFrame=null;}
+  activeNodes.forEach(n=>{
+    try{if(n._interval)clearInterval(n._interval);if(n.stop)n.stop();if(n.disconnect)n.disconnect();}catch(e){}
+  });
+  activeNodes=[];
+}
+
+function enterRoom(idx){
+  initAC();
+  if(ac.state==='suspended')ac.resume();
+  stopAll();
+  const room=ROOMS[idx];
+  playingRoom=idx;
+  document.querySelectorAll('.room').forEach((r,i)=>r.classList.toggle('active',i===idx));
+  document.getElementById('p-name').textContent=room.name;
+  document.getElementById('p-hint').textContent=room.desc;
+  buildVis();
+  activeNodes=room.build(ac,masterGain);
+  isPlaying=true;
+  updatePlayBtn();
+  animVis();
+}
+
+function togglePlay(){
+  if(playingRoom===null){return;}
+  if(isPlaying){
+    masterGain.gain.setTargetAtTime(0,ac.currentTime,0.3);
+    isPlaying=false;
+    if(animFrame){cancelAnimationFrame(animFrame);animFrame=null;}
+  } else {
+    if(ac.state==='suspended')ac.resume();
+    masterGain.gain.setTargetAtTime(document.getElementById('vol-slider').value/100,ac.currentTime,0.3);
+    isPlaying=true;
+    animVis();
+  }
+  updatePlayBtn();
+}
+
+function updatePlayBtn(){
+  const icon=document.getElementById('play-icon');
+  if(isPlaying){
+    icon.outerHTML='<div id="play-icon" class="pause-icon"><div class="pause-bar"></div><div class="pause-bar"></div></div>';
+  } else {
+    icon.outerHTML='<div id="play-icon" class="play-icon"></div>';
+  }
+}
+
+function setVol(v){if(masterGain&&isPlaying)masterGain.gain.setTargetAtTime(v/100,ac.currentTime,0.05);}
+function setPan(v){if(pannerNode)pannerNode.pan.value=parseFloat(v);}
+
+function buildBG(){
+  const c=document.getElementById('bg-canvas');
+  const p=c.parentElement;
+  c.width=p.offsetWidth||680;c.height=p.offsetHeight||580;
+  const ctx=c.getContext('2d');
+  ctx.fillStyle='#080608';ctx.fillRect(0,0,c.width,c.height);
+  const cx=c.width/2,cy=c.height/2;
+  for(let r=20;r<Math.max(c.width,c.height);r+=40){
+    ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);
+    ctx.strokeStyle=`rgba(120,80,200,${0.03-r*0.00003})`;ctx.lineWidth=0.5;ctx.stroke();
+  }
+  for(let i=0;i<60;i++){
+    const x=Math.random()*c.width,y=Math.random()*c.height,r=Math.random()*1.5;
+    ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);
+    ctx.fillStyle=`rgba(180,150,255,${Math.random()*0.15})`;ctx.fill();
+  }
+}
+
+function buildRooms(){
+  const grid=document.getElementById('rooms-grid');
+  ROOMS.forEach((room,i)=>{
+    const d=document.createElement('div');d.className='room';
+    d.innerHTML=`
+      <svg class="room-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        ${roomIcon(i,room.color)}
+      </svg>
+      <div class="room-name">${room.name}</div>
+      <div class="room-desc">${room.desc}</div>
+      <span class="room-tag" style="background:${room.tagColor};color:${room.color}">${room.tag}</span>
+    `;
+    d.onclick=()=>enterRoom(i);
+    grid.appendChild(d);
+  });
+}
+
+function roomIcon(i,col){
+  const icons=[
+    `<circle cx="16" cy="16" r="12" stroke="${col}" stroke-width="0.8" fill="none" opacity="0.4"/>
+     <circle cx="16" cy="16" r="6" stroke="${col}" stroke-width="0.8" fill="none" opacity="0.6"/>
+     <circle cx="16" cy="16" r="2" fill="${col}" opacity="0.8"/>`,
+    `<path d="M6 16 Q10 8 16 16 Q22 24 26 16" stroke="${col}" stroke-width="1" fill="none" opacity="0.7"/>
+     <path d="M8 16 Q12 10 16 16 Q20 22 24 16" stroke="${col}" stroke-width="0.5" fill="none" opacity="0.4"/>`,
+    `<rect x="8" y="8" width="16" height="16" rx="2" stroke="${col}" stroke-width="0.8" fill="none" opacity="0.4"/>
+     <line x1="16" y1="8" x2="16" y2="24" stroke="${col}" stroke-width="0.5" opacity="0.4"/>
+     <line x1="8" y1="16" x2="24" y2="16" stroke="${col}" stroke-width="0.5" opacity="0.4"/>
+     <circle cx="16" cy="16" r="2.5" fill="${col}" opacity="0.8"/>`,
+    `<path d="M6 16 L12 10 L20 22 L26 16" stroke="${col}" stroke-width="1" fill="none" opacity="0.6"/>
+     <circle cx="6" cy="16" r="2" fill="${col}" opacity="0.5"/>
+     <circle cx="26" cy="16" r="2" fill="${col}" opacity="0.5"/>`
+  ];
+  return icons[i]||'';
+}
+
+buildBG();buildRooms();buildVis();
+</script>
