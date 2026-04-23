@@ -1,0 +1,510 @@
+
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  #root {
+    font-family: 'DM Sans', sans-serif;
+    background: #0f0c0a;
+    border-radius: 16px;
+    overflow: hidden;
+    min-height: 560px;
+    position: relative;
+  }
+
+  .bg-art {
+    position: absolute; inset: 0; pointer-events: none; z-index: 0;
+  }
+
+  .content { position: relative; z-index: 1; }
+
+  .screen { display: none; }
+  .screen.on { display: block; }
+
+  .analyst-header {
+    display: flex; align-items: center; gap: 12px;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+  .avatar {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; flex-shrink: 0;
+  }
+  .analyst-name { font-size: 14px; font-weight: 500; color: #e8e0d5; }
+  .analyst-status { font-size: 11px; color: rgba(255,255,255,0.35); }
+  .status-dot { display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: #7dbd8f; margin-right: 4px; }
+
+  .chat-window {
+    min-height: 320px; max-height: 380px;
+    overflow-y: auto; padding: 1.25rem 1.25rem;
+    display: flex; flex-direction: column; gap: 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    scrollbar-width: none;
+  }
+  .chat-window::-webkit-scrollbar { display: none; }
+
+  .msg { display: flex; gap: 10px; align-items: flex-end; }
+  .msg.user { flex-direction: row-reverse; }
+
+  .bubble {
+    max-width: 78%; padding: 10px 14px;
+    font-size: 13.5px; line-height: 1.65;
+    border-radius: 16px;
+  }
+  .msg.analyst .bubble {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: #ddd5c8;
+    border-radius: 4px 16px 16px 16px;
+    font-family: 'Playfair Display', serif;
+  }
+  .msg.user .bubble {
+    background: rgba(180,160,130,0.18);
+    border: 1px solid rgba(180,160,130,0.25);
+    color: #e8e0d5;
+    border-radius: 16px 4px 16px 16px;
+  }
+
+  .msg-avatar {
+    width: 26px; height: 26px; border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; flex-shrink: 0;
+  }
+
+  .typing-indicator {
+    display: flex; align-items: center; gap: 5px;
+    padding: 10px 14px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 4px 16px 16px 16px;
+    width: fit-content;
+  }
+  .dot { width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,0.3); animation: blink 1.2s infinite; }
+  .dot:nth-child(2) { animation-delay: 0.2s; }
+  .dot:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes blink { 0%,80%,100%{opacity:0.2} 40%{opacity:0.8} }
+
+  .choices-area { padding: 1rem 1.25rem; display: flex; flex-direction: column; gap: 7px; }
+  .choice-btn {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px; padding: 10px 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px; color: rgba(232,224,213,0.85);
+    cursor: pointer; text-align: left; line-height: 1.5;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .choice-btn:hover { background: rgba(255,255,255,0.09); border-color: rgba(255,255,255,0.2); color: #e8e0d5; }
+
+  .input-area {
+    padding: 0.75rem 1.25rem;
+    display: flex; gap: 8px; align-items: flex-end;
+    border-top: 1px solid rgba(255,255,255,0.07);
+  }
+  textarea {
+    flex: 1; min-height: 36px; max-height: 90px; resize: none;
+    font-family: 'DM Sans', sans-serif; font-size: 13px;
+    color: #e8e0d5; background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.12); border-radius: 10px;
+    padding: 8px 12px; line-height: 1.5; outline: none;
+  }
+  textarea:focus { border-color: rgba(180,160,130,0.4); }
+  textarea::placeholder { color: rgba(255,255,255,0.25); }
+  .send-btn {
+    width: 34px; height: 34px; flex-shrink: 0;
+    background: rgba(180,160,130,0.15); border: 1px solid rgba(180,160,130,0.3);
+    border-radius: 10px; cursor: pointer; color: #c8b99a; font-size: 14px;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.15s;
+  }
+  .send-btn:hover { background: rgba(180,160,130,0.25); }
+
+  .profile-bar {
+    padding: 0.65rem 1.25rem;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    display: flex; gap: 6px; flex-wrap: wrap;
+  }
+  .trait-pill {
+    font-size: 11px; padding: 3px 9px; border-radius: 20px; font-weight: 400;
+    background: rgba(255,255,255,0.04); color: rgba(255,255,255,0.3);
+    border: 1px solid rgba(255,255,255,0.08); transition: all 0.3s;
+  }
+  .trait-pill.lit {
+    background: rgba(180,160,130,0.18); color: #c8b99a;
+    border-color: rgba(180,160,130,0.35);
+  }
+
+  .intro-screen {
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: center; padding: 3rem 2rem; text-align: center;
+    min-height: 560px;
+  }
+  .intro-eye { margin-bottom: 1.5rem; opacity: 0.6; }
+  .intro-screen h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px; font-weight: 400; color: #e8e0d5;
+    margin-bottom: 0.75rem; letter-spacing: 0.5px;
+  }
+  .intro-screen p {
+    font-size: 13px; color: rgba(255,255,255,0.4);
+    line-height: 1.8; max-width: 340px; margin: 0 auto 2rem;
+  }
+  .begin-btn {
+    padding: 11px 32px;
+    background: rgba(180,160,130,0.12);
+    border: 1px solid rgba(180,160,130,0.3);
+    border-radius: 10px; font-family: 'DM Sans', sans-serif;
+    font-size: 13px; font-weight: 500; color: #c8b99a;
+    cursor: pointer; letter-spacing: 0.3px;
+    transition: background 0.15s;
+  }
+  .begin-btn:hover { background: rgba(180,160,130,0.22); }
+
+  .turn-counter { margin-left: auto; font-size: 11px; color: rgba(255,255,255,0.25); }
+
+  .report-screen { padding: 1.5rem; }
+  .report-screen h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px; font-weight: 400; color: #e8e0d5;
+    margin-bottom: 1.25rem;
+  }
+  .rep-section { margin-bottom: 1.25rem; }
+  .rep-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 6px; }
+  .rep-value { font-size: 13px; color: rgba(232,224,213,0.8); line-height: 1.7; }
+  .rep-archetype { font-family: 'Playfair Display', serif; font-size: 22px; color: #c8b99a; }
+  .trait-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px,1fr)); gap: 8px; margin-top: 8px; }
+  .trait-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px; padding: 10px 12px;
+  }
+  .trait-card-name { font-size: 11px; color: rgba(255,255,255,0.4); margin-bottom: 6px; }
+  .trait-track { height: 3px; background: rgba(255,255,255,0.08); border-radius: 2px; overflow: hidden; }
+  .trait-fill { height: 100%; background: rgba(200,185,154,0.7); border-radius: 2px; transition: width 0.9s ease; }
+  .restart-link { font-size: 12px; color: rgba(255,255,255,0.3); cursor: pointer; text-decoration: underline; }
+  .restart-link:hover { color: rgba(255,255,255,0.5); }
+
+  .divider { height: 1px; background: rgba(255,255,255,0.07); margin: 1rem 0; }
+</style>
+
+<div id="root">
+  <svg class="bg-art" viewBox="0 0 680 560" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+    <rect width="680" height="560" fill="#0f0c0a"/>
+    <circle cx="580" cy="80" r="180" fill="#1a1208" opacity="0.8"/>
+    <circle cx="100" cy="460" r="150" fill="#0c1018" opacity="0.7"/>
+    <circle cx="340" cy="280" r="220" fill="#130e0b" opacity="0.5"/>
+    <line x1="0" y1="0" x2="680" y2="560" stroke="rgba(180,150,100,0.03)" stroke-width="1"/>
+    <line x1="680" y1="0" x2="0" y2="560" stroke="rgba(180,150,100,0.03)" stroke-width="1"/>
+    <line x1="340" y1="0" x2="340" y2="560" stroke="rgba(255,255,255,0.02)" stroke-width="0.5"/>
+    <line x1="0" y1="280" x2="680" y2="280" stroke="rgba(255,255,255,0.02)" stroke-width="0.5"/>
+    <circle cx="340" cy="280" r="200" fill="none" stroke="rgba(180,150,100,0.04)" stroke-width="0.5"/>
+    <circle cx="340" cy="280" r="300" fill="none" stroke="rgba(180,150,100,0.03)" stroke-width="0.5"/>
+    <circle cx="340" cy="280" r="100" fill="none" stroke="rgba(180,150,100,0.05)" stroke-width="0.5"/>
+    <g opacity="0.25">
+      <circle cx="60" cy="60" r="2" fill="#c8b99a"/>
+      <circle cx="160" cy="30" r="1.5" fill="#c8b99a"/>
+      <circle cx="280" cy="50" r="1" fill="#c8b99a"/>
+      <circle cx="420" cy="25" r="1.5" fill="#c8b99a"/>
+      <circle cx="560" cy="45" r="2" fill="#c8b99a"/>
+      <circle cx="640" cy="100" r="1" fill="#c8b99a"/>
+      <circle cx="30" cy="200" r="1.5" fill="#c8b99a"/>
+      <circle cx="650" cy="300" r="1" fill="#c8b99a"/>
+      <circle cx="20" cy="450" r="2" fill="#c8b99a"/>
+      <circle cx="620" cy="500" r="1.5" fill="#c8b99a"/>
+      <circle cx="200" cy="530" r="1" fill="#c8b99a"/>
+      <circle cx="480" cy="545" r="2" fill="#c8b99a"/>
+    </g>
+    <rect x="0" y="0" width="680" height="80" fill="url(#ftop)" opacity="1"/>
+    <rect x="0" y="480" width="680" height="80" fill="url(#fbot)" opacity="1"/>
+    <defs>
+      <linearGradient id="ftop" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#0f0c0a" stop-opacity="1"/>
+        <stop offset="100%" stop-color="#0f0c0a" stop-opacity="0"/>
+      </linearGradient>
+      <linearGradient id="fbot" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#0f0c0a" stop-opacity="0"/>
+        <stop offset="100%" stop-color="#0f0c0a" stop-opacity="1"/>
+      </linearGradient>
+    </defs>
+  </svg>
+
+  <div class="content">
+    <div id="intro-screen" class="screen on intro-screen">
+      <svg class="intro-eye" width="56" height="40" viewBox="0 0 56 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="28" cy="20" rx="27" ry="18" stroke="#c8b99a" stroke-width="1" fill="none" opacity="0.5"/>
+        <circle cx="28" cy="20" r="9" fill="none" stroke="#c8b99a" stroke-width="1" opacity="0.7"/>
+        <circle cx="28" cy="20" r="4" fill="#c8b99a" opacity="0.6"/>
+        <circle cx="31" cy="17" r="1.5" fill="#0f0c0a" opacity="0.8"/>
+      </svg>
+      <h2>Dr. Mira's Office</h2>
+      <p>You've stepped into a quiet room. The analyst is waiting. She'll guide you through a few real situations. There are no right answers — only honest ones.</p>
+      <button class="begin-btn" onclick="beginSession()">Enter the office</button>
+    </div>
+
+    <div id="chat-screen" class="screen">
+      <div class="analyst-header">
+        <div class="avatar">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><ellipse cx="9" cy="9" rx="8" ry="6" stroke="#c8b99a" stroke-width="0.8" fill="none" opacity="0.6"/><circle cx="9" cy="9" r="3" fill="none" stroke="#c8b99a" stroke-width="0.8" opacity="0.8"/><circle cx="9" cy="9" r="1.5" fill="#c8b99a" opacity="0.7"/></svg>
+        </div>
+        <div>
+          <div class="analyst-name">Dr. Mira</div>
+          <div class="analyst-status"><span class="status-dot"></span>In session</div>
+        </div>
+        <div class="turn-counter" id="turn-counter"></div>
+      </div>
+      <div class="chat-window" id="chat-window"></div>
+      <div class="choices-area" id="choices-area"></div>
+      <div class="input-area" id="input-area" style="display:none">
+        <textarea id="user-input" placeholder="Speak freely..." rows="1" onkeydown="handleKey(event)"></textarea>
+        <button class="send-btn" onclick="submitFreeText()">&#8593;</button>
+      </div>
+      <div class="profile-bar" id="profile-bar"></div>
+    </div>
+
+    <div id="report-screen" class="screen report-screen">
+      <h2>Your profile</h2>
+      <div class="rep-section">
+        <div class="rep-label">Archetype</div>
+        <div class="rep-archetype" id="rep-archetype"></div>
+      </div>
+      <div class="divider"></div>
+      <div class="rep-section">
+        <div class="rep-label">Dr. Mira's reading</div>
+        <div class="rep-value" id="rep-reading"></div>
+      </div>
+      <div class="rep-section">
+        <div class="rep-label">Trait profile</div>
+        <div class="trait-grid" id="rep-traits"></div>
+      </div>
+      <div class="rep-section">
+        <div class="rep-label">Hidden pattern</div>
+        <div class="rep-value" id="rep-pattern"></div>
+      </div>
+      <p style="font-size:11px;color:rgba(255,255,255,0.2);margin-bottom:1rem;font-style:italic">For entertainment only.</p>
+      <span class="restart-link" onclick="restartGame()">Start a new session</span>
+    </div>
+  </div>
+</div>
+
+<script>
+const SCENARIOS = [
+  {
+    id:"office",
+    intro:"Let's begin somewhere familiar. You're at work. A colleague takes credit for your idea in front of the whole team. Your manager nods and moves on. What do you do?",
+    choices:[
+      {text:"Speak up right now — calmly correct the record",traits:{assertiveness:2,courage:2}},
+      {text:"Say nothing publicly, address them privately after",traits:{diplomacy:2,restraint:2}},
+      {text:"Let it go. It's not worth the conflict",traits:{avoidance:2,agreeableness:2}},
+      {text:"Bring it up with your manager one-on-one later",traits:{strategy:2,introversion:1}}
+    ],
+    followup:(c)=>["Interesting. You acted immediately. Was it more about fairness — or how others perceive you?","You held back in public. What stops you — protecting the relationship, or something else?","You let it go. Is that wisdom, or a pattern you've noticed in yourself before?","You chose the private route. What were you hoping to avoid by not raising it openly?"][c],
+    freeText:true
+  },
+  {
+    id:"letter",
+    intro:"You find a sealed letter addressed to you — from a version of yourself five years ago. You never wrote it, but the handwriting is yours. Do you open it?",
+    choices:[
+      {text:"Yes, immediately — I need to know",traits:{openness:3,impulsivity:1}},
+      {text:"Yes, but I sit with it for a while first",traits:{openness:2,conscientiousness:2}},
+      {text:"No — I'd rather not know",traits:{avoidance:2,neuroticism:2}},
+      {text:"I'd try to understand how it got here first",traits:{strategy:2,conscientiousness:2}}
+    ],
+    followup:(c)=>["You open it right away. What do you hope it says — and what do you fear?","You wait. That pause protects something. What?","You leave it sealed. Does self-knowledge feel threatening?","You look for the 'how' before the 'what'. Do you often need to understand a thing before you can feel safe with it?"][c],
+    freeText:true
+  },
+  {
+    id:"crowd",
+    intro:"You're at a party. You don't know many people. Across the room, someone is standing alone, looking uncomfortable. What do you do?",
+    choices:[
+      {text:"Walk over and introduce yourself",traits:{extraversion:3,agreeableness:2}},
+      {text:"Watch for a moment — maybe they want space",traits:{empathy:2,introversion:1}},
+      {text:"I'd probably be that person — I relate to them",traits:{introversion:3,neuroticism:1}},
+      {text:"Mention it to someone else who might know them",traits:{diplomacy:2,agreeableness:1}}
+    ],
+    followup:(c)=>["You move toward discomfort easily. Is that instinct — or something you've had to build?","You observe before acting. Is that compassion, or caution?","You identify with the outsider. Has that feeling followed you a long time?","You delegate the connection. What stops you from making it yourself?"][c],
+    freeText:true
+  },
+  {
+    id:"dream",
+    intro:"You have a recurring dream: you're in a house you've never seen, but it feels deeply familiar. Each room holds something from your past — but one door is always locked. How do you feel about that locked door?",
+    choices:[
+      {text:"Drawn to it — I have to find the key",traits:{openness:2,courage:2}},
+      {text:"Uneasy — I know better than to open it",traits:{neuroticism:2,restraint:2}},
+      {text:"Curious but patient — it'll open when ready",traits:{openness:1,conscientiousness:2}},
+      {text:"Indifferent — the other rooms are enough",traits:{avoidance:2,agreeableness:1}}
+    ],
+    followup:(c)=>["The locked door pulls you in. Do you tend to press against the things closed off to you?","You stay away from it. What do you think is behind it?","You trust the process. Did you always feel that kind of patience toward yourself?","You find the other rooms enough. Is there something you've consciously decided not to examine?"][c],
+    freeText:true
+  },
+  {
+    id:"ending",
+    intro:"Last one. You've reached the end of a long journey — and accomplished exactly what you set out to do. But the feeling isn't quite what you expected. What is it?",
+    choices:[
+      {text:"Relief — finally, it's done",traits:{neuroticism:1,conscientiousness:2}},
+      {text:"Emptiness — now what?",traits:{neuroticism:2,openness:1}},
+      {text:"Quiet pride — I did it",traits:{courage:2,introversion:1}},
+      {text:"Restlessness — I'm already thinking about the next thing",traits:{impulsivity:2,openness:2}}
+    ],
+    followup:null,freeText:false,last:true
+  }
+];
+
+const ARCHETYPES={
+  explorer:{name:"The Explorer",reading:"You're driven by curiosity more than security. Routine feels like a cage. You chase experience, ideas, and the next horizon — sometimes at the cost of depth. Your restlessness is a feature, not a flaw, but you may occasionally wonder what it would feel like to stay.",pattern:"You tend to avoid fully arriving. The journey matters more to you than the destination."},
+  guardian:{name:"The Guardian",reading:"You carry invisible responsibility with grace. Others rely on you — and you've never asked them to stop. Your consistency is your gift, but your inner life sometimes goes unwitnessed. You protect others far more readily than you protect yourself.",pattern:"You mistake caretaking for connection. Giving feels safer than receiving."},
+  shadow:{name:"The Shadow Walker",reading:"You're intimate with your own darkness. You've looked at the difficult parts of yourself and haven't flinched — or at least, you've learned not to show it. This makes you perceptive, empathetic, and occasionally exhausting to live inside.",pattern:"You understand pain, which is why you sometimes court it. Discomfort feels like honesty to you."},
+  architect:{name:"The Architect",reading:"You build systems — emotional, intellectual, social. You observe before you act, plan before you speak, and trust structure over spontaneity. Others may read this as coldness, but it's really a different kind of care.",pattern:"You struggle to feel safe without a map. Uncertainty isn't uncomfortable — it feels like a threat."},
+  mirror:{name:"The Mirror",reading:"You absorb and reflect the people around you with unusual accuracy. This makes you deeply likable and quietly powerful. But your own desires can blur. You've spent so long understanding others that you sometimes lose the thread of your own wants.",pattern:"You're fluent in everyone's emotional language — except occasionally your own."}
+};
+
+const TRAITS_LIST=["assertiveness","courage","diplomacy","restraint","avoidance","agreeableness","strategy","introversion","openness","impulsivity","conscientiousness","neuroticism","extraversion","empathy"];
+
+let traits={},scenarioIdx=0,awaitingFreeText=false,session=[];
+
+function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('on'));document.getElementById(id).classList.add('on');}
+
+function beginSession(){
+  show('chat-screen');renderProfileBar();
+  setTimeout(()=>deliverMessage("analyst","Welcome. Please, sit down. I'm Dr. Mira. This is a space without judgment — only observation. We'll move through a few situations together."),400);
+  setTimeout(()=>{deliverMessage("analyst",SCENARIOS[0].intro);renderChoices(0);},2400);
+}
+
+function deliverMessage(role,text){
+  const win=document.getElementById('chat-window');
+  const msg=document.createElement('div');msg.className=`msg ${role}`;
+  const av=document.createElement('div');av.className='msg-avatar';
+  av.innerHTML=role==='analyst'?`<svg width="12" height="12" viewBox="0 0 12 12" fill="none"><ellipse cx="6" cy="6" rx="5" ry="3.5" stroke="#c8b99a" stroke-width="0.8" fill="none" opacity="0.6"/><circle cx="6" cy="6" r="1.8" fill="#c8b99a" opacity="0.7"/></svg>`:'<span style="font-size:8px;color:rgba(200,185,154,0.6)">&#9679;</span>';
+  const bub=document.createElement('div');bub.className='bubble';bub.textContent=text;
+  if(role==='analyst'){msg.appendChild(av);msg.appendChild(bub);}else{msg.appendChild(bub);msg.appendChild(av);}
+  win.appendChild(msg);win.scrollTop=win.scrollHeight;
+}
+
+function showTyping(cb,delay){
+  const win=document.getElementById('chat-window');
+  const t=document.createElement('div');t.className='msg analyst';t.id='typing';
+  const av=document.createElement('div');av.className='msg-avatar';
+  av.innerHTML=`<svg width="12" height="12" viewBox="0 0 12 12" fill="none"><ellipse cx="6" cy="6" rx="5" ry="3.5" stroke="#c8b99a" stroke-width="0.8" fill="none" opacity="0.6"/><circle cx="6" cy="6" r="1.8" fill="#c8b99a" opacity="0.7"/></svg>`;
+  const ind=document.createElement('div');ind.className='typing-indicator';
+  [1,2,3].forEach(()=>{const d=document.createElement('div');d.className='dot';ind.appendChild(d);});
+  t.appendChild(av);t.appendChild(ind);win.appendChild(t);win.scrollTop=win.scrollHeight;
+  setTimeout(()=>{t.remove();cb();win.scrollTop=win.scrollHeight;},delay||1400);
+}
+
+function renderChoices(sIdx){
+  const area=document.getElementById('choices-area');area.innerHTML='';
+  SCENARIOS[sIdx].choices.forEach((c,i)=>{
+    const btn=document.createElement('button');btn.className='choice-btn';btn.textContent=c.text;
+    btn.onclick=()=>selectChoice(sIdx,i);area.appendChild(btn);
+  });
+}
+
+function clearChoices(){document.getElementById('choices-area').innerHTML='';}
+
+function selectChoice(sIdx,choiceIdx){
+  const s=SCENARIOS[sIdx],choice=s.choices[choiceIdx];
+  clearChoices();deliverMessage('user',choice.text);
+  for(const t in choice.traits)traits[t]=(traits[t]||0)+choice.traits[t];
+  renderProfileBar();
+  document.getElementById('turn-counter').textContent=`${sIdx+1} / ${SCENARIOS.length}`;
+  if(s.followup){
+    showTyping(()=>{
+      deliverMessage('analyst',s.followup(choiceIdx));
+      document.getElementById('input-area').style.display='flex';
+      document.getElementById('user-input').focus();
+    },1600);
+  } else if(s.last){
+    showTyping(()=>{
+      deliverMessage('analyst',"Thank you. That tells me a great deal. Give me just a moment...");
+      setTimeout(()=>generateReport(),2200);
+    },1800);
+  } else {advanceScenario();}
+}
+
+function submitFreeText(){
+  const input=document.getElementById('user-input');
+  const val=input.value.trim();if(!val)return;
+  input.value='';deliverMessage('user',val);
+  document.getElementById('input-area').style.display='none';
+  const s=val.toLowerCase();
+  if(s.includes('fear')||s.includes('scared')||s.includes('anxious'))traits.neuroticism=(traits.neuroticism||0)+1;
+  if(s.includes('fair')||s.includes('justice')||s.includes('right'))traits.assertiveness=(traits.assertiveness||0)+1;
+  if(s.includes('other')||s.includes('they')||s.includes('people'))traits.agreeableness=(traits.agreeableness||0)+1;
+  if(s.includes('i ')||s.includes("i've")||s.includes('myself'))traits.introversion=(traits.introversion||0)+1;
+  renderProfileBar();
+  const acks=["Mm. That's revealing. Let's keep going.","I see. There's something worth returning to there.","Interesting. Hold that thought.","That's honest. Thank you.","Yes — that tracks with what I've observed so far."];
+  showTyping(()=>{deliverMessage('analyst',acks[Math.floor(Math.random()*acks.length)]);advanceScenario();},1200);
+}
+
+function handleKey(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();submitFreeText();}}
+
+function advanceScenario(){
+  scenarioIdx++;
+  if(scenarioIdx>=SCENARIOS.length){generateReport();return;}
+  showTyping(()=>{deliverMessage('analyst',SCENARIOS[scenarioIdx].intro);renderChoices(scenarioIdx);},1800);
+}
+
+function renderProfileBar(){
+  const bar=document.getElementById('profile-bar');
+  const top=getTopTraits(4);bar.innerHTML='';
+  TRAITS_LIST.slice(0,9).forEach(t=>{
+    const pill=document.createElement('div');
+    pill.className='trait-pill'+(top.includes(t)?' lit':'');pill.textContent=t;
+    bar.appendChild(pill);
+  });
+}
+
+function getTopTraits(n){return Object.entries(traits).sort((a,b)=>b[1]-a[1]).slice(0,n).map(e=>e[0]);}
+
+function determineArchetype(){
+  const t=traits;
+  const scores={
+    explorer:(t.openness||0)*2+(t.impulsivity||0),
+    guardian:(t.agreeableness||0)*2+(t.conscientiousness||0),
+    shadow:(t.neuroticism||0)*2+(t.empathy||0),
+    architect:(t.strategy||0)*2+(t.conscientiousness||0)+(t.introversion||0),
+    mirror:(t.diplomacy||0)*2+(t.agreeableness||0)+(t.empathy||0)
+  };
+  return Object.entries(scores).sort((a,b)=>b[1]-a[1])[0][0];
+}
+
+function generateReport(){
+  clearChoices();document.getElementById('input-area').style.display='none';
+  showTyping(()=>{
+    deliverMessage('analyst',"I've seen enough. Your profile is ready. It's never the whole picture — but it's a start.");
+    setTimeout(()=>buildReportScreen(),1800);
+  },2000);
+}
+
+function buildReportScreen(){
+  const key=determineArchetype(),arch=ARCHETYPES[key];
+  document.getElementById('rep-archetype').textContent=arch.name;
+  document.getElementById('rep-reading').textContent=arch.reading;
+  document.getElementById('rep-pattern').textContent=arch.pattern;
+  const sorted=Object.entries(traits).sort((a,b)=>b[1]-a[1]).slice(0,6);
+  const max=sorted[0]?sorted[0][1]:1;
+  const grid=document.getElementById('rep-traits');grid.innerHTML='';
+  sorted.forEach(([name,val])=>{
+    const pct=Math.round((val/max)*100);
+    const card=document.createElement('div');card.className='trait-card';
+    card.innerHTML=`<div class="trait-card-name">${name}</div><div class="trait-track"><div class="trait-fill" data-pct="${pct}" style="width:0%"></div></div>`;
+    grid.appendChild(card);
+  });
+  show('report-screen');
+  setTimeout(()=>document.querySelectorAll('.trait-fill').forEach(el=>{el.style.width=el.dataset.pct+'%';}),100);
+}
+
+function restartGame(){
+  traits={};scenarioIdx=0;awaitingFreeText=false;session=[];
+  document.getElementById('chat-window').innerHTML='';
+  document.getElementById('choices-area').innerHTML='';
+  document.getElementById('input-area').style.display='none';
+  show('intro-screen');
+}
+</script>
